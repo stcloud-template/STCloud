@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_vpn_connection_tunnels_up` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
-| 资源类型 | AwsEc2ClientVpnEndpoint |
-| 资源组 | network |
+| チェック項目 ID | `vpc_vpn_connection_tunnels_up` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
+| リソースタイプ | AwsEc2ClientVpnEndpoint |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **AWS Site-to-Site VPN** connections have two IPsec tunnels. This evaluates tunnel status and detects when any tunnel is not `UP`, indicating whether both tunnels are concurrently available for high availability.
 
-## 风险
+## リスク
 
 With only one active tunnel or none, the link loses redundancy, degrading **availability** and increasing the chance of outages, session drops, or route blackholing. Failover cannot occur, disrupting critical workloads and cross-environment operations.
 
-## 推荐措施
+## 推奨事項
 
 Maintain both tunnels healthy and ready for failover: - Deploy redundant customer gateways and resilient routing - Monitor tunnel health with alerts - Periodically test failover and document runbooks Apply **high availability** and **defense-in-depth** to avoid single points of failure.
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
@@ -39,12 +39,12 @@ Maintain both tunnels healthy and ready for failover: - Deploy redundant custome
 5. If your device requires different parameters, in the AWS console choose Actions > Modify VPN tunnel options, select the tunnel outside IP, adjust only the necessary options (for example IKE version or pre-shared key), and Save
 6. Wait a few minutes and verify both tunnels show Status: UP under Tunnel details
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/vpn/latest/s2svpn/modify-vpn-tunnel-options.html](https://docs.aws.amazon.com/vpn/latest/s2svpn/modify-vpn-tunnel-options.html)
 - [https://docs.aws.amazon.com/config/latest/developerguide/vpc-vpn-2-tunnels-up.html](https://docs.aws.amazon.com/config/latest/developerguide/vpc-vpn-2-tunnels-up.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_vpn_connection_tunnels_up/metadata.json](../../sources/aws/vpc_vpn_connection_tunnels_up/metadata.json)
 - Source Code：[sources/aws/vpc_vpn_connection_tunnels_up/check.py](../../sources/aws/vpc_vpn_connection_tunnels_up/check.py)

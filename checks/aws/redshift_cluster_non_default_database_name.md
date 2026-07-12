@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `redshift_cluster_non_default_database_name` |
-| 云平台 | AWS |
-| 服务 | redshift |
-| 严重等级 | low |
-| 类别 | vulnerabilities |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, TTPs/Discovery |
-| 资源类型 | AwsRedshiftCluster |
-| 资源组 | analytics |
+| チェック項目 ID | `redshift_cluster_non_default_database_name` |
+| クラウドプラットフォーム | AWS |
+| サービス | redshift |
+| 重大度 | low |
+| カテゴリ | vulnerabilities |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, TTPs/Discovery |
+| リソースタイプ | AwsRedshiftCluster |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **Amazon Redshift clusters** are identified when the database name equals the default `dev`, rather than a custom name.
 
-## 风险
+## リスク
 
 Using the predictable `dev` name weakens **confidentiality** and **integrity**. Mis-scoped IAM or network rules may unintentionally match the database, and known names aid enumeration and targeted connection attempts, increasing the likelihood of unauthorized queries and data exposure.
 
-## 推荐措施
+## 推奨事項
 
 Use a **unique, non-default database name** per cluster. Define a naming standard that avoids generic values (e.g., `dev`, `test`) and supports **least privilege** by preventing broad policy conditions. Review IAM and network rules to reference only intended, explicit resources.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -67,12 +67,12 @@ resource "aws_redshift_cluster" "example" {
 4. Complete the wizard and create the cluster
 5. Migrate workloads to the new cluster and delete the old cluster that used the default "dev" database name
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/redshift-controls.html#redshift-9](https://docs.aws.amazon.com/securityhub/latest/userguide/redshift-controls.html#redshift-9)
 - [https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/redshift_cluster_non_default_database_name/metadata.json](../../sources/aws/redshift_cluster_non_default_database_name/metadata.json)
 - Source Code：[sources/aws/redshift_cluster_non_default_database_name/check.py](../../sources/aws/redshift_cluster_non_default_database_name/check.py)

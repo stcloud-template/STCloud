@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `appsync_field_level_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | appsync |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsAppSyncGraphQLApi |
-| 资源组 | api_gateway |
+| チェック項目 ID | `appsync_field_level_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | appsync |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsAppSyncGraphQLApi |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **AWS AppSync GraphQL APIs** have **field-level logging** configured at the resolver level. The check looks for log levels of `ERROR` or `ALL` to confirm field resolution events are recorded.
 
-## 风险
+## リスク
 
 Without **field-level logs**, resolver access and mutations lack **auditability**, reducing detection of data exfiltration and tampering (**confidentiality and integrity**). Limited traces hinder incident response and root-cause analysis, increasing recovery time.
 
-## 推荐措施
+## 推奨事項
 
 - Enable field-level logging at least `ERROR`; raise to `INFO`/`DEBUG`/`ALL` only for troubleshooting. - Enforce **least privilege** on the logging role. - Avoid sensitive data in logs; limit verbose content. - Set retention and consider log **sampling** to balance visibility and cost.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,7 +75,7 @@ resource "aws_appsync_graphql_api" "<example_resource_name>" {
 5. Select an IAM role that allows AppSync to write to CloudWatch Logs
 6. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://theburningmonk.com/2020/09/how-to-sample-appsync-resolver-logs/](https://theburningmonk.com/2020/09/how-to-sample-appsync-resolver-logs/)
 - [https://lumigo.io/blog/how-to-monitor-and-debug-appsync-apis/](https://lumigo.io/blog/how-to-monitor-and-debug-appsync-apis/)
@@ -84,7 +84,7 @@ resource "aws_appsync_graphql_api" "<example_resource_name>" {
 - [https://blog.graphbolt.dev/debugging-aws-appsync-apis-with-cloudwatch](https://blog.graphbolt.dev/debugging-aws-appsync-apis-with-cloudwatch)
 - [https://support.icompaas.com/support/solutions/articles/62000233678-ensure-aws-appsync-should-have-field-level-logging-enabled](https://support.icompaas.com/support/solutions/articles/62000233678-ensure-aws-appsync-should-have-field-level-logging-enabled)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/appsync_field_level_logging_enabled/metadata.json](../../sources/aws/appsync_field_level_logging_enabled/metadata.json)
 - Source Code：[sources/aws/appsync_field_level_logging_enabled/check.py](../../sources/aws/appsync_field_level_logging_enabled/check.py)

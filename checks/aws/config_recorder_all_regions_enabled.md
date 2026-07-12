@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `config_recorder_all_regions_enabled` |
-| 云平台 | AWS |
-| 服务 | config |
-| 严重等级 | medium |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | Other |
-| 资源组 | monitoring |
+| チェック項目 ID | `config_recorder_all_regions_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | config |
+| 重大度 | medium |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | Other |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **AWS accounts** have **AWS Config recorders** active and healthy in each Region. It identifies Regions with no recorder, a disabled recorder, or a recorder in a failure state.
 
-## 风险
+## リスク
 
 **Gaps in Config recording** create **blind spots**. Changes in unmonitored Regions aren't captured, weakening **integrity** and **auditability**. Adversaries can alter resources or stage assets unnoticed, enabling misconfigurations and delaying **incident response**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **AWS Config** in every Region with continuous recording and maintain healthy recorder status.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -86,13 +86,13 @@ resource "aws_config_configuration_recorder_status" "example_resource" {
 5. Click Confirm/Turn on to start recording
 6. Verify on the Settings page that Status shows Recording and not Failure
 
-## 参考资料
+## 参考資料
 
 - [https://repost.aws/es/questions/QUGcgeerhcTamRkwgdwh_tLQ/enable-aws-config](https://repost.aws/es/questions/QUGcgeerhcTamRkwgdwh_tLQ/enable-aws-config)
 - [https://www.tenable.com/audits/items/CIS_Amazon_Web_Services_Foundations_v1.5.0_L2.audit:6a5136528bd329139e5969f8f1e5ffbc](https://www.tenable.com/audits/items/CIS_Amazon_Web_Services_Foundations_v1.5.0_L2.audit:6a5136528bd329139e5969f8f1e5ffbc)
 - [https://aws.amazon.com/blogs/mt/aws-config-best-practices/](https://aws.amazon.com/blogs/mt/aws-config-best-practices/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/config_recorder_all_regions_enabled/metadata.json](../../sources/aws/config_recorder_all_regions_enabled/metadata.json)
 - Source Code：[sources/aws/config_recorder_all_regions_enabled/check.py](../../sources/aws/config_recorder_all_regions_enabled/check.py)

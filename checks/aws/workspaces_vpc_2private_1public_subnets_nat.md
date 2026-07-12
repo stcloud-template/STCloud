@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `workspaces_vpc_2private_1public_subnets_nat` |
-| 云平台 | AWS |
-| 服务 | workspaces |
-| 严重等级 | high |
-| 类别 | trust-boundaries, internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `workspaces_vpc_2private_1public_subnets_nat` |
+| クラウドプラットフォーム | AWS |
+| サービス | workspaces |
+| 重大度 | high |
+| カテゴリ | trust-boundaries, internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Amazon WorkSpaces reside in a VPC that includes **2 private subnets** and **1 public subnet**, with the WorkSpace launched in a **private subnet** and the VPC providing **NAT Gateway** egress.
 
-## 风险
+## リスク
 
 Placing WorkSpaces in public subnets or lacking a NAT Gateway exposes desktops to direct Internet reachability, enabling credential attacks and session hijacking, harming **confidentiality** and **integrity**. Without controlled egress, updates and directory connectivity can fail, impacting **availability** and pushing teams to unsafe workarounds.
 
-## 推荐措施
+## 推奨事項
 
 Launch WorkSpaces in **private subnets** and design the VPC with **one public** and **two private subnets**. Provide outbound access via a **NAT Gateway** and restrict inbound exposure per **network segmentation** and **least privilege**. Distribute subnets across AZs and avoid assigning public IPs to WorkSpaces for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -200,11 +200,11 @@ resource "aws_route_table_association" "private_b" {
 5. Ensure the WorkSpace's subnet is one of the PRIVATE subnets by associating its subnet to the private route table (Routes: 0.0.0.0/0 -> NAT Gateway).
 6. Verify: the VPC now has >=1 public subnet, >=2 private subnets, at least one NAT Gateway, and the WorkSpace's subnet is private.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-vpc.html](https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-vpc.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/workspaces_vpc_2private_1public_subnets_nat/metadata.json](../../sources/aws/workspaces_vpc_2private_1public_subnets_nat/metadata.json)
 - Source Code：[sources/aws/workspaces_vpc_2private_1public_subnets_nat/check.py](../../sources/aws/workspaces_vpc_2private_1public_subnets_nat/check.py)

@@ -2,35 +2,35 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_ebs_default_encryption` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 子服务 | ebs |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Data Protection |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `ec2_ebs_default_encryption` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| サブサービス | ebs |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Data Protection |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Check if EBS Default Encryption is activated.
 
-## 风险
+## リスク
 
 If not enabled sensitive information at rest is not protected.
 
-## 推荐措施
+## 推奨事項
 
 Enable Encryption. Use a CMK where possible. It will provide additional management and privacy benefits.
 
-- 推荐链接：[https://aws.amazon.com/premiumsupport/knowledge-center/ebs-automatic-encryption/](https://aws.amazon.com/premiumsupport/knowledge-center/ebs-automatic-encryption/)
+- 推奨リンク：[https://aws.amazon.com/premiumsupport/knowledge-center/ebs-automatic-encryption/](https://aws.amazon.com/premiumsupport/knowledge-center/ebs-automatic-encryption/)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -47,11 +47,11 @@ aws ec2 enable-ebs-encryption-by-default
 
 [https://docs.ST Cloud.com/checks/aws/general-policies/ensure-ebs-default-encryption-is-enabled#aws-console](https://docs.ST Cloud.com/checks/aws/general-policies/ensure-ebs-default-encryption-is-enabled#aws-console)
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/premiumsupport/knowledge-center/ebs-automatic-encryption/](https://aws.amazon.com/premiumsupport/knowledge-center/ebs-automatic-encryption/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_ebs_default_encryption/metadata.json](../../sources/aws/ec2_ebs_default_encryption/metadata.json)
 - Source Code：[sources/aws/ec2_ebs_default_encryption/check.py](../../sources/aws/ec2_ebs_default_encryption/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_default_root_object` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_default_root_object` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 CloudFront distributions are evaluated for a configured **default root object** that maps `/` requests to a specific file such as `index.html`, rather than forwarding root requests directly to the origin.
 
-## 风险
+## リスク
 
 Without a **default root object**, root requests can reveal **origin listings** or unintended files, exposing data (**confidentiality**) and aiding reconnaissance. They may also return errors, lowering uptime (**availability**), or route unpredictably, risking wrong content delivery (**integrity**).
 
-## 推荐措施
+## 推奨事項
 
 Set a **default root object** that returns a safe landing page (e.g., `index.html`). Apply **defense in depth**: restrict direct origin access, define explicit error pages, and standardize redirects. Test root and subdirectory requests for predictable responses. Align origin permissions with **least privilege**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -90,13 +90,13 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
 3. In Default root object, enter index.html (do not start with a /)
 4. Save changes and wait for deployment to complete
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/cloudfront-controls.html#cloudfront-1](https://docs.aws.amazon.com/securityhub/latest/userguide/cloudfront-controls.html#cloudfront-1)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/cloudfront-default-object.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/cloudfront-default-object.html)
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_default_root_object/metadata.json](../../sources/aws/cloudfront_distributions_default_root_object/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_default_root_object/check.py](../../sources/aws/cloudfront_distributions_default_root_object/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecs_task_definitions_no_environment_secrets` |
-| 云平台 | AWS |
-| 服务 | ecs |
-| 严重等级 | critical |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Sensitive Data Identifications/Passwords, TTPs/Credential Access |
-| 资源类型 | AwsEcsTaskDefinition |
-| 资源组 | container |
+| チェック項目 ID | `ecs_task_definitions_no_environment_secrets` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecs |
+| 重大度 | critical |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Sensitive Data Identifications/Passwords, TTPs/Credential Access |
+| リソースタイプ | AwsEcsTaskDefinition |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **ECS task definitions** are analyzed for **plaintext secrets** placed in container `environment` variables. It identifies values that resemble credentials (keys, tokens, passwords) within container definitions.
 
-## 风险
+## リスク
 
 Exposed secrets in env vars undermine confidentiality via logs, task metadata, and introspection. With container or read-only API access, attackers can reuse credentials to read databases, modify records (integrity), pivot to other services, and trigger outages or unauthorized costs (availability).
 
-## 推荐措施
+## 推奨事項
 
 Store secrets in **AWS Secrets Manager** or **SSM Parameter Store** and inject them at runtime instead of plaintext env vars. Apply **least privilege** via task roles, enable regular **rotation**, avoid logging secret values, and prefer **ephemeral credentials** for downstream services.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -73,11 +73,11 @@ resource "aws_ecs_task_definition" "<example_resource_name>" {
 5. Save to create the new revision
 6. If using a service, update the service to use the new task definition revision and deploy
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecs_task_definitions_no_environment_secrets/metadata.json](../../sources/aws/ecs_task_definitions_no_environment_secrets/metadata.json)
 - Source Code：[sources/aws/ecs_task_definitions_no_environment_secrets/check.py](../../sources/aws/ecs_task_definitions_no_environment_secrets/check.py)

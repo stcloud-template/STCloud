@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `backup_vaults_exist` |
-| 云平台 | AWS |
-| 服务 | backup |
-| 严重等级 | low |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsBackupBackupVault |
-| 资源组 | storage |
+| チェック項目 ID | `backup_vaults_exist` |
+| クラウドプラットフォーム | AWS |
+| サービス | backup |
+| 重大度 | low |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsBackupBackupVault |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 **AWS Backup** in the account/region includes at least one **backup vault** that stores and organizes recovery points for use by backup plans and copies.
 
-## 风险
+## リスク
 
 Without a vault, recovery points cannot be created or retained in AWS Backup, degrading **availability** and **integrity**. Data may be irrecoverable after deletion, ransomware, or misconfiguration, and RPO/RTO targets may be missed during incidents.
 
-## 推荐措施
+## 推奨事項
 
 Create and maintain a **backup vault** in each required region. Enforce **least privilege** access, encrypt with **KMS CMKs**, and enable **Vault Lock** to prevent tampering. Use lifecycle rules and cross-region/cross-account copies, and regularly test restores for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -64,11 +64,11 @@ resource "aws_backup_vault" "<example_resource_name>" {
 4. Enter a name (e.g., <example_resource_name>)
 5. Click Create backup vault
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/aws-backup/latest/devguide/vaults.html](https://docs.aws.amazon.com/aws-backup/latest/devguide/vaults.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/backup_vaults_exist/metadata.json](../../sources/aws/backup_vaults_exist/metadata.json)
 - Source Code：[sources/aws/backup_vaults_exist/check.py](../../sources/aws/backup_vaults_exist/check.py)

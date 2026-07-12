@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eventbridge_schema_registry_cross_account_access` |
-| 云平台 | AWS |
-| 服务 | eventbridge |
-| 严重等级 | high |
-| 类别 | trust-boundaries, identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | AwsEventSchemasRegistry |
-| 资源组 | messaging |
+| チェック項目 ID | `eventbridge_schema_registry_cross_account_access` |
+| クラウドプラットフォーム | AWS |
+| サービス | eventbridge |
+| 重大度 | high |
+| カテゴリ | trust-boundaries, identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | AwsEventSchemasRegistry |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **EventBridge schema registry** resource policies are assessed for **cross-account access**. It identifies statements that grant external or public principals (e.g., `Principal: *` or other accounts) permissions to interact with the registry and its schemas.
 
-## 风险
+## リスク
 
 Unknown cross-account access exposes schema definitions, enabling reconnaissance and leaking data models (**confidentiality**). Excessive permissions may let outsiders alter or delete schemas, corrupt code bindings, and disrupt integrations (**integrity** and **availability**).
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** to registry resource policies: - Avoid public principals like `Principal: *` - Allow only trusted account ARNs or org IDs - Grant minimal actions, prefer read-only - Use **separation of duties** and log changes *If cross-account is needed*, scope tightly and review often.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -89,12 +89,12 @@ resource "aws_schemas_registry_policy" "<example_resource_name>" {
 5. Add a single Allow statement with Principal = arn:aws:iam::<your_account_id>:root
 6. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/about-aws/whats-new/2021/09/cross-account-discovery-amazon-eventbridge-schema/](https://aws.amazon.com/about-aws/whats-new/2021/09/cross-account-discovery-amazon-eventbridge-schema/)
 - [https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-schema.html](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-schema.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eventbridge_schema_registry_cross_account_access/metadata.json](../../sources/aws/eventbridge_schema_registry_cross_account_access/metadata.json)
 - Source Code：[sources/aws/eventbridge_schema_registry_cross_account_access/check.py](../../sources/aws/eventbridge_schema_registry_cross_account_access/check.py)

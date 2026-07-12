@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `acm_certificates_expiration_check` |
-| 云平台 | AWS |
-| 服务 | acm |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsCertificateManagerCertificate |
-| 资源组 | security |
+| チェック項目 ID | `acm_certificates_expiration_check` |
+| クラウドプラットフォーム | AWS |
+| サービス | acm |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsCertificateManagerCertificate |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **ACM certificates** are assessed for **time to expiration** against a configurable threshold. Certificates close to end of validity or already expired are surfaced, covering those attached to services and, *if in scope*, unused ones.
 
-## 风险
+## リスク
 
 Expired or near-expiry **TLS certificates** can break handshakes, causing **service outages** and failed API calls (**availability**). Emergency fixes raise misconfiguration risk, enabling disabled verification or weak ciphers, which allows **MITM** and data exposure (**confidentiality**/**integrity**).
 
-## 推荐措施
+## 推奨事項
 
 Adopt **automated certificate lifecycle management**: prefer **ACM-issued certs with auto-renewal**, or integrate imports with an automated renewal/rotation pipeline. Track expirations with alerts, enforce **least privilege** for cert operations, remove unused certs, and test rollovers to avoid downtime.
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
@@ -41,14 +41,14 @@ Adopt **automated certificate lifecycle management**: prefer **ACM-issued certs 
    - API Gateway: Custom domain names > Edit > Choose the new ACM certificate
 5. Verify the old certificate is no longer in use; delete it if not needed
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ACM/certificate-expires-in-45-days.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ACM/certificate-expires-in-45-days.html)
 - [https://repost.aws/es/knowledge-center/acm-notification-certificate-renewal](https://repost.aws/es/knowledge-center/acm-notification-certificate-renewal)
 - [https://docs.aws.amazon.com/config/latest/developerguide/acm-certificate-expiration-check.html](https://docs.aws.amazon.com/config/latest/developerguide/acm-certificate-expiration-check.html)
 - [https://repost.aws/questions/QU3sMaeZPMRo2kLcsfJsfuVA/acm-notifications-for-expiring-certificates](https://repost.aws/questions/QU3sMaeZPMRo2kLcsfJsfuVA/acm-notifications-for-expiring-certificates)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/acm_certificates_expiration_check/metadata.json](../../sources/aws/acm_certificates_expiration_check/metadata.json)
 - Source Code：[sources/aws/acm_certificates_expiration_check/check.py](../../sources/aws/acm_certificates_expiration_check/check.py)

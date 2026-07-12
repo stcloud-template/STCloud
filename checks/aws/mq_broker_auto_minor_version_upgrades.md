@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `mq_broker_auto_minor_version_upgrades` |
-| 云平台 | AWS |
-| 服务 | mq |
-| 严重等级 | low |
-| 类别 | vulnerabilities |
-| 检查类型 | Software and Configuration Checks/Patch Management, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsAmazonMQBroker |
-| 资源组 | messaging |
+| チェック項目 ID | `mq_broker_auto_minor_version_upgrades` |
+| クラウドプラットフォーム | AWS |
+| サービス | mq |
+| 重大度 | low |
+| カテゴリ | vulnerabilities |
+| チェックタイプ | Software and Configuration Checks/Patch Management, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsAmazonMQBroker |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon MQ brokers** have `autoMinorVersionUpgrade` enabled to automatically apply supported minor and patch engine updates during the scheduled maintenance window.
 
-## 风险
+## リスク
 
 Without automatic minor upgrades, brokers may run **known-vulnerable engine versions**, enabling exploits that impact: - **Confidentiality**: message disclosure - **Integrity**: tampering or replay - **Availability**: crashes/DoS and instability Delayed patches also increase operational risk and drift.
 
-## 推荐措施
+## 推奨事項
 
 Enable `autoMinorVersionUpgrade` on all brokers to reduce patch latency. - Align upgrades with a defined maintenance window - Validate changes in staging before production - Monitor broker health and logs after updates - Maintain HA and tested backups for rollback (*defense in depth*)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -83,14 +83,14 @@ resource "aws_mq_broker" "<example_resource_name>" {
 4. Under Maintenance, check Enable automatic minor version upgrades
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MQ/auto-minor-version-upgrade.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MQ/auto-minor-version-upgrade.html)
 - [https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/upgrading-brokers.html#upgrading-brokers-automatic-upgrades](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/upgrading-brokers.html#upgrading-brokers-automatic-upgrades)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/mq-controls.html#mq-3](https://docs.aws.amazon.com/securityhub/latest/userguide/mq-controls.html#mq-3)
 - [https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/upgrading-brokers.html#upgrading-brokers-automatic-upgrades.html](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/upgrading-brokers.html#upgrading-brokers-automatic-upgrades.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/mq_broker_auto_minor_version_upgrades/metadata.json](../../sources/aws/mq_broker_auto_minor_version_upgrades/metadata.json)
 - Source Code：[sources/aws/mq_broker_auto_minor_version_upgrades/check.py](../../sources/aws/mq_broker_auto_minor_version_upgrades/check.py)

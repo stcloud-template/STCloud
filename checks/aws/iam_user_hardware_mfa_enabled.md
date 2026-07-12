@@ -2,42 +2,42 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `iam_user_hardware_mfa_enabled` |
-| 云平台 | AWS |
-| 服务 | iam |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks, Industry and Regulatory Standards, CIS AWS Foundations Benchmark |
-| 资源类型 | AwsIamUser |
-| 资源组 | IAM |
+| チェック項目 ID | `iam_user_hardware_mfa_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | iam |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks, Industry and Regulatory Standards, CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsIamUser |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Check if IAM users have Hardware MFA enabled.
 
-## 风险
+## リスク
 
 Hardware MFA is preferred over virtual MFA.
 
-## 推荐措施
+## 推奨事項
 
 Enable hardware MFA device for an IAM user from the AWS Management Console, the command line, or the IAM API.
 
-- 推荐链接：[https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html)
+- 推奨リンク：[https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/iam_user_hardware_mfa_enabled/metadata.json](../../sources/aws/iam_user_hardware_mfa_enabled/metadata.json)
 - Source Code：[sources/aws/iam_user_hardware_mfa_enabled/check.py](../../sources/aws/iam_user_hardware_mfa_enabled/check.py)

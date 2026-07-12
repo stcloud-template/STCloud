@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `awslambda_function_vpc_multi_az` |
-| 云平台 | AWS |
-| 服务 | awslambda |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
-| 资源类型 | AwsLambdaFunction |
-| 资源组 | serverless |
+| チェック項目 ID | `awslambda_function_vpc_multi_az` |
+| クラウドプラットフォーム | AWS |
+| サービス | awslambda |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
+| リソースタイプ | AwsLambdaFunction |
+| リソースグループ | serverless |
 
-## 描述
+## 説明
 
 **AWS Lambda** functions attached to a VPC use subnets that span at least the required number of **Availability Zones** (`2` by default). The evaluation counts the unique AZs of the function's configured subnets.
 
-## 风险
+## リスク
 
 Single-AZ placement limits **availability**. An AZ outage or subnet/IP exhaustion can block ENI creation and VPC access, causing failed invocations, timeouts, and event backlogs. This degrades uptime and can delay processing of critical events.
 
-## 推荐措施
+## 推奨事項
 
 Distribute VPC-connected functions across subnets in `2` distinct AZs to ensure **fault tolerance**. - Choose subnets from different AZs - Avoid AZ-pinned configs or fixed IPs - Provide per-AZ egress/endpoints and routing - Regularly test AZ failover Aligns with **resilience** and **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -83,14 +83,14 @@ resource "aws_lambda_function" "<example_resource_name>" {
 4. Select a security group
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/lambda/latest/operatorguide/networking-vpc.html](https://docs.aws.amazon.com/lambda/latest/operatorguide/networking-vpc.html)
 - [https://stackzonecom.tawk.help/article/aws-config-rule-lambda-vpc-multi-az-check](https://stackzonecom.tawk.help/article/aws-config-rule-lambda-vpc-multi-az-check)
 - [https://stackoverflow.com/questions/62052490/why-aws-lambda-suggests-to-set-up-two-subnets-if-vpc-is-configured](https://stackoverflow.com/questions/62052490/why-aws-lambda-suggests-to-set-up-two-subnets-if-vpc-is-configured)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/lambda-controls.html#lambda-5](https://docs.aws.amazon.com/securityhub/latest/userguide/lambda-controls.html#lambda-5)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/awslambda_function_vpc_multi_az/metadata.json](../../sources/aws/awslambda_function_vpc_multi_az/metadata.json)
 - Source Code：[sources/aws/awslambda_function_vpc_multi_az/check.py](../../sources/aws/awslambda_function_vpc_multi_az/check.py)

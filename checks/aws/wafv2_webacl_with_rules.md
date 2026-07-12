@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `wafv2_webacl_with_rules` |
-| 云平台 | AWS |
-| 服务 | wafv2 |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafv2WebAcl |
-| 资源组 | security |
+| チェック項目 ID | `wafv2_webacl_with_rules` |
+| クラウドプラットフォーム | AWS |
+| サービス | wafv2 |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafv2WebAcl |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAFv2 web ACLs** are evaluated for the presence of at least one configured **rule** or **rule group** that defines how HTTP(S) requests are inspected and acted upon.
 
-## 风险
+## リスク
 
 Without rules, traffic is governed only by the web ACL `DefaultAction`, often allowing requests without inspection. This increases risks to **confidentiality** (data exfiltration via injection), **integrity** (XSS/parameter tampering), and **availability** (layer-7 DDoS, bot abuse).
 
-## 推荐措施
+## 推奨事項
 
 Populate each web ACL with targeted rules or managed rule groups to enforce least-privilege web access: cover common exploits (SQLi/XSS), IP reputation, and rate limits, scoped to your apps. Use a conservative `DefaultAction`, monitor metrics/logs, and continually tune-supporting **defense in depth** and **zero trust**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -106,13 +106,13 @@ resource "aws_wafv2_web_acl" "<example_resource_name>" {
 5. Set action to Count (to avoid blocking), then Add rule and Save
 6. Verify the Web ACL now shows at least one rule
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-editing.html](https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-editing.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-10](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-10)
 - [https://support.icompaas.com/support/solutions/articles/62000233642-ensure-aws-wafv2-webacl-has-at-least-one-rule-or-rule-group](https://support.icompaas.com/support/solutions/articles/62000233642-ensure-aws-wafv2-webacl-has-at-least-one-rule-or-rule-group)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/wafv2_webacl_with_rules/metadata.json](../../sources/aws/wafv2_webacl_with_rules/metadata.json)
 - Source Code：[sources/aws/wafv2_webacl_with_rules/check.py](../../sources/aws/wafv2_webacl_with_rules/check.py)

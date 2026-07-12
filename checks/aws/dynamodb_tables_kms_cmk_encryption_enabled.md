@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dynamodb_tables_kms_cmk_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | dynamodb |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsDynamoDbTable |
-| 资源组 | database |
+| チェック項目 ID | `dynamodb_tables_kms_cmk_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | dynamodb |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsDynamoDbTable |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **DynamoDB tables** use **AWS KMS keys** (`KMS`) for encryption at rest instead of the default service-owned key
 
-## 风险
+## リスク
 
 Relying on the default service-owned key reduces control over **confidentiality**: no custom key policies, limited auditability, and no independent rotation or disablement. This weakens least-privilege enforcement and incident response, and can impede meeting mandates that require customer-controlled keys.
 
-## 推荐措施
+## 推奨事項
 
 Encrypt tables with **KMS keys** in your account-prefer **customer-managed keys** for sensitive data. - Enforce least-privilege key policies and scope grants - Enable rotation and monitor key usage - Separate duties for key admins vs data users - Restrict which principals can use the key for DynamoDB
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -83,11 +83,11 @@ resource "aws_dynamodb_table" "<example_resource_name>" {
 4. Select AWS KMS: choose AWS managed key (alias/aws/dynamodb) or a customer managed key
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dynamodb_tables_kms_cmk_encryption_enabled/metadata.json](../../sources/aws/dynamodb_tables_kms_cmk_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/dynamodb_tables_kms_cmk_encryption_enabled/check.py](../../sources/aws/dynamodb_tables_kms_cmk_encryption_enabled/check.py)

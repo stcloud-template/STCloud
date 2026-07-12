@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `firehose_stream_encrypted_at_rest` |
-| 云平台 | AWS |
-| 服务 | firehose |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA) |
-| 资源类型 | AwsKinesisStream |
-| 资源组 | messaging |
+| チェック項目 ID | `firehose_stream_encrypted_at_rest` |
+| クラウドプラットフォーム | AWS |
+| サービス | firehose |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA) |
+| リソースタイプ | AwsKinesisStream |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon Data Firehose** delivery streams must enable **server-side encryption at rest** with AWS KMS regardless of the source type. Encryption of upstream sources such as **Kinesis Data Streams** or **MSK** does not replace the need to protect the delivery stream itself.
 
-## 风险
+## リスク
 
 Unencrypted Firehose data at rest can be read if storage or backups are accessed, harming **confidentiality** and **integrity**. Disk-level access, snapshots, or misconfigured destinations enable data exfiltration or tampering. Lacking KMS-backed controls also reduces key rotation, segregation of duties, and auditability.
 
-## 推荐措施
+## 推奨事項
 
 Enable **server-side encryption** for Firehose with AWS KMS. Prefer **customer managed keys** (`CMEK`) to enforce **least privilege**, rotation, and auditing. Ensure upstream **Kinesis** sources are encrypted and confirm MSK defaults meet policy. Monitor KMS health signals and deny writes without encryption. Apply **defense in depth** at destinations.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -77,14 +77,14 @@ resource "aws_kinesis_firehose_delivery_stream" "<example_resource_name>" {
 3. Under Server-side encryption, set to Enabled (choose AWS owned key)
 4. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Firehose/delivery-stream-encrypted-with-kms-customer-master-keys.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Firehose/delivery-stream-encrypted-with-kms-customer-master-keys.html)
 - [https://docs.aws.amazon.com/firehose/latest/dev/encryption.html](https://docs.aws.amazon.com/firehose/latest/dev/encryption.html)
 - [https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/datafirehose-controls.html#datafirehose-1](https://docs.aws.amazon.com/securityhub/latest/userguide/datafirehose-controls.html#datafirehose-1)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/firehose_stream_encrypted_at_rest/metadata.json](../../sources/aws/firehose_stream_encrypted_at_rest/metadata.json)
 - Source Code：[sources/aws/firehose_stream_encrypted_at_rest/check.py](../../sources/aws/firehose_stream_encrypted_at_rest/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ssmincidents_enabled_with_plans` |
-| 云平台 | AWS |
-| 服务 | ssmincidents |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA) |
-| 资源类型 | Other |
-| 资源组 | monitoring |
+| チェック項目 ID | `ssmincidents_enabled_with_plans` |
+| クラウドプラットフォーム | AWS |
+| サービス | ssmincidents |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA) |
+| リソースタイプ | Other |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **Incident Manager** uses a **replication set** and **response plans**. This evaluates whether a replication set exists and is `ACTIVE`, and that at least one response plan is configured for coordinated incident handling.
 
-## 风险
+## リスク
 
 Without an `ACTIVE` replication set or response plans, incidents lack coordinated engagement and automation, raising MTTR and impacting availability and integrity. Threats include prolonged outages, lateral movement, and data exfiltration from delayed containment and misrouted escalation.
 
-## 推荐措施
+## 推奨事項
 
 Establish an `ACTIVE` **replication set** and create **response plans** that define engagement, escalation, runbooks, severity, and communication. Apply **least privilege** to automation roles, test plans regularly, integrate with monitoring to trigger them, and use **defense in depth** with redundant contacts and Regions.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -72,11 +72,11 @@ resource "aws_ssmincidents_response_plan" "example" {
 3. Response plans > Create response plan > set Name, Title, and Impact > Create
 4. Verify: Replication set shows ACTIVE and at least one response plan exists
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/incident-manager/latest/userguide/response-plans.html](https://docs.aws.amazon.com/incident-manager/latest/userguide/response-plans.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ssmincidents_enabled_with_plans/metadata.json](../../sources/aws/ssmincidents_enabled_with_plans/metadata.json)
 - Source Code：[sources/aws/ssmincidents_enabled_with_plans/check.py](../../sources/aws/ssmincidents_enabled_with_plans/check.py)

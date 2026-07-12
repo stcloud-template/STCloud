@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_s3_origin_access_control` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | medium |
-| 类别 | trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_s3_origin_access_control` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | medium |
+| カテゴリ | trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **CloudFront distributions** with **Amazon S3 origins** are expected to use **Origin Access Control** (`OAC`) on each S3 origin. The evaluation inspects distributions that include `s3_origin_config` and identifies S3 origins that lack an associated OAC.
 
-## 风险
+## リスク
 
 Without **OAC**, S3 objects can be reached outside CloudFront, bypassing edge controls and weakening **confidentiality** and **integrity**. - Direct access enables data exfiltration - Loss of WAF, rate-limiting, and detailed logging; cost abuse - Limited support for signed writes and **SSE-KMS**, increasing tampering risk
 
-## 推荐措施
+## 推奨事項
 
 Enable **Origin Access Control** for all S3 origins and keep buckets non-public. Apply **least privilege**: scope bucket and key permissions to CloudFront and the intended distribution. Ensure origin requests are signed, migrate from legacy OAI, and use **defense in depth** with WAF and monitoring to protect and observe access.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -107,14 +107,14 @@ resource "aws_cloudfront_distribution" "dist" {
 3. For each S3 origin: click Edit, select Origin access control settings (recommended), choose the OAC created in step 1, and Save changes.
 4. Repeat step 3 for all S3 origins in the distribution.
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/s3-origin.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/s3-origin.html)
 - [https://repost.aws/knowledge-center/cloudfront-access-to-amazon-s3](https://repost.aws/knowledge-center/cloudfront-access-to-amazon-s3)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/cloudfront-controls.html#cloudfront-13](https://docs.aws.amazon.com/securityhub/latest/userguide/cloudfront-controls.html#cloudfront-13)
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_s3_origin_access_control/metadata.json](../../sources/aws/cloudfront_distributions_s3_origin_access_control/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_s3_origin_access_control/check.py](../../sources/aws/cloudfront_distributions_s3_origin_access_control/check.py)

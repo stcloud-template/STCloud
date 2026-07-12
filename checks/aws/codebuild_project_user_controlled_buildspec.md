@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `codebuild_project_user_controlled_buildspec` |
-| 云平台 | AWS |
-| 服务 | codebuild |
-| 严重等级 | medium |
-| 类别 | software-supply-chain, ci-cd |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsCodeBuildProject |
-| 资源组 | devops |
+| チェック項目 ID | `codebuild_project_user_controlled_buildspec` |
+| クラウドプラットフォーム | AWS |
+| サービス | codebuild |
+| 重大度 | medium |
+| カテゴリ | software-supply-chain, ci-cd |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsCodeBuildProject |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 AWS CodeBuild projects are evaluated for use of a **user-controlled buildspec**, identified when the project references a repository file like `*.yml` or `*.yaml`. Projects using non file-based build instructions are treated as centrally managed.
 
-## 风险
+## リスク
 
 Repository-controlled buildspecs let unreviewed changes run in CI, endangering **integrity** (tampered artifacts), **confidentiality** (secret leakage), and **availability** (resource abuse). Attackers can weaponize PRs to execute code and pivot via the build role.
 
-## 推荐措施
+## 推奨事項
 
 Adopt a **centrally managed buildspec** that contributors cannot modify. - Enforce protected branches and required reviews for build instructions - Apply **least privilege** to the build role and minimize secrets - Separate duties for pipeline admins vs code authors Use vetted, versioned templates for defense in depth.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -88,13 +88,13 @@ EOT
    ```
 5. Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/codebuild/latest/userguide/security.html](https://docs.aws.amazon.com/codebuild/latest/userguide/security.html)
 - [https://support.icompaas.com/support/solutions/articles/62000229579-ensure-codebuild-project-with-an-user-controlled-buildspec](https://support.icompaas.com/support/solutions/articles/62000229579-ensure-codebuild-project-with-an-user-controlled-buildspec)
 - [https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html](https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/codebuild_project_user_controlled_buildspec/metadata.json](../../sources/aws/codebuild_project_user_controlled_buildspec/metadata.json)
 - Source Code：[sources/aws/codebuild_project_user_controlled_buildspec/check.py](../../sources/aws/codebuild_project_user_controlled_buildspec/check.py)

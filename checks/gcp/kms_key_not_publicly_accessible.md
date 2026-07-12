@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kms_key_not_publicly_accessible` |
-| 云平台 | GCP |
-| 服务 | kms |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 资源类型 | CryptoKey |
-| 资源组 | security |
+| チェック項目 ID | `kms_key_not_publicly_accessible` |
+| クラウドプラットフォーム | GCP |
+| サービス | kms |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| リソースタイプ | CryptoKey |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 Check for Publicly Accessible Cloud KMS Keys
 
-## 风险
+## リスク
 
 Ensure that the IAM policy associated with your Cloud Key Management Service (KMS) keys is restricting anonymous and/or public access
 
-## 推荐措施
+## 推奨事項
 
 To deny access from anonymous and public users, remove the bindings for 'allUsers' and 'allAuthenticatedUsers' members from the KMS key's IAM policy.
 
-- 推荐链接：[https://cloud.google.com/kms/docs/iam](https://cloud.google.com/kms/docs/iam)
+- 推奨リンク：[https://cloud.google.com/kms/docs/iam](https://cloud.google.com/kms/docs/iam)
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -39,11 +39,11 @@ To deny access from anonymous and public users, remove the bindings for 'allUser
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudKMS/publicly-accessible-kms-cryptokeys.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudKMS/publicly-accessible-kms-cryptokeys.html)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/kms/docs/iam](https://cloud.google.com/kms/docs/iam)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/kms_key_not_publicly_accessible/metadata.json](../../sources/gcp/kms_key_not_publicly_accessible/metadata.json)
 - Source Code：[sources/gcp/kms_key_not_publicly_accessible/check.py](../../sources/gcp/kms_key_not_publicly_accessible/check.py)

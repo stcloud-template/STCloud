@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vm_jit_access_enabled` |
-| 云平台 | Azure |
-| 服务 | vm |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | Microsoft.Compute/virtualMachines |
-| 资源组 | compute |
+| チェック項目 ID | `vm_jit_access_enabled` |
+| クラウドプラットフォーム | Azure |
+| サービス | vm |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Microsoft.Compute/virtualMachines |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Ensure that Microsoft Azure virtual machines are configured to use Just-in-Time (JIT) access.
 
-## 风险
+## リスク
 
 Without JIT access, management ports such as 22 (SSH) and 3389 (RDP) may be exposed, increasing the risk of brute-force and DDoS attacks.
 
-## 推荐措施
+## 推奨事項
 
 Enable Just-in-Time (JIT) network access for your Microsoft Azure virtual machines using the Azure Portal under Security Center > Just-in-time VM access.
 
-- 推荐链接：[https://docs.microsoft.com/en-us/azure/security-center/security-center-just-in-time?tabs=jit-config-asc%2Cjit-request-asc](https://docs.microsoft.com/en-us/azure/security-center/security-center-just-in-time?tabs=jit-config-asc%2Cjit-request-asc)
+- 推奨リンク：[https://docs.microsoft.com/en-us/azure/security-center/security-center-just-in-time?tabs=jit-config-asc%2Cjit-request-asc](https://docs.microsoft.com/en-us/azure/security-center/security-center-just-in-time?tabs=jit-config-asc%2Cjit-request-asc)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -37,11 +37,11 @@ Enable Just-in-Time (JIT) network access for your Microsoft Azure virtual machin
 az security jit-policy list --query '[*].virtualMachines[*].id | []'
 ```
 
-## 参考资料
+## 参考資料
 
 - [https://docs.microsoft.com/en-us/azure/security-center/security-center-just-in-time?tabs=jit-config-asc%2Cjit-request-asc](https://docs.microsoft.com/en-us/azure/security-center/security-center-just-in-time?tabs=jit-config-asc%2Cjit-request-asc)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/vm_jit_access_enabled/metadata.json](../../sources/azure/vm_jit_access_enabled/metadata.json)
 - Source Code：[sources/azure/vm_jit_access_enabled/check.py](../../sources/azure/vm_jit_access_enabled/check.py)

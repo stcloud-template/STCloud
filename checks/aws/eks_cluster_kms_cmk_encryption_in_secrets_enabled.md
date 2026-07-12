@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eks_cluster_kms_cmk_encryption_in_secrets_enabled` |
-| 云平台 | AWS |
-| 服务 | eks |
-| 严重等级 | medium |
-| 类别 | encryption, cluster-security |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsEksCluster |
-| 资源组 | container |
+| チェック項目 ID | `eks_cluster_kms_cmk_encryption_in_secrets_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | eks |
+| 重大度 | medium |
+| カテゴリ | encryption, cluster-security |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsEksCluster |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **Amazon EKS** clusters configure **AWS KMS envelope encryption** so Kubernetes **Secrets** are stored in etcd as ciphertext at rest.
 
-## 风险
+## リスク
 
 Without KMS-backed encryption, etcd data and snapshots can reveal plaintext secrets. Attackers with API, node, or storage access can steal tokens, passwords, and keys, enabling impersonation, pod takeover, and lateral movement-compromising confidentiality and leading to privilege escalation.
 
-## 推荐措施
+## 推奨事項
 
 Enable cluster-level secrets encryption with **AWS KMS** and prefer a **customer managed KMS key** for control and rotation. Apply **least privilege** to key policies and cluster roles, monitor key usage, and combine with strict **RBAC** to limit who can read or create secrets as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -86,14 +86,14 @@ resource "aws_eks_cluster" "main" {
 4. Select the KMS key and click Enable
 5. Click Confirm to apply
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/prescriptive-guidance/latest/encryption-best-practices/eks.html](https://docs.aws.amazon.com/prescriptive-guidance/latest/encryption-best-practices/eks.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EKS/enable-envelope-encryption.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EKS/enable-envelope-encryption.html)
 - [https://devoriales.com/post/329/aws-eks-secret-encryption-securing-your-eks-secrets-at-rest-with-aws-kms](https://devoriales.com/post/329/aws-eks-secret-encryption-securing-your-eks-secrets-at-rest-with-aws-kms)
 - [https://docs.aws.amazon.com/eks/latest/userguide/enable-kms.html](https://docs.aws.amazon.com/eks/latest/userguide/enable-kms.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eks_cluster_kms_cmk_encryption_in_secrets_enabled/metadata.json](../../sources/aws/eks_cluster_kms_cmk_encryption_in_secrets_enabled/metadata.json)
 - Source Code：[sources/aws/eks_cluster_kms_cmk_encryption_in_secrets_enabled/check.py](../../sources/aws/eks_cluster_kms_cmk_encryption_in_secrets_enabled/check.py)

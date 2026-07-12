@@ -2,41 +2,41 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cognito_user_pool_client_prevent_user_existence_errors` |
-| 云平台 | AWS |
-| 服务 | cognito |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | AwsCognitoUserPoolClient |
-| 资源组 | IAM |
+| チェック項目 ID | `cognito_user_pool_client_prevent_user_existence_errors` |
+| クラウドプラットフォーム | AWS |
+| サービス | cognito |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AwsCognitoUserPoolClient |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Amazon Cognito User Pool should be configured to prevent user existence errors. This setting prevents user existence errors by requiring the user to enter a username and password to sign in. If the user does not exist, the user will receive an error message.
 
-## 风险
+## リスク
 
 Revealing user existence errors can be a security risk as it can allow an attacker to determine if a user exists in the system. This can be used to perform user enumeration attacks.
 
-## 推荐措施
+## 推奨事項
 
 To prevent user existence errors, you should configure the Amazon Cognito User Pool to require a username and password to sign in. If the user does not exist, the user will receive an error message.
 
-- 推荐链接：[https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-managing-errors.html](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-managing-errors.html)
+- 推奨リンク：[https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-managing-errors.html](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-managing-errors.html)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-managing-errors.html](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-managing-errors.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cognito_user_pool_client_prevent_user_existence_errors/metadata.json](../../sources/aws/cognito_user_pool_client_prevent_user_existence_errors/metadata.json)
 - Source Code：[sources/aws/cognito_user_pool_client_prevent_user_existence_errors/check.py](../../sources/aws/cognito_user_pool_client_prevent_user_existence_errors/check.py)

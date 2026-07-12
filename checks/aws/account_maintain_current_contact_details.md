@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `account_maintain_current_contact_details` |
-| 云平台 | AWS |
-| 服务 | account |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | governance |
+| チェック項目 ID | `account_maintain_current_contact_details` |
+| クラウドプラットフォーム | AWS |
+| サービス | account |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 **AWS account contact information** is current for the **primary contact** and the **alternate contacts** for `security`, `billing`, and `operations`, with accurate email addresses and phone numbers.
 
-## 风险
+## リスク
 
 Outdated or single-person contacts delay **security notifications**, slow **incident response**, and complicate **account recovery**. AWS may throttle services during abuse mitigation, reducing **availability**. Missed alerts enable ongoing misuse, risking **data exfiltration** and unauthorized changes (**integrity**).
 
-## 推荐措施
+## 推奨事項
 
 Adopt: - **Primary** and **alternate contacts** for `security`, `billing`, `operations` - Shared, monitored aliases and SMS-capable phone numbers (non-personal) - Centralized management across accounts with periodic reviews - **Least privilege** for who can modify contact data - Regular reachability tests and documented ownership
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -58,7 +58,7 @@ resource "aws_account_alternate_contact" "<example_resource_name>" {
 5. Enter Security contact name, email, and phone (use a team alias), then Update
 6. Repeat for Billing and Operations if needed
 
-## 参考资料
+## 参考資料
 
 - [https://repost.aws/knowledge-center/update-phone-number](https://repost.aws/knowledge-center/update-phone-number)
 - [https://support.stax.io/docs/accounts/update-aws-account-contact-details](https://support.stax.io/docs/accounts/update-aws-account-contact-details)
@@ -70,7 +70,7 @@ resource "aws_account_alternate_contact" "<example_resource_name>" {
 - [https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_update_contacts.html](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_update_contacts.html)
 - [https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact-alternate.html](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact-alternate.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/account_maintain_current_contact_details/metadata.json](../../sources/aws/account_maintain_current_contact_details/metadata.json)
 - Source Code：[sources/aws/account_maintain_current_contact_details/check.py](../../sources/aws/account_maintain_current_contact_details/check.py)

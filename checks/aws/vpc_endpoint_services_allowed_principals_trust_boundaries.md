@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_endpoint_services_allowed_principals_trust_boundaries` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | high |
-| 类别 | trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access, Effects/Data Exposure |
-| 资源类型 | AwsEc2VpcEndpointService |
-| 资源组 | network |
+| チェック項目 ID | `vpc_endpoint_services_allowed_principals_trust_boundaries` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | high |
+| カテゴリ | trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access, Effects/Data Exposure |
+| リソースタイプ | AwsEc2VpcEndpointService |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **VPC endpoint services** are assessed for their **allowed principals**, comparing each to a configured set of trusted accounts and identifying any **untrusted principals** or a wildcard `*` present in the allowlist.
 
-## 风险
+## リスク
 
 Untrusted or wildcard principals can create PrivateLink connections to your service, eroding segmentation. This enables unauthorized data access (**confidentiality**), abuse of internal APIs (**integrity**), and excess load on backends (**availability**).
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege**: restrict **allowed principals** to vetted account IDs and avoid `*`. Maintain a central trust registry, enforce **separation of duties** with approval workflows, and review entries regularly. Use **defense in depth** with strong service authentication and continuous configuration monitoring.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -62,11 +62,11 @@ resource "aws_vpc_endpoint_service_allowed_principal" "<example_resource_name>" 
 5. Optionally leave the list empty (no principals) or keep only trusted account IDs/ARNs
 6. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_endpoint_services_allowed_principals_trust_boundaries/metadata.json](../../sources/aws/vpc_endpoint_services_allowed_principals_trust_boundaries/metadata.json)
 - Source Code：[sources/aws/vpc_endpoint_services_allowed_principals_trust_boundaries/check.py](../../sources/aws/vpc_endpoint_services_allowed_principals_trust_boundaries/check.py)

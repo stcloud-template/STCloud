@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kinesis_stream_data_retention_period` |
-| 云平台 | AWS |
-| 服务 | kinesis |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Destruction |
-| 资源类型 | AwsKinesisStream |
-| 资源组 | messaging |
+| チェック項目 ID | `kinesis_stream_data_retention_period` |
+| クラウドプラットフォーム | AWS |
+| サービス | kinesis |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Destruction |
+| リソースタイプ | AwsKinesisStream |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Kinesis Data Streams** retention window is evaluated to confirm records are kept for at least the configured minimum duration (default `168` hours).
 
-## 风险
+## リスク
 
 Insufficient retention causes records to expire before consumers read or reprocess them, undermining **availability** and analytics **integrity**. Backlogs or outages can create irreversible data gaps, hinder investigations and recovery, and enable denial-of-service-by-lag against event pipelines.
 
-## 推荐措施
+## 推奨事項
 
 Set the **retention period** to exceed worst-case consumer lag, replay needs, and compliance windows; use at least `168` hours by default (or customize as necessary) and raise as required. Enforce **change control** and least privilege on retention changes, monitor consumer lag, and maintain **secondary durability** (e.g., archival) for critical streams.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -67,12 +67,12 @@ resource "aws_kinesis_stream" "<example_resource_name>" {
 4. Set Retention period to 168 hours (or higher, per your policy)
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/streams/latest/dev/kinesis-extended-retention.html](https://docs.aws.amazon.com/streams/latest/dev/kinesis-extended-retention.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/kinesis-controls.html#kinesis-3](https://docs.aws.amazon.com/securityhub/latest/userguide/kinesis-controls.html#kinesis-3)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kinesis_stream_data_retention_period/metadata.json](../../sources/aws/kinesis_stream_data_retention_period/metadata.json)
 - Source Code：[sources/aws/kinesis_stream_data_retention_period/check.py](../../sources/aws/kinesis_stream_data_retention_period/check.py)

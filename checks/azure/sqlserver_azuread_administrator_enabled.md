@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sqlserver_azuread_administrator_enabled` |
-| 云平台 | Azure |
-| 服务 | sqlserver |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | SQLServer |
-| 资源组 | database |
+| チェック項目 ID | `sqlserver_azuread_administrator_enabled` |
+| クラウドプラットフォーム | Azure |
+| サービス | sqlserver |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | SQLServer |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Ensure that there is an Azure Active Directory administrator configured
 
-## 风险
+## リスク
 
 Azure Active Directory provides a centralized way of managing identities. Using local SQL administrator identites makes it more difficult to manage user accounts. In addition, from Azure Active Directory, security policies can be enforced to users in centralized way.
 
-## 推荐措施
+## 推奨事項
 
 Enable an Azure Active Directory administrator
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -43,11 +43,11 @@ az sql server ad-admin create --resource-group resource_group_name --server serv
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Sql/active-directory-admin.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Sql/active-directory-admin.html)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.microsoft.com/en-us/azure/sql-database/sql-database-aad-authentication](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-aad-authentication)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/sqlserver_azuread_administrator_enabled/metadata.json](../../sources/azure/sqlserver_azuread_administrator_enabled/metadata.json)
 - Source Code：[sources/azure/sqlserver_azuread_administrator_enabled/check.py](../../sources/azure/sqlserver_azuread_administrator_enabled/check.py)

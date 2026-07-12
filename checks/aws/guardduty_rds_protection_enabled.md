@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `guardduty_rds_protection_enabled` |
-| 云平台 | AWS |
-| 服务 | guardduty |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Credential Access |
-| 资源类型 | AwsGuardDutyDetector |
-| 资源组 | security |
+| チェック項目 ID | `guardduty_rds_protection_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | guardduty |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Credential Access |
+| リソースタイプ | AwsGuardDutyDetector |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 Active **Amazon GuardDuty detectors** are assessed for **RDS Protection** being enabled, allowing analysis of RDS and Aurora login activity to profile and flag anomalous access patterns.
 
-## 风险
+## リスク
 
 Without **RDS Protection**, anomalous database logins can go unnoticed. Attackers using **stolen** or **brute-forced** credentials may access data, alter schemas, or pivot via the DB, impacting **confidentiality** and **integrity**, and potentially **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **GuardDuty RDS Protection** across all accounts and Regions. - Enforce **least privilege** for DB users and rotate credentials - Restrict network exposure to databases - Integrate findings with alerting and incident response for rapid containment
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -69,13 +69,13 @@ resource "aws_guardduty_detector" "<example_resource_name>" {
 4. Save changes
 5. If using Organizations, perform this in the delegated GuardDuty administrator account
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html#guardduty-9](https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html#guardduty-9)
 - [https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html](https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html)
 - [https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/guard-duty-rds-protection.html](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/guard-duty-rds-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/guardduty_rds_protection_enabled/metadata.json](../../sources/aws/guardduty_rds_protection_enabled/metadata.json)
 - Source Code：[sources/aws/guardduty_rds_protection_enabled/check.py](../../sources/aws/guardduty_rds_protection_enabled/check.py)

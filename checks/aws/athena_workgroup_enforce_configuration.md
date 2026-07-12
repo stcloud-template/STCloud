@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `athena_workgroup_enforce_configuration` |
-| 云平台 | AWS |
-| 服务 | athena |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsAthenaWorkGroup |
-| 资源组 | analytics |
+| チェック項目 ID | `athena_workgroup_enforce_configuration` |
+| クラウドプラットフォーム | AWS |
+| サービス | athena |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsAthenaWorkGroup |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **Athena workgroups** that set `enforce_workgroup_configuration=true` apply the **workgroup's settings** to every query, overriding client-side options for results location, expected bucket owner, encryption, and control of objects written to the results bucket.
 
-## 风险
+## リスク
 
 Without enforcement, clients may disable or change result **encryption**, redirect outputs to unintended or cross-account buckets, and bypass retention controls. This enables data exposure (C), result tampering (I), and weak auditability, complicating incident response.
 
-## 推荐措施
+## 推奨事項
 
 Set `enforce_workgroup_configuration=true` to centralize control. Require **encrypted results** (prefer **SSE-KMS**), restrict output to approved S3 locations with expected bucket owner, and apply **least privilege**. Monitor results access and logs as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -70,12 +70,12 @@ resource "aws_athena_workgroup" "<example_resource_name>" {
 4. Check Override client-side settings (enforce workgroup settings)
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html](https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233407-ensure-that-workgroup-configuration-is-enforced-so-it-cannot-be-overriden-by-client-side-settings-](https://support.icompaas.com/support/solutions/articles/62000233407-ensure-that-workgroup-configuration-is-enforced-so-it-cannot-be-overriden-by-client-side-settings-)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/athena_workgroup_enforce_configuration/metadata.json](../../sources/aws/athena_workgroup_enforce_configuration/metadata.json)
 - Source Code：[sources/aws/athena_workgroup_enforce_configuration/check.py](../../sources/aws/athena_workgroup_enforce_configuration/check.py)

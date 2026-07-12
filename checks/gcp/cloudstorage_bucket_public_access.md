@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudstorage_bucket_public_access` |
-| 云平台 | GCP |
-| 服务 | cloudstorage |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 资源类型 | Bucket |
-| 资源组 | storage |
+| チェック項目 ID | `cloudstorage_bucket_public_access` |
+| クラウドプラットフォーム | GCP |
+| サービス | cloudstorage |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| リソースタイプ | Bucket |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 Ensure That Cloud Storage Bucket Is Not Anonymously or Publicly Accessible
 
-## 风险
+## リスク
 
 Allowing anonymous or public access grants permissions to anyone to access bucket content. Such access might not be desired if you are storing any sensitive data. Hence, ensure that anonymous or public access to a bucket is not allowed.
 
-## 推荐措施
+## 推奨事項
 
 It is recommended that IAM policy on Cloud Storage bucket does not allows anonymous or public access.
 
-- 推荐链接：[https://cloud.google.com/storage/docs/access-control/iam-reference](https://cloud.google.com/storage/docs/access-control/iam-reference)
+- 推奨リンク：[https://cloud.google.com/storage/docs/access-control/iam-reference](https://cloud.google.com/storage/docs/access-control/iam-reference)
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -39,12 +39,12 @@ It is recommended that IAM policy on Cloud Storage bucket does not allows anonym
 
 [https://docs.ST Cloud.com/checks/gcp/google-cloud-public-policies/bc_gcp_public_1](https://docs.ST Cloud.com/checks/gcp/google-cloud-public-policies/bc_gcp_public_1)
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudStorage/publicly-accessible-storage-buckets.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudStorage/publicly-accessible-storage-buckets.html)
 - [https://cloud.google.com/storage/docs/access-control/iam-reference](https://cloud.google.com/storage/docs/access-control/iam-reference)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/cloudstorage_bucket_public_access/metadata.json](../../sources/gcp/cloudstorage_bucket_public_access/metadata.json)
 - Source Code：[sources/gcp/cloudstorage_bucket_public_access/check.py](../../sources/gcp/cloudstorage_bucket_public_access/check.py)

@@ -2,34 +2,34 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_launch_template_imdsv2_required` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsEc2LaunchTemplate |
-| 资源组 | compute |
+| チェック項目 ID | `ec2_launch_template_imdsv2_required` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsEc2LaunchTemplate |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 This control checks if Amazon EC2 launch templates are configured with IMDSv2 enabled and required. The control fails if IMDSv2 is not enabled or required in the launch template versions.
 
-## 风险
+## リスク
 
 Without IMDSv2 required, EC2 instances may be vulnerable to metadata service attacks, allowing unauthorized access to instance metadata, potentially leading to compromise of instance credentials or other sensitive data.
 
-## 推荐措施
+## 推奨事項
 
 To ensure EC2 launch templates have IMDSv2 enabled and required, update the template to configure the Instance Metadata Service Version 2 as required.
 
-- 推荐链接：[https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html#change-metadata-options](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html#change-metadata-options)
+- 推奨リンク：[https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html#change-metadata-options](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html#change-metadata-options)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -42,12 +42,12 @@ aws ec2 modify-launch-template --launch-template-id <template-id> --version <ver
 
 [https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-170](https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-170)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html)
 - [https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html#change-metadata-options](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html#change-metadata-options)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_launch_template_imdsv2_required/metadata.json](../../sources/aws/ec2_launch_template_imdsv2_required/metadata.json)
 - Source Code：[sources/aws/ec2_launch_template_imdsv2_required/check.py](../../sources/aws/ec2_launch_template_imdsv2_required/check.py)

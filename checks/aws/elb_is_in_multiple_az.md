@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elb_is_in_multiple_az` |
-| 云平台 | AWS |
-| 服务 | elb |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsElbLoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elb_is_in_multiple_az` |
+| クラウドプラットフォーム | AWS |
+| サービス | elb |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsElbLoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Classic Load Balancer** spans at least the configured number of **Availability Zones**. The evaluation identifies load balancers enabled in fewer AZs than the specified minimum.
 
-## 风险
+## リスク
 
 Operating in too few AZs makes the load balancer a **single point of failure**. An AZ outage or zonal degradation can cause **service unavailability**, dropped connections, and uneven capacity, undermining application **availability** and resilience and increasing recovery time.
 
-## 推荐措施
+## 推奨事項
 
 Design for **multi-AZ high availability**: - Enable at least `2` AZs per load balancer - Distribute targets evenly and use Auto Scaling across AZs - Enable **cross-zone load balancing** to smooth imbalances - Regularly test failover and health thresholds Apply **fault isolation** and **defense in depth** principles.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -75,13 +75,13 @@ resource "aws_elb" "<example_resource_name>" {
 5. Click Save
 6. If your CLB is in EC2-Classic, use Edit Availability Zones instead and select an additional AZ, then Save
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/ec2-instances-distribution-across-availability-zones.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/ec2-instances-distribution-across-availability-zones.html)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html#classic-load-balancer-overview](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html#classic-load-balancer-overview)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elb_is_in_multiple_az/metadata.json](../../sources/aws/elb_is_in_multiple_az/metadata.json)
 - Source Code：[sources/aws/elb_is_in_multiple_az/check.py](../../sources/aws/elb_is_in_multiple_az/check.py)

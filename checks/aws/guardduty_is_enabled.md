@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `guardduty_is_enabled` |
-| 云平台 | AWS |
-| 服务 | guardduty |
-| 严重等级 | high |
-| 类别 | forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | AwsGuardDutyDetector |
-| 资源组 | security |
+| チェック項目 ID | `guardduty_is_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | guardduty |
+| 重大度 | high |
+| カテゴリ | forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsGuardDutyDetector |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **Amazon GuardDuty** detector existence and health are evaluated per Region. It identifies where GuardDuty isn't enabled for the account, where a detector has no status, or where a detector is configured but `suspended`.
 
-## 风险
+## リスク
 
 Without active **GuardDuty**, threats in CloudTrail, VPC Flow Logs, DNS, S3, EKS, EBS, and Lambda can go unnoticed. Attackers can exfiltrate data, move laterally, and mine crypto, degrading confidentiality, integrity, and availability-especially in unmonitored Regions.
 
-## 推荐措施
+## 推奨事項
 
 Enable and keep **GuardDuty** active in all supported Regions and accounts under a delegated admin. Turn on relevant protection plans and auto-enroll new accounts. Avoid `suspended` detectors, enforce **least privilege** for admins, and integrate findings into response for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -58,7 +58,7 @@ resource "aws_guardduty_detector" "example_resource_name" {
 4. If GuardDuty is already configured but suspended, go to Settings and click Enable (or Resume) to activate the detector
 5. Repeat in each required Region
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_settingup.html](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_settingup.html)
 - [https://aws.plainenglish.io/how-to-protect-your-organizations-aws-account-with-aws-guardduty-a1a635c417aa](https://aws.plainenglish.io/how-to-protect-your-organizations-aws-account-with-aws-guardduty-a1a635c417aa)
@@ -66,7 +66,7 @@ resource "aws_guardduty_detector" "example_resource_name" {
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/GuardDuty/guardduty-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/GuardDuty/guardduty-enabled.html)
 - [https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/use-terraform-to-automatically-enable-amazon-guardduty-for-an-organization.html](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/use-terraform-to-automatically-enable-amazon-guardduty-for-an-organization.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/guardduty_is_enabled/metadata.json](../../sources/aws/guardduty_is_enabled/metadata.json)
 - Source Code：[sources/aws/guardduty_is_enabled/check.py](../../sources/aws/guardduty_is_enabled/check.py)

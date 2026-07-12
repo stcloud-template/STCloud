@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudtrail_threat_detection_privilege_escalation` |
-| 云平台 | AWS |
-| 服务 | cloudtrail |
-| 严重等级 | critical |
-| 类别 | threat-detection |
-| 检查类型 | TTPs/Privilege Escalation, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis |
-| 资源类型 | AwsCloudTrailTrail |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudtrail_threat_detection_privilege_escalation` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudtrail |
+| 重大度 | critical |
+| カテゴリ | threat-detection |
+| チェックタイプ | TTPs/Privilege Escalation, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis |
+| リソースタイプ | AwsCloudTrailTrail |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudTrail** activity is analyzed for **identities** executing high-risk actions linked to **privilege escalation** (e.g., `Attach*Policy`, `PassRole`, `AssumeRole`, `CreateAccessKey`). Identities exceeding a configurable share of such events within a *recent time window* are highlighted for investigation.
 
-## 风险
+## リスク
 
 Escalation patterns can grant elevated entitlements, enabling: - Confidentiality loss via unauthorized data/secret access - Integrity compromise by changing IAM policies/roles - Availability impact by tampering with logging or resources This also facilitates lateral movement and persistence.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** and **defense in depth**: - Restrict `PassRole`, `Attach*Policy`, `UpdateAssumeRolePolicy`, `CreateAccessKey` - Enforce permission boundaries and SCPs - Require MFA and change approvals - Use multi-Region CloudTrail, immutable retention, and alerting on anomalous sequences
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -131,13 +131,13 @@ resource "aws_organizations_policy_attachment" "<example_resource_name>_attach" 
    - Go to Trust relationships, remove principals that should not assume the role and save
 4. Re-run the scan after the detection window elapses to confirm no further privilege-escalation activity is detected
 
-## 参考资料
+## 参考資料
 
 - [https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/](https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/)
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-logging-data-events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-logging-data-events)
 - [https://signmycode.com/blog/what-is-privilege-escalation-in-aws-recommendations-to-prevent-it](https://signmycode.com/blog/what-is-privilege-escalation-in-aws-recommendations-to-prevent-it)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudtrail_threat_detection_privilege_escalation/metadata.json](../../sources/aws/cloudtrail_threat_detection_privilege_escalation/metadata.json)
 - Source Code：[sources/aws/cloudtrail_threat_detection_privilege_escalation/check.py](../../sources/aws/cloudtrail_threat_detection_privilege_escalation/check.py)

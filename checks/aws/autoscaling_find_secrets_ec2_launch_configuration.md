@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `autoscaling_find_secrets_ec2_launch_configuration` |
-| 云平台 | AWS |
-| 服务 | autoscaling |
-| 严重等级 | critical |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Passwords, Effects/Data Exposure |
-| 资源类型 | AwsAutoScalingLaunchConfiguration |
-| 资源组 | compute |
+| チェック項目 ID | `autoscaling_find_secrets_ec2_launch_configuration` |
+| クラウドプラットフォーム | AWS |
+| サービス | autoscaling |
+| 重大度 | critical |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Passwords, Effects/Data Exposure |
+| リソースタイプ | AwsAutoScalingLaunchConfiguration |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 [DEPRECATED] EC2 Auto Scaling launch configurations are analyzed for **secrets** embedded in `User Data`, such as passwords, tokens, or API keys in bootstrapping scripts.
 
-## 风险
+## リスク
 
 Secrets in `User Data` erode **confidentiality** and **integrity**: - Instance users or processes can read or log them - Exposed keys enable unauthorized API calls, data exfiltration, and lateral movement - Credential reuse increases blast radius across accounts and services
 
-## 推荐措施
+## 推奨事項
 
 Never place secrets in `User Data`. - Use a managed secret store with an instance role to fetch at runtime - Enforce **least privilege**, rotate secrets, and avoid writing secrets to logs - Prefer short-lived, scoped credentials and layer controls for **defense in depth**
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -62,11 +62,11 @@ resource "aws_launch_configuration" "<example_resource_name>" {
 4. Under Launch options, select the new launch configuration and Save
 5. After the ASG is updated, delete the old launch configuration
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/autoscaling_find_secrets_ec2_launch_configuration/metadata.json](../../sources/aws/autoscaling_find_secrets_ec2_launch_configuration/metadata.json)
 - Source Code：[sources/aws/autoscaling_find_secrets_ec2_launch_configuration/check.py](../../sources/aws/autoscaling_find_secrets_ec2_launch_configuration/check.py)

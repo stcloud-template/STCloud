@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `apigateway_restapi_public_with_authorizer` |
-| 云平台 | AWS |
-| 服务 | apigateway |
-| 严重等级 | medium |
-| 类别 | internet-exposed, identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | AwsApiGatewayRestApi |
-| 资源组 | api_gateway |
+| チェック項目 ID | `apigateway_restapi_public_with_authorizer` |
+| クラウドプラットフォーム | AWS |
+| サービス | apigateway |
+| 重大度 | medium |
+| カテゴリ | internet-exposed, identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | AwsApiGatewayRestApi |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **API Gateway REST APIs** exposed to the Internet are evaluated for an attached **authorizer** that enforces caller identity (Lambda authorizer or Cognito user pool) on method invocations. Focus is on whether public endpoints require authenticated requests rather than accepting anonymous calls.
 
-## 风险
+## リスク
 
 Without an **authorizer** on a public API, anonymous callers can: - Read or alter data (confidentiality/integrity) - Trigger backend actions, impacting systems - Abuse traffic, degrading availability and inflating costs Endpoint enumeration also enables broader discovery and lateral movement.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **authentication** on all Internet-facing APIs by attaching an **authorizer** (Cognito user pool or Lambda) that validates tokens and scopes. Apply defense in depth: - Restrictive resource policies and IP controls - WAF, throttling, quotas, rate limits - Least-privilege backend access and comprehensive logging
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -72,7 +72,7 @@ resource "aws_api_gateway_authorizer" "<example_resource_name>" {
 4. For Lambda: select the function and set Identity source to method.request.header.Authorization; for Cognito: select the user pool
 5. Click Create authorizer to add it to the API
 
-## 参考资料
+## 参考資料
 
 - [https://support.icompaas.com/support/solutions/articles/62000233640-check-if-api-gateway-public-endpoint-has-an-authorizer-configured](https://support.icompaas.com/support/solutions/articles/62000233640-check-if-api-gateway-public-endpoint-has-an-authorizer-configured)
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html)
@@ -83,7 +83,7 @@ resource "aws_api_gateway_authorizer" "<example_resource_name>" {
 - [https://stackoverflow.com/questions/68512642/how-to-configure-aws-api-gateway-without-authorizer](https://stackoverflow.com/questions/68512642/how-to-configure-aws-api-gateway-without-authorizer)
 - [https://auth0.com/docs/customize/integrations/aws/aws-api-gateway-custom-authorizers](https://auth0.com/docs/customize/integrations/aws/aws-api-gateway-custom-authorizers)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/apigateway_restapi_public_with_authorizer/metadata.json](../../sources/aws/apigateway_restapi_public_with_authorizer/metadata.json)
 - Source Code：[sources/aws/apigateway_restapi_public_with_authorizer/check.py](../../sources/aws/apigateway_restapi_public_with_authorizer/check.py)

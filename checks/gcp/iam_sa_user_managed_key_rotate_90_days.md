@@ -2,44 +2,44 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `iam_sa_user_managed_key_rotate_90_days` |
-| 云平台 | GCP |
-| 服务 | iam |
-| 严重等级 | low |
-| 类别 | Uncategorized |
-| 资源类型 | ServiceAccountKey |
-| 资源组 | IAM |
+| チェック項目 ID | `iam_sa_user_managed_key_rotate_90_days` |
+| クラウドプラットフォーム | GCP |
+| サービス | iam |
+| 重大度 | low |
+| カテゴリ | Uncategorized |
+| リソースタイプ | ServiceAccountKey |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Ensure User-Managed/External Keys for Service Accounts Are Rotated Every 90 Days
 
-## 风险
+## リスク
 
 Service Account keys should be rotated to ensure that data cannot be accessed with an old key that might have been lost, cracked, or stolen.
 
-## 推荐措施
+## 推奨事項
 
 It is recommended that all Service Account keys are regularly rotated.
 
-- 推荐链接：[https://cloud.google.com/iam/docs/creating-managing-service-account-keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
+- 推奨リンク：[https://cloud.google.com/iam/docs/creating-managing-service-account-keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudIAM/rotate-service-account-user-managed-keys.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudIAM/rotate-service-account-user-managed-keys.html)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/iam/docs/creating-managing-service-account-keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/iam_sa_user_managed_key_rotate_90_days/metadata.json](../../sources/gcp/iam_sa_user_managed_key_rotate_90_days/metadata.json)
 - Source Code：[sources/gcp/iam_sa_user_managed_key_rotate_90_days/check.py](../../sources/gcp/iam_sa_user_managed_key_rotate_90_days/check.py)

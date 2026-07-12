@@ -2,34 +2,34 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `storage_account_key_access_disabled` |
-| 云平台 | Azure |
-| 服务 | storage |
-| 子服务 | account |
-| 严重等级 | high |
-| 类别 | e3 |
-| 资源类型 | AzureStorageAccount |
-| 资源组 | storage |
+| チェック項目 ID | `storage_account_key_access_disabled` |
+| クラウドプラットフォーム | Azure |
+| サービス | storage |
+| サブサービス | account |
+| 重大度 | high |
+| カテゴリ | e3 |
+| リソースタイプ | AzureStorageAccount |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 Ensures that access to Azure Storage Accounts using account keys is disabled, enforcing the use of Microsoft Entra ID (formerly Azure AD) for authentication.
 
-## 风险
+## リスク
 
 Using Shared Key authorization poses a security risk due to the high privileges associated with storage account keys and the difficulty in auditing such access. Disabling Shared Key access helps enforce identity-based authentication via Microsoft Entra ID, enhancing security and traceability.
 
-## 推荐措施
+## 推奨事項
 
 Disable Shared Key authorization on storage accounts to enforce the use of Microsoft Entra ID for secure, auditable access.
 
-- 推荐链接：[https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent](https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent)
+- 推奨リンク：[https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent](https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -42,11 +42,11 @@ az storage account update --name <storage-account-name> --resource-group <resour
 
 [https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/azure/StorageAccounts/disable-shared-key-authorization.html](https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/azure/StorageAccounts/disable-shared-key-authorization.html)
 
-## 参考资料
+## 参考資料
 
 - [https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent](https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/storage_account_key_access_disabled/metadata.json](../../sources/azure/storage_account_key_access_disabled/metadata.json)
 - Source Code：[sources/azure/storage_account_key_access_disabled/check.py](../../sources/azure/storage_account_key_access_disabled/check.py)

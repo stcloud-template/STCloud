@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dms_replication_task_source_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | dms |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, TTPs/Defense Evasion |
-| 资源类型 | AwsDmsReplicationTask |
-| 资源组 | database |
+| チェック項目 ID | `dms_replication_task_source_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | dms |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, TTPs/Defense Evasion |
+| リソースタイプ | AwsDmsReplicationTask |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **AWS DMS replication tasks** have **logging enabled** and configure `SOURCE_CAPTURE` and `SOURCE_UNLOAD` with severity at least `LOGGER_SEVERITY_DEFAULT` (or higher: `LOGGER_SEVERITY_DEBUG`, `LOGGER_SEVERITY_DETAILED_DEBUG`).
 
-## 风险
+## リスク
 
 Missing or low-severity source logs hinder visibility into **CDC** and full-load activity, risking undetected errors, stalls, or tampering. This can cause silent **data drift**, broken lineage, and failed recoveries, undermining **integrity** and **availability** and weakening auditability during investigations.
 
-## 推荐措施
+## 推奨事項
 
 Enable and standardize **task logging** for `SOURCE_CAPTURE` and `SOURCE_UNLOAD` at `LOGGER_SEVERITY_DEFAULT` or higher. - Centralize logs and alert on anomalies - Enforce **least privilege** for log access - Set retention to support audits - Avoid prolonged `DEBUG` levels, *except during troubleshooting*, to balance visibility and cost
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -97,13 +97,13 @@ JSON
 5. For SOURCE_CAPTURE and SOURCE_UNLOAD, set Severity to Default (or higher)
 6. Save/Modify to apply
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html)
 - [https://repost.aws/knowledge-center/dms-debug-logging](https://repost.aws/knowledge-center/dms-debug-logging)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/dms-controls.html#dms-8](https://docs.aws.amazon.com/securityhub/latest/userguide/dms-controls.html#dms-8)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dms_replication_task_source_logging_enabled/metadata.json](../../sources/aws/dms_replication_task_source_logging_enabled/metadata.json)
 - Source Code：[sources/aws/dms_replication_task_source_logging_enabled/check.py](../../sources/aws/dms_replication_task_source_logging_enabled/check.py)

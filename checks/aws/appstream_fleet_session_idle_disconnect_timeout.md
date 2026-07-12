@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `appstream_fleet_session_idle_disconnect_timeout` |
-| 云平台 | AWS |
-| 服务 | appstream |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `appstream_fleet_session_idle_disconnect_timeout` |
+| クラウドプラットフォーム | AWS |
+| サービス | appstream |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Amazon AppStream fleets** are evaluated for the **idle disconnect timeout** setting, confirming it is configured to `10 minutes` (`<=600s`) or less before inactive users are dropped and the session's `disconnect_timeout` window begins.
 
-## 风险
+## リスク
 
 **Long idle sessions** keep desktops/apps accessible without user presence, enabling **session hijacking**, **shoulder surfing**, and **data exposure**. They also **consume capacity** and extend **billing**, reducing **availability** for other users.
 
-## 推荐措施
+## 推奨事項
 
 Configure an **idle disconnect timeout 10 minutes**. Pair with a short `disconnect_timeout`, require **re-authentication** on reconnect, and enforce **least privilege**. Monitor session metrics and adjust per role to balance **security**, **cost**, and **user experience**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -74,12 +74,12 @@ resource "aws_appstream_fleet" "<example_resource_name>" {
 4. Set it to 10 minutes (600 seconds) or less
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/appstream2/latest/developerguide/set-up-stacks-fleets.html](https://docs.aws.amazon.com/appstream2/latest/developerguide/set-up-stacks-fleets.html)
 - [https://awscli.amazonaws.com/v2/documentation/api/2.9.6/reference/appstream/update-fleet.html](https://awscli.amazonaws.com/v2/documentation/api/2.9.6/reference/appstream/update-fleet.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/appstream_fleet_session_idle_disconnect_timeout/metadata.json](../../sources/aws/appstream_fleet_session_idle_disconnect_timeout/metadata.json)
 - Source Code：[sources/aws/appstream_fleet_session_idle_disconnect_timeout/check.py](../../sources/aws/appstream_fleet_session_idle_disconnect_timeout/check.py)

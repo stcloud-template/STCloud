@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `resourceexplorer2_indexes_found` |
-| 云平台 | AWS |
-| 服务 | resourceexplorer2 |
-| 严重等级 | low |
-| 类别 | forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | governance |
+| チェック項目 ID | `resourceexplorer2_indexes_found` |
+| クラウドプラットフォーム | AWS |
+| サービス | resourceexplorer2 |
+| 重大度 | low |
+| カテゴリ | forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 **AWS Resource Explorer** has user-owned **indexes** present in the account. The assessment determines whether at least one index exists in any enabled Region for resource cataloging and search.
 
-## 风险
+## リスク
 
 Absent indexes reduce asset visibility, creating blind spots where misconfigured or orphaned resources go unnoticed. This degrades **confidentiality** (unseen public exposure), **integrity** (unauthorized changes undetected), and **availability** (slower containment and recovery), prolonging incident response and enabling lateral movement.
 
-## 推荐措施
+## 推奨事項
 
 Create **Resource Explorer indexes** in all active Regions and designate an **aggregator index** for cross-Region search. Apply least-privilege access to views, align with tagging standards, and routinely verify indexing status. This improves inventory accuracy, supports defense-in-depth, and speeds detection and remediation.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -62,11 +62,11 @@ resource "aws_resourceexplorer2_index" "<example_resource_name>" {
 4. Select the current Region and click **Create indexes**
 5. Wait until the index state is ACTIVE
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/resource-explorer/latest/userguide/manage-service-turn-on-region.html](https://docs.aws.amazon.com/resource-explorer/latest/userguide/manage-service-turn-on-region.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/resourceexplorer2_indexes_found/metadata.json](../../sources/aws/resourceexplorer2_indexes_found/metadata.json)
 - Source Code：[sources/aws/resourceexplorer2_indexes_found/check.py](../../sources/aws/resourceexplorer2_indexes_found/check.py)

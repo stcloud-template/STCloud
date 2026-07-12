@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_metric_filter_for_s3_bucket_policy_changes` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_metric_filter_for_s3_bucket_policy_changes` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudTrail** logs are assessed for a **CloudWatch metric filter** matching S3 bucket configuration changes (ACL, policy, CORS, lifecycle, replication; e.g., `PutBucketPolicy`, `DeleteBucketPolicy`) and for an associated **CloudWatch alarm**.
 
-## 风险
+## リスク
 
 Without alerting on S3 policy and ACL changes, unauthorized modifications can go unnoticed, weakening **confidentiality** and **integrity**. Misuse could expose buckets publicly, grant write/delete access, or alter replication paths, enabling data exfiltration and destructive actions.
 
-## 推荐措施
+## 推奨事項
 
 Establish and maintain **metric filters** and **alarms** for S3 bucket policy, ACL, CORS, lifecycle, and replication changes. Route alerts to monitored channels and integrate with SIEM. Enforce **least privilege**, require change reviews, and use **defense in depth** to prevent and quickly detect unsafe bucket policy changes.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -102,13 +102,13 @@ resource "aws_cloudwatch_metric_alarm" "<example_resource_name>" {
 4. From the Metric filters tab, select the new filter and choose Create alarm.
 5. Set: Statistic = Sum, Period = 5 minutes, Threshold type = Static, Condition = Greater/Equal, Threshold = 1, Evaluation periods = 1. Create alarm.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 - [https://support.icompaas.com/support/solutions/articles/62000086674-ensure-a-log-metric-filter-and-alarm-exist-for-s3-bucket-policy-changes](https://support.icompaas.com/support/solutions/articles/62000086674-ensure-a-log-metric-filter-and-alarm-exist-for-s3-bucket-policy-changes)
 - [https://www.tenable.com/audits/items/CIS_Amazon_Web_Services_Foundations_v5.0.0_L1.audit:8101350d6907e07863ac6748689b3e12](https://www.tenable.com/audits/items/CIS_Amazon_Web_Services_Foundations_v5.0.0_L1.audit:8101350d6907e07863ac6748689b3e12)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_metric_filter_for_s3_bucket_policy_changes/metadata.json](../../sources/aws/cloudwatch_log_metric_filter_for_s3_bucket_policy_changes/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_metric_filter_for_s3_bucket_policy_changes/check.py](../../sources/aws/cloudwatch_log_metric_filter_for_s3_bucket_policy_changes/check.py)

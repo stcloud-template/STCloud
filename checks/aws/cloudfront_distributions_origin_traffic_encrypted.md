@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_origin_traffic_encrypted` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Security, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_origin_traffic_encrypted` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Security, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **CloudFront distributions** are evaluated for **TLS to origins**. The check ensures custom origins use `origin_protocol_policy`=`https-only`, or `match-viewer` only when the viewer protocol policy disallows HTTP. For S3 origins, it inspects the viewer protocol policy and flags `allow-all` as permitting non-encrypted paths.
 
-## 风险
+## リスク
 
 Unencrypted origin links enable on-path interception and manipulation. Secrets, cookies, and PII can be exposed, and responses altered, undermining **confidentiality** and **integrity**. This increases chances of session hijacking, cache poisoning, and malicious content injection.
 
-## 推荐措施
+## 推奨事項
 
 Enforce end-to-end HTTPS. Set `origin_protocol_policy` to `https-only` and viewer policy to `https-only` or `redirect-to-https`. Use trusted certificates and modern TLS (`TLSv1.2+`), disabling weak protocols. Apply **least privilege** and **defense in depth** by restricting direct origin access and preferring private connectivity.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -98,7 +98,7 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
 3. Set Protocol to HTTPS only (Origin protocol policy = HTTPS Only)
 4. Click Save changes and wait for the distribution to deploy
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/cloudfront-traffic-to-origin-unencrypted.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/cloudfront-traffic-to-origin-unencrypted.html)
@@ -106,7 +106,7 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-cloudfront-to-custom-origin.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-cloudfront-to-custom-origin.html)
 - [https://docs.aws.amazon.com/whitepapers/latest/secure-content-delivery-amazon-cloudfront/custom-origin-with-cloudfront.html](https://docs.aws.amazon.com/whitepapers/latest/secure-content-delivery-amazon-cloudfront/custom-origin-with-cloudfront.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_origin_traffic_encrypted/metadata.json](../../sources/aws/cloudfront_distributions_origin_traffic_encrypted/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_origin_traffic_encrypted/check.py](../../sources/aws/cloudfront_distributions_origin_traffic_encrypted/check.py)

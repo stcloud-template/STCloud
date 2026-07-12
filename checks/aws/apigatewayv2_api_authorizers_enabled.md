@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `apigatewayv2_api_authorizers_enabled` |
-| 云平台 | AWS |
-| 服务 | apigatewayv2 |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, TTPs/Initial Access, Effects/Data Exposure |
-| 资源类型 | AwsApiGatewayV2Api |
-| 资源组 | api_gateway |
+| チェック項目 ID | `apigatewayv2_api_authorizers_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | apigatewayv2 |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, TTPs/Initial Access, Effects/Data Exposure |
+| リソースタイプ | AwsApiGatewayV2Api |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **API Gateway v2 APIs** use **authorizers** (JWT/Cognito or Lambda) to authenticate requests. This evaluates whether an API has an authorizer configured to control access to its routes.
 
-## 风险
+## リスク
 
 Without an authorizer, anyone can invoke routes. - Confidentiality: exposure of data and metadata - Integrity: unauthorized state changes or actions - Availability/Cost: automated abuse of backends, traffic spikes, and unexpected spend
 
-## 推荐措施
+## 推奨事項
 
 Enable an **authorizer** (JWT/Cognito or Lambda) so only authenticated principals can invoke routes. - Enforce **least privilege** with scopes/claims or policy decisions - Apply **defense in depth** with resource policies, throttling, and WAF - Avoid public routes unless explicitly required
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -73,13 +73,13 @@ resource "aws_apigatewayv2_authorizer" "<example_resource_name>" {
 4. Set Identity source to: $request.header.Authorization
 5. Click Create to add the authorizer
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html)
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html)
 - [https://support.icompaas.com/support/solutions/articles/62000127114-ensure-api-gateway-has-configured-authorizers](https://support.icompaas.com/support/solutions/articles/62000127114-ensure-api-gateway-has-configured-authorizers)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/apigatewayv2_api_authorizers_enabled/metadata.json](../../sources/aws/apigatewayv2_api_authorizers_enabled/metadata.json)
 - Source Code：[sources/aws/apigatewayv2_api_authorizers_enabled/check.py](../../sources/aws/apigatewayv2_api_authorizers_enabled/check.py)

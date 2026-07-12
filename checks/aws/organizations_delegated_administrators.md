@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `organizations_delegated_administrators` |
-| 云平台 | AWS |
-| 服务 | organizations |
-| 严重等级 | critical |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | governance |
+| チェック項目 ID | `organizations_delegated_administrators` |
+| クラウドプラットフォーム | AWS |
+| サービス | organizations |
+| 重大度 | critical |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 **AWS Organizations delegated administrators** are compared against a predefined **trusted list** to identify delegations that are not explicitly approved. The evaluation also notes when no delegated administrators exist.
 
-## 风险
+## リスク
 
 Unapproved delegated administrators can alter **SCPs**, invite/move accounts, and create privileged roles, enabling **privilege escalation**. This undermines guardrails, risking loss of **integrity**, exposure of **confidentiality** across accounts, and impacts **availability** through organization-wide policy changes.
 
-## 推荐措施
+## 推奨事項
 
 Restrict delegation to vetted accounts using **least privilege** and **separation of duties**. Maintain a centrally governed **approved allowlist**, review it regularly, and remove unused delegations. Enforce **strong authentication** for admin roles and monitor Organizations policy changes for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
@@ -39,11 +39,11 @@ Restrict delegation to vetted accounts using **least privilege** and **separatio
 5. For each service shown for that account, choose **Deregister delegated administrator** and confirm
 6. Repeat for all untrusted accounts until only trusted accounts (or none) remain
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/organizations/latest/userguide/orgs_delegate_policies.html](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_delegate_policies.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/organizations_delegated_administrators/metadata.json](../../sources/aws/organizations_delegated_administrators/metadata.json)
 - Source Code：[sources/aws/organizations_delegated_administrators/check.py](../../sources/aws/organizations_delegated_administrators/check.py)

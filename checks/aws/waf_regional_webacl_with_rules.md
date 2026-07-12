@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `waf_regional_webacl_with_rules` |
-| 云平台 | AWS |
-| 服务 | waf |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafRegionalWebAcl |
-| 资源组 | security |
+| チェック項目 ID | `waf_regional_webacl_with_rules` |
+| クラウドプラットフォーム | AWS |
+| サービス | waf |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafRegionalWebAcl |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAF Classic Regional web ACL** contains at least one **rule** or **rule group** to inspect and act on HTTP(S) requests. An ACL with no entries is considered empty.
 
-## 风险
+## リスク
 
 With no rules, the web ACL performs no inspection, letting malicious traffic through. - **Confidentiality**: data exposure via SQLi/XSS - **Integrity**: unauthorized actions or tampering - **Availability**: abuse/bot traffic causing degradation or denial
 
-## 推荐措施
+## 推奨事項
 
 Populate each web ACL with at least one **rule** or **rule group** that inspects requests and enforces **least privilege**. Apply defense in depth by combining managed and custom rules, include rate controls where appropriate, and review regularly. *Default to blocking undesired traffic; only permit required patterns*.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -88,13 +88,13 @@ resource "aws_wafregional_web_acl" "<example_resource_name>" {
 5. In Rules, select an existing rule or rule group and choose Add rule to web ACL
 6. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-4](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-4)
 - [https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-editing.html](https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-editing.html)
 - [https://docs.aws.amazon.com/waf/latest/developerguide/waf-rules.html](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rules.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/waf_regional_webacl_with_rules/metadata.json](../../sources/aws/waf_regional_webacl_with_rules/metadata.json)
 - Source Code：[sources/aws/waf_regional_webacl_with_rules/check.py](../../sources/aws/waf_regional_webacl_with_rules/check.py)

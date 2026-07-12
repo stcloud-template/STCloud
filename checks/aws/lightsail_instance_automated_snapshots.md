@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `lightsail_instance_automated_snapshots` |
-| 云平台 | AWS |
-| 服务 | lightsail |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Effects/Data Destruction |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `lightsail_instance_automated_snapshots` |
+| クラウドプラットフォーム | AWS |
+| サービス | lightsail |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Effects/Data Destruction |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Amazon Lightsail instances** with **automatic daily snapshots** enabled are identified. The evaluation checks if an instance is configured to take recurring snapshots at a scheduled time.
 
-## 风险
+## リスク
 
 Absent automation, data lacks **point-in-time recovery**, increasing **availability** risk from accidental deletion, corruption, or ransomware. Failed updates or compromise hinder quick rollback, degrading **integrity** and extending RPO/RTO, causing prolonged outages.
 
-## 推荐措施
+## 推奨事項
 
 Enable **automatic snapshots** on Lightsail instances and align the schedule with low-traffic windows. Apply **least privilege** to snapshot create/delete, and regularly test restores. Use **defense in depth**: retain multiple versions and replicate backups *for critical workloads* across regions or accounts.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -77,12 +77,12 @@ resource "aws_lightsail_instance" "<example_resource_name>" {
 4. In Automatic snapshots, toggle On and confirm
 5. (Optional) Set a snapshot time if needed; otherwise the default time is used
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-changing-automatic-snapshot-time.html](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-changing-automatic-snapshot-time.html)
 - [https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-configuring-automatic-snapshots.html](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-configuring-automatic-snapshots.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/lightsail_instance_automated_snapshots/metadata.json](../../sources/aws/lightsail_instance_automated_snapshots/metadata.json)
 - Source Code：[sources/aws/lightsail_instance_automated_snapshots/check.py](../../sources/aws/lightsail_instance_automated_snapshots/check.py)

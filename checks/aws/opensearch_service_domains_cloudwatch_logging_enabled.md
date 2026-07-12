@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `opensearch_service_domains_cloudwatch_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | opensearch |
-| 严重等级 | low |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsOpenSearchServiceDomain |
-| 资源组 | database |
+| チェック項目 ID | `opensearch_service_domains_cloudwatch_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | opensearch |
+| 重大度 | low |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsOpenSearchServiceDomain |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon OpenSearch Service** domains have **slow log publishing** enabled for both **search** and **indexing** operations to CloudWatch Logs (`SEARCH_SLOW_LOGS` and `INDEX_SLOW_LOGS`).
 
-## 风险
+## リスク
 
 Without these logs, visibility into **expensive searches** and **slow indexing** is lost, masking hotspots and abuse. - Availability: timeouts, throttling, node pressure - Integrity: missed or delayed indexing - Operations: slower incident response and capacity planning
 
-## 推荐措施
+## 推奨事項
 
 Enable both `SEARCH_SLOW_LOGS` and `INDEX_SLOW_LOGS` for all domains and publish to CloudWatch. Set meaningful thresholds and retention, separate log groups, and alert on anomalies. Apply **least privilege** to log access and use **defense in depth** with complementary error and audit logs.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -85,7 +85,7 @@ resource "aws_opensearch_domain" "<example_resource_name>" {
 4. For Index slow logs, click Enable, choose or create a CloudWatch log group, accept/attach the suggested resource policy, then Save
 5. Wait for domain status to return to Active
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createdomain-configure-slow-logs.html](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createdomain-configure-slow-logs.html)
 - [https://support.icompaas.com/support/solutions/articles/62000129471-ensure-amazon-elasticsearch-service-es-domains-have-logging-enabled](https://support.icompaas.com/support/solutions/articles/62000129471-ensure-amazon-elasticsearch-service-es-domains-have-logging-enabled)
@@ -95,7 +95,7 @@ resource "aws_opensearch_domain" "<example_resource_name>" {
 - [https://medium.com/heyjobs-tech/how-to-create-an-opensearch-cluster-using-terraform-926b4a62b489](https://medium.com/heyjobs-tech/how-to-create-an-opensearch-cluster-using-terraform-926b4a62b489)
 - [https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createdomain-configure-slow-logs.html](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createdomain-configure-slow-logs.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/opensearch_service_domains_cloudwatch_logging_enabled/metadata.json](../../sources/aws/opensearch_service_domains_cloudwatch_logging_enabled/metadata.json)
 - Source Code：[sources/aws/opensearch_service_domains_cloudwatch_logging_enabled/check.py](../../sources/aws/opensearch_service_domains_cloudwatch_logging_enabled/check.py)

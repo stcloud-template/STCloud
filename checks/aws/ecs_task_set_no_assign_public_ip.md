@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecs_task_set_no_assign_public_ip` |
-| 云平台 | AWS |
-| 服务 | ecs |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
-| 资源类型 | AwsEcsService |
-| 资源组 | container |
+| チェック項目 ID | `ecs_task_set_no_assign_public_ip` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecs |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
+| リソースタイプ | AwsEcsService |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **ECS task sets** are assessed for **automatic public IP assignment** via `AssignPublicIP`. When set to `ENABLED`, tasks are given public addresses in their network configuration.
 
-## 风险
+## リスク
 
 Public IPs make tasks directly reachable from the Internet, enabling scanning, brute force, and exploit attempts. Impacts: **confidentiality** (data exposure), **integrity** (unauthorized actions), **availability** (DoS). Attackers can bypass internal controls and pivot for lateral movement.
 
-## 推荐措施
+## 推奨事項
 
 Disable **automatic public IPs** on task sets. Use private subnets behind controlled entry points (load balancers, API gateways, or service discovery). Enforce **least privilege** security groups and **defense in depth**. Prefer private connectivity (VPC endpoints/VPN). *Expose only frontends, not tasks.*
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -72,13 +72,13 @@ resource "aws_ecs_task_set" "<example_resource_name>" {
 4. Save/Deploy the update to create a new deployment/task set
 5. After the new task set is Primary and stable, delete the old task set that had Public IP enabled
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/update-task-definition-console-v2.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/update-task-definition-console-v2.html)
 - [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TaskSet.html](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TaskSet.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-16](https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-16)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecs_task_set_no_assign_public_ip/metadata.json](../../sources/aws/ecs_task_set_no_assign_public_ip/metadata.json)
 - Source Code：[sources/aws/ecs_task_set_no_assign_public_ip/check.py](../../sources/aws/ecs_task_set_no_assign_public_ip/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `secretsmanager_secret_unused` |
-| 云平台 | AWS |
-| 服务 | secretsmanager |
-| 严重等级 | medium |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsSecretsManagerSecret |
-| 资源组 | security |
+| チェック項目 ID | `secretsmanager_secret_unused` |
+| クラウドプラットフォーム | AWS |
+| サービス | secretsmanager |
+| 重大度 | medium |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsSecretsManagerSecret |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS Secrets Manager secrets** with no retrieval activity beyond a configured window (default `90` days) are identified as **unused** based on their most recent access timestamp
 
-## 风险
+## リスク
 
 Unused yet valid secrets jeopardize **confidentiality** and **integrity**: - Reuse by ex-users or leaked code enables unauthorized access - Limited rotation/revocation increases stealth persistence and data exfiltration - Secret sprawl adds operational risk and extra cost
 
-## 推荐措施
+## 推奨事項
 
 Apply a **lifecycle policy** for secrets: - Require ownership tags and periodic reviews - Rotate or disable, then retire secrets unused beyond policy - Enforce **least privilege** and monitor retrievals with alerts - Automate cleanup using recovery windows to prevent accidental loss
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -44,13 +44,13 @@ aws secretsmanager delete-secret --secret-id <example_resource_id>
 4. Choose Actions > Delete secret
 5. Keep the default recovery window (or set one) and select Schedule deletion
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/secretsmanager-controls.html#secretsmanager-3](https://docs.aws.amazon.com/securityhub/latest/userguide/secretsmanager-controls.html#secretsmanager-3)
 - [https://support.icompaas.com/support/solutions/articles/62000233606-ensure-secrets-manager-secrets-are-not-unused](https://support.icompaas.com/support/solutions/articles/62000233606-ensure-secrets-manager-secrets-are-not-unused)
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_delete-secret.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_delete-secret.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/secretsmanager_secret_unused/metadata.json](../../sources/aws/secretsmanager_secret_unused/metadata.json)
 - Source Code：[sources/aws/secretsmanager_secret_unused/check.py](../../sources/aws/secretsmanager_secret_unused/check.py)

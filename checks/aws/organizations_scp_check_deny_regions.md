@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `organizations_scp_check_deny_regions` |
-| 云平台 | AWS |
-| 服务 | organizations |
-| 严重等级 | high |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | governance |
+| チェック項目 ID | `organizations_scp_check_deny_regions` |
+| クラウドプラットフォーム | AWS |
+| サービス | organizations |
+| 重大度 | high |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 **AWS Organizations SCPs** limit account actions to approved regions using conditions on `aws:RequestedRegion`. This evaluates whether policies exist and fully restrict access to the configured allowlist, rather than only some regions.
 
-## 风险
+## リスク
 
 Without comprehensive Region limits, users or attackers can deploy resources in ungoverned locations, bypassing monitoring and guardrails. Impacts: - Data outside approved jurisdictions (confidentiality) - Policy gaps and drift (integrity) - IR blind spots and unexpected cost (availability)
 
-## 推荐措施
+## 推奨事項
 
 Enforce Region governance with **SCPs** that allow only approved regions via `aws:RequestedRegion` conditions (deny-by-default). Apply across relevant OUs and accounts, with narrow exceptions for required global services. Review often; align to least privilege, data residency, and continuous monitoring.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -107,11 +107,11 @@ resource "aws_organizations_policy_attachment" "<example_resource_name>" {
 5. Attach the policy to the organization root (r-xxxx), target OU, or specific account
 6. Verify the policy is attached and shows as Applied to the intended target
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples_general.html#example-scp-deny-region](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples_general.html#example-scp-deny-region)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/organizations_scp_check_deny_regions/metadata.json](../../sources/aws/organizations_scp_check_deny_regions/metadata.json)
 - Source Code：[sources/aws/organizations_scp_check_deny_regions/check.py](../../sources/aws/organizations_scp_check_deny_regions/check.py)

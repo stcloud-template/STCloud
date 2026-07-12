@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `mq_broker_cluster_deployment_mode` |
-| 云平台 | AWS |
-| 服务 | mq |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Effects/Denial of Service |
-| 资源类型 | AwsAmazonMQBroker |
-| 资源组 | messaging |
+| チェック項目 ID | `mq_broker_cluster_deployment_mode` |
+| クラウドプラットフォーム | AWS |
+| サービス | mq |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Effects/Denial of Service |
+| リソースタイプ | AwsAmazonMQBroker |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon MQ RabbitMQ brokers** are assessed for **cluster deployment mode** (`CLUSTER_MULTI_AZ`) with nodes spread across multiple AZs and shared state. Brokers configured otherwise are identified.
 
-## 风险
+## リスク
 
 Without **clustered RabbitMQ**, the broker is a **single point of failure**. An instance or AZ outage can halt queues, cause message loss or duplication, and break ordering, reducing **availability** and **integrity** of workloads that depend on the broker.
 
-## 推荐措施
+## 推奨事項
 
 Use **cluster deployment** (`CLUSTER_MULTI_AZ`) for RabbitMQ to remove single-instance risk. Apply **resiliency by design**: clients auto-reconnect, retries with backoff, and idempotent processing; test failover, size for node loss, and enforce **least privilege** with monitoring for defense in depth.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -84,7 +84,7 @@ resource "aws_mq_broker" "example" {
 
 Note: Deployment mode cannot be changed on an existing broker; you must create a new cluster broker.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/rabbitmq-basic-elements.html](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/rabbitmq-basic-elements.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/mq-controls.html#mq-6](https://docs.aws.amazon.com/securityhub/latest/userguide/mq-controls.html#mq-6)
@@ -92,7 +92,7 @@ Note: Deployment mode cannot be changed on an existing broker; you must create a
 - [https://docs.amazonaws.cn/en_us/AWSCloudFormation/latest/TemplateReference/aws-resource-amazonmq-broker.html](https://docs.amazonaws.cn/en_us/AWSCloudFormation/latest/TemplateReference/aws-resource-amazonmq-broker.html)
 - [https://docs.aws.amazon.com/controltower/latest/controlreference/mq-rules.html](https://docs.aws.amazon.com/controltower/latest/controlreference/mq-rules.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/mq_broker_cluster_deployment_mode/metadata.json](../../sources/aws/mq_broker_cluster_deployment_mode/metadata.json)
 - Source Code：[sources/aws/mq_broker_cluster_deployment_mode/check.py](../../sources/aws/mq_broker_cluster_deployment_mode/check.py)

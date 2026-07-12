@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dms_endpoint_mongodb_authentication_enabled` |
-| 云平台 | AWS |
-| 服务 | dms |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsDmsEndpoint |
-| 资源组 | database |
+| チェック項目 ID | `dms_endpoint_mongodb_authentication_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | dms |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsDmsEndpoint |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **AWS DMS MongoDB endpoints** use an authentication mechanism. Configuration expects `AuthType` not `no` (e.g., `password`) with an `authMechanism` such as `scram_sha_1` or `mongodb_cr`.
 
-## 风险
+## リスク
 
 Without authentication, unauthenticated connections can access the source, degrading **confidentiality** and **integrity**. Adversaries could read or modify migrated documents, hijack CDC, inject data, or exfiltrate records during replication.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **strong authentication** on MongoDB endpoints: set `AuthType` to `password` and use `authMechanism` like `scram_sha_1`. Apply **least privilege** database accounts, store secrets in **Secrets Manager**, and pair with **TLS** for defense in depth.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -74,12 +74,12 @@ resource "aws_dms_endpoint" "<example_resource_name>" {
 4. Enter Username and Password
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MongoDB.html](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MongoDB.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/dms-controls.html#dms-11](https://docs.aws.amazon.com/securityhub/latest/userguide/dms-controls.html#dms-11)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dms_endpoint_mongodb_authentication_enabled/metadata.json](../../sources/aws/dms_endpoint_mongodb_authentication_enabled/metadata.json)
 - Source Code：[sources/aws/dms_endpoint_mongodb_authentication_enabled/check.py](../../sources/aws/dms_endpoint_mongodb_authentication_enabled/check.py)

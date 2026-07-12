@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kms_cmk_are_used` |
-| 云平台 | AWS |
-| 服务 | kms |
-| 严重等级 | low |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsKmsKey |
-| 资源组 | security |
+| チェック項目 ID | `kms_cmk_are_used` |
+| クラウドプラットフォーム | AWS |
+| サービス | kms |
+| 重大度 | low |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsKmsKey |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **Customer-managed KMS keys** are assessed by key state. Keys in `Enabled` are considered in use. Keys not `Enabled` and not `PendingDeletion` are identified as unused, while those in `PendingDeletion` are recognized as scheduled for removal.
 
-## 风险
+## リスク
 
 Keeping **unused CMKs** increases **attack surface** and **cost**. If such keys are re-enabled or misconfigured, they can grant unintended decryption, impacting **confidentiality**. Deleting a key mistakenly thought unused can cause **irrecoverable data loss**, harming **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Adopt a **key lifecycle**: confirm actual usage with logs, owners, and tags; keep keys `Enabled` only when required; otherwise **schedule deletion** with a waiting period. Enforce **least privilege** to enable/disable or delete keys, require approvals, and monitor KMS activity with **separation of duties**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -72,11 +72,11 @@ resource "aws_kms_key" "<example_resource_name>" {
 3. Choose Key actions > Enable
 4. Confirm to enable the key
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys-determining-usage.html](https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys-determining-usage.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kms_cmk_are_used/metadata.json](../../sources/aws/kms_cmk_are_used/metadata.json)
 - Source Code：[sources/aws/kms_cmk_are_used/check.py](../../sources/aws/kms_cmk_are_used/check.py)

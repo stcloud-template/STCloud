@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `neptune_cluster_deletion_protection` |
-| 云平台 | AWS |
-| 服务 | neptune |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Destruction |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `neptune_cluster_deletion_protection` |
+| クラウドプラットフォーム | AWS |
+| サービス | neptune |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Destruction |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Neptune DB cluster has **deletion protection** enabled.
 
-## 风险
+## リスク
 
 Absence of **deletion protection** weakens **availability** and **integrity**: clusters can be removed by accidental admin actions, rogue automation, or compromised credentials. Cluster deletion causes immediate service outage, potential permanent data loss, and extended recovery time if backups or restores are insufficient.
 
-## 推荐措施
+## 推奨事項
 
 Enable **deletion protection** for production Neptune clusters and apply the principles of **least privilege** and **separation of duties** for delete operations. Enforce change-control approvals, restrict delete permissions to audited roles, and limit automated workflows that can perform destructive actions to prevent accidental or malicious deletions.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -64,11 +64,11 @@ resource "aws_neptune_cluster" "example_resource" {
 4. Enable Deletion protection
 5. Choose Apply immediately (if shown) and then Modify DB cluster
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/neptune-controls.html#neptune-4](https://docs.aws.amazon.com/securityhub/latest/userguide/neptune-controls.html#neptune-4)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/neptune_cluster_deletion_protection/metadata.json](../../sources/aws/neptune_cluster_deletion_protection/metadata.json)
 - Source Code：[sources/aws/neptune_cluster_deletion_protection/check.py](../../sources/aws/neptune_cluster_deletion_protection/check.py)

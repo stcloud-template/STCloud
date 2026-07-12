@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `efs_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | efs |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
-| 资源类型 | AwsEfsFileSystem |
-| 资源组 | storage |
+| チェック項目 ID | `efs_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | efs |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
+| リソースタイプ | AwsEfsFileSystem |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 **Amazon EFS** file system policy is assessed for **public or VPC-wide access**. Policies with broad `Principal` values or that permit any client in the VPC without the `elasticfilesystem:AccessedViaMountTarget` condition are identified. *An absent or empty policy is treated as open to VPC clients.*
 
-## 风险
+## リスク
 
 Broad EFS access lets any VPC client-or a compromised workload-mount the share, impacting CIA: - Confidentiality: bulk data exfiltration - Integrity: unauthorized writes or ransomware - Availability: deletion or lockout via elevated client access Also facilitates lateral movement within the VPC.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** to EFS resource policies: - Avoid wildcard `Principal` or `*` - Require `elasticfilesystem:AccessedViaMountTarget=true` - Constrain with `aws:SourceVpc`, `aws:SourceAccount`, or org IDs - Use EFS access points per app/role - Enable EFS **Block Public Access** for defense in depth
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -98,12 +98,12 @@ resource "aws_efs_file_system_policy" "<example_resource_name>" {
    ```
 4. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/efs/latest/ug/access-control-block-public-access.html](https://docs.aws.amazon.com/efs/latest/ug/access-control-block-public-access.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233324-efs-should-not-have-policies-allowing-unrestricted-access-within-vpc](https://support.icompaas.com/support/solutions/articles/62000233324-efs-should-not-have-policies-allowing-unrestricted-access-within-vpc)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/efs_not_publicly_accessible/metadata.json](../../sources/aws/efs_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/efs_not_publicly_accessible/check.py](../../sources/aws/efs_not_publicly_accessible/check.py)

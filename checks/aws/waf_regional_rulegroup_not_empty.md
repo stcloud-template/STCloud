@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `waf_regional_rulegroup_not_empty` |
-| 云平台 | AWS |
-| 服务 | waf |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafRegionalRuleGroup |
-| 资源组 | security |
+| チェック項目 ID | `waf_regional_rulegroup_not_empty` |
+| クラウドプラットフォーム | AWS |
+| サービス | waf |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafRegionalRuleGroup |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAF Classic Regional rule groups** are evaluated to confirm they contain at least one **rule**. Groups with no rule entries are considered empty.
 
-## 风险
+## リスク
 
 An empty rule group contributes no filtering in a web ACL, letting requests bypass inspection within that group. This erodes **defense in depth** and can enable injection, brute-force, or bot traffic to reach applications, threatening **confidentiality**, **integrity**, and **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege**: populate each rule group with vetted rules aligned to your threat model, using `ALLOW`, `BLOCK`, or `COUNT` actions as appropriate. Remove or disable unused groups to avoid false assurance. Validate behavior in staging and monitor metrics to maintain **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -80,13 +80,13 @@ resource "aws_wafregional_rule_group" "<example_resource_name>" {
 4. Click Add rule to rule group, select an existing rule, choose an action (e.g., BLOCK), and click Update
 5. Save changes to ensure the rule group contains at least one rule
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/cli/latest/reference/waf-regional/update-rule-group.html](https://docs.aws.amazon.com/cli/latest/reference/waf-regional/update-rule-group.html)
 - [https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-groups.html](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-groups.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-3](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-3)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/waf_regional_rulegroup_not_empty/metadata.json](../../sources/aws/waf_regional_rulegroup_not_empty/metadata.json)
 - Source Code：[sources/aws/waf_regional_rulegroup_not_empty/check.py](../../sources/aws/waf_regional_rulegroup_not_empty/check.py)

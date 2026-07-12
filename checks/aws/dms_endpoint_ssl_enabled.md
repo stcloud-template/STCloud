@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dms_endpoint_ssl_enabled` |
-| 云平台 | AWS |
-| 服务 | dms |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsDmsEndpoint |
-| 资源组 | database |
+| チェック項目 ID | `dms_endpoint_ssl_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | dms |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsDmsEndpoint |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **AWS DMS endpoints** have their SSL/TLS mode inspected; any value other than `none` denotes encrypted connections between the replication instance and databases. Supported modes include `require`, `verify-ca`, and `verify-full`.
 
-## 风险
+## リスク
 
 Without TLS, data in transit can be read or altered, affecting: - **Confidentiality** via packet sniffing and credential leakage - **Integrity** through **MITM** tampering of migration streams - **Availability** from session hijack or task disruption
 
-## 推荐措施
+## 推奨事項
 
 Configure endpoints to use SSL/TLS at least `require`; prefer `verify-ca` or `verify-full` where supported. Manage trusted CA material and rotate regularly. Apply **defense in depth** with private connectivity and strict IAM, and enforce this posture via policy-as-code and continuous validation.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,13 +79,13 @@ resource "aws_dms_endpoint" "<example_resource_name>" {
 4. If Verify-ca/Verify-full is selected, choose the appropriate CA certificate
 5. Save changes, then Test connection to confirm
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/database/configuring-ssl-encryption-on-oracle-and-postgresql-endpoints-in-aws-dms/](https://aws.amazon.com/blogs/database/configuring-ssl-encryption-on-oracle-and-postgresql-endpoints-in-aws-dms/)
 - [https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.SSL.html](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.SSL.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/dms-controls.html#dms-9](https://docs.aws.amazon.com/securityhub/latest/userguide/dms-controls.html#dms-9)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dms_endpoint_ssl_enabled/metadata.json](../../sources/aws/dms_endpoint_ssl_enabled/metadata.json)
 - Source Code：[sources/aws/dms_endpoint_ssl_enabled/check.py](../../sources/aws/dms_endpoint_ssl_enabled/check.py)

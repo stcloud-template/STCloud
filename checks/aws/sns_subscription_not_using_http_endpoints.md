@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sns_subscription_not_using_http_endpoints` |
-| 云平台 | AWS |
-| 服务 | sns |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
-| 资源类型 | AwsSnsTopic |
-| 资源组 | messaging |
+| チェック項目 ID | `sns_subscription_not_using_http_endpoints` |
+| クラウドプラットフォーム | AWS |
+| サービス | sns |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
+| リソースタイプ | AwsSnsTopic |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 Amazon SNS subscriptions are evaluated for endpoint protocol. Subscriptions using `http` are identified, while **HTTPS** endpoints indicate encrypted delivery in transit.
 
-## 风险
+## リスク
 
 Using **HTTP** leaves SNS deliveries unencrypted, compromising **confidentiality** via eavesdropping. MITM attackers can modify payloads or headers, damaging **integrity**, inject malicious content into downstream systems, or capture subscription data for spoofing and unauthorized actions.
 
-## 推荐措施
+## 推奨事項
 
 Require **HTTPS** for all SNS subscription endpoints. Prefer domain-based endpoints, verify SNS message signatures, and apply **least privilege**. Enforce TLS using IAM conditions like `aws:SecureTransport`, and use private connectivity (VPC endpoints) where possible for defense in depth.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -62,12 +62,12 @@ resource "aws_sns_topic_subscription" "<example_resource_name>" {
 4. Choose the same Topic ARN, set Protocol to HTTPS, and enter your HTTPS endpoint URL
 5. Create the subscription and confirm it from your endpoint if required
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-sns-subscription.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-sns-subscription.html)
 - [https://docs.aws.amazon.com/sns/latest/dg/sns-security-best-practices.html#enforce-encryption-data-in-transit](https://docs.aws.amazon.com/sns/latest/dg/sns-security-best-practices.html#enforce-encryption-data-in-transit)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sns_subscription_not_using_http_endpoints/metadata.json](../../sources/aws/sns_subscription_not_using_http_endpoints/metadata.json)
 - Source Code：[sources/aws/sns_subscription_not_using_http_endpoints/check.py](../../sources/aws/sns_subscription_not_using_http_endpoints/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `efs_encryption_at_rest_enabled` |
-| 云平台 | AWS |
-| 服务 | efs |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/HIPAA Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Effects/Data Exposure |
-| 资源类型 | AwsEfsFileSystem |
-| 资源组 | storage |
+| チェック項目 ID | `efs_encryption_at_rest_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | efs |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/HIPAA Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Effects/Data Exposure |
+| リソースタイプ | AwsEfsFileSystem |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 **Amazon EFS file system** has **encryption at rest** enabled using AWS KMS to protect file data and metadata stored on the service
 
-## 风险
+## リスク
 
 Without encryption at rest, EFS contents can be read from storage media, backups, or compromised hosts, eroding **confidentiality** and enabling offline exfiltration. Privileged compromise also allows covert data harvesting or manipulation, threatening **integrity** of files.
 
-## 推荐措施
+## 推奨事項
 
 Enable **encryption at rest** for all EFS file systems and prefer **customer-managed KMS keys** for control, rotation, and audit. Apply **least privilege** to key policies and separate key management duties. *For existing unencrypted data*, migrate to a new encrypted file system. Enforce creation policies (IAM/SCP) to prevent non-encrypted deployments.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -59,13 +59,13 @@ resource "aws_efs_file_system" "<example_resource_name>" {
 5. Migrate data from the unencrypted file system to the new encrypted one
 6. Delete the unencrypted file system to clear the failing finding
 
-## 参考资料
+## 参考資料
 
 - [https://repost.aws/knowledge-center/efs-turn-on-encryption-at-rest](https://repost.aws/knowledge-center/efs-turn-on-encryption-at-rest)
 - [https://docs.aws.amazon.com/efs/latest/ug/EFSKMS.html](https://docs.aws.amazon.com/efs/latest/ug/EFSKMS.html)
 - [https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html](https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/efs_encryption_at_rest_enabled/metadata.json](../../sources/aws/efs_encryption_at_rest_enabled/metadata.json)
 - Source Code：[sources/aws/efs_encryption_at_rest_enabled/check.py](../../sources/aws/efs_encryption_at_rest_enabled/check.py)

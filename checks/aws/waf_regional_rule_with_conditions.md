@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `waf_regional_rule_with_conditions` |
-| 云平台 | AWS |
-| 服务 | waf |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafRegionalRule |
-| 资源组 | security |
+| チェック項目 ID | `waf_regional_rule_with_conditions` |
+| クラウドプラットフォーム | AWS |
+| サービス | waf |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafRegionalRule |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAF Classic Regional rules** have one or more **conditions (predicates)** attached (IP, byte/regex, geo, size, SQLi/XSS) to define which requests the rule evaluates
 
-## 风险
+## リスク
 
 An empty rule never matches, letting traffic bypass that control. This weakens defense-in-depth and can impact **confidentiality** (data exfiltration), **integrity** (SQLi/XSS), and **availability** (missing rate/size limits), depending on Web ACL order and default action.
 
-## 推荐措施
+## 推奨事項
 
 Define precise **conditions** for each rule (e.g., IP, pattern, geo, size) and avoid placeholder rules. Apply **least privilege** filtering, review rule order, and use layered controls for **defense in depth**. Regularly validate and monitor rule effectiveness.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -76,13 +76,13 @@ resource "aws_wafregional_rule" "<example_resource_name>" {
 4. Click Add condition, set When a request to does, choose IP match (or another type), and select an existing condition (e.g., an IP set)
 5. Click Update to save the rule with the condition
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-rules-editing.html](https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-rules-editing.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-2](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-2)
 - [https://docs.aws.amazon.com/config/latest/developerguide/waf-regional-rule-not-empty.html](https://docs.aws.amazon.com/config/latest/developerguide/waf-regional-rule-not-empty.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/waf_regional_rule_with_conditions/metadata.json](../../sources/aws/waf_regional_rule_with_conditions/metadata.json)
 - Source Code：[sources/aws/waf_regional_rule_with_conditions/check.py](../../sources/aws/waf_regional_rule_with_conditions/check.py)

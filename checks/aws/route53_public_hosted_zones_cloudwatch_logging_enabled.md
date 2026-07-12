@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `route53_public_hosted_zones_cloudwatch_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | route53 |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsRoute53HostedZone |
-| 资源组 | network |
+| チェック項目 ID | `route53_public_hosted_zones_cloudwatch_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | route53 |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsRoute53HostedZone |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Route 53 public hosted zones** have **DNS query logging** enabled to **CloudWatch Logs**, recording resolver requests for the zone and writing events to an associated log group.
 
-## 风险
+## リスク
 
 Missing **DNS query logs** removes visibility into domain use, weakening detection of: - **Data exfiltration** via DNS - **Malware C2/DGA** patterns - **Hijacking or misconfigurations** This degrades **incident response**, threatens data **confidentiality** and **integrity**, and slows **availability** troubleshooting.
 
-## 推荐措施
+## 推奨事項
 
 Enable **Route 53 query logging** for public zones to a centralized **CloudWatch Logs** group. Apply **least privilege** to log delivery, set **retention** and **metric filters/alerts**, and stream to your **SIEM**. Use **defense in depth** by correlating DNS logs with network and endpoint telemetry and regularly review baselines.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -67,12 +67,12 @@ resource "aws_route53_query_log" "example" {
 4. Select the target CloudWatch Logs log group and click Save
 5. If prompted, allow Route 53 to write to the log group (approve the CloudWatch Logs resource policy)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/monitoring-hosted-zones-with-cloudwatch.html](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/monitoring-hosted-zones-with-cloudwatch.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Route53/enable-query-logging.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Route53/enable-query-logging.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/route53_public_hosted_zones_cloudwatch_logging_enabled/metadata.json](../../sources/aws/route53_public_hosted_zones_cloudwatch_logging_enabled/metadata.json)
 - Source Code：[sources/aws/route53_public_hosted_zones_cloudwatch_logging_enabled/check.py](../../sources/aws/route53_public_hosted_zones_cloudwatch_logging_enabled/check.py)

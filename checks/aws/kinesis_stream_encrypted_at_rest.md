@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kinesis_stream_encrypted_at_rest` |
-| 云平台 | AWS |
-| 服务 | kinesis |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsKinesisStream |
-| 资源组 | messaging |
+| チェック項目 ID | `kinesis_stream_encrypted_at_rest` |
+| クラウドプラットフォーム | AWS |
+| サービス | kinesis |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsKinesisStream |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon Kinesis Data Streams** with **server-side encryption** use **AWS KMS** to protect records at rest. The evaluation determines whether a stream has `SSE-KMS` configured with a KMS key; streams lacking KMS-based at rest encryption are identified.
 
-## 风险
+## リスク
 
 Without **SSE-KMS**, records in shards may be exposed in plaintext if storage, backups, or analytics exports are accessed, undermining **confidentiality**. Absence of KMS controls also reduces **integrity** and oversight by removing key policies, rotation, and audit trails-enabling covert data exfiltration or insider misuse.
 
-## 推荐措施
+## 推奨事項
 
 Enable **SSE-KMS** on all streams. - Use **customer-managed keys** for rotation and ownership - Enforce **least privilege** on KMS grants; limit cross-account use - Monitor key usage and require encryption in CI/CD
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -71,13 +71,13 @@ resource "aws_kinesis_stream" "<example_resource_name>" {
 5. Choose the (Default) aws/kinesis KMS key
 6. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/kinesis-controls.html#kinesis-1](https://docs.aws.amazon.com/securityhub/latest/userguide/kinesis-controls.html#kinesis-1)
 - [https://docs.aws.amazon.com/streams/latest/dev/getting-started-with-sse.html](https://docs.aws.amazon.com/streams/latest/dev/getting-started-with-sse.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Kinesis/server-side-encryption.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Kinesis/server-side-encryption.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kinesis_stream_encrypted_at_rest/metadata.json](../../sources/aws/kinesis_stream_encrypted_at_rest/metadata.json)
 - Source Code：[sources/aws/kinesis_stream_encrypted_at_rest/check.py](../../sources/aws/kinesis_stream_encrypted_at_rest/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elb_internet_facing` |
-| 云平台 | AWS |
-| 服务 | elb |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure, TTPs/Initial Access |
-| 资源类型 | AwsElbLoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elb_internet_facing` |
+| クラウドプラットフォーム | AWS |
+| サービス | elb |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure, TTPs/Initial Access |
+| リソースタイプ | AwsElbLoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Elastic Load Balancers are evaluated for the `scheme` to determine whether they are **internet-facing** or internal, indicating if the endpoint is publicly reachable via a public DNS name.
 
-## 风险
+## リスク
 
 An unintended **internet-facing** load balancer exposes backends to the Internet, enabling reconnaissance, credential stuffing, and exploitation of app flaws. This can lead to data exposure (confidentiality), unauthorized changes (integrity), and **DDoS** or resource exhaustion (availability).
 
-## 推荐措施
+## 推奨事項
 
 Use `internal` load balancers for private services and restrict exposure with **security groups**, subnets, and allowlists. For public endpoints, apply **defense in depth**: associate an **AWS WAF** web ACL (*when supported*), enforce **TLS**, least-privilege network rules, and consider **Shield** or rate limiting. Regularly review necessity of public access.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -65,13 +65,13 @@ resource "aws_lb" "<example_resource_name>" {
 5. Create the new load balancer and update DNS to its DNS name
 6. Delete the old internet-facing load balancer
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-associating-aws-resource.html](https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-associating-aws-resource.html)
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-elasticloadbalancingv2-loadbalancer.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-elasticloadbalancingv2-loadbalancer.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/internet-facing-load-balancers.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/internet-facing-load-balancers.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elb_internet_facing/metadata.json](../../sources/aws/elb_internet_facing/metadata.json)
 - Source Code：[sources/aws/elb_internet_facing/check.py](../../sources/aws/elb_internet_facing/check.py)

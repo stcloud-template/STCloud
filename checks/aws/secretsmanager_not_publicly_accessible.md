@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `secretsmanager_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | secretsmanager |
-| 严重等级 | high |
-| 类别 | internet-exposed, secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Credential Access, Effects/Data Exposure |
-| 资源类型 | AwsSecretsManagerSecret |
-| 资源组 | security |
+| チェック項目 ID | `secretsmanager_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | secretsmanager |
+| 重大度 | high |
+| カテゴリ | internet-exposed, secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Credential Access, Effects/Data Exposure |
+| リソースタイプ | AwsSecretsManagerSecret |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS Secrets Manager secrets** are evaluated for **public exposure** through resource-based policies that grant broad access, such as `Principal: "*"`, which would allow any principal to perform actions on the secret.
 
-## 风险
+## リスク
 
 **Public access** to a secret enables uncontrolled retrieval of secret values, compromising **confidentiality**. If broad actions are allowed, attackers can modify or delete the secret, impacting **integrity** and **availability**, and use exposed credentials for unauthorized data access and **lateral movement**.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** to resource policies: - Remove wildcards and limit access to specific principals - Add contextual conditions (e.g., VPC endpoints, source account/ARN) - Enable safeguards that block public policies - Prefer private access paths - Periodically review related identity and KMS policies
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -83,12 +83,12 @@ resource "aws_secretsmanager_secret_policy" "<example_resource_name>" {
 4. Add an allow statement for only your account root principal: arn:aws:iam::<ACCOUNT_ID>:root
 5. Enable Block public access (if available) and click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-policies.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-policies.html)
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/determine-acccess_examine-iam-policies.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/determine-acccess_examine-iam-policies.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/secretsmanager_not_publicly_accessible/metadata.json](../../sources/aws/secretsmanager_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/secretsmanager_not_publicly_accessible/check.py](../../sources/aws/secretsmanager_not_publicly_accessible/check.py)

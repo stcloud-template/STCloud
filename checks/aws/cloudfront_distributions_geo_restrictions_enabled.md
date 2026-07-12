@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_geo_restrictions_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | low |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_geo_restrictions_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | low |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **CloudFront distributions** have **geographic restrictions** configured to limit access by country using an allowlist or blocklist (`RestrictionType` not `none`).
 
-## 风险
+## リスク
 
 Absent geo restrictions, content is globally reachable, enabling: - Access from sanctioned or unlicensed regions (confidentiality/compliance) - Broader bot abuse, scraping, and DDoS staging (availability) - More credential-stuffing and fraud attempts against apps
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** to distribution scope: enable geo restrictions with a country **allowlist** where feasible, or maintain a precise blocklist aligned to legal, licensing, and threat models. Layer **defense in depth**: use WAF/bot controls, signed URLs or cookies, and monitoring to detect abuse and configuration drift.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -94,13 +94,13 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
 5. Add at least one country to the list
 6. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://repost.aws/knowledge-center/cloudfront-geo-restriction](https://repost.aws/knowledge-center/cloudfront-geo-restriction)
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/geo-restriction.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/geo-restriction.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_geo_restrictions_enabled/metadata.json](../../sources/aws/cloudfront_distributions_geo_restrictions_enabled/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_geo_restrictions_enabled/check.py](../../sources/aws/cloudfront_distributions_geo_restrictions_enabled/check.py)

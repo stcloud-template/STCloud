@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `codebuild_report_group_export_encrypted` |
-| 云平台 | AWS |
-| 服务 | codebuild |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/HIPAA Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Software and Configuration Checks/Industry and Regulatory Standards/SOC 2 |
-| 资源类型 | AwsCodeBuildProject |
-| 资源组 | devops |
+| チェック項目 ID | `codebuild_report_group_export_encrypted` |
+| クラウドプラットフォーム | AWS |
+| サービス | codebuild |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/HIPAA Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Software and Configuration Checks/Industry and Regulatory Standards/SOC 2 |
+| リソースタイプ | AwsCodeBuildProject |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **CodeBuild report groups** with export type `S3` are evaluated to confirm their exported test results are encrypted at rest with a **KMS key**. Report groups configured with `NO_EXPORT` are out of scope.
 
-## 风险
+## リスク
 
 **Unencrypted S3 exports** leave report data in plaintext, weakening confidentiality. If a bucket is misconfigured, compromised, or accessed by insiders, attackers can harvest test outputs for secrets, tokens, build paths, and system details, enabling credential theft and lateral movement.
 
-## 推荐措施
+## 推奨事項
 
 Enable at-rest encryption for report exports using **KMS** (prefer **customer managed keys**). Apply least privilege: restrict key usage to the CodeBuild role and required principals, enable rotation, and audit key usage. Combine with S3 bucket policies for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -82,7 +82,7 @@ resource "aws_codebuild_report_group" "<example_resource_name>" {
 5. Ensure Disable artifact encryption is NOT selected
 6. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/codebuild-controls.html#codebuild-7](https://docs.aws.amazon.com/securityhub/latest/userguide/codebuild-controls.html#codebuild-7)
 - [https://www.pulumi.com/registry/packages/aws/api-docs/codebuild/reportgroup/](https://www.pulumi.com/registry/packages/aws/api-docs/codebuild/reportgroup/)
@@ -95,7 +95,7 @@ resource "aws_codebuild_report_group" "<example_resource_name>" {
 - [https://docs.aws.amazon.com/codebuild/latest/userguide/report-group-create.html](https://docs.aws.amazon.com/codebuild/latest/userguide/report-group-create.html)
 - [https://docs.amazonaws.cn/en_us/codebuild/latest/userguide/test-report-group-create-console.html](https://docs.amazonaws.cn/en_us/codebuild/latest/userguide/test-report-group-create-console.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/codebuild_report_group_export_encrypted/metadata.json](../../sources/aws/codebuild_report_group_export_encrypted/metadata.json)
 - Source Code：[sources/aws/codebuild_report_group_export_encrypted/check.py](../../sources/aws/codebuild_report_group_export_encrypted/check.py)

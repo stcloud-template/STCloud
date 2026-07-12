@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_peering_routing_tables_with_least_privilege` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | medium |
-| 类别 | trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Lateral Movement, Effects/Data Exposure |
-| 资源类型 | AwsEc2VpcPeeringConnection |
-| 资源组 | network |
+| チェック項目 ID | `vpc_peering_routing_tables_with_least_privilege` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | medium |
+| カテゴリ | trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Lateral Movement, Effects/Data Exposure |
+| リソースタイプ | AwsEc2VpcPeeringConnection |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **AWS VPC peering** route tables are assessed for **least-privilege routing**. Routes that target `0.0.0.0/0` or an entire peer VPC CIDR are considered overly broad; only specific subnets or narrower prefixes should be advertised across the peering link.
 
-## 风险
+## リスク
 
 Broad peering routes expand cross-VPC reachability, enabling lateral movement and unauthorized discovery, harming **confidentiality** and **integrity**. Using `0.0.0.0/0` or full-CIDR paths also increases misrouting with overlapping ranges, reducing network **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **least privilege** in peering: advertise only required subnets or more specific prefixes; avoid `0.0.0.0/0` and whole VPC ranges. Keep routes symmetric on both sides, and layer **defense in depth** with security groups and NACLs. *If broad connectivity is required*, prefer segmented designs or a transit gateway.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -62,12 +62,12 @@ resource "aws_route" "peering_specific" {
 4. Add route(s) only to required subnet CIDR(s) in the peer VPC, targeting the same VPC peering connection
 5. Save changes and repeat in the peer VPC's route table(s)
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/aws/VPC/vpc-peering-access.html#](https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/aws/VPC/vpc-peering-access.html#)
 - [https://docs.aws.amazon.com/vpc/latest/peering/peering-configurations-partial-access.html](https://docs.aws.amazon.com/vpc/latest/peering/peering-configurations-partial-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_peering_routing_tables_with_least_privilege/metadata.json](../../sources/aws/vpc_peering_routing_tables_with_least_privilege/metadata.json)
 - Source Code：[sources/aws/vpc_peering_routing_tables_with_least_privilege/check.py](../../sources/aws/vpc_peering_routing_tables_with_least_privilege/check.py)

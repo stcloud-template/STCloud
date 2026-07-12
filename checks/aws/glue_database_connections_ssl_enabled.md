@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_database_connections_ssl_enabled` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | Other |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_database_connections_ssl_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | Other |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue connections** require **TLS/SSL** for JDBC when the `JDBC_ENFORCE_SSL` property is set to `true`. This evaluates connection definitions to confirm SSL is enforced for traffic to external data stores.
 
-## 风险
+## リスク
 
 Absent TLS enforcement, JDBC traffic-including credentials, queries, and results-can be **intercepted or modified** in transit. This enables: - Confidentiality loss via sniffing/MITM - Integrity tampering of queries/results - Credential theft leading to broader database access
 
-## 推荐措施
+## 推奨事項
 
 Enforce **TLS** on all Glue connections (set `JDBC_ENFORCE_SSL=true`) and require encryption on target databases. Apply **defense in depth**: validate certificates, restrict network exposure, prefer private connectivity, and use **least-privilege** credentials with rotation.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -73,12 +73,12 @@ resource "aws_glue_connection" "<example_resource_name>" {
 3. In Connection properties (Advanced properties), add key JDBC_ENFORCE_SSL with value true (or check Require SSL)
 4. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/encryption-in-transit.html](https://docs.aws.amazon.com/glue/latest/dg/encryption-in-transit.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233690-ensure-glue-connections-have-ssl-enabled](https://support.icompaas.com/support/solutions/articles/62000233690-ensure-glue-connections-have-ssl-enabled)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_database_connections_ssl_enabled/metadata.json](../../sources/aws/glue_database_connections_ssl_enabled/metadata.json)
 - Source Code：[sources/aws/glue_database_connections_ssl_enabled/check.py](../../sources/aws/glue_database_connections_ssl_enabled/check.py)

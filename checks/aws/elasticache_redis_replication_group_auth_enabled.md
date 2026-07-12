@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elasticache_redis_replication_group_auth_enabled` |
-| 云平台 | AWS |
-| 服务 | elasticache |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `elasticache_redis_replication_group_auth_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elasticache |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Amazon ElastiCache Redis replication groups running versions prior to `6.0` are evaluated for the use of **AUTH tokens**. For `6.0+`, the finding indicates **ACL/RBAC** configuration should be reviewed instead of token-based AUTH.
 
-## 风险
+## リスク
 
 Without **AUTH** on pre-`6.0` clusters, clients can run unauthenticated commands, enabling data reads/writes, key deletion, and cache poisoning. This threatens **confidentiality** and **integrity**, and can facilitate lateral movement via stolen or injected session data.
 
-## 推荐措施
+## 推奨事項
 
 Apply defense in depth: - For versions < `6.0`, enable **AUTH** with strong, rotated tokens and require in-transit encryption. - For `6.0+`, prefer **RBAC/ACLs** with least-privilege, deny-by-default roles. - Restrict network access to trusted sources and audit access regularly.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -72,13 +72,13 @@ resource "aws_elasticache_replication_group" "<example_resource_name>" {
 4. Check Apply immediately and click Modify
 5. Wait for status to return to Available; AUTH is now enabled
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/elasticache-controls.html#elasticache-6](https://docs.aws.amazon.com/securityhub/latest/userguide/elasticache-controls.html#elasticache-6)
 - [https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html#auth-modifyng-token](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html#auth-modifyng-token)
 - [https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth.html](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elasticache_redis_replication_group_auth_enabled/metadata.json](../../sources/aws/elasticache_redis_replication_group_auth_enabled/metadata.json)
 - Source Code：[sources/aws/elasticache_redis_replication_group_auth_enabled/check.py](../../sources/aws/elasticache_redis_replication_group_auth_enabled/check.py)

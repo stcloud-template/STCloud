@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `networkfirewall_multi_az` |
-| 云平台 | AWS |
-| 服务 | networkfirewall |
-| 严重等级 | high |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Effects/Denial of Service |
-| 资源类型 | AwsNetworkFirewallFirewall |
-| 资源组 | network |
+| チェック項目 ID | `networkfirewall_multi_az` |
+| クラウドプラットフォーム | AWS |
+| サービス | networkfirewall |
+| 重大度 | high |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Effects/Denial of Service |
+| リソースタイプ | AwsNetworkFirewallFirewall |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **AWS Network Firewall firewalls** are assessed for **multi-AZ deployment**, expecting subnet mappings in more than one Availability Zone. A configuration with only one subnet mapping indicates a single-AZ firewall.
 
-## 风险
+## リスク
 
 Single-AZ firewalls are a single point of failure. An AZ outage can drop or blackhole traffic, degrading **availability**, or prompt route changes that bypass inspection, exposing **confidentiality** and **integrity** to unfiltered access, data exfiltration, and lateral movement.
 
-## 推荐措施
+## 推奨事項
 
 Deploy firewalls across `>=2` AZs with a dedicated subnet in each used AZ. Maintain per-AZ, symmetric routing to the local endpoint to preserve stateful inspection. Apply **defense in depth** and automate drift controls and AZ failover tests to sustain resilience.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,14 +79,14 @@ resource "aws_networkfirewall_firewall" "<example_resource_name>" {
 4. Click Add new subnet, choose an additional Availability Zone and its subnet in the same VPC
 5. Ensure at least two AZs are selected, then click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/id_id/network-firewall/latest/developerguide/arch-two-zone-igw.html](https://docs.aws.amazon.com/id_id/network-firewall/latest/developerguide/arch-two-zone-igw.html)
 - [https://aws.amazon.com/es/blogs/networking-and-content-delivery/deployment-models-for-aws-network-firewall/](https://aws.amazon.com/es/blogs/networking-and-content-delivery/deployment-models-for-aws-network-firewall/)
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/arch-two-zone-igw.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/arch-two-zone-igw.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-1](https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-1)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/networkfirewall_multi_az/metadata.json](../../sources/aws/networkfirewall_multi_az/metadata.json)
 - Source Code：[sources/aws/networkfirewall_multi_az/check.py](../../sources/aws/networkfirewall_multi_az/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `shield_advanced_protection_in_cloudfront_distributions` |
-| 云平台 | AWS |
-| 服务 | shield |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `shield_advanced_protection_in_cloudfront_distributions` |
+| クラウドプラットフォーム | AWS |
+| サービス | shield |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **CloudFront distributions** are associated with **AWS Shield Advanced** as protected resources. The assessment identifies distributions that lack this protection mapping.
 
-## 风险
+## リスク
 
 Missing **Shield Advanced** leaves distributions exposed to large **DDoS** that degrade **availability** via L3/L4 floods and L7 request surges. Effects include edge saturation, latency, and outages, plus loss of **cost protection** and expert support, causing unexpected spend and longer recovery.
 
-## 推荐措施
+## 推奨事項
 
 Enroll critical CloudFront distributions in **AWS Shield Advanced** and keep them listed as protected resources. Adopt layered defense: **AWS WAF**, rate limiting, and continuous monitoring. Maintain DDoS runbooks and use DRT support. Apply **least privilege** to who can modify protections.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -67,11 +67,11 @@ resource "aws_shield_protection" "example" {
 5. Select the target distribution
 6. Click Protect with Shield Advanced
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html](https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/shield_advanced_protection_in_cloudfront_distributions/metadata.json](../../sources/aws/shield_advanced_protection_in_cloudfront_distributions/metadata.json)
 - Source Code：[sources/aws/shield_advanced_protection_in_cloudfront_distributions/check.py](../../sources/aws/shield_advanced_protection_in_cloudfront_distributions/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kafka_cluster_unrestricted_access_disabled` |
-| 云平台 | AWS |
-| 服务 | kafka |
-| 严重等级 | critical |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | AwsMskCluster |
-| 资源组 | messaging |
+| チェック項目 ID | `kafka_cluster_unrestricted_access_disabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | kafka |
+| 重大度 | critical |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | AwsMskCluster |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 Amazon MSK clusters are evaluated for **unauthenticated client access**. Serverless clusters inherently require authentication; provisioned clusters are checked for configurations that allow **unrestricted connections** rather than authenticated clients.
 
-## 风险
+## リスク
 
 Allowing **unauthenticated access** lets anyone connect and: - Read sensitive topics (confidentiality) - Publish or alter data (integrity) - Overload brokers and consumers (availability) This enables message exfiltration, stream poisoning, and abuse of trusted data pipelines.
 
-## 推荐措施
+## 推奨事項
 
 Disable **unauthenticated access** and require **strong client authentication** (mTLS or IAM/SASL). - Enforce **least privilege** with scoped ACLs - Restrict network paths via private connectivity and tight security groups - Encrypt in transit, monitor access, and rotate credentials regularly
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -89,13 +89,13 @@ resource "aws_msk_cluster" "<example_resource_name>" {
 4. Turn off/clear Unauthenticated access
 5. Save changes to apply the update
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/msk/latest/developerguide/msk-configure-security.html](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configure-security.html)
 - [https://docs.aws.amazon.com/msk/latest/developerguide/security.html](https://docs.aws.amazon.com/msk/latest/developerguide/security.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/unrestricted-access-to-brokers.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/unrestricted-access-to-brokers.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kafka_cluster_unrestricted_access_disabled/metadata.json](../../sources/aws/kafka_cluster_unrestricted_access_disabled/metadata.json)
 - Source Code：[sources/aws/kafka_cluster_unrestricted_access_disabled/check.py](../../sources/aws/kafka_cluster_unrestricted_access_disabled/check.py)

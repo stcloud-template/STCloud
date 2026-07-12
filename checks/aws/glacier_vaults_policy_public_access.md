@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glacier_vaults_policy_public_access` |
-| 云平台 | AWS |
-| 服务 | glacier |
-| 严重等级 | critical |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure, TTPs/Initial Access/Unauthorized Access |
-| 资源类型 | Other |
-| 资源组 | storage |
+| チェック項目 ID | `glacier_vaults_policy_public_access` |
+| クラウドプラットフォーム | AWS |
+| サービス | glacier |
+| 重大度 | critical |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure, TTPs/Initial Access/Unauthorized Access |
+| リソースタイプ | Other |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 **Glacier vault** access policy is evaluated for exposure to **public principals**. The finding highlights `Allow` statements that grant access to `Principal: '*'` (including wildcard forms), and notes when a vault lacks a policy.
 
-## 风险
+## リスク
 
 Publicly grantable vault access undermines **confidentiality** and **integrity**. Anyone could list, retrieve, or delete archives, leading to data exposure or loss. Attackers may also trigger large retrieval operations, degrading **availability** and driving unexpected costs.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **least privilege** on vault policies: restrict to specific AWS accounts or roles, avoid `Principal: '*'`, and grant only necessary actions. Apply **defense in depth** with **Vault Lock** for immutable retention and continuous review and monitoring of access to prevent broad or unintended exposure.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -66,11 +66,11 @@ resource "aws_glacier_vault" "<example_resource_name>" {
 4. Remove the policy (clear all content) or delete it
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/amazonglacier/latest/dev/access-control-overview.html](https://docs.aws.amazon.com/amazonglacier/latest/dev/access-control-overview.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glacier_vaults_policy_public_access/metadata.json](../../sources/aws/glacier_vaults_policy_public_access/metadata.json)
 - Source Code：[sources/aws/glacier_vaults_policy_public_access/check.py](../../sources/aws/glacier_vaults_policy_public_access/check.py)

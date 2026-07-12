@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eks_control_plane_logging_all_types_enabled` |
-| 云平台 | AWS |
-| 服务 | eks |
-| 严重等级 | medium |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsEksCluster |
-| 资源组 | container |
+| チェック項目 ID | `eks_control_plane_logging_all_types_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | eks |
+| 重大度 | medium |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsEksCluster |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **Amazon EKS clusters** are evaluated for **control plane logging** coverage of required types: `api`, `audit`, `authenticator`, `controllerManager`, `scheduler`. The finding identifies clusters where any of these log types are not configured.
 
-## 风险
+## リスク
 
 Gaps in **control plane logging** reduce visibility across the cluster. - Confidentiality: undetected API access, RBAC abuse, token misuse - Integrity: untraceable config changes and policy edits - Availability: scheduler/controller issues lack evidence, delaying recovery and masking attacker persistence
 
-## 推荐措施
+## 推奨事項
 
 Enable and standardize **EKS control plane logging** for all required types `["api","audit","authenticator","controllerManager","scheduler"]`. Apply least privilege to log access, set retention and alerts, and centralize analysis to support defense in depth, rapid detection, and reliable forensics.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,14 +79,14 @@ resource "aws_eks_cluster" "<example_resource_name>" {
 3. Turn on: api, audit, authenticator, controllerManager, scheduler
 4. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/eks/latest/userguide/logging-monitoring.html](https://docs.aws.amazon.com/eks/latest/userguide/logging-monitoring.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233623-ensure-eks-control-plane-logging-is-enabled-for-all-required-log-types](https://support.icompaas.com/support/solutions/articles/62000233623-ensure-eks-control-plane-logging-is-enabled-for-all-required-log-types)
 - [https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
 - [https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/kubernetes-eks-logging.html](https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/kubernetes-eks-logging.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eks_control_plane_logging_all_types_enabled/metadata.json](../../sources/aws/eks_control_plane_logging_all_types_enabled/metadata.json)
 - Source Code：[sources/aws/eks_control_plane_logging_all_types_enabled/check.py](../../sources/aws/eks_control_plane_logging_all_types_enabled/check.py)

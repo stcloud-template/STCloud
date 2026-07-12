@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_different_regions` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsEc2Vpc |
-| 资源组 | network |
+| チェック項目 ID | `vpc_different_regions` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsEc2Vpc |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Non-default **VPCs** are evaluated across the account to determine whether they exist in **more than one region**. The result reflects if your custom network topology is regionally distributed or concentrated in a single region.
 
-## 风险
+## リスク
 
 Single-region VPC deployment weakens **availability** and **resilience**. A regional outage, service disruption, or network control misconfiguration can cause broad downtime, hinder recovery, and increase the **blast radius** of incidents impacting business continuity.
 
-## 推荐措施
+## 推奨事項
 
 Adopt a **multi-region network design**: - Create VPCs in at least two regions for critical workloads - Replicate routing, security controls, and endpoints consistently - Apply **fault tolerance** and **defense in depth** with data replication and resilient DNS/failover to avoid single-region dependency
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -70,12 +70,12 @@ resource "aws_vpc" "<example_resource_name>" {
 5. Click Create VPC
 6. Verify a non-default VPC now exists in this second region
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/vpc/latest/userguide/vpc-example-private-subnets-nat.html](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-example-private-subnets-nat.html)
 - [https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_different_regions/metadata.json](../../sources/aws/vpc_different_regions/metadata.json)
 - Source Code：[sources/aws/vpc_different_regions/check.py](../../sources/aws/vpc_different_regions/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elasticache_redis_cluster_rest_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | elasticache |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `elasticache_redis_cluster_rest_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elasticache |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **ElastiCache for Redis replication groups** are evaluated for **encryption at rest** of on-disk cache data and backups. The finding pinpoints groups where this protection is not enabled.
 
-## 风险
+## リスク
 
 Without at-rest encryption, cache files and snapshots can be read if storage or backups are accessed via compromise or misconfiguration. Secrets, tokens, and PII may be exposed, breaking **confidentiality** and aiding **lateral movement** through offline analysis of cached data.
 
-## 推荐措施
+## 推奨事項
 
 Enable **encryption at rest** on all Redis replication groups. Use **customer-managed KMS keys**, apply least-privilege access to keys, and audit key usage. Plan a controlled migration since at-rest encryption is enabled at creation (backup, restore, replace). Pair with **in-transit encryption** and authentication for defense in depth.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -68,13 +68,13 @@ resource "aws_elasticache_replication_group" "<example_resource_name>" {
 5. Update your application to use the new replication group endpoint
 6. Verify connectivity and data, then delete the old (non-encrypted) replication group
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ElastiCache/in-transit-and-at-rest-encryption.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ElastiCache/in-transit-and-at-rest-encryption.html)
 - [https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/at-rest-encryption.html#at-rest-encryption-enable](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/at-rest-encryption.html#at-rest-encryption-enable)
 - [https://aws.amazon.com/blogs/security/amazon-elasticache-now-supports-encryption-for-elasticache-for-redis/](https://aws.amazon.com/blogs/security/amazon-elasticache-now-supports-encryption-for-elasticache-for-redis/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elasticache_redis_cluster_rest_encryption_enabled/metadata.json](../../sources/aws/elasticache_redis_cluster_rest_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/elasticache_redis_cluster_rest_encryption_enabled/check.py](../../sources/aws/elasticache_redis_cluster_rest_encryption_enabled/check.py)

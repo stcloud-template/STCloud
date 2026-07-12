@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kafka_cluster_in_transit_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | kafka |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsMskCluster |
-| 资源组 | messaging |
+| チェック項目 ID | `kafka_cluster_in_transit_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | kafka |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsMskCluster |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon MSK clusters** are evaluated for **encryption in transit** on both paths: **clientbroker** set to `TLS` only and **inter-broker** encryption enabled. *Serverless clusters provide this by default*. The finding highlights clusters where client-broker traffic isn't `TLS`-only or inter-broker encryption is turned off.
 
-## 风险
+## リスク
 
 Unencrypted or mixed (`TLS_PLAINTEXT`/`PLAINTEXT`) traffic enables interception of records, credentials, and metadata, supporting **MITM**, replay, and message tampering. Plaintext inter-broker links expose replication data within the VPC, enabling **lateral movement** and topic poisoning, degrading data **confidentiality** and **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Enforce end-to-end transport protection: - Require `client_broker=TLS` for all clients - Enable `in_cluster=true` for broker-to-broker links Apply **defense in depth**: restrict network paths, prefer private connectivity, and use strong client authentication with **least privilege** authorization to limit blast radius.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -88,13 +88,13 @@ resource "aws_msk_cluster" "<example_resource_name>" {
    - Encryption in transit: Client-broker = TLS only, Inter-broker encryption = Enabled
    - Migrate clients to the new cluster, then decommission the old one
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/msk/latest/developerguide/msk-encryption.html](https://docs.aws.amazon.com/msk/latest/developerguide/msk-encryption.html)
 - [https://docs.aws.amazon.com/msk/latest/developerguide/msk-working-with-encryption.html](https://docs.aws.amazon.com/msk/latest/developerguide/msk-working-with-encryption.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/encryption-in-transit-for-msk.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/encryption-in-transit-for-msk.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kafka_cluster_in_transit_encryption_enabled/metadata.json](../../sources/aws/kafka_cluster_in_transit_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/kafka_cluster_in_transit_encryption_enabled/check.py](../../sources/aws/kafka_cluster_in_transit_encryption_enabled/check.py)

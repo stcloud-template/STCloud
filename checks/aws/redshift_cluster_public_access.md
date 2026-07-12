@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `redshift_cluster_public_access` |
-| 云平台 | AWS |
-| 服务 | redshift |
-| 严重等级 | critical |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsRedshiftCluster |
-| 资源组 | analytics |
+| チェック項目 ID | `redshift_cluster_public_access` |
+| クラウドプラットフォーム | AWS |
+| サービス | redshift |
+| 重大度 | critical |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsRedshiftCluster |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 Amazon Redshift clusters with `publicly accessible` endpoints in **public subnets** and security groups allowing TCP from `0.0.0.0/0` or `::/0` are identified as internet-exposed. Public endpoints without internet reachability due to private subnets or restrictive rules are recognized separately.
 
-## 风险
+## リスク
 
 Internet-exposed Redshift endpoints allow direct DB access from any host, impacting: - **Confidentiality**: credential brute force, unauthorized queries, data exfiltration - **Integrity**: unauthorized writes or schema changes - **Availability**: scanning/abuse leading to connection exhaustion or disruption
 
-## 推荐措施
+## 推奨事項
 
 Prefer **private connectivity**: disable public access, place clusters in private subnets, and apply **least privilege** security groups limited to trusted CIDRs or VPC sources. Use **defense in depth** with VPN/peering/endpoints, strong authentication, and monitoring. Avoid `0.0.0.0/0` or `::/0` to database ports.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,13 +75,13 @@ resource "aws_redshift_cluster" "<example_resource_name>" {
 4. Set Publicly accessible to Off/No
 5. Save changes and apply the modification
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/de_de/redshift/latest/mgmt/rs-ra3-VPC-public-private.html](https://docs.aws.amazon.com/de_de/redshift/latest/mgmt/rs-ra3-VPC-public-private.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Redshift/redshift-cluster-publicly-accessible.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Redshift/redshift-cluster-publicly-accessible.html)
 - [https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-vpc.html](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-vpc.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/redshift_cluster_public_access/metadata.json](../../sources/aws/redshift_cluster_public_access/metadata.json)
 - Source Code：[sources/aws/redshift_cluster_public_access/check.py](../../sources/aws/redshift_cluster_public_access/check.py)

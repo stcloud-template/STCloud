@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sqs_queues_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | sqs |
-| 严重等级 | critical |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | AwsSqsQueue |
-| 资源组 | messaging |
+| チェック項目 ID | `sqs_queues_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | sqs |
+| 重大度 | critical |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | AwsSqsQueue |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 Amazon SQS queue policies are assessed for **public access**. The finding highlights queues with `Allow` statements using a wildcard `Principal` without restrictive conditions, compared to queues that only grant access to the owning account or explicitly trusted principals.
 
-## 风险
+## リスク
 
 **Public SQS access** can expose message data (**confidentiality**), enable unauthorized send/receive or tampering (**integrity**), and allow purge/delete operations that disrupt processing (**availability**). It may also trigger unbounded message ingestion, causing cost spikes and consumer overload.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** on SQS resource policies: - Avoid `Principal: *`; grant access only to specific accounts, roles, or services - Add restrictive conditions to tightly scope access - Prefer private connectivity and defense-in-depth controls - Review policies and audit activity regularly to prevent drift
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -81,12 +81,12 @@ resource "aws_sqs_queue_policy" "<example_resource_name>" {
 3. In the JSON policy, replace any "Principal": "*" with "Principal": { "AWS": "<your_account_id>" } or remove those public statements
 4. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/SQS/sqs-queue-exposed.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/SQS/sqs-queue-exposed.html)
 - [https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-basic-examples-of-sqs-policies.html](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-basic-examples-of-sqs-policies.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sqs_queues_not_publicly_accessible/metadata.json](../../sources/aws/sqs_queues_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/sqs_queues_not_publicly_accessible/check.py](../../sources/aws/sqs_queues_not_publicly_accessible/check.py)

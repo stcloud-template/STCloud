@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `networkfirewall_policy_default_action_full_packets` |
-| 云平台 | AWS |
-| 服务 | networkfirewall |
-| 严重等级 | high |
-| 类别 | trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsNetworkFirewallFirewall |
-| 资源组 | network |
+| チェック項目 ID | `networkfirewall_policy_default_action_full_packets` |
+| クラウドプラットフォーム | AWS |
+| サービス | networkfirewall |
+| 重大度 | high |
+| カテゴリ | trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsNetworkFirewallFirewall |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **AWS Network Firewall policies** define a **stateless default action** for full packets. This evaluates whether unmatched packets are handled by `aws:drop` or `aws:forward_to_sfe`, meaning they are either discarded or sent to the stateful engine rather than allowed to pass.
 
-## 风险
+## リスク
 
 Using `Pass` as the default allows unmatched full packets to bypass stateless filtering and stateful inspection, enabling reconnaissance, malware delivery, and covert data exfiltration. This undermines **confidentiality** and **integrity**, and can threaten **availability** through unfiltered attacks.
 
-## 推荐措施
+## 推奨事項
 
 Enforce a **deny-by-default** posture: set the stateless default for full packets to `aws:drop` or `aws:forward_to_sfe`. Use explicit allow rules, layer **stateful inspection**, and maintain logging and reviews to support **defense in depth** and **least privilege**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -68,13 +68,13 @@ resource "aws_networkfirewall_firewall_policy" "<example_resource_name>" {
 4. In Stateless default actions (full packets), select Drop (or Forward to stateful rule groups)
 5. Choose Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-4](https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-4)
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateless-default-actions.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateless-default-actions.html)
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-policy-updating.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-policy-updating.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/networkfirewall_policy_default_action_full_packets/metadata.json](../../sources/aws/networkfirewall_policy_default_action_full_packets/metadata.json)
 - Source Code：[sources/aws/networkfirewall_policy_default_action_full_packets/check.py](../../sources/aws/networkfirewall_policy_default_action_full_packets/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_metric_filter_root_usage` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/AWS Security Best Practices, TTPs/Privilege Escalation |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_metric_filter_root_usage` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/AWS Security Best Practices, TTPs/Privilege Escalation |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudTrail** logs in CloudWatch include a metric filter for **root account activity** (`{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }`) and a linked CloudWatch alarm that triggers when the filter matches.
 
-## 风险
+## リスク
 
 Without alerting on **root activity**, full-privilege actions can proceed unnoticed, impacting: - confidentiality via data access/exfiltration - integrity via policy/config tampering - availability via deletions or shutdowns Delayed detection increases blast radius and persistence.
 
-## 推荐措施
+## 推奨事項
 
 Enable real-time alerts for **root activity** using a log metric filter and a high-priority alarm with notifications. Reduce exposure: enforce **least privilege**, keep root for *break-glass* with MFA, disable root access keys, and route alerts into incident response for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -94,7 +94,7 @@ resource "aws_cloudwatch_metric_alarm" "<example_resource_name>" {
 5. Select the new metric filter and click Create alarm
 6. Set Period to 5 minutes, Statistic to Sum, Threshold type Static with value 1, Evaluation periods 1, then Create alarm
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/root-account-usage-alarm.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/root-account-usage-alarm.html)
@@ -104,7 +104,7 @@ resource "aws_cloudwatch_metric_alarm" "<example_resource_name>" {
 - [https://aws.amazon.com/blogs/security/how-to-receive-notifications-when-your-aws-accounts-root-access-keys-are-used/](https://aws.amazon.com/blogs/security/how-to-receive-notifications-when-your-aws-accounts-root-access-keys-are-used/)
 - [https://www.tenable.com/audits/items/CIS_Amazon_Web_Services_Foundations_v1.5.0_L1.audit:000adfb028a1475075a6b5d2117f53f4](https://www.tenable.com/audits/items/CIS_Amazon_Web_Services_Foundations_v1.5.0_L1.audit:000adfb028a1475075a6b5d2117f53f4)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_metric_filter_root_usage/metadata.json](../../sources/aws/cloudwatch_log_metric_filter_root_usage/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_metric_filter_root_usage/check.py](../../sources/aws/cloudwatch_log_metric_filter_root_usage/check.py)

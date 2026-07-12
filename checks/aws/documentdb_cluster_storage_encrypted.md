@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `documentdb_cluster_storage_encrypted` |
-| 云平台 | AWS |
-| 服务 | documentdb |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/HIPAA Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Effects/Data Exposure |
-| 资源类型 | AwsRdsDbCluster |
-| 资源组 | database |
+| チェック項目 ID | `documentdb_cluster_storage_encrypted` |
+| クラウドプラットフォーム | AWS |
+| サービス | documentdb |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/HIPAA Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Effects/Data Exposure |
+| リソースタイプ | AwsRdsDbCluster |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon DocumentDB clusters** are assessed for **storage encryption at rest** via the cluster's `encrypted` setting. It identifies clusters where data volumes, automated backups, and snapshots aren't protected by AWS KMS-managed encryption.
 
-## 风险
+## リスク
 
 Without at-rest encryption, cluster data, snapshots, and backups can be read in plaintext if copies are leaked, mis-shared, or underlying storage is accessed. This harms **confidentiality**, enables offline analysis and data exfiltration, and widens the blast radius of insider or backup repository compromise.
 
-## 推荐措施
+## 推奨事項
 
 Enable **storage encryption at rest** for all DocumentDB clusters and prefer **customer-managed KMS keys** for control over access, rotation, and revocation. Apply **least privilege** to key usage, enforce **separation of duties**, and monitor key and snapshot access. *If a cluster isn't encrypted*, migrate to a new encrypted cluster.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -76,13 +76,13 @@ To replace an existing unencrypted cluster:
 3. In Encryption-at-rest, select Enable encryption and restore as a new cluster
 4. Update your applications to use the new cluster endpoint
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/documentdb-controls.html#documentdb-1](https://docs.aws.amazon.com/securityhub/latest/userguide/documentdb-controls.html#documentdb-1)
 - [https://docs.aws.amazon.com/documentdb/latest/developerguide/elastic-encryption.html](https://docs.aws.amazon.com/documentdb/latest/developerguide/elastic-encryption.html)
 - [https://docs.aws.amazon.com/documentdb/latest/developerguide/encryption-at-rest.html](https://docs.aws.amazon.com/documentdb/latest/developerguide/encryption-at-rest.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/documentdb_cluster_storage_encrypted/metadata.json](../../sources/aws/documentdb_cluster_storage_encrypted/metadata.json)
 - Source Code：[sources/aws/documentdb_cluster_storage_encrypted/check.py](../../sources/aws/documentdb_cluster_storage_encrypted/check.py)

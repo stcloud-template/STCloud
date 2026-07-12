@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `apigateway_restapi_public` |
-| 云平台 | AWS |
-| 服务 | apigateway |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
-| 资源类型 | AwsApiGatewayRestApi |
-| 资源组 | api_gateway |
+| チェック項目 ID | `apigateway_restapi_public` |
+| クラウドプラットフォーム | AWS |
+| サービス | apigateway |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
+| リソースタイプ | AwsApiGatewayRestApi |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **Amazon API Gateway REST APIs** are evaluated for endpoint exposure: **internet-accessible** endpoints versus **private VPC-only** access via interface VPC endpoints (`AWS PrivateLink`).
 
-## 风险
+## リスク
 
 Internet exposure increases attack surface: - **Confidentiality**: misconfigured or anonymous methods can leak data - **Integrity**: unauthorized calls can change backend state - **Availability/cost**: bots or DDoS can exhaust capacity and spike spend
 
-## 推荐措施
+## 推奨事項
 
 Prefer **private** REST APIs reachable via interface VPC endpoints (`PRIVATE`). *If public access is required*, apply **least privilege** and **defense in depth**: - Restrict with resource policies (`aws:SourceVpc`/`aws:SourceVpce`) - Enforce strong auth (IAM, Cognito, or authorizers) - Add AWS WAF, throttling, usage plans, and comprehensive logging
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -69,14 +69,14 @@ resource "aws_api_gateway_rest_api" "<example_resource_name>" {
 4. Set Endpoint Type to Private
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-private-apis.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-private-apis.html)
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies-examples.html#apigateway-resource-policies-source-vpc-example](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies-examples.html#apigateway-resource-policies-source-vpc-example)
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html)
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/apigateway_restapi_public/metadata.json](../../sources/aws/apigateway_restapi_public/metadata.json)
 - Source Code：[sources/aws/apigateway_restapi_public/check.py](../../sources/aws/apigateway_restapi_public/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `redshift_cluster_audit_logging` |
-| 云平台 | AWS |
-| 服务 | redshift |
-| 严重等级 | medium |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsRedshiftCluster |
-| 资源组 | analytics |
+| チェック項目 ID | `redshift_cluster_audit_logging` |
+| クラウドプラットフォーム | AWS |
+| サービス | redshift |
+| 重大度 | medium |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsRedshiftCluster |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 Amazon Redshift clusters are evaluated for **database audit logging** that exports connection, user, and user-activity events to Amazon S3 or CloudWatch.
 
-## 风险
+## リスク
 
 Without audit logs, malicious logins and queries can evade detection, impacting **confidentiality** (data exfiltration), **integrity** (unauthorized user/role changes), and **availability** of investigations due to missing evidence for forensics and incident response.
 
-## 推荐措施
+## 推奨事項
 
 Enable comprehensive **Redshift audit logging** and include user-activity events. Centralize logs in a protected destination, enforce **least privilege** access, retention, and immutability. Implement **alerts** for anomalous connections and queries as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -78,11 +78,11 @@ resource "aws_redshift_cluster" "<example_resource_name>" {
 4. Enable logging and select an S3 bucket
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html](https://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/redshift_cluster_audit_logging/metadata.json](../../sources/aws/redshift_cluster_audit_logging/metadata.json)
 - Source Code：[sources/aws/redshift_cluster_audit_logging/check.py](../../sources/aws/redshift_cluster_audit_logging/check.py)

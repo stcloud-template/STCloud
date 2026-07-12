@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `appstream_fleet_default_internet_access_disabled` |
-| 云平台 | AWS |
-| 服务 | appstream |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `appstream_fleet_default_internet_access_disabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | appstream |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Amazon AppStream fleets** are assessed for the `EnableDefaultInternetAccess` setting, identifying fleets where streaming instances have default Internet connectivity.
 
-## 风险
+## リスク
 
 **Direct Internet access** gives streaming instances public exposure. Threats include: - Remote exploitation and malware, undermining **confidentiality** and **integrity** - Uncontrolled egress enabling **data exfiltration** It also enforces ~100-instance limits, reducing **availability** for high-concurrency deployments.
 
-## 推荐措施
+## 推奨事項
 
 Disable default Internet access (`EnableDefaultInternetAccess=false`) and place fleets in **private subnets**. Provide egress via **NAT gateways** or proxies, enforce **egress filtering**, and apply **least privilege** and **zero trust** to restrict outbound traffic. Use private connectivity to AWS services where possible.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -72,14 +72,14 @@ resource "aws_appstream_fleet" "<example_resource_name>" {
 5. Uncheck "Default internet access" (Disable "Enable default internet access")
 6. Save/Update the fleet and start it if needed
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/appstream2/latest/developerguide/set-up-stacks-fleets.html](https://docs.aws.amazon.com/appstream2/latest/developerguide/set-up-stacks-fleets.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233540-ensure-default-internet-access-from-your-amazon-appstream-fleet-streaming-instances-remains-unchecked](https://support.icompaas.com/support/solutions/articles/62000233540-ensure-default-internet-access-from-your-amazon-appstream-fleet-streaming-instances-remains-unchecked)
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html)
 - [https://docs.aws.amazon.com/appstream2/latest/developerguide/internet-access.html](https://docs.aws.amazon.com/appstream2/latest/developerguide/internet-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/appstream_fleet_default_internet_access_disabled/metadata.json](../../sources/aws/appstream_fleet_default_internet_access_disabled/metadata.json)
 - Source Code：[sources/aws/appstream_fleet_default_internet_access_disabled/check.py](../../sources/aws/appstream_fleet_default_internet_access_disabled/check.py)

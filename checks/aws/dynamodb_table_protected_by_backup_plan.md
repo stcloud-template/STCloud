@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dynamodb_table_protected_by_backup_plan` |
-| 云平台 | AWS |
-| 服务 | dynamodb |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsDynamoDbTable |
-| 资源组 | database |
+| チェック項目 ID | `dynamodb_table_protected_by_backup_plan` |
+| クラウドプラットフォーム | AWS |
+| サービス | dynamodb |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsDynamoDbTable |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **DynamoDB tables** are evaluated for inclusion in an **AWS Backup backup plan** through resource assignments, including explicit tables, resource-type wildcards, or all-resources coverage. The result indicates whether a table is governed by scheduled backups and retention defined by the plan.
 
-## 风险
+## リスク
 
 Without a backup plan, table data lacks governed copies, harming **availability** and **integrity**. Accidental deletes, corrupt writes, or malicious actions can become unrecoverable, and RPO/RTO worsen. You also forfeit cross-Region/account copies and immutability features, increasing downtime and data loss.
 
-## 推荐措施
+## 推奨事項
 
 Place all critical tables under an **AWS Backup backup plan** following **defense in depth** and **least privilege**: - Use tag-based assignments for coverage at scale - Define schedules, retention, and cross-Region/account copies - Enable **Vault Lock** for immutability - Regularly test restores and restrict backup deletion
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -89,13 +89,13 @@ resource "aws_backup_selection" "<example_resource_name>" {
 4. On the plan page, choose Assign resources
 5. Enter a Resource assignment name, set IAM role to Default role, select your DynamoDB table, and choose Assign resources
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html](https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html)
 - [https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CreateBackupAWS.html](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CreateBackupAWS.html)
 - [https://aws.amazon.com/blogs/database/set-up-scheduled-backups-for-amazon-dynamodb-using-aws-backup/](https://aws.amazon.com/blogs/database/set-up-scheduled-backups-for-amazon-dynamodb-using-aws-backup/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dynamodb_table_protected_by_backup_plan/metadata.json](../../sources/aws/dynamodb_table_protected_by_backup_plan/metadata.json)
 - Source Code：[sources/aws/dynamodb_table_protected_by_backup_plan/check.py](../../sources/aws/dynamodb_table_protected_by_backup_plan/check.py)

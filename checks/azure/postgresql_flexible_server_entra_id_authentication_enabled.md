@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `postgresql_flexible_server_entra_id_authentication_enabled` |
-| 云平台 | Azure |
-| 服务 | postgresql |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 资源类型 | PostgreSQL |
-| 资源组 | database |
+| チェック項目 ID | `postgresql_flexible_server_entra_id_authentication_enabled` |
+| クラウドプラットフォーム | Azure |
+| サービス | postgresql |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| リソースタイプ | PostgreSQL |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **PostgreSQL Flexible Servers** must set `authConfig.activeDirectoryAuth` to `Enabled` and keep at least one **Microsoft Entra administrator** assigned so database sessions inherit centrally governed identities instead of unmanaged PostgreSQL accounts.
 
-## 风险
+## リスク
 
 Without Entra ID authentication, stolen local passwords bypass **MFA** and conditional access, enabling persistent database logins. Missing administrators leaves the feature unusable, blocking security teams from rotating duties and allowing unauthorized access or **privilege escalation**.
 
-## 推荐措施
+## 推奨事項
 
 Federate PostgreSQL Flexible Server access through **Microsoft Entra ID** so MFA, conditional access, and centralized RBAC govern logins. Maintain at least one delegated administrator group and rotate membership through identity governance processes.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -72,12 +72,12 @@ resource "azurerm_postgresql_flexible_server_active_directory_administrator" "en
 2. Under Security > Authentication, set Microsoft Entra ID authentication (or combined mode) to Enabled and save the change.
 3. Under Security > Microsoft Entra ID, add at least one administrator (user or group) linked to an Entra object ID and confirm the assignment.
 
-## 参考资料
+## 参考資料
 
 - [https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/security-entra-concepts](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/security-entra-concepts)
 - [https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/security-entra-configure](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/security-entra-configure)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/postgresql_flexible_server_entra_id_authentication_enabled/metadata.json](../../sources/azure/postgresql_flexible_server_entra_id_authentication_enabled/metadata.json)
 - Source Code：[sources/azure/postgresql_flexible_server_entra_id_authentication_enabled/check.py](../../sources/azure/postgresql_flexible_server_entra_id_authentication_enabled/check.py)

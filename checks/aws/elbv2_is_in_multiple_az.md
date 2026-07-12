@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elbv2_is_in_multiple_az` |
-| 云平台 | AWS |
-| 服务 | elbv2 |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsElbv2LoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elbv2_is_in_multiple_az` |
+| クラウドプラットフォーム | AWS |
+| サービス | elbv2 |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsElbv2LoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 ELBv2 load balancers (Application, Network, or Gateway) are assessed for distribution across multiple **Availability Zones**. The finding indicates whether each load balancer spans at least the configured minimum number of AZs (default `2`).
 
-## 风险
+## リスク
 
 Limiting a load balancer to one AZ introduces a single point of failure. An AZ outage, zonal degradation, or imbalanced target capacity can cause downtime, dropped connections, and deployment risk, undermining service **availability** and resiliency.
 
-## 推荐措施
+## 推奨事項
 
 Operate each load balancer across at least **two AZs** and ensure every enabled AZ has healthy, scaled targets. - Distribute capacity per AZ; use autoscaling - Keep health checks effective - Consider cross-zone load balancing to absorb bursts - Regularly test failover
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -69,13 +69,13 @@ resource "aws_lb" "<example_resource_name>" {
 4. Enable at least two Availability Zones by selecting one subnet in each of two AZs
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/network/availability-zones.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/availability-zones.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELBv2/enable-multi-az.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELBv2/enable-multi-az.html)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#availability-zones](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#availability-zones)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elbv2_is_in_multiple_az/metadata.json](../../sources/aws/elbv2_is_in_multiple_az/metadata.json)
 - Source Code：[sources/aws/elbv2_is_in_multiple_az/check.py](../../sources/aws/elbv2_is_in_multiple_az/check.py)

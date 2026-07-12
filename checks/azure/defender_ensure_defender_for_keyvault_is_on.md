@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `defender_ensure_defender_for_keyvault_is_on` |
-| 云平台 | Azure |
-| 服务 | defender |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | AzureDefenderPlan |
-| 资源组 | security |
+| チェック項目 ID | `defender_ensure_defender_for_keyvault_is_on` |
+| クラウドプラットフォーム | Azure |
+| サービス | defender |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AzureDefenderPlan |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 Ensure That Microsoft Defender for KeyVault Is Set To 'On'
 
-## 风险
+## リスク
 
 By default, Microsoft Defender for Cloud is disabled for Azure key vaults. Defender for Cloud detects unusual and potentially harmful attempts to access or exploit your Azure Key Vault data. This layer of protection allows you to address threats without being a security expert, and without the need to use and manage third-party security monitoring tools or services.
 
-## 推荐措施
+## 推奨事項
 
 Ensure that Microsoft Defender for Cloud is enabled for Azure key vaults. Key Vault is the Azure cloud service that safeguards encryption keys and secrets like certificates, connection-based strings, and passwords.
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -37,11 +37,11 @@ Ensure that Microsoft Defender for Cloud is enabled for Azure key vaults. Key Va
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/SecurityCenter/defender-key-vault.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/SecurityCenter/defender-key-vault.html)
 
-## 参考资料
+## 参考資料
 
 No external references available.
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/defender_ensure_defender_for_keyvault_is_on/metadata.json](../../sources/azure/defender_ensure_defender_for_keyvault_is_on/metadata.json)
 - Source Code：[sources/azure/defender_ensure_defender_for_keyvault_is_on/check.py](../../sources/azure/defender_ensure_defender_for_keyvault_is_on/check.py)

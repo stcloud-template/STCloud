@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `networkfirewall_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | networkfirewall |
-| 严重等级 | high |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
-| 资源类型 | AwsNetworkFirewallFirewall |
-| 资源组 | network |
+| チェック項目 ID | `networkfirewall_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | networkfirewall |
+| 重大度 | high |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
+| リソースタイプ | AwsNetworkFirewallFirewall |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **AWS Network Firewall** has stateful engine logging configured with at least one log type (`FLOW`, `ALERT`, or `TLS`) and an active log destination
 
-## 风险
+## リスク
 
 Absent Network Firewall logs reduce **visibility** and **forensics**. Malicious flows, C2 traffic, and data exfiltration can go **undetected**, impacting: - Confidentiality (leakage) - Integrity (unauthorized traffic allowed) - Availability (DDoS patterns unnoticed)
 
-## 推荐措施
+## 推奨事項
 
 Enable comprehensive firewall logging and send `FLOW`, `ALERT`, and *when applicable* `TLS` events to a centralized, tamper-resistant destination. Apply **least privilege** to writers/readers, enforce **encryption** and **retention**, and integrate alerts with monitoring for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,13 +79,13 @@ resource "aws_networkfirewall_logging_configuration" "<example_resource_name>" {
 5. Choose Destination type: CloudWatch Logs and select an existing log group
 6. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-logging.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-logging.html)
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-update-logging-configuration.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-update-logging-configuration.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-2](https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-2)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/networkfirewall_logging_enabled/metadata.json](../../sources/aws/networkfirewall_logging_enabled/metadata.json)
 - Source Code：[sources/aws/networkfirewall_logging_enabled/check.py](../../sources/aws/networkfirewall_logging_enabled/check.py)

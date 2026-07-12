@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `rds_instance_minor_version_upgrade_enabled` |
-| 云平台 | AWS |
-| 服务 | rds |
-| 严重等级 | low |
-| 类别 | Uncategorized |
-| 资源类型 | AwsRdsDbInstance |
-| 资源组 | database |
+| チェック項目 ID | `rds_instance_minor_version_upgrade_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | rds |
+| 重大度 | low |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AwsRdsDbInstance |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Ensure RDS instances have minor version upgrade enabled.
 
-## 风险
+## リスク
 
 Auto Minor Version Upgrade is a feature that you can enable to have your database automatically upgraded when a new minor database engine version is available. Minor version upgrades often patch security vulnerabilities and fix bugs and therefore should be applied.
 
-## 推荐措施
+## 推奨事項
 
 Enable auto minor version upgrade for all databases and environments.
 
-- 推荐链接：[https://aws.amazon.com/blogs/database/best-practices-for-upgrading-amazon-rds-to-major-and-minor-versions-of-postgresql/](https://aws.amazon.com/blogs/database/best-practices-for-upgrading-amazon-rds-to-major-and-minor-versions-of-postgresql/)
+- 推奨リンク：[https://aws.amazon.com/blogs/database/best-practices-for-upgrading-amazon-rds-to-major-and-minor-versions-of-postgresql/](https://aws.amazon.com/blogs/database/best-practices-for-upgrading-amazon-rds-to-major-and-minor-versions-of-postgresql/)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -49,11 +49,11 @@ aws rds modify-db-instance --db-instance-identifier <db_instance_id> --auto-mino
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/RDS/rds-auto-minor-version-upgrade.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/RDS/rds-auto-minor-version-upgrade.html)
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/database/best-practices-for-upgrading-amazon-rds-to-major-and-minor-versions-of-postgresql/](https://aws.amazon.com/blogs/database/best-practices-for-upgrading-amazon-rds-to-major-and-minor-versions-of-postgresql/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/rds_instance_minor_version_upgrade_enabled/metadata.json](../../sources/aws/rds_instance_minor_version_upgrade_enabled/metadata.json)
 - Source Code：[sources/aws/rds_instance_minor_version_upgrade_enabled/check.py](../../sources/aws/rds_instance_minor_version_upgrade_enabled/check.py)

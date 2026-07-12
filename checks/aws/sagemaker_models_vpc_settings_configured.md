@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sagemaker_models_vpc_settings_configured` |
-| 云平台 | AWS |
-| 服务 | sagemaker |
-| 严重等级 | medium |
-| 类别 | trust-boundaries, gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | ai_ml |
+| チェック項目 ID | `sagemaker_models_vpc_settings_configured` |
+| クラウドプラットフォーム | AWS |
+| サービス | sagemaker |
+| 重大度 | medium |
+| カテゴリ | trust-boundaries, gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | ai_ml |
 
-## 描述
+## 説明
 
 **SageMaker models** use **VPC settings** (`VpcConfig` with subnets and security groups) so inference containers communicate through a selected VPC rather than the public internet. This evaluates whether a model defines VPC subnets for its network path.
 
-## 风险
+## リスク
 
 Without **VPC isolation**, model traffic and data access can traverse public paths, weakening **confidentiality** and **integrity** through interception or misrouting. Missing security groups and private endpoints reduce **access control**, enabling excessive egress, data exfiltration, or command-and-control from compromised containers.
 
-## 推荐措施
+## 推奨事項
 
 Enable **VPC-only networking** for models by defining `VpcConfig` with private subnets and restrictive security groups. Apply **least privilege egress**, use **VPC endpoints** for S3 and SageMaker runtime, avoid public routes, and implement **defense in depth** with segmentation and traffic monitoring.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -78,11 +78,11 @@ resource "aws_sagemaker_model" "model" {
 7. Create the model
 8. Verify the model shows VPC settings enabled
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sagemaker_models_vpc_settings_configured/metadata.json](../../sources/aws/sagemaker_models_vpc_settings_configured/metadata.json)
 - Source Code：[sources/aws/sagemaker_models_vpc_settings_configured/check.py](../../sources/aws/sagemaker_models_vpc_settings_configured/check.py)

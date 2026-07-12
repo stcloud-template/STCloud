@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dynamodb_accelerator_cluster_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | dynamodb |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `dynamodb_accelerator_cluster_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | dynamodb |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon DynamoDB Accelerator (DAX) clusters** are evaluated for **server-side `encryption at rest`**. The finding indicates whether the cluster's on-disk cache, configuration, and logs are encrypted using service-managed keys.
 
-## 风险
+## リスク
 
 Without **encryption at rest**, DAX on-disk cache and logs can be extracted from underlying storage by those with low-level access, compromising **confidentiality** and enabling offline data mining. Threats: - Compromised host or admin - Lost/retired media - Unauthorized backups or snapshots
 
-## 推荐措施
+## 推奨事項
 
 Provision DAX clusters with **`encryption at rest`** enabled. Apply **least privilege** for DAX administration and data access, and monitor with logging. Adopt **defense in depth**: enable encryption in transit, restrict network exposure, and avoid caching highly sensitive data. Re-create unencrypted clusters to enforce this setting.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,13 +75,13 @@ resource "aws_dax_cluster" "example" {
 4. Choose the IAM role and required networking, then click **Launch cluster**
 5. If replacing an existing unencrypted cluster: point your application to the new cluster endpoint, then delete the old cluster
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAXEncryptionAtRest.html](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAXEncryptionAtRest.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/DAX/encryption-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/DAX/encryption-enabled.html)
 - [https://docs.aws.amazon.com/prescriptive-guidance/latest/encryption-best-practices/dynamodb.html](https://docs.aws.amazon.com/prescriptive-guidance/latest/encryption-best-practices/dynamodb.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dynamodb_accelerator_cluster_encryption_enabled/metadata.json](../../sources/aws/dynamodb_accelerator_cluster_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/dynamodb_accelerator_cluster_encryption_enabled/check.py](../../sources/aws/dynamodb_accelerator_cluster_encryption_enabled/check.py)

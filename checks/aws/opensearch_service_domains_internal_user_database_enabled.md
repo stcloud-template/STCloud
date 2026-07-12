@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `opensearch_service_domains_internal_user_database_enabled` |
-| 云平台 | AWS |
-| 服务 | opensearch |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsOpenSearchServiceDomain |
-| 资源组 | database |
+| チェック項目 ID | `opensearch_service_domains_internal_user_database_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | opensearch |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsOpenSearchServiceDomain |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon OpenSearch Service domains** are evaluated for the **internal user database** setting (`InternalUserDatabaseEnabled`). The finding identifies domains that rely on built-in HTTP basic users instead of external identity providers.
 
-## 风险
+## リスク
 
 An enabled internal user database creates **credential sprawl** and weak **account lifecycle**. Missing centralized MFA, rotation, and revocation raises unauthorized access risk, impacting **confidentiality** and **integrity**. Basic auth on exposed endpoints eases brute force and reduces **auditability**.
 
-## 推荐措施
+## 推奨事項
 
 Prefer **federated authentication** (IAM, SAML, or Amazon Cognito) and disable the **internal user database**. Enforce **least privilege** roles, require **MFA**, centralize credential rotation and offboarding, and log access. Use **VPC access** and restrictive policies; avoid HTTP basic auth to minimize exposure.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -68,12 +68,12 @@ resource "aws_opensearch_domain" "<example_resource_name>" {
 3. Under Fine-grained access control, turn off Internal user database
 4. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/fgac.html](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/fgac.html)
 - [https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/opensearch_service_domains_internal_user_database_enabled/metadata.json](../../sources/aws/opensearch_service_domains_internal_user_database_enabled/metadata.json)
 - Source Code：[sources/aws/opensearch_service_domains_internal_user_database_enabled/check.py](../../sources/aws/opensearch_service_domains_internal_user_database_enabled/check.py)

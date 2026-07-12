@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `codebuild_project_uses_allowed_github_organizations` |
-| 云平台 | AWS |
-| 服务 | codebuild |
-| 严重等级 | high |
-| 类别 | software-supply-chain, ci-cd |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsCodeBuildProject |
-| 资源组 | devops |
+| チェック項目 ID | `codebuild_project_uses_allowed_github_organizations` |
+| クラウドプラットフォーム | AWS |
+| サービス | codebuild |
+| 重大度 | high |
+| カテゴリ | software-supply-chain, ci-cd |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsCodeBuildProject |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **CodeBuild projects** sourcing from **GitHub/GitHub Enterprise** with a service role that trusts CodeBuild are evaluated by deriving the repository's organization from its URL and comparing it to an **allowed organizations** list.
 
-## 风险
+## リスク
 
 Using repos from **untrusted GitHub orgs** can let external workflows assume the project role and obtain AWS credentials. - Confidentiality: data/secrets exfiltration - Integrity: unauthorized changes - Availability: build abuse or service disruption
 
-## 推荐措施
+## 推奨事項
 
 Limit sources to **approved GitHub organizations** via an explicit allowlist. Enforce **least privilege** on the CodeBuild service role and avoid admin rights. Apply **separation of duties** for allowlist changes and add **defense in depth** (branch protections, reviews, monitoring) to prevent workflow abuse.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -86,14 +86,14 @@ resource "aws_codebuild_project" "<example_resource_name>" {
 3. In Source, set Repository URL to https://github.com/<ALLOWED_GITHUB_ORG>/<REPO>
 4. Click Update to save
 
-## 参考资料
+## 参考資料
 
 - [https://medium.com/@adan.alvarez/gaining-long-term-aws-access-with-codebuild-and-github-873324638784](https://medium.com/@adan.alvarez/gaining-long-term-aws-access-with-codebuild-and-github-873324638784)
 - [https://paul-hands-phd.medium.com/using-aws-codebuild-to-set-up-github-continuous-integration-19b92efbd094](https://paul-hands-phd.medium.com/using-aws-codebuild-to-set-up-github-continuous-integration-19b92efbd094)
 - [https://docs.aws.amazon.com/codebuild/latest/userguide/connections-github-app.html](https://docs.aws.amazon.com/codebuild/latest/userguide/connections-github-app.html)
 - [https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html](https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/codebuild_project_uses_allowed_github_organizations/metadata.json](../../sources/aws/codebuild_project_uses_allowed_github_organizations/metadata.json)
 - Source Code：[sources/aws/codebuild_project_uses_allowed_github_organizations/check.py](../../sources/aws/codebuild_project_uses_allowed_github_organizations/check.py)

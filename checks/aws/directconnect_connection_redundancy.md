@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `directconnect_connection_redundancy` |
-| 云平台 | AWS |
-| 服务 | directconnect |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
-| 资源类型 | Other |
-| 资源组 | network |
+| チェック項目 ID | `directconnect_connection_redundancy` |
+| クラウドプラットフォーム | AWS |
+| サービス | directconnect |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
+| リソースタイプ | Other |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **AWS Direct Connect** connectivity is provisioned with **connection and location redundancy**-multiple connections spread across **at least two distinct Direct Connect locations** in each Region.
 
-## 风险
+## リスク
 
 Missing **connection/location redundancy** creates a **single point of failure**, degrading **availability**. A router, fiber, or site outage can sever private paths to AWS, stalling app traffic, data replication, and admin access, leading to timeouts or extended downtime until alternate paths are restored.
 
-## 推荐措施
+## 推奨事項
 
 Apply **redundancy** and **defense in depth**: - Deploy 2 Direct Connect connections across **two distinct locations** - Use **dynamic, active/active routing** for automatic failover - Ensure **provider/device diversity** - Size capacity so one link loss doesn't overload remaining paths - Consider a **VPN** as tertiary backup
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -57,13 +57,13 @@ resource "aws_dx_connection" "example" {
 6. Bandwidth: choose a supported value (e.g., 1 Gbps)
 7. Click Create connection
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awssupport/latest/user/fault-tolerance-checks.html#amazon-direct-connect-location-resiliency](https://docs.aws.amazon.com/awssupport/latest/user/fault-tolerance-checks.html#amazon-direct-connect-location-resiliency)
 - [https://repost.aws/knowledge-center/direct-connect-physical-redundancy](https://repost.aws/knowledge-center/direct-connect-physical-redundancy)
 - [https://aws.amazon.com/directconnect/resiliency-recommendation/](https://aws.amazon.com/directconnect/resiliency-recommendation/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/directconnect_connection_redundancy/metadata.json](../../sources/aws/directconnect_connection_redundancy/metadata.json)
 - Source Code：[sources/aws/directconnect_connection_redundancy/check.py](../../sources/aws/directconnect_connection_redundancy/check.py)

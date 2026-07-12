@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `rds_instance_transport_encrypted` |
-| 云平台 | AWS |
-| 服务 | rds |
-| 严重等级 | high |
-| 类别 | encryption |
-| 资源类型 | AwsRdsDbInstance |
-| 资源组 | database |
+| チェック項目 ID | `rds_instance_transport_encrypted` |
+| クラウドプラットフォーム | AWS |
+| サービス | rds |
+| 重大度 | high |
+| カテゴリ | encryption |
+| リソースタイプ | AwsRdsDbInstance |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 For SQL Server, PostgreSQL, and Aurora PostgreSQL databases, if the `rds.force_ssl` parameter value is set to 0, SSL/TLS connections are not enforced. For MySQL, Aurora MySQL, and MariaDB databases, if the `require_secure_transport` parameter value is set to OFF, SSL/TLS connections are not enforced. Enforcing SSL/TLS ensures that all client connections to RDS instances are encrypted, protecting sensitive information in transit.
 
-## 风险
+## リスク
 
 If not enabled, sensitive information in transit is not protected.
 
-## 推荐措施
+## 推奨事項
 
 Ensure that instances provisioned with Amazon RDS enforce SSL/TLS for client connections to meet security and compliance requirements.
 
-- 推荐链接：[https://aws.amazon.com/premiumsupport/knowledge-center/rds-connect-ssl-connection/](https://aws.amazon.com/premiumsupport/knowledge-center/rds-connect-ssl-connection/)
+- 推奨リンク：[https://aws.amazon.com/premiumsupport/knowledge-center/rds-connect-ssl-connection/](https://aws.amazon.com/premiumsupport/knowledge-center/rds-connect-ssl-connection/)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -41,11 +41,11 @@ aws rds modify-db-parameter-group --region <REGION_NAME> --db-parameter-group-na
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/RDS/transport-encryption.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/RDS/transport-encryption.html)
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/premiumsupport/knowledge-center/rds-connect-ssl-connection/](https://aws.amazon.com/premiumsupport/knowledge-center/rds-connect-ssl-connection/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/rds_instance_transport_encrypted/metadata.json](../../sources/aws/rds_instance_transport_encrypted/metadata.json)
 - Source Code：[sources/aws/rds_instance_transport_encrypted/check.py](../../sources/aws/rds_instance_transport_encrypted/check.py)

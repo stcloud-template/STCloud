@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `apigateway_restapi_client_certificate_enabled` |
-| 云平台 | AWS |
-| 服务 | apigateway |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Encryption in Transit, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
-| 资源类型 | AwsApiGatewayStage |
-| 资源组 | api_gateway |
+| チェック項目 ID | `apigateway_restapi_client_certificate_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | apigateway |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Encryption in Transit, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
+| リソースタイプ | AwsApiGatewayStage |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **API Gateway stage** has a **client certificate** configured so HTTP/S integrations can perform **mutual TLS** and authenticate API Gateway to the backend
 
-## 风险
+## リスク
 
 Without client authentication to the backend, requests cannot be proven to originate from API Gateway. Direct calls to the backend may bypass gateway policies, enabling unauthorized access and data tampering. This degrades **integrity** and **confidentiality** and reduces auditability.
 
-## 推荐措施
+## 推奨事項
 
 Enable **mutual TLS** from API Gateway to the backend with a **client certificate**, and configure the backend to trust only that identity. Apply **zero trust** and **least privilege**: block public access to the backend, restrict networks, rotate certificates, and monitor authentication failures.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,11 +75,11 @@ resource "aws_api_gateway_stage" "<example_resource_name>" {
 4. In Settings, find Client certificate and select the created certificate
 5. Click Save Changes
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/compute/introducing-mutual-tls-authentication-for-amazon-api-gateway/](https://aws.amazon.com/blogs/compute/introducing-mutual-tls-authentication-for-amazon-api-gateway/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/apigateway_restapi_client_certificate_enabled/metadata.json](../../sources/aws/apigateway_restapi_client_certificate_enabled/metadata.json)
 - Source Code：[sources/aws/apigateway_restapi_client_certificate_enabled/check.py](../../sources/aws/apigateway_restapi_client_certificate_enabled/check.py)

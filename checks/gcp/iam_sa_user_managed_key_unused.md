@@ -2,42 +2,42 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `iam_sa_user_managed_key_unused` |
-| 云平台 | GCP |
-| 服务 | iam |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | ServiceAccountKey |
-| 资源组 | IAM |
+| チェック項目 ID | `iam_sa_user_managed_key_unused` |
+| クラウドプラットフォーム | GCP |
+| サービス | iam |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | ServiceAccountKey |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Ensure That There Are No Unused Service Account Keys for Each Service Account.
 
-## 风险
+## リスク
 
 Anyone who has access to the keys will be able to access resources through the service account. GCP-managed keys are used by Cloud Platform services such as App Engine and Compute Engine. These keys cannot be downloaded. Google will keep the keys and automatically rotate them on an approximately weekly basis. User-managed keys are created, downloadable, and managed by users.
 
-## 推荐措施
+## 推奨事項
 
 It is recommended to prevent user-managed service account keys.
 
-- 推荐链接：[https://cloud.google.com/iam/docs/creating-managing-service-account-keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
+- 推奨リンク：[https://cloud.google.com/iam/docs/creating-managing-service-account-keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/iam/docs/service-account-overview#identify-unused](https://cloud.google.com/iam/docs/service-account-overview#identify-unused)
 - [https://cloud.google.com/iam/docs/creating-managing-service-account-keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/iam_sa_user_managed_key_unused/metadata.json](../../sources/gcp/iam_sa_user_managed_key_unused/metadata.json)
 - Source Code：[sources/gcp/iam_sa_user_managed_key_unused/check.py](../../sources/gcp/iam_sa_user_managed_key_unused/check.py)

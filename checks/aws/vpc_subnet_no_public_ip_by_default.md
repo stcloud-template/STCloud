@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_subnet_no_public_ip_by_default` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsEc2Subnet |
-| 资源组 | network |
+| チェック項目 ID | `vpc_subnet_no_public_ip_by_default` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsEc2Subnet |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **VPC subnets** where `MapPublicIpOnLaunch` is `true` automatically assign a public IPv4 address to instances at launch. This identifies subnets configured for default public IP assignment.
 
-## 风险
+## リスク
 
 **Internet-exposed instances** become reachable by default, enabling port scans, SSH/RDP brute force, and exploit attempts. Successful access can lead to data exfiltration (**confidentiality**), unauthorized changes (**integrity**), and outages (**availability**) through abuse or DDoS.
 
-## 推荐措施
+## 推奨事項
 
 Disable subnet auto-assign to enforce **least-privilege exposure**. Place workloads in **private subnets**, use controlled egress (NAT or private endpoints), and prefer bastions or SSM for administration. *When public access is necessary*, assign IPs explicitly and restrict with tight security groups and routes for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -69,11 +69,11 @@ resource "aws_subnet" "example" {
 4. Uncheck Enable auto-assign public IPv4 address
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/config/latest/developerguide/subnet-auto-assign-public-ip-disabled.html](https://docs.aws.amazon.com/config/latest/developerguide/subnet-auto-assign-public-ip-disabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_subnet_no_public_ip_by_default/metadata.json](../../sources/aws/vpc_subnet_no_public_ip_by_default/metadata.json)
 - Source Code：[sources/aws/vpc_subnet_no_public_ip_by_default/check.py](../../sources/aws/vpc_subnet_no_public_ip_by_default/check.py)

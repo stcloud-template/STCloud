@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `documentdb_cluster_backup_enabled` |
-| 云平台 | AWS |
-| 服务 | documentdb |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Destruction |
-| 资源类型 | AwsRdsDbCluster |
-| 资源组 | database |
+| チェック項目 ID | `documentdb_cluster_backup_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | documentdb |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Destruction |
+| リソースタイプ | AwsRdsDbCluster |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon DocumentDB clusters** are evaluated for **automated backups** and an adequate **backup retention period**. Clusters should have `backup_retention_period` set to at least the configured minimum (default `7` days). Values of `0` indicate backups are disabled; values below the threshold are considered insufficient.
 
-## 风险
+## リスク
 
 Without adequate backups, clusters can't be reliably restored. Accidental deletes, logical corruption, or ransomware may cause irreversible data loss once a short retention window expires, leading to prolonged outages, missed RPO/RTO, and limited ability to roll back malicious or erroneous changes.
 
-## 推荐措施
+## 推奨事項
 
 Enable **automated backups** and set retention to meet RPO/RTO (typically `7-35` days). - Regularly test point-in-time restores - Apply **least privilege** to backup/snapshot management - Protect backup artifacts and define stable backup windows - Include restores in a tested **disaster recovery** plan
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -66,13 +66,13 @@ resource "aws_docdb_cluster" "<example_resource_name>" {
 5. Check Apply immediately
 6. Click Continue and then Modify cluster
 
-## 参考资料
+## 参考資料
 
 - [https://docs.amazonaws.cn/en_us/documentdb/latest/developerguide/what-is.html](https://docs.amazonaws.cn/en_us/documentdb/latest/developerguide/what-is.html)
 - [https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/aws/DocumentDB/sufficient-backup-retention-period.html#](https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/aws/DocumentDB/sufficient-backup-retention-period.html#)
 - [https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/aws-enabledocdbclusterbackupretentionperiod.html](https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/aws-enabledocdbclusterbackupretentionperiod.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/documentdb_cluster_backup_enabled/metadata.json](../../sources/aws/documentdb_cluster_backup_enabled/metadata.json)
 - Source Code：[sources/aws/documentdb_cluster_backup_enabled/check.py](../../sources/aws/documentdb_cluster_backup_enabled/check.py)

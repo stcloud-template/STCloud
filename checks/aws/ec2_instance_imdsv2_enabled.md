@@ -2,34 +2,34 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_instance_imdsv2_enabled` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 严重等级 | high |
-| 类别 | ec2-imdsv1 |
-| 检查类型 | Infrastructure Security |
-| 资源类型 | AwsEc2Instance |
-| 资源组 | compute |
+| チェック項目 ID | `ec2_instance_imdsv2_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| 重大度 | high |
+| カテゴリ | ec2-imdsv1 |
+| チェックタイプ | Infrastructure Security |
+| リソースタイプ | AwsEc2Instance |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Check if EC2 Instance Metadata Service Version 2 (IMDSv2) is Enabled and Required.
 
-## 风险
+## リスク
 
 Using IMDSv2 will protect from misconfiguration and SSRF vulnerabilities. IMDSv1 will not.
 
-## 推荐措施
+## 推奨事項
 
 If you don't need IMDS you can turn it off. Using aws-cli you can force the instance to use only IMDSv2.
 
-- 推荐链接：[https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-options)
+- 推奨リンク：[https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-options)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -50,11 +50,11 @@ aws ec2 modify-instance-metadata-options --instance-id <instance-id> --http-toke
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EC2/require-imds-v2.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EC2/require-imds-v2.html)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-options)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_instance_imdsv2_enabled/metadata.json](../../sources/aws/ec2_instance_imdsv2_enabled/metadata.json)
 - Source Code：[sources/aws/ec2_instance_imdsv2_enabled/check.py](../../sources/aws/ec2_instance_imdsv2_enabled/check.py)

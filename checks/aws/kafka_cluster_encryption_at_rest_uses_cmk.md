@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kafka_cluster_encryption_at_rest_uses_cmk` |
-| 云平台 | AWS |
-| 服务 | kafka |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Data Encryption, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Industry and Regulatory Standards/NIST 800-53 Controls (USA), Industry and Regulatory Standards/PCI-DSS, Effects/Data Exposure |
-| 资源类型 | AwsMskCluster |
-| 资源组 | messaging |
+| チェック項目 ID | `kafka_cluster_encryption_at_rest_uses_cmk` |
+| クラウドプラットフォーム | AWS |
+| サービス | kafka |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Data Encryption, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Industry and Regulatory Standards/NIST 800-53 Controls (USA), Industry and Regulatory Standards/PCI-DSS, Effects/Data Exposure |
+| リソースタイプ | AwsMskCluster |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 Amazon MSK clusters are inspected for **encryption at rest** using a **customer-managed KMS key** for data volumes. Serverless clusters are inherently encrypted. Provisioned clusters are recognized only when the configured `DataVolumeKMSKeyId` corresponds to a customer-managed key.
 
-## 风险
+## リスク
 
 Relying on service-managed keys weakens **confidentiality** and **accountability**: you can't enforce granular key policies, separation of duties, or independent rotation. This limits incident response (e.g., disabling the key for crypto-shredding) and reduces auditability, increasing impact of credential misuse or broker compromise.
 
-## 推荐措施
+## 推奨事項
 
 Use a **customer-managed KMS key** for MSK at-rest encryption. Apply **least privilege** in key policies and grants, enable **key rotation**, and log key use for auditing. Enforce **separation of duties** between MSK admins and KMS key custodians, and regularly review access, aliases, and pending-deletion states.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -82,13 +82,13 @@ resource "aws_msk_cluster" "<example_resource_name>" {
 4. In Encryption settings, for At-rest encryption, select Customer managed key and choose your CMK (not alias/aws/kafka)
 5. Create the cluster, migrate clients to it, then delete the old cluster that used the AWS managed key
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/msk/latest/developerguide/msk-encryption.html](https://docs.aws.amazon.com/msk/latest/developerguide/msk-encryption.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/msk-encryption-at-rest-with-cmk.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/msk-encryption-at-rest-with-cmk.html)
 - [https://docs.aws.amazon.com/msk/latest/developerguide/msk-working-with-encryption.html](https://docs.aws.amazon.com/msk/latest/developerguide/msk-working-with-encryption.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kafka_cluster_encryption_at_rest_uses_cmk/metadata.json](../../sources/aws/kafka_cluster_encryption_at_rest_uses_cmk/metadata.json)
 - Source Code：[sources/aws/kafka_cluster_encryption_at_rest_uses_cmk/check.py](../../sources/aws/kafka_cluster_encryption_at_rest_uses_cmk/check.py)

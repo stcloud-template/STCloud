@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecr_registry_scan_images_on_push_enabled` |
-| 云平台 | AWS |
-| 服务 | ecr |
-| 严重等级 | medium |
-| 类别 | container-security |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | container |
+| チェック項目 ID | `ecr_registry_scan_images_on_push_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecr |
+| 重大度 | medium |
+| カテゴリ | container-security |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 Amazon ECR registries with repositories are evaluated for image scanning configured as `scan on push` at the registry level, with scan rules that cover all repositories (no restrictive filters), for either **basic** or **enhanced** scanning.
 
-## 风险
+## リスク
 
 Absent or filtered `scan on push` lets **vulnerable images** be pushed and deployed without timely detection, enabling exploitation of known CVEs (RCE, privilege escalation), supply chain compromise, and lateral movement - threatening workload integrity and data confidentiality.
 
-## 推荐措施
+## 推奨事項
 
 Enable registry-wide `scan on push` and ensure rules apply to all repositories (no filters). Prefer **enhanced scanning** for broader coverage, and pair with continuous scans when available. Integrate findings into CI/CD gates and alerts to enforce **defense in depth** and block promotion of risky images.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -62,11 +62,11 @@ resource "aws_ecr_registry_scanning_configuration" "<example_resource_name>" {
 6. Under Repository filters, set Filter type to WILDCARD and Filter to *
 7. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecr_registry_scan_images_on_push_enabled/metadata.json](../../sources/aws/ecr_registry_scan_images_on_push_enabled/metadata.json)
 - Source Code：[sources/aws/ecr_registry_scan_images_on_push_enabled/check.py](../../sources/aws/ecr_registry_scan_images_on_push_enabled/check.py)

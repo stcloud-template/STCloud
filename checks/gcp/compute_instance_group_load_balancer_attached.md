@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `compute_instance_group_load_balancer_attached` |
-| 云平台 | GCP |
-| 服务 | compute |
-| 严重等级 | low |
-| 类别 | resilience |
-| 资源类型 | compute.googleapis.com/InstanceGroupManager |
-| 资源组 | compute |
+| チェック項目 ID | `compute_instance_group_load_balancer_attached` |
+| クラウドプラットフォーム | GCP |
+| サービス | compute |
+| 重大度 | low |
+| カテゴリ | resilience |
+| リソースタイプ | compute.googleapis.com/InstanceGroupManager |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Managed Instance Groups (MIGs) should be attached to load balancers via backend services to enable traffic distribution across instances. Load balancers provide health checking, autoscaling integration, and high availability features that are essential for production workloads.
 
-## 风险
+## リスク
 
 Without load balancer attachment, MIGs cannot distribute traffic evenly across instances, which impacts: - **Application availability** - No automatic failover when instances become unhealthy - **Scalability** - Autoscaling benefits are limited without proper traffic distribution - **Performance** - Uneven load distribution can cause hotspots and degraded user experience
 
-## 推荐措施
+## 推奨事項
 
 Attach Managed Instance Groups to load balancers using backend services to enable traffic distribution, health checking, and seamless autoscaling. This ensures high availability and optimal performance for production workloads.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -62,13 +62,13 @@ resource "google_compute_backend_service" "example" {
 5. Configure port and balancing mode
 6. Complete the load balancer setup
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/compute/docs/instance-groups](https://cloud.google.com/compute/docs/instance-groups)
 - [https://cloud.google.com/load-balancing/docs/backend-service](https://cloud.google.com/load-balancing/docs/backend-service)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/mig-load-balancer-check.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/mig-load-balancer-check.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/compute_instance_group_load_balancer_attached/metadata.json](../../sources/gcp/compute_instance_group_load_balancer_attached/metadata.json)
 - Source Code：[sources/gcp/compute_instance_group_load_balancer_attached/check.py](../../sources/gcp/compute_instance_group_load_balancer_attached/check.py)

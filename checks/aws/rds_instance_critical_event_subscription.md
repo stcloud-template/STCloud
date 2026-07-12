@@ -2,34 +2,34 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `rds_instance_critical_event_subscription` |
-| 云平台 | AWS |
-| 服务 | rds |
-| 严重等级 | low |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks, AWS Security Best Practices |
-| 资源类型 | AwsRdsEventSubscription |
-| 资源组 | database |
+| チェック項目 ID | `rds_instance_critical_event_subscription` |
+| クラウドプラットフォーム | AWS |
+| サービス | rds |
+| 重大度 | low |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks, AWS Security Best Practices |
+| リソースタイプ | AwsRdsEventSubscription |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Ensure that Amazon RDS event notification subscriptions are enabled for database database events, particularly maintenance, configuration change and failure.
 
-## 风险
+## リスク
 
 Without event subscriptions for critical events, such as maintenance, configuration changes and failures, you may not be aware of issues affecting your RDS instances, leading to downtime or security vulnerabilities.
 
-## 推荐措施
+## 推奨事項
 
 To subscribe to RDS instance event notifications, see Subscribing to Amazon RDS event notification in the Amazon RDS User Guide.
 
-- 推荐链接：[https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html)
+- 推奨リンク：[https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -42,12 +42,12 @@ aws rds create-event-subscription --source-type db-instance --event-categories '
 
 [https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-20](https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-20)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html)
 - [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/rds_instance_critical_event_subscription/metadata.json](../../sources/aws/rds_instance_critical_event_subscription/metadata.json)
 - Source Code：[sources/aws/rds_instance_critical_event_subscription/check.py](../../sources/aws/rds_instance_critical_event_subscription/check.py)

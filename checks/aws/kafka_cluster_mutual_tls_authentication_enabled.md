@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kafka_cluster_mutual_tls_authentication_enabled` |
-| 云平台 | AWS |
-| 服务 | kafka |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
-| 资源类型 | AwsMskCluster |
-| 资源组 | messaging |
+| チェック項目 ID | `kafka_cluster_mutual_tls_authentication_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | kafka |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
+| リソースタイプ | AwsMskCluster |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 Amazon MSK clusters enforce **client authentication** on client-to-broker connections. Serverless clusters use TLS-based authentication by default; provisioned clusters must have **mutual TLS (mTLS)** explicitly enabled.
 
-## 风险
+## リスク
 
 Without **mTLS**, adversaries can impersonate clients or intercept sessions, compromising **confidentiality** and **integrity**. Unauthorized producers/consumers can read or alter topics, poison data streams, and flood brokers, degrading **availability** and impacting downstream systems.
 
-## 推荐措施
+## 推奨事項
 
 Enable **mutual TLS** for client-broker traffic and disable `PLAINTEXT` listeners. Issue short-lived client certificates from a managed CA with rotation. Apply **least privilege** using Kafka ACLs, restrict network access to trusted sources, and monitor authentication events as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -97,13 +97,13 @@ resource "aws_msk_cluster" "<example_resource_name>" {
 4. Under Encryption in transit, set Client-broker to TLS
 5. Save/Update and wait for the update to complete
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/enable-mutual-tls-authentication-for-kafka-clients.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/enable-mutual-tls-authentication-for-kafka-clients.html)
 - [https://docs.aws.amazon.com/msk/latest/developerguide/msk-update-security.html](https://docs.aws.amazon.com/msk/latest/developerguide/msk-update-security.html)
 - [https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html](https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kafka_cluster_mutual_tls_authentication_enabled/metadata.json](../../sources/aws/kafka_cluster_mutual_tls_authentication_enabled/metadata.json)
 - Source Code：[sources/aws/kafka_cluster_mutual_tls_authentication_enabled/check.py](../../sources/aws/kafka_cluster_mutual_tls_authentication_enabled/check.py)

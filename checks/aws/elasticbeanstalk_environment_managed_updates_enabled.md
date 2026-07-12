@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elasticbeanstalk_environment_managed_updates_enabled` |
-| 云平台 | AWS |
-| 服务 | elasticbeanstalk |
-| 严重等级 | high |
-| 类别 | vulnerabilities |
-| 检查类型 | Software and Configuration Checks/Patch Management, Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsElasticBeanstalkEnvironment |
-| 资源组 | compute |
+| チェック項目 ID | `elasticbeanstalk_environment_managed_updates_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elasticbeanstalk |
+| 重大度 | high |
+| カテゴリ | vulnerabilities |
+| チェックタイプ | Software and Configuration Checks/Patch Management, Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsElasticBeanstalkEnvironment |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Elastic Beanstalk environments** with **managed platform updates** enabled (`ManagedActionsEnabled: true`) automatically apply platform patch/minor updates during a scheduled maintenance window.
 
-## 风险
+## リスク
 
 Without automatic platform updates, environments may run **vulnerable OS/runtime versions**, enabling exploitation of known CVEs, RCE, or privilege escalation. Patch drift also increases instability, harming **availability** and undermining application **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **managed platform updates** with a set maintenance window and choose an update level (`patch` or `minor`). Ensure **enhanced health** is on and the update role follows **least privilege**. Validate in staging, roll out gradually, and stagger windows across environments to strengthen **defense in depth** and resilience.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -76,13 +76,13 @@ resource "aws_elastic_beanstalk_environment" "<example_resource_name>" {
 5. Turn Managed updates to Enabled
 6. Click Apply/Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/elasticbeanstalk-controls.html#elasticbeanstalk-2](https://docs.aws.amazon.com/securityhub/latest/userguide/elasticbeanstalk-controls.html#elasticbeanstalk-2)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ElasticBeanstalk/managed-platform-updates.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ElasticBeanstalk/managed-platform-updates.html)
 - [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-platform-update-managed.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-platform-update-managed.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elasticbeanstalk_environment_managed_updates_enabled/metadata.json](../../sources/aws/elasticbeanstalk_environment_managed_updates_enabled/metadata.json)
 - Source Code：[sources/aws/elasticbeanstalk_environment_managed_updates_enabled/check.py](../../sources/aws/elasticbeanstalk_environment_managed_updates_enabled/check.py)

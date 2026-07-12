@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `appstream_fleet_maximum_session_duration` |
-| 云平台 | AWS |
-| 服务 | appstream |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `appstream_fleet_maximum_session_duration` |
+| クラウドプラットフォーム | AWS |
+| サービス | appstream |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **AppStream fleets** enforce a **maximum user session duration**. This finding evaluates each fleet's configured limit against a threshold-default `10 hours` (`36000` seconds)-and identifies fleets whose session duration exceeds that limit.
 
-## 风险
+## リスク
 
 Overlong sessions widen the window for **session hijacking**, **lateral movement**, and **data exfiltration** if endpoints or tokens are compromised. Reduced reauthentication weakens **confidentiality** and **integrity**, and extended access can increase **costs** and resource contention.
 
-## 推荐措施
+## 推奨事項
 
 Configure the **maximum session duration** to `<= 10 hours` (e.g., `600` minutes) or less based on data sensitivity. Prefer shorter limits, enforce **reauthentication** on renewal, apply **least privilege**, and enable **idle timeouts**. Monitor session activity as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -66,11 +66,11 @@ resource "aws_appstream_fleet" "<example_resource_name>" {
 4. Set Maximum session duration to a value under 10 hours (e.g., 3600 seconds)
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/appstream2/latest/developerguide/set-up-stacks-fleets.html](https://docs.aws.amazon.com/appstream2/latest/developerguide/set-up-stacks-fleets.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/appstream_fleet_maximum_session_duration/metadata.json](../../sources/aws/appstream_fleet_maximum_session_duration/metadata.json)
 - Source Code：[sources/aws/appstream_fleet_maximum_session_duration/check.py](../../sources/aws/appstream_fleet_maximum_session_duration/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `neptune_cluster_backup_enabled` |
-| 云平台 | AWS |
-| 服务 | neptune |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsRdsDbCluster |
-| 资源组 | database |
+| チェック項目 ID | `neptune_cluster_backup_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | neptune |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsRdsDbCluster |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Neptune DB cluster automated backup is enabled and retention days are more than the required minimum retention period (default to `7` days).
 
-## 风险
+## リスク
 
 **Insufficient backup retention** reduces the ability to recover from data corruption, accidental deletion, or ransomware, impacting **availability** and **integrity**. - Prevents point-in-time recovery to required dates - Increases downtime, irreversible data loss, and compliance violations
 
-## 推荐措施
+## 推奨事項
 
 Ensure automated backups are enabled and retention aligns with your **RPO/RTO** and regulatory requirements (at least `7` days). - Define backup lifecycle and storage retention policies - Regularly test restore procedures and monitor backup health - Incorporate backups into Disaster Recovery and retention governance
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -67,14 +67,14 @@ resource "aws_neptune_cluster" "example_resource" {
 4. In Backup retention period set the value to 7 (or higher)
 5. Choose Apply immediately and click Modify cluster
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/neptune-controls.html#neptune-5](https://docs.aws.amazon.com/securityhub/latest/userguide/neptune-controls.html#neptune-5)
 - [https://trendmicro.com/cloudoneconformity/knowledge-base/aws/Neptune/sufficient-backup-retention-period.html](https://trendmicro.com/cloudoneconformity/knowledge-base/aws/Neptune/sufficient-backup-retention-period.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233327-check-for-neptune-clusters-backup-retention-period](https://support.icompaas.com/support/solutions/articles/62000233327-check-for-neptune-clusters-backup-retention-period)
 - [https://asecure.cloud/a/p_configrule_neptune_cluster_backup_retention_check/](https://asecure.cloud/a/p_configrule_neptune_cluster_backup_retention_check/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/neptune_cluster_backup_enabled/metadata.json](../../sources/aws/neptune_cluster_backup_enabled/metadata.json)
 - Source Code：[sources/aws/neptune_cluster_backup_enabled/check.py](../../sources/aws/neptune_cluster_backup_enabled/check.py)

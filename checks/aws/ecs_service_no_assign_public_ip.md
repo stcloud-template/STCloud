@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecs_service_no_assign_public_ip` |
-| 云平台 | AWS |
-| 服务 | ecs |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
-| 资源类型 | AwsEcsService |
-| 资源组 | container |
+| チェック項目 ID | `ecs_service_no_assign_public_ip` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecs |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
+| リソースタイプ | AwsEcsService |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **ECS services** are assessed for automatic public IP assignment via the `assignPublicIp` setting in their network configuration. The finding indicates whether tasks launched by the service receive a public IP or are limited to private addressing.
 
-## 风险
+## リスク
 
 Automatic **public IPs** make tasks directly reachable from the Internet, enabling: - Port scanning and remote exploitation - Brute-force against admin endpoints - Data exfiltration via exposed APIs This jeopardizes **confidentiality**, **integrity**, and **availability**, and can facilitate lateral movement within the VPC.
 
-## 推荐措施
+## 推奨事項
 
 Disable `assignPublicIp` to keep tasks private. Expose services through **load balancers** or **private endpoints**, restrict ingress with **least-privilege** security groups, and route egress via **NAT**. Apply **defense in depth** (WAF, TLS, monitoring) and segment networks to minimize blast radius.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -74,14 +74,14 @@ resource "aws_ecs_service" "<example_resource_name>" {
 3. Under Networking (awsvpc), set Assign public IP to Disabled
 4. Click Update service to apply
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-2](https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-2)
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html](https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html)
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecs_service_no_assign_public_ip/metadata.json](../../sources/aws/ecs_service_no_assign_public_ip/metadata.json)
 - Source Code：[sources/aws/ecs_service_no_assign_public_ip/check.py](../../sources/aws/ecs_service_no_assign_public_ip/check.py)

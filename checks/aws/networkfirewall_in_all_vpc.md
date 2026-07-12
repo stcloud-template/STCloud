@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `networkfirewall_in_all_vpc` |
-| 云平台 | AWS |
-| 服务 | networkfirewall |
-| 严重等级 | medium |
-| 类别 | trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsEc2Vpc |
-| 资源组 | network |
+| チェック項目 ID | `networkfirewall_in_all_vpc` |
+| クラウドプラットフォーム | AWS |
+| サービス | networkfirewall |
+| 重大度 | medium |
+| カテゴリ | trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsEc2Vpc |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **VPCs** with an **AWS Network Firewall** associated to the same VPC to inspect and filter network traffic. Identifies VPCs that do not have a Network Firewall resource linked to them.
 
-## 风险
+## リスク
 
 Without a **Network Firewall**, VPC traffic can bypass deep inspection and centralized policy enforcement, enabling **data exfiltration**, **command-and-control**, and **lateral movement**. Confidentiality is reduced by unmonitored flows; integrity and availability are threatened by malware and disruptive traffic.
 
-## 推荐措施
+## 推奨事項
 
 Deploy **AWS Network Firewall** in each VPC or centralize inspection through a dedicated hub VPC. Adopt a `default-deny` posture with least-privilege rules, restrict egress to required destinations, segment workloads (**defense in depth**, **zero trust**), and enable logging to monitor and tune network policies.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,13 +75,13 @@ resource "aws_networkfirewall_firewall" "<example_resource_name>" {
 5. Choose Create firewall
 6. Verify the firewall shows under the selected VPC
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/vpc-config.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/vpc-config.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/NetworkFirewall/network-firewall-in-use.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/NetworkFirewall/network-firewall-in-use.html)
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/setting-up.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/setting-up.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/networkfirewall_in_all_vpc/metadata.json](../../sources/aws/networkfirewall_in_all_vpc/metadata.json)
 - Source Code：[sources/aws/networkfirewall_in_all_vpc/check.py](../../sources/aws/networkfirewall_in_all_vpc/check.py)

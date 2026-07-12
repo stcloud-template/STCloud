@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `emr_cluster_master_nodes_no_public_ip` |
-| 云平台 | AWS |
-| 服务 | emr |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `emr_cluster_master_nodes_no_public_ip` |
+| クラウドプラットフォーム | AWS |
+| サービス | emr |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Amazon EMR clusters** in non-terminated states are assessed for **public IP assignment** on cluster nodes (primary and workers). The finding identifies clusters whose instances are reachable via public IPs rather than private VPC addresses.
 
-## 风险
+## リスク
 
 **Publicly reachable EMR nodes** expose admin UIs and SSH to the Internet, enabling brute force and service exploits. A compromised primary node can alter jobs and exfiltrate data from S3/HDFS, degrading **confidentiality** and **integrity**, and disrupt workloads, impacting **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Run EMR in **private subnets** without public IPs. Use **VPC endpoints** for AWS services and **NAT** only when needed. Enforce **least privilege** security groups, avoid `0.0.0.0/0`, and prefer **SSM** or a bastion for admin access. Keep **EMR block public access** enabled and favor **private connectivity** for external dependencies.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -78,7 +78,7 @@ resource "aws_emr_cluster" "<example_resource_name>" {
 3. Under Networking, select your VPC and choose a private Subnet (no auto-assign public IPv4).
 4. Create the cluster. Its instances will launch without public IPs.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-vpc-subnet.html](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-vpc-subnet.html)
 - [https://aws.amazon.com/blogs/aws/new-launch-amazon-emr-clusters-in-private-subnets/](https://aws.amazon.com/blogs/aws/new-launch-amazon-emr-clusters-in-private-subnets/)
@@ -86,7 +86,7 @@ resource "aws_emr_cluster" "<example_resource_name>" {
 - [https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-clusters-in-a-vpc.html](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-clusters-in-a-vpc.html)
 - [https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-vpc-launching-job-flows.html](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-vpc-launching-job-flows.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/emr_cluster_master_nodes_no_public_ip/metadata.json](../../sources/aws/emr_cluster_master_nodes_no_public_ip/metadata.json)
 - Source Code：[sources/aws/emr_cluster_master_nodes_no_public_ip/check.py](../../sources/aws/emr_cluster_master_nodes_no_public_ip/check.py)

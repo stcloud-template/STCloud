@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `autoscaling_group_using_ec2_launch_template` |
-| 云平台 | AWS |
-| 服务 | autoscaling |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsAutoScalingAutoScalingGroup |
-| 资源组 | compute |
+| チェック項目 ID | `autoscaling_group_using_ec2_launch_template` |
+| クラウドプラットフォーム | AWS |
+| サービス | autoscaling |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsAutoScalingAutoScalingGroup |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **EC2 Auto Scaling groups** use an **EC2 launch template** directly or via a `mixed instances policy` to define instance configuration and versioned settings.
 
-## 风险
+## リスク
 
 Without a launch template, there is no **versioned, auditable baseline** for instance settings, increasing configuration drift. Inconsistent metadata and network options can enable unauthorized access or unstable deployments, degrading confidentiality and availability.
 
-## 推荐措施
+## 推奨事項
 
 Adopt **launch templates** for all Auto Scaling groups and include them in any `mixed instances policy`. Use versioning with approvals, enforce hardened defaults (least privilege roles, secure metadata like `IMDSv2`, encrypted storage), and apply change control to ensure consistency and defense in depth.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -76,13 +76,13 @@ resource "aws_autoscaling_group" "example" {
 3. Under "Launch template or configuration", choose Launch template and select your template and version (Default or Latest)
 4. Click Update to save
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/AutoScaling/asg-launch-template.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/AutoScaling/asg-launch-template.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/autoscaling-controls.html#autoscaling-9](https://docs.aws.amazon.com/securityhub/latest/userguide/autoscaling-controls.html#autoscaling-9)
 - [https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/autoscaling_group_using_ec2_launch_template/metadata.json](../../sources/aws/autoscaling_group_using_ec2_launch_template/metadata.json)
 - Source Code：[sources/aws/autoscaling_group_using_ec2_launch_template/check.py](../../sources/aws/autoscaling_group_using_ec2_launch_template/check.py)

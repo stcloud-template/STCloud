@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `networkfirewall_policy_default_action_fragmented_packets` |
-| 云平台 | AWS |
-| 服务 | networkfirewall |
-| 严重等级 | high |
-| 类别 | trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), TTPs/Defense Evasion |
-| 资源类型 | AwsNetworkFirewallFirewall |
-| 资源组 | network |
+| チェック項目 ID | `networkfirewall_policy_default_action_fragmented_packets` |
+| クラウドプラットフォーム | AWS |
+| サービス | networkfirewall |
+| 重大度 | high |
+| カテゴリ | trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), TTPs/Defense Evasion |
+| リソースタイプ | AwsNetworkFirewallFirewall |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Network Firewall policies** are assessed for the `StatelessFragmentDefaultActions` setting to confirm **fragmented UDP packets** use `aws:drop` or `aws:forward_to_sfe`.
 
-## 风险
+## リスク
 
 Using `aws:pass` for **fragmented UDP** lets uninspected traffic traverse the firewall. Attackers can evade filters via fragmentation, enabling **data exfiltration** (confidentiality), payload smuggling and lateral movement (integrity), and fragment floods that strain services (availability).
 
-## 推荐措施
+## 推奨事項
 
 Set `StatelessFragmentDefaultActions` to `aws:drop` or `aws:forward_to_sfe` so fragments are blocked or sent for **stateful inspection**. Apply **least privilege** on traffic flows, use **defense in depth** with rule groups, and monitor logs for anomalous fragmentation.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -66,7 +66,7 @@ resource "aws_networkfirewall_firewall_policy" "<example_resource_name>" {
 4. Set the action to Drop (or Forward to stateful rule groups)
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_FirewallPolicy.html](https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_FirewallPolicy.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-5](https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-5)
@@ -74,7 +74,7 @@ resource "aws_networkfirewall_firewall_policy" "<example_resource_name>" {
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateless-default-actions.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateless-default-actions.html)
 - [https://docs.aws.amazon.com/config/latest/developerguide/netfw-policy-default-action-fragment-packets.html](https://docs.aws.amazon.com/config/latest/developerguide/netfw-policy-default-action-fragment-packets.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/networkfirewall_policy_default_action_fragmented_packets/metadata.json](../../sources/aws/networkfirewall_policy_default_action_fragmented_packets/metadata.json)
 - Source Code：[sources/aws/networkfirewall_policy_default_action_fragmented_packets/check.py](../../sources/aws/networkfirewall_policy_default_action_fragmented_packets/check.py)

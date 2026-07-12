@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_metric_filter_unauthorized_api_calls` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, TTPs/Initial Access/Unauthorized Access |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_metric_filter_unauthorized_api_calls` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, TTPs/Initial Access/Unauthorized Access |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudWatch Logs** for CloudTrail include a metric filter that matches unauthorized API errors (`$.errorCode="*UnauthorizedOperation"` or `$.errorCode="AccessDenied*"`) and a linked alarm that triggers when events match the filter.
 
-## 风险
+## リスク
 
 Without alerting on **unauthorized API calls**, permission probing and failed access by compromised identities can go unnoticed. Attackers can enumerate services, pivot, and attempt privilege escalation, threatening data **confidentiality** and **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Enable real-time **alerting** by adding a CloudWatch Logs metric filter for unauthorized errors (`*UnauthorizedOperation`, `AccessDenied*`) and associating it with an alarm that notifies responders. - Enforce **least privilege** to reduce noise - Integrate with IR tooling for **defense in depth**
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -94,7 +94,7 @@ resource "aws_cloudwatch_metric_alarm" "unauthorized" {
 6. Set Statistic: Sum, Period: 5 minutes, Threshold type: Static, Threshold: 1, Evaluation periods: 1
 7. Create the alarm
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 - [https://asecure.cloud/a/unauthorized_api_calls/](https://asecure.cloud/a/unauthorized_api_calls/)
@@ -103,7 +103,7 @@ resource "aws_cloudwatch_metric_alarm" "unauthorized" {
 - [https://www.intelligentdiscovery.io/controls/cloudwatch/cloudwatch-unauthorized-api-calls](https://www.intelligentdiscovery.io/controls/cloudwatch/cloudwatch-unauthorized-api-calls)
 - [https://support.icompaas.com/support/solutions/articles/62000083561-ensure-a-log-metric-filter-and-alarm-exist-for-unauthorized-api-calls](https://support.icompaas.com/support/solutions/articles/62000083561-ensure-a-log-metric-filter-and-alarm-exist-for-unauthorized-api-calls)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_metric_filter_unauthorized_api_calls/metadata.json](../../sources/aws/cloudwatch_log_metric_filter_unauthorized_api_calls/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_metric_filter_unauthorized_api_calls/check.py](../../sources/aws/cloudwatch_log_metric_filter_unauthorized_api_calls/check.py)

@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `monitor_alert_service_health_exists` |
-| 云平台 | Azure |
-| 服务 | monitor |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | Monitor |
-| 资源组 | monitoring |
+| チェック項目 ID | `monitor_alert_service_health_exists` |
+| クラウドプラットフォーム | Azure |
+| サービス | monitor |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Monitor |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 Ensure that an Azure activity log alert is configured to trigger when Service Health events occur within your Microsoft Azure cloud account. The alert should activate when new events match the specified conditions in the alert rule configuration.
 
-## 风险
+## リスク
 
 Lack of monitoring for Service Health events may result in missing critical service issues, planned maintenance, security advisories, or other changes that could impact Azure services and regions in use.
 
-## 推荐措施
+## 推奨事項
 
 Create an activity log alert for Service Health events and configure an action group to notify appropriate personnel.
 
-- 推荐链接：[https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)
+- 推奨リンク：[https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -41,12 +41,12 @@ az monitor activity-log alert create --subscription <subscription-id> --resource
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/ActivityLog/service-health-alert.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/ActivityLog/service-health-alert.html)
 
-## 参考资料
+## 参考資料
 
 - [https://learn.microsoft.com/en-us/azure/service-health/overview](https://learn.microsoft.com/en-us/azure/service-health/overview)
 - [https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/monitor_alert_service_health_exists/metadata.json](../../sources/azure/monitor_alert_service_health_exists/metadata.json)
 - Source Code：[sources/azure/monitor_alert_service_health_exists/check.py](../../sources/azure/monitor_alert_service_health_exists/check.py)

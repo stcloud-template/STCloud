@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `compute_instance_deletion_protection_enabled` |
-| 云平台 | GCP |
-| 服务 | compute |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 资源类型 | compute.googleapis.com/Instance |
-| 资源组 | compute |
+| チェック項目 ID | `compute_instance_deletion_protection_enabled` |
+| クラウドプラットフォーム | GCP |
+| サービス | compute |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| リソースタイプ | compute.googleapis.com/Instance |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 This check verifies whether GCP Compute Engine VM instances have **deletion protection** enabled to prevent accidental termination of production or critical workloads.
 
-## 风险
+## リスク
 
 Without deletion protection enabled, VM instances are vulnerable to **accidental deletion** by users with sufficient permissions. This could result in: - **Service disruption** and downtime for critical applications - **Data loss** if persistent disks are also deleted - **Recovery delays** while recreating instances and restoring configurations
 
-## 推荐措施
+## 推奨事項
 
 Enable deletion protection on all production and business-critical VM instances to prevent accidental termination. Regularly review instances to ensure critical workloads are protected.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -67,12 +67,12 @@ resource "google_compute_instance" "example_resource" {
 5. Under Deletion protection, check the box to enable
 6. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/compute/docs/instances/preventing-accidental-vm-deletion](https://cloud.google.com/compute/docs/instances/preventing-accidental-vm-deletion)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/enable-deletion-protection.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/enable-deletion-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/compute_instance_deletion_protection_enabled/metadata.json](../../sources/gcp/compute_instance_deletion_protection_enabled/metadata.json)
 - Source Code：[sources/gcp/compute_instance_deletion_protection_enabled/check.py](../../sources/gcp/compute_instance_deletion_protection_enabled/check.py)

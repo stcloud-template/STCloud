@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_data_catalogs_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_data_catalogs_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue Data Catalog** resource policies are assessed for configurations that expose the catalog to anyone, such as `Principal: *`, broad resource scopes, or permissive conditions. The finding highlights catalogs made public through overly permissive resource-based access.
 
-## 风险
+## リスク
 
 Public catalog access lets unauthorized actors enumerate schemas, S3 locations, and connection metadata, weakening **confidentiality**. If writes are exposed, attackers can alter databases/tables, corrupt lineage, and disrupt jobs and queries, harming **integrity** and **availability**, and enabling lateral movement to data stores.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **least privilege** on catalog resource policies: - Avoid `Principal: *` and wildcards - Grant only required actions to explicit principals - Prefer identity-based access or Lake Formation for sharing - Limit scope with precise ARNs/conditions and monitor changes for **defense in depth**
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -62,12 +62,12 @@ resource "aws_glue_resource_policy" "<example_resource_name>" {
 4. Remove any statement that has Principal set to * (public) or AWS: "*"; or delete the entire policy
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/security_iam_service-with-iam.html?icmpid=docs_console_unmapped#security_iam_service-with-iam-resource-based-policies](https://docs.aws.amazon.com/glue/latest/dg/security_iam_service-with-iam.html?icmpid=docs_console_unmapped#security_iam_service-with-iam-resource-based-policies)
 - [https://docs.aws.amazon.com/glue/latest/dg/cross-account-access.html](https://docs.aws.amazon.com/glue/latest/dg/cross-account-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_data_catalogs_not_publicly_accessible/metadata.json](../../sources/aws/glue_data_catalogs_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/glue_data_catalogs_not_publicly_accessible/check.py](../../sources/aws/glue_data_catalogs_not_publicly_accessible/check.py)

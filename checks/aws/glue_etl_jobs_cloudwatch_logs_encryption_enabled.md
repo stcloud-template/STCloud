@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_etl_jobs_cloudwatch_logs_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
-| 资源类型 | AwsGlueJob |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_etl_jobs_cloudwatch_logs_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
+| リソースタイプ | AwsGlueJob |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue ETL jobs** are evaluated for a **security configuration** with **CloudWatch Logs encryption** (`SSE-KMS`) enabled. Jobs without a security configuration, or with CloudWatch Logs encryption set to `DISABLED`, are highlighted.
 
-## 风险
+## リスク
 
 Unencrypted Glue logs weaken **confidentiality**. Log entries can expose credentials, PII, connection strings, and schema details. Anyone with log storage access can harvest secrets for **lateral movement** and data exfiltration, widening the blast radius of compromises.
 
-## 推荐措施
+## 推奨事項
 
 Enable **at-rest encryption** for Glue logs via a **security configuration** using customer-managed KMS keys. Apply **least privilege** to KMS and CloudWatch Logs, rotate keys, and require all jobs to attach an approved configuration. Embed this baseline in IaC for consistent, **defense-in-depth** coverage.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -90,12 +90,12 @@ resource "aws_glue_job" "example_resource_name" {
 4. Set Security configuration to the one created in step 2
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html](https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/cloud-watch-logs-encryption-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/cloud-watch-logs-encryption-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_etl_jobs_cloudwatch_logs_encryption_enabled/metadata.json](../../sources/aws/glue_etl_jobs_cloudwatch_logs_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/glue_etl_jobs_cloudwatch_logs_encryption_enabled/check.py](../../sources/aws/glue_etl_jobs_cloudwatch_logs_encryption_enabled/check.py)

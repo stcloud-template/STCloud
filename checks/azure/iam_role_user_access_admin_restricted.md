@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `iam_role_user_access_admin_restricted` |
-| 云平台 | Azure |
-| 服务 | iam |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | AzureIAMRoleassignment |
-| 资源组 | IAM |
+| チェック項目 ID | `iam_role_user_access_admin_restricted` |
+| クラウドプラットフォーム | Azure |
+| サービス | iam |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AzureIAMRoleassignment |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Checks for active assignments of the highly privileged 'User Access Administrator' role in Azure subscriptions.
 
-## 风险
+## リスク
 
 Persistent assignment of this role can lead to privilege escalation and unauthorized access, increasing the risk of security breaches.
 
-## 推荐措施
+## 推奨事項
 
 Remove 'User Access Administrator' role assignments immediately after use to minimize security risks.
 
-- 推荐链接：[https://learn.microsoft.com/en-us/azure/role-based-access-control/elevate-access-global-admin?tabs=azure-portal%2Centra-audit-logs](https://learn.microsoft.com/en-us/azure/role-based-access-control/elevate-access-global-admin?tabs=azure-portal%2Centra-audit-logs)
+- 推奨リンク：[https://learn.microsoft.com/en-us/azure/role-based-access-control/elevate-access-global-admin?tabs=azure-portal%2Centra-audit-logs](https://learn.microsoft.com/en-us/azure/role-based-access-control/elevate-access-global-admin?tabs=azure-portal%2Centra-audit-logs)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -37,12 +37,12 @@ Remove 'User Access Administrator' role assignments immediately after use to min
 az role assignment delete --role 'User Access Administrator' --scope '/subscriptions/<subscription_id>'
 ```
 
-## 参考资料
+## 参考資料
 
 - [https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator)
 - [https://learn.microsoft.com/en-us/azure/role-based-access-control/elevate-access-global-admin?tabs=azure-portal%2Centra-audit-logs](https://learn.microsoft.com/en-us/azure/role-based-access-control/elevate-access-global-admin?tabs=azure-portal%2Centra-audit-logs)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/iam_role_user_access_admin_restricted/metadata.json](../../sources/azure/iam_role_user_access_admin_restricted/metadata.json)
 - Source Code：[sources/azure/iam_role_user_access_admin_restricted/check.py](../../sources/azure/iam_role_user_access_admin_restricted/check.py)

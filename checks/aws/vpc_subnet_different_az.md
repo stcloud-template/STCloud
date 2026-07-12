@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_subnet_different_az` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsEc2Subnet |
-| 资源组 | network |
+| チェック項目 ID | `vpc_subnet_different_az` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsEc2Subnet |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **VPCs** are assessed for **subnets spread across multiple Availability Zones**. The finding distinguishes VPCs with subnets confined to a single AZ or with no subnets from those with subnets in `2+` distinct AZs.
 
-## 风险
+## リスク
 
 Single-AZ subnet layouts create a **single point of failure**, leading to **service downtime** during AZ outages, maintenance, or capacity events. Lack of **zonal redundancy** constrains load balancing and egress design, reduces **fault isolation**, and undermines availability and recovery objectives.
 
-## 推荐措施
+## 推奨事項
 
 Distribute subnets across `2+` **Availability Zones** and deploy workloads in separate AZs for **high availability**. Mirror network tiers per AZ, align routing and egress per AZ, and enforce multi-AZ layouts with IaC and policy guardrails. *Regularly test failover* to validate resilience.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -74,12 +74,12 @@ resource "aws_subnet" "subnet_b" {
 4. Add two subnets with non-overlapping CIDRs in different Availability Zones (e.g., <example_az_1> and <example_az_2>)
 5. Click Create subnet to save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/pdfs/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/building-scalable-secure-multi-vpc-network-infrastructure.pdf](https://docs.aws.amazon.com/pdfs/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/building-scalable-secure-multi-vpc-network-infrastructure.pdf)
 - [https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_subnet_different_az/metadata.json](../../sources/aws/vpc_subnet_different_az/metadata.json)
 - Source Code：[sources/aws/vpc_subnet_different_az/check.py](../../sources/aws/vpc_subnet_different_az/check.py)

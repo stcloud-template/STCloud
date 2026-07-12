@@ -2,41 +2,41 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cognito_user_pool_deletion_protection_enabled` |
-| 云平台 | AWS |
-| 服务 | cognito |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | AwsCognitoUserPool |
-| 资源组 | IAM |
+| チェック項目 ID | `cognito_user_pool_deletion_protection_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cognito |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AwsCognitoUserPool |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Deletion protection is a feature that allows you to lock a user pool to prevent it from being deleted. When deletion protection is enabled, you cannot delete the user pool. By default, deletion protection is disabled
 
-## 风险
+## リスク
 
 If deletion protection is not enabled, the user pool can be deleted by any user with the necessary permissions. This can lead to loss of data and service disruption
 
-## 推荐措施
+## 推奨事項
 
 Deletion protection should be enabled for the user pool to prevent accidental deletion
 
-- 推荐链接：[https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-deletion-protection.html](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-deletion-protection.html)
+- 推奨リンク：[https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-deletion-protection.html](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-deletion-protection.html)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-deletion-protection.html](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-deletion-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cognito_user_pool_deletion_protection_enabled/metadata.json](../../sources/aws/cognito_user_pool_deletion_protection_enabled/metadata.json)
 - Source Code：[sources/aws/cognito_user_pool_deletion_protection_enabled/check.py](../../sources/aws/cognito_user_pool_deletion_protection_enabled/check.py)

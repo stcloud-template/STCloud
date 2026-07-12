@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `storage_secure_transfer_required_is_enabled` |
-| 云平台 | Azure |
-| 服务 | storage |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 资源类型 | AzureStorageAccount |
-| 资源组 | storage |
+| チェック項目 ID | `storage_secure_transfer_required_is_enabled` |
+| クラウドプラットフォーム | Azure |
+| サービス | storage |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| リソースタイプ | AzureStorageAccount |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 Ensure that all data transferred between clients and your Azure Storage account is encrypted using the HTTPS protocol.
 
-## 风险
+## リスク
 
 Requests to the storage account sent outside of a secure connection can be eavesdropped
 
-## 推荐措施
+## 推奨事項
 
 Enable data encryption in transit.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -43,11 +43,11 @@ az storage account update --name <STORAGE_ACCOUNT_NAME> --https-only true
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/StorageAccounts/secure-transfer-required.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/StorageAccounts/secure-transfer-required.html)
 
-## 参考资料
+## 参考資料
 
 No external references available.
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/storage_secure_transfer_required_is_enabled/metadata.json](../../sources/azure/storage_secure_transfer_required_is_enabled/metadata.json)
 - Source Code：[sources/azure/storage_secure_transfer_required_is_enabled/check.py](../../sources/azure/storage_secure_transfer_required_is_enabled/check.py)

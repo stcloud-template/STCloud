@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudtrail_threat_detection_llm_jacking` |
-| 云平台 | AWS |
-| 服务 | cloudtrail |
-| 严重等级 | critical |
-| 类别 | threat-detection, gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, TTPs/Discovery, TTPs/Execution, TTPs/Defense Evasion, Effects/Resource Consumption, Unusual Behaviors/User |
-| 资源类型 | AwsCloudTrailTrail |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudtrail_threat_detection_llm_jacking` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudtrail |
+| 重大度 | critical |
+| カテゴリ | threat-detection, gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, TTPs/Discovery, TTPs/Execution, TTPs/Defense Evasion, Effects/Resource Consumption, Unusual Behaviors/User |
+| リソースタイプ | AwsCloudTrailTrail |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudTrail Bedrock activity** is analyzed per identity for a high diversity of LLM-related API calls (e.g., `InvokeModel`, `InvokeModelWithResponseStream`, `GetFoundationModelAvailability`). *If an identity's share of these actions exceeds a configured threshold over a recent window*, it is surfaced as potential **LLM-jacking** behavior.
 
-## 风险
+## リスク
 
 Such patterns suggest **stolen credential** abuse to drive LLM usage. - Availability: cost exhaustion and service disruption - Confidentiality: leakage of prompts/outputs and model settings - Integrity: misuse of permissions for broader access Attackers may use reverse proxies to resell access and obfuscate sources.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** to Bedrock; restrict `Invoke*` only to required roles and deny broadly via **SCPs** where unused. Enforce **MFA** and short-lived creds; rotate/remove exposed keys. Enable **model invocation logging** and budgets/quotas. Continuously monitor for Bedrock enumeration plus invoke bursts. Use **defense in depth** across identities and networks.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -90,13 +90,13 @@ resource "aws_organizations_policy_attachment" "attach" {
 6. Select the target (Root, OU, or the affected account ID <example_resource_id>) and attach the policy
 7. Wait for propagation; no further Bedrock calls will occur, and the finding will clear after the detection window elapses
 
-## 参考资料
+## 参考資料
 
 - [https://furkangungor.medium.com/automating-anomaly-detection-in-aws-cloudtrail-logs-4efb2ad9b958](https://furkangungor.medium.com/automating-anomaly-detection-in-aws-cloudtrail-logs-4efb2ad9b958)
 - [https://help.sumologic.com/docs/integrations/amazon-aws/amazon-bedrock/](https://help.sumologic.com/docs/integrations/amazon-aws/amazon-bedrock/)
 - [https://dzone.com/articles/ai-powered-aws-cloudtrail-analysis-strands-agent-bedrock](https://dzone.com/articles/ai-powered-aws-cloudtrail-analysis-strands-agent-bedrock)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudtrail_threat_detection_llm_jacking/metadata.json](../../sources/aws/cloudtrail_threat_detection_llm_jacking/metadata.json)
 - Source Code：[sources/aws/cloudtrail_threat_detection_llm_jacking/check.py](../../sources/aws/cloudtrail_threat_detection_llm_jacking/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kms_cmk_rotation_enabled` |
-| 云平台 | AWS |
-| 服务 | kms |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | AwsKmsKey |
-| 资源组 | security |
+| チェック項目 ID | `kms_cmk_rotation_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | kms |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsKmsKey |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **Customer-managed KMS symmetric keys** in the `Enabled` state are evaluated to confirm `automatic rotation` of key material is configured
 
-## 风险
+## リスク
 
 Without **automatic rotation**, long-lived key material increases confidentiality and integrity risk. If a KMS key is exposed, attackers can unwrap data keys and decrypt stored data until the key changes. It also reduces crypto agility and may conflict with mandated rotation policies.
 
-## 推荐措施
+## 推奨事項
 
 Enable **automatic rotation** on customer-managed symmetric KMS keys and choose a rotation period that meets policy. Enforce **least privilege** and **separation of duties** for key administration versus usage. Monitor key lifecycle events and use on-demand rotation when compromise is suspected.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -72,12 +72,12 @@ resource "aws_kms_key" "<example_resource_name>" {
 4. Check Enable automatic key rotation
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)
 - [https://aws.amazon.com/blogs/security/how-to-get-ready-for-certificate-transparency/](https://aws.amazon.com/blogs/security/how-to-get-ready-for-certificate-transparency/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kms_cmk_rotation_enabled/metadata.json](../../sources/aws/kms_cmk_rotation_enabled/metadata.json)
 - Source Code：[sources/aws/kms_cmk_rotation_enabled/check.py](../../sources/aws/kms_cmk_rotation_enabled/check.py)

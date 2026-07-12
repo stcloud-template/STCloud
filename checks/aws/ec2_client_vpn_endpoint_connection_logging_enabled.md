@@ -2,45 +2,45 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_client_vpn_endpoint_connection_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 严重等级 | low |
-| 类别 | Uncategorized |
-| 资源类型 | AwsEc2ClientVpnEndpoint |
-| 资源组 | network |
+| チェック項目 ID | `ec2_client_vpn_endpoint_connection_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| 重大度 | low |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AwsEc2ClientVpnEndpoint |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 This control checks whether an AWS Client VPN endpoint has client connection logging enabled. The control fails if the endpoint doesn't have client connection logging enabled.
 
-## 风险
+## リスク
 
 Client VPN endpoints allow remote clients to securely connect to resources in a Virtual Private Cloud (VPC) in AWS. Connection logs allow you to track user activity on the VPN endpoint and provides visibility.
 
-## 推荐措施
+## 推奨事項
 
 To enable connection logging, see Enable connection logging for an existing Client VPN endpoint in the AWS Client VPN Administrator Guide.
 
-- 推荐链接：[https://docs.aws.amazon.com/config/latest/developerguide/ec2-client-vpn-connection-log-enabled.html](https://docs.aws.amazon.com/config/latest/developerguide/ec2-client-vpn-connection-log-enabled.html)
+- 推奨リンク：[https://docs.aws.amazon.com/config/latest/developerguide/ec2-client-vpn-connection-log-enabled.html](https://docs.aws.amazon.com/config/latest/developerguide/ec2-client-vpn-connection-log-enabled.html)
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
 
 [https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-51](https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-51)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html)
 - [https://docs.aws.amazon.com/config/latest/developerguide/ec2-client-vpn-connection-log-enabled.html](https://docs.aws.amazon.com/config/latest/developerguide/ec2-client-vpn-connection-log-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_client_vpn_endpoint_connection_logging_enabled/metadata.json](../../sources/aws/ec2_client_vpn_endpoint_connection_logging_enabled/metadata.json)
 - Source Code：[sources/aws/ec2_client_vpn_endpoint_connection_logging_enabled/check.py](../../sources/aws/ec2_client_vpn_endpoint_connection_logging_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `redshift_cluster_automated_snapshot` |
-| 云平台 | AWS |
-| 服务 | redshift |
-| 严重等级 | high |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsRedshiftCluster |
-| 资源组 | analytics |
+| チェック項目 ID | `redshift_cluster_automated_snapshot` |
+| クラウドプラットフォーム | AWS |
+| サービス | redshift |
+| 重大度 | high |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsRedshiftCluster |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **Amazon Redshift clusters** are evaluated for **automated snapshots** being enabled with a retention period `> 0`, confirming that periodic backups are created and retained.
 
-## 风险
+## リスク
 
 Without **automated snapshots**, clusters lack recent recovery points, degrading **availability** and **integrity**. Accidental deletion, malicious changes, or failed ETL can cause data loss and prolonged recovery, increasing RPO/RTO and limiting effective forensic analysis.
 
-## 推荐措施
+## 推奨事項
 
 Enable **automated snapshots** with retention aligned to RPO/RTO. Enforce **least privilege** on snapshot access and use **encryption**. Regularly test restores and monitor backup health. *For resilience*, replicate snapshots to another Region/account and separate backup administration from data owners.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,11 +75,11 @@ resource "aws_redshift_cluster" "<example_resource_name>" {
 3. Under Backup, set Automated snapshot retention period to 1 (or greater)
 4. Click Save changes and apply the modification
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_Redshift.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_Redshift.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/redshift_cluster_automated_snapshot/metadata.json](../../sources/aws/redshift_cluster_automated_snapshot/metadata.json)
 - Source Code：[sources/aws/redshift_cluster_automated_snapshot/check.py](../../sources/aws/redshift_cluster_automated_snapshot/check.py)

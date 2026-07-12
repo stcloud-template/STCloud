@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `awslambda_function_invoke_api_operations_cloudtrail_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | awslambda |
-| 严重等级 | low |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Defense Evasion |
-| 资源类型 | AwsLambdaFunction |
-| 资源组 | serverless |
+| チェック項目 ID | `awslambda_function_invoke_api_operations_cloudtrail_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | awslambda |
+| 重大度 | low |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Defense Evasion |
+| リソースタイプ | AwsLambdaFunction |
+| リソースグループ | serverless |
 
-## 描述
+## 説明
 
 **AWS Lambda** function invocations are recorded as **CloudTrail data events** when trails include `AWS::Lambda::Function` resources. The finding reflects whether a function's `Invoke` activity is being logged by an eligible trail.
 
-## 风险
+## リスク
 
 Without Lambda `Invoke` data events, per-invocation accountability is lost. Adversaries or misused automation can run code without an audit trail, obscuring actor, time, and source. This hinders forensics and enables covert exfiltration or unauthorized changes, impacting **confidentiality** and **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **CloudTrail data event logging** for `AWS::Lambda::Function` to capture `Invoke` calls across required Regions and accounts. Apply **least privilege** selectors to scope events, centralize logs with strong retention, and integrate alerts for anomalous invokes as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -76,12 +76,12 @@ resource "aws_cloudtrail" "<example_resource_name>" {
 4. Select Lambda function and choose to log data events for all functions (or specify functions)
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html](https://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html)
 - [https://support.icompaas.com/support/solutions/articles/62000127055-ensure-lambda-functions-invoke-api-operations-are-being-recorded-by-cloudtrail](https://support.icompaas.com/support/solutions/articles/62000127055-ensure-lambda-functions-invoke-api-operations-are-being-recorded-by-cloudtrail)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/awslambda_function_invoke_api_operations_cloudtrail_logging_enabled/metadata.json](../../sources/aws/awslambda_function_invoke_api_operations_cloudtrail_logging_enabled/metadata.json)
 - Source Code：[sources/aws/awslambda_function_invoke_api_operations_cloudtrail_logging_enabled/check.py](../../sources/aws/awslambda_function_invoke_api_operations_cloudtrail_logging_enabled/check.py)

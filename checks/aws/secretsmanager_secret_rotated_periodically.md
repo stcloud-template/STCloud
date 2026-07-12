@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `secretsmanager_secret_rotated_periodically` |
-| 云平台 | AWS |
-| 服务 | secretsmanager |
-| 严重等级 | medium |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsSecretsManagerSecret |
-| 资源组 | security |
+| チェック項目 ID | `secretsmanager_secret_rotated_periodically` |
+| クラウドプラットフォーム | AWS |
+| サービス | secretsmanager |
+| 重大度 | medium |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsSecretsManagerSecret |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS Secrets Manager secrets** are evaluated for **periodic rotation** within a configured window (default `90` days). Secrets with no recorded rotation, or with rotation older than the allowed window, are identified for review.
 
-## 风险
+## リスク
 
 **Long-lived or never-rotated secrets** widen the attack window. Leaked or brute-forced credentials stay valid, enabling unauthorized access to databases and APIs, **data exfiltration**, and unauthorized changes-compromising **confidentiality** and **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **automatic rotation** for all secrets with intervals aligned to sensitivity (**`90` days or more frequent). Ensure apps retrieve secrets at runtime. Apply **least privilege** to rotation roles and KMS keys, use **separation of duties**, and monitor rotation health with alerts. Avoid hard-coded credentials and retire unused secrets.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -71,12 +71,12 @@ resource "aws_secretsmanager_secret_rotation" "<example_resource_name>" {
 3. If Rotation status is Enabled: click Rotate secret immediately
 4. If Rotation is Disabled: click Edit rotation, turn on Automatic rotation, choose the rotation Lambda function, Save, then click Rotate secret immediately
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_turn-on-for-other.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_turn-on-for-other.html)
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/secretsmanager_secret_rotated_periodically/metadata.json](../../sources/aws/secretsmanager_secret_rotated_periodically/metadata.json)
 - Source Code：[sources/aws/secretsmanager_secret_rotated_periodically/check.py](../../sources/aws/secretsmanager_secret_rotated_periodically/check.py)

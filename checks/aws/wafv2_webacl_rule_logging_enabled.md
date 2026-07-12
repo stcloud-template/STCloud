@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `wafv2_webacl_rule_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | wafv2 |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafv2WebAcl |
-| 资源组 | security |
+| チェック項目 ID | `wafv2_webacl_rule_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | wafv2 |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafv2WebAcl |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAFv2 Web ACLs** are assessed to confirm that every associated **rule** and **rule group** has **CloudWatch metrics** enabled for visibility into rule evaluations and traffic
 
-## 风险
+## リスク
 
 Absent **CloudWatch metrics**, WAF telemetry is lost, masking spikes, rule bypasses, and misconfigurations. This delays detection of SQLi/XSS probes and bot floods, risking data confidentiality, request integrity, and application availability.
 
-## 推荐措施
+## 推奨事項
 
 Enable **CloudWatch metrics** for all WAF rules and rule groups (*including managed rule groups*). Use consistent metric names, centralize dashboards and alerts, and review trends to validate rule efficacy. Integrate with a SIEM for **defense in depth** and tune rules based on telemetry.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -105,13 +105,13 @@ resource "aws_wafv2_web_acl" "<example_resource_name>" {
 2. Open the Rules tab, edit each rule, and enable CloudWatch metrics (Visibility configuration > CloudWatch metrics enabled), then Save
 3. For rule groups: go to AWS WAF & Shield > Rule groups, select the rule group, edit Visibility configuration, enable CloudWatch metrics, then Save
 
-## 参考资料
+## 参考資料
 
 - [https://support.icompaas.com/support/solutions/articles/62000233644-ensure-aws-wafv2-webacl-rule-or-rule-group-has-amazon-cloudwatch-metrics-enabled](https://support.icompaas.com/support/solutions/articles/62000233644-ensure-aws-wafv2-webacl-rule-or-rule-group-has-amazon-cloudwatch-metrics-enabled)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-12](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-12)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/wafv2_webacl_rule_logging_enabled/metadata.json](../../sources/aws/wafv2_webacl_rule_logging_enabled/metadata.json)
 - Source Code：[sources/aws/wafv2_webacl_rule_logging_enabled/check.py](../../sources/aws/wafv2_webacl_rule_logging_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecs_task_definitions_host_namespace_not_shared` |
-| 云平台 | AWS |
-| 服务 | ecs |
-| 严重等级 | high |
-| 类别 | container-security |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS Host Hardening Benchmarks, TTPs/Privilege Escalation, TTPs/Discovery |
-| 资源类型 | AwsEcsTaskDefinition |
-| 资源组 | container |
+| チェック項目 ID | `ecs_task_definitions_host_namespace_not_shared` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecs |
+| 重大度 | high |
+| カテゴリ | container-security |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS Host Hardening Benchmarks, TTPs/Privilege Escalation, TTPs/Discovery |
+| リソースタイプ | AwsEcsTaskDefinition |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **ECS task definitions** where `pidMode` is `host` are configured to share the host's **process namespace** with containers, rather than using isolated task or private namespaces.
 
-## 风险
+## リスク
 
 **Host PID sharing** lets containers view and interact with host processes, eroding isolation. - Confidentiality: process enumeration and metadata leakage - Integrity/Availability: signal or `ptrace` tampering, killing services Enables lateral movement and privilege escalation from a compromised container.
 
-## 推荐措施
+## 推奨事項
 
 Prefer **isolated PID namespaces**: set `pidMode=task` or use the default per-container namespace. Avoid `host` PID sharing except for tightly controlled diagnostics. Apply **least privilege**: non-root users, minimal capabilities, read-only filesystems; and **defense in depth** with network and runtime controls.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -70,13 +70,13 @@ resource "aws_ecs_task_definition" "example" {
 4. Save the new revision
 5. (If the previous Host PID revision remains active) Select that revision and click Deregister
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-3](https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-3)
 - [https://docs.aws.amazon.com/config/latest/developerguide/ecs-task-definition-pid-mode-check.html](https://docs.aws.amazon.com/config/latest/developerguide/ecs-task-definition-pid-mode-check.html)
 - [https://docs.aws.amazon.com/AmazonECS/latest/userguide/task_definition_parameters.html#container_definition_pid_mode](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task_definition_parameters.html#container_definition_pid_mode)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecs_task_definitions_host_namespace_not_shared/metadata.json](../../sources/aws/ecs_task_definitions_host_namespace_not_shared/metadata.json)
 - Source Code：[sources/aws/ecs_task_definitions_host_namespace_not_shared/check.py](../../sources/aws/ecs_task_definitions_host_namespace_not_shared/check.py)

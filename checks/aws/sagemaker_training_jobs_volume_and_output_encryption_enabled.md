@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sagemaker_training_jobs_volume_and_output_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | sagemaker |
-| 严重等级 | high |
-| 类别 | encryption, gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | ai_ml |
+| チェック項目 ID | `sagemaker_training_jobs_volume_and_output_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | sagemaker |
+| 重大度 | high |
+| カテゴリ | encryption, gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | ai_ml |
 
-## 描述
+## 説明
 
 **Amazon SageMaker training jobs** use **KMS encryption** for their attached ML storage volumes via `VolumeKmsKeyId`. The finding identifies training jobs where the volume encryption key is not configured.
 
-## 风险
+## リスク
 
 Missing **CMEK** leaves training data, checkpoints, and logs on the volume without tenant-controlled encryption. This reduces **confidentiality**, enables data exposure via snapshots or privileged access, and limits control over key policies, rotation, and emergency revocation.
 
-## 推荐措施
+## 推奨事項
 
 Encrypt training volumes with **customer-managed KMS keys** and apply the same to S3 input/output. Use **least privilege** on key policies, enable **rotation**, restrict grants, and prevent storage of unencrypted artifacts to achieve **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -92,11 +92,11 @@ resource "aws_sagemaker_training_job" "<example_resource_name>" {
 4. Complete required fields and click Create training job
 5. Verify the new job shows the KMS key under Volume encryption
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/sagemaker/latest/dg/key-management.html](https://docs.aws.amazon.com/sagemaker/latest/dg/key-management.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sagemaker_training_jobs_volume_and_output_encryption_enabled/metadata.json](../../sources/aws/sagemaker_training_jobs_volume_and_output_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/sagemaker_training_jobs_volume_and_output_encryption_enabled/check.py](../../sources/aws/sagemaker_training_jobs_volume_and_output_encryption_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elasticache_redis_cluster_automatic_failover_enabled` |
-| 云平台 | AWS |
-| 服务 | elasticache |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `elasticache_redis_cluster_automatic_failover_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elasticache |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon ElastiCache (Redis OSS) replication groups** have **automatic failover** set to `enabled`, allowing a replica to be promoted when the primary becomes unavailable
 
-## 风险
+## リスク
 
 **Missing automatic failover** reduces **availability**: a primary or AZ outage can stop writes and require manual recovery, prolonging downtime. As Redis replication is asynchronous, delayed promotion increases chances of **lost or stale writes**, affecting **data integrity** and causing client timeouts.
 
-## 推荐措施
+## 推奨事項
 
 Enable **automatic failover** with **Multi-AZ**, keeping at least one replica per shard in a different AZ. Regularly *test failover* and monitor replication lag. Architect clients for resilience with retries and backoff to tolerate brief role changes, aligning with **fault tolerance** and **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -73,12 +73,12 @@ resource "aws_elasticache_replication_group" "<example_resource_name>" {
 5. Check Apply immediately
 6. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/database/testing-automatic-failover-to-a-read-replica-on-amazon-elasticache-for-redis/](https://aws.amazon.com/blogs/database/testing-automatic-failover-to-a-read-replica-on-amazon-elasticache-for-redis/)
 - [https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoFailover.html](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoFailover.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elasticache_redis_cluster_automatic_failover_enabled/metadata.json](../../sources/aws/elasticache_redis_cluster_automatic_failover_enabled/metadata.json)
 - Source Code：[sources/aws/elasticache_redis_cluster_automatic_failover_enabled/check.py](../../sources/aws/elasticache_redis_cluster_automatic_failover_enabled/check.py)

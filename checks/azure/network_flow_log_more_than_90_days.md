@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `network_flow_log_more_than_90_days` |
-| 云平台 | Azure |
-| 服务 | network |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | Network |
-| 资源组 | network |
+| チェック項目 ID | `network_flow_log_more_than_90_days` |
+| クラウドプラットフォーム | Azure |
+| サービス | network |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Network |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Network Security Group Flow Logs should be enabled and the retention period set to greater than or equal to 90 days.
 
-## 风险
+## リスク
 
 Flow logs enable capturing information about IP traffic flowing in and out of network security groups. Logs can be used to check for anomalies and give insight into suspected breaches.
 
-## 推荐措施
+## 推奨事項
 
 From Azure Portal 1. Go to Network Watcher 2. Select NSG flow logs blade in the Logs section 3. Select each Network Security Group from the list 4. Ensure Status is set to On 5. Ensure Retention (days) setting greater than 90 days 6. Select your storage account in the Storage account field 7. Select Save From Azure CLI Enable the NSG flow logs and set the Retention (days) to greater than or equal to 90 days. az network watcher flow-log configure --nsg <NameorID of the Network Security Group> --enabled true --resource-group <resourceGroupName> --retention 91 --storage-account <NameorID of the storage account to save flow logs>
 
-- 推荐链接：[https://docs.microsoft.com/en-us/cli/azure/network/watcher/flow-log?view=azure-cli-latest](https://docs.microsoft.com/en-us/cli/azure/network/watcher/flow-log?view=azure-cli-latest)
+- 推奨リンク：[https://docs.microsoft.com/en-us/cli/azure/network/watcher/flow-log?view=azure-cli-latest](https://docs.microsoft.com/en-us/cli/azure/network/watcher/flow-log?view=azure-cli-latest)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -45,12 +45,12 @@ az network watcher flow-log configure --nsg <NameorID of the Network Security Gr
 
 [https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/azure/Network/sufficient-nsg-flow-log-retention-period.html](https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/azure/Network/sufficient-nsg-flow-log-retention-period.html)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview)
 - [https://docs.microsoft.com/en-us/cli/azure/network/watcher/flow-log?view=azure-cli-latest](https://docs.microsoft.com/en-us/cli/azure/network/watcher/flow-log?view=azure-cli-latest)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/network_flow_log_more_than_90_days/metadata.json](../../sources/azure/network_flow_log_more_than_90_days/metadata.json)
 - Source Code：[sources/azure/network_flow_log_more_than_90_days/check.py](../../sources/azure/network_flow_log_more_than_90_days/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecr_repositories_lifecycle_policy_enabled` |
-| 云平台 | AWS |
-| 服务 | ecr |
-| 严重等级 | low |
-| 类别 | container-security |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Resource Consumption |
-| 资源类型 | AwsEcrRepository |
-| 资源组 | container |
+| チェック項目 ID | `ecr_repositories_lifecycle_policy_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecr |
+| 重大度 | low |
+| カテゴリ | container-security |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Resource Consumption |
+| リソースタイプ | AwsEcrRepository |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 Amazon ECR repositories have a **lifecycle policy** configured to automatically expire container images based on age, count, or tags.
 
-## 风险
+## リスク
 
 Without **lifecycle policies**, images accumulate indefinitely, leading to: - **Availability** issues when quotas block pushes and CI/CD - **Integrity** risk from redeploying outdated, vulnerable images - **Cost** growth from unnecessary storage
 
-## 推荐措施
+## 推奨事項
 
 Implement **lifecycle policies** per repository to expire untagged, old, or excess images and retain a small set of trusted releases. Validate outcomes before applying, review rules regularly, and apply consistently across Regions when replicating. This supports **defense in depth** by reducing image attack surface and operational risk.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -71,7 +71,7 @@ POLICY
 5. Set Image status: Untagged, Match criteria: Image count more than = 1, Action: Expire
 6. Click "Save" to apply the lifecycle policy
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html](https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html)
 - [https://docs.aws.amazon.com/AmazonECR/latest/userguide/lp_creation.html](https://docs.aws.amazon.com/AmazonECR/latest/userguide/lp_creation.html)
@@ -79,7 +79,7 @@ POLICY
 - [https://blog.stackademic.com/title-implementing-lifecycle-policies-in-aws-ecr-a-practical-guide-3860b612b477](https://blog.stackademic.com/title-implementing-lifecycle-policies-in-aws-ecr-a-practical-guide-3860b612b477)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ECR/lifecycle-policy-in-use.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ECR/lifecycle-policy-in-use.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecr_repositories_lifecycle_policy_enabled/metadata.json](../../sources/aws/ecr_repositories_lifecycle_policy_enabled/metadata.json)
 - Source Code：[sources/aws/ecr_repositories_lifecycle_policy_enabled/check.py](../../sources/aws/ecr_repositories_lifecycle_policy_enabled/check.py)

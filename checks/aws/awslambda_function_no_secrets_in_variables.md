@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `awslambda_function_no_secrets_in_variables` |
-| 云平台 | AWS |
-| 服务 | awslambda |
-| 严重等级 | critical |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Passwords, Effects/Data Exposure |
-| 资源类型 | AwsLambdaFunction |
-| 资源组 | serverless |
+| チェック項目 ID | `awslambda_function_no_secrets_in_variables` |
+| クラウドプラットフォーム | AWS |
+| サービス | awslambda |
+| 重大度 | critical |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Passwords, Effects/Data Exposure |
+| リソースタイプ | AwsLambdaFunction |
+| リソースグループ | serverless |
 
-## 描述
+## 説明
 
 AWS Lambda function environment variables are analyzed for content that resembles **secrets** (API keys, tokens, passwords). Pattern-based detection highlights potential hardcoded credentials present in the function's environment.
 
-## 风险
+## リスク
 
 Secrets in Lambda environment variables weaken **confidentiality**: users with config read access, runtime introspection, or logs may obtain them. Exposure can grant access to downstream systems, enable **lateral movement**, and allow tampering, impacting **integrity** and **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Do not store secrets in environment variables or code. Use **AWS Secrets Manager** or **Parameter Store** with encryption, fetch at runtime using **least privilege** IAM, and prefer short-lived creds via **IAM roles**. Rotate keys, limit configuration read access, and apply **defense in depth** with logging and alerts for secret access.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -65,12 +65,12 @@ resource "aws_lambda_function" "<example_resource_name>" {
 4. Delete variables that contain secrets (or remove all variables)
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html)
 - [https://support.icompaas.com/support/solutions/articles/62000129505-ensure-there-are-no-secrets-in-lambda-functions-variables](https://support.icompaas.com/support/solutions/articles/62000129505-ensure-there-are-no-secrets-in-lambda-functions-variables)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/awslambda_function_no_secrets_in_variables/metadata.json](../../sources/aws/awslambda_function_no_secrets_in_variables/metadata.json)
 - Source Code：[sources/aws/awslambda_function_no_secrets_in_variables/check.py](../../sources/aws/awslambda_function_no_secrets_in_variables/check.py)

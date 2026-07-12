@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_endpoint_multi_az_enabled` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsEc2VpcEndpointService |
-| 资源组 | network |
+| チェック項目 ID | `vpc_endpoint_multi_az_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsEc2VpcEndpointService |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **VPC interface endpoints** are evaluated for whether their endpoint network interfaces are placed in **multiple subnets**, which implies distribution across different **Availability Zones**. Endpoints present in only one subnet are identified.
 
-## 风险
+## リスク
 
 A **single-subnet endpoint** creates a **single-AZ dependency**. An AZ outage or routing issue can cut access to the service, reducing **availability**. Workloads may revert to **public endpoints**, exposing traffic to the Internet and risking **confidentiality** through interception or tampering.
 
-## 推荐措施
+## 推奨事項
 
 Place interface endpoints in **multiple subnets across distinct AZs** to remove single-AZ reliance. Prefer zone-local routing so clients use the nearest endpoint, and combine with **private DNS** and restrictive **security groups** to limit exposure-supporting **defense in depth** and resilient connectivity.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -74,12 +74,12 @@ resource "aws_vpc_endpoint" "<example_resource_name>" {
 4. Select an additional subnet in a different Availability Zone
 5. Click Modify subnets to save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/vpc/latest/privatelink/interface-endpoints.html](https://docs.aws.amazon.com/vpc/latest/privatelink/interface-endpoints.html)
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/interface-vpc-endpoints.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/interface-vpc-endpoints.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_endpoint_multi_az_enabled/metadata.json](../../sources/aws/vpc_endpoint_multi_az_enabled/metadata.json)
 - Source Code：[sources/aws/vpc_endpoint_multi_az_enabled/check.py](../../sources/aws/vpc_endpoint_multi_az_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ses_identity_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | ses |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Initial Access, Effects/Data Exposure |
-| 资源类型 | AwsIamPolicy |
-| 资源组 | messaging |
+| チェック項目 ID | `ses_identity_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | ses |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Initial Access, Effects/Data Exposure |
+| リソースタイプ | AwsIamPolicy |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon SES identities** are evaluated for **publicly accessible resource policies**-for example, statements with `Principal:"*"` or broadly trusted principals that permit actions against the identity.
 
-## 风险
+## リスク
 
 Public SES identity policies allow unauthorized email sending or configuration changes. - Integrity: spoofed emails and brand impersonation - Confidentiality: exposure of identity details - Availability: reputation loss causing throttling or suspension
 
-## 推荐措施
+## 推奨事項
 
 Restrict SES identity policies to known principals and actions following **least privilege**. Prefer explicit account ARNs for sending authorization, and add conditions like `aws:SourceIp` and `aws:SecureTransport`. Review grants regularly and remove unused access as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -63,12 +63,12 @@ resource "aws_ses_identity_policy" "<example_resource_name>" {
 4. Delete the public policy, or Edit it to remove any Principal of "*" and restrict to a specific AWS account
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/ses/latest/dg/policy-anatomy.html](https://docs.aws.amazon.com/ses/latest/dg/policy-anatomy.html)
 - [https://docs.aws.amazon.com/ses/latest/dg/identity-authorization-policies.html](https://docs.aws.amazon.com/ses/latest/dg/identity-authorization-policies.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ses_identity_not_publicly_accessible/metadata.json](../../sources/aws/ses_identity_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/ses_identity_not_publicly_accessible/check.py](../../sources/aws/ses_identity_not_publicly_accessible/check.py)

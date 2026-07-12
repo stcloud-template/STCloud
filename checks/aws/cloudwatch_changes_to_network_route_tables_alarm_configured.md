@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_changes_to_network_route_tables_alarm_configured` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices, TTPs/Defense Evasion, Effects/Data Exfiltration |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_changes_to_network_route_tables_alarm_configured` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices, TTPs/Defense Evasion, Effects/Data Exfiltration |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **VPC route table changes** are captured from **CloudTrail logs** by a **CloudWatch Logs metric filter** with an associated **alarm** for events like `CreateRoute`, `CreateRouteTable`, `ReplaceRoute`, `ReplaceRouteTableAssociation`, `DeleteRoute`, `DeleteRouteTable`, and `DisassociateRouteTable`.
 
-## 风险
+## リスク
 
 Without monitoring of **route table changes**, unauthorized or accidental edits can redirect traffic, bypass inspection, or blackhole routes, impacting **confidentiality** (exfiltration), **integrity** (tampered paths), and **availability** (outages from misrouted traffic).
 
-## 推荐措施
+## 推奨事項
 
 Implement a **CloudWatch Logs metric filter and alarm** on CloudTrail for these route table events and notify responders. Enforce **least privilege** for route modifications, require **change control**, and apply **defense in depth** with VPC Flow Logs and guardrails to prevent and quickly contain unsafe routing changes.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -102,11 +102,11 @@ resource "aws_cloudwatch_metric_alarm" "routes" {
 7. Set Statistic: Sum, Period: 5 minutes, Threshold type: Static, Threshold: 1, Whenever: Greater/Equal
 8. Create the alarm (notifications optional)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_changes_to_network_route_tables_alarm_configured/metadata.json](../../sources/aws/cloudwatch_changes_to_network_route_tables_alarm_configured/metadata.json)
 - Source Code：[sources/aws/cloudwatch_changes_to_network_route_tables_alarm_configured/check.py](../../sources/aws/cloudwatch_changes_to_network_route_tables_alarm_configured/check.py)

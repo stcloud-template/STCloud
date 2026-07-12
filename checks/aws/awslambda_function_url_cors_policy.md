@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `awslambda_function_url_cors_policy` |
-| 云平台 | AWS |
-| 服务 | awslambda |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
-| 资源类型 | AwsLambdaFunction |
-| 资源组 | serverless |
+| チェック項目 ID | `awslambda_function_url_cors_policy` |
+| クラウドプラットフォーム | AWS |
+| サービス | awslambda |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
+| リソースタイプ | AwsLambdaFunction |
+| リソースグループ | serverless |
 
-## 描述
+## 説明
 
 **Lambda function URL** CORS policy is reviewed for `AllowOrigins`. The presence of `*` indicates a wide origin allowance in the CORS configuration.
 
-## 风险
+## リスク
 
 **Wildcard origins** allow any website to call the endpoint from a browser and read responses, weakening origin isolation. This can lead to data exposure (C) and unauthorized actions (I) if state-changing methods are reachable, enabling scripted abuse and cross-origin attacks.
 
-## 推荐措施
+## 推奨事項
 
 Apply least privilege to CORS: - Restrict `AllowOrigins` to trusted domains; avoid `*` - Limit `AllowMethods`/`AllowHeaders`; disable `AllowCredentials` unless required - Prefer authenticated access (e.g., `AWS_IAM`) and enforce resource policies for defense in depth
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -71,14 +71,14 @@ resource "aws_lambda_function_url" "example" {
 3. In CORS, remove '*' from Allowed origins and enter https://www.example.com
 4. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://support.icompaas.com/support/solutions/articles/62000229584-ensure-lambda-function-url-cors-configurations-were-checked](https://support.icompaas.com/support/solutions/articles/62000229584-ensure-lambda-function-url-cors-configurations-were-checked)
 - [https://docs.aws.amazon.com/lambda/latest/api/API_Cors.html](https://docs.aws.amazon.com/lambda/latest/api/API_Cors.html)
 - [https://tutorialsdojo.com/how-to-configure-aws-lambda-function-url-with-cross-origin-resource-sharing/](https://tutorialsdojo.com/how-to-configure-aws-lambda-function-url-with-cross-origin-resource-sharing/)
 - [https://dev.to/rimutaka/aws-lambda-function-url-with-cors-explained-by-example-14df](https://dev.to/rimutaka/aws-lambda-function-url-with-cors-explained-by-example-14df)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/awslambda_function_url_cors_policy/metadata.json](../../sources/aws/awslambda_function_url_cors_policy/metadata.json)
 - Source Code：[sources/aws/awslambda_function_url_cors_policy/check.py](../../sources/aws/awslambda_function_url_cors_policy/check.py)

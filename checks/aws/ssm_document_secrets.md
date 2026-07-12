@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ssm_document_secrets` |
-| 云平台 | AWS |
-| 服务 | ssm |
-| 严重等级 | high |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Security, Effects/Data Exposure |
-| 资源类型 | AwsSsmPatchCompliance |
-| 资源组 | devops |
+| チェック項目 ID | `ssm_document_secrets` |
+| クラウドプラットフォーム | AWS |
+| サービス | ssm |
+| 重大度 | high |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Security, Effects/Data Exposure |
+| リソースタイプ | AwsSsmPatchCompliance |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **AWS Systems Manager documents** are inspected for embedded **secrets** within their content. Patterns resembling passwords, access keys, tokens, or private keys in document steps are flagged when values appear hardcoded rather than referenced securely.
 
-## 风险
+## リスク
 
 Hardcoded secrets in SSM documents weaken CIA: - Confidentiality: readers of the document can exfiltrate credentials. - Integrity: stolen keys enable privilege escalation and automation tampering. - Availability: abused credentials can disrupt systems and impede recovery.
 
-## 推荐措施
+## 推奨事項
 
 Avoid embedding secrets. Store them in **Secrets Manager** or **Parameter Store** as `SecureString` (KMS-encrypted) and reference at runtime. Apply **least privilege** to documents and secrets, prefer **short-lived role credentials**, rotate credentials, continuously scan/audit documents, and enforce **separation of duties** for authoring and approval.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -87,11 +87,11 @@ resource "aws_ssm_document" "<example_resource_name>" {
 5. Save to create a new version and set it as Default
 6. Re-run the check to confirm it passes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-secret-generatesecretstring.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-secret-generatesecretstring.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ssm_document_secrets/metadata.json](../../sources/aws/ssm_document_secrets/metadata.json)
 - Source Code：[sources/aws/ssm_document_secrets/check.py](../../sources/aws/ssm_document_secrets/check.py)

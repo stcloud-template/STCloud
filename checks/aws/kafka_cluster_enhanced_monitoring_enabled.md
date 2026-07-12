@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kafka_cluster_enhanced_monitoring_enabled` |
-| 云平台 | AWS |
-| 服务 | kafka |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsMskCluster |
-| 资源组 | messaging |
+| チェック項目 ID | `kafka_cluster_enhanced_monitoring_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | kafka |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsMskCluster |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon MSK clusters** are assessed for **enhanced monitoring** levels beyond `DEFAULT` (e.g., `PER_BROKER`, `PER_TOPIC_PER_BROKER`, `PER_TOPIC_PER_PARTITION`). *Serverless clusters* include enhanced monitoring by design; provisioned clusters are evaluated by their configured monitoring level.
 
-## 风险
+## リスク
 
 Insufficient metrics limit visibility into **broker health**, **replication state**, and **consumer lag**, delaying response to incidents. This increases risk of **availability loss** (saturation, throttling) and can mask **integrity issues** such as under-replicated partitions, raising data-loss impact during failures.
 
-## 推荐措施
+## 推奨事項
 
 Select an enhanced level (e.g., `PER_BROKER` or finer) and establish **observability**: prioritize telemetry for broker resources, replication health, and consumer lag. Configure alerts and dashboards aligned to SLOs to enable proactive scaling and rapid incident containment. *Balance granularity with cost*.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -81,13 +81,13 @@ resource "aws_msk_cluster" "<example_resource_name>" {
 4. Under Monitoring, set Enhanced monitoring to PER_BROKER (or higher)
 5. Save changes and wait for the update to complete
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html](https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/enable-enhanced-monitoring-for-apache-kafka-brokers.html#](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/enable-enhanced-monitoring-for-apache-kafka-brokers.html#)
 - [https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html](https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kafka_cluster_enhanced_monitoring_enabled/metadata.json](../../sources/aws/kafka_cluster_enhanced_monitoring_enabled/metadata.json)
 - Source Code：[sources/aws/kafka_cluster_enhanced_monitoring_enabled/check.py](../../sources/aws/kafka_cluster_enhanced_monitoring_enabled/check.py)

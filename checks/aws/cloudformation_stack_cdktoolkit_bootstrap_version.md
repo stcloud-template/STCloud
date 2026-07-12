@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudformation_stack_cdktoolkit_bootstrap_version` |
-| 云平台 | AWS |
-| 服务 | cloudformation |
-| 严重等级 | high |
-| 类别 | vulnerabilities |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Patch Management |
-| 资源类型 | AwsCloudFormationStack |
-| 资源组 | devops |
+| チェック項目 ID | `cloudformation_stack_cdktoolkit_bootstrap_version` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudformation |
+| 重大度 | high |
+| カテゴリ | vulnerabilities |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Patch Management |
+| リソースタイプ | AwsCloudFormationStack |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **CloudFormation CDKToolkit** stack's `BootstrapVersion` is compared to a recommended minimum (default `21`). A lower value indicates the environment uses legacy bootstrap resources and IAM roles from older templates.
 
-## 风险
+## リスク
 
 **Outdated bootstrap stacks** can lack recent hardening. Asset buckets or ECR repos may be easier to misuse, and deployment roles may have broader trust. Adversaries could tamper artifacts or assume privileged roles, compromising integrity/confidentiality and enabling privilege escalation.
 
-## 推荐措施
+## 推奨事項
 
 Standardize on the modern bootstrap at or above the recommended version (e.g., `>= 21`) in every account and Region. Apply **least privilege** to bootstrap roles, limit trusted accounts, enable termination protection, and periodically review for version drift to strengthen **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -80,14 +80,14 @@ YAML
 3. In the console, go to CloudFormation > Stacks > CDKToolkit > Outputs
 4. Confirm Output "BootstrapVersion" is 21 or higher
 
-## 参考资料
+## 参考資料
 
 - [https://towardsthecloud.com/blog/aws-cdk-bootstrap](https://towardsthecloud.com/blog/aws-cdk-bootstrap)
 - [https://support.icompaas.com/support/solutions/articles/62000233694-ensure-that-cdktoolkit-stacks-have-a-bootstrap-version-of-21-or-higher-to-mitigate-security-risks](https://support.icompaas.com/support/solutions/articles/62000233694-ensure-that-cdktoolkit-stacks-have-a-bootstrap-version-of-21-or-higher-to-mitigate-security-risks)
 - [https://docs.aws.amazon.com/cdk/v2/guide/ref-cli-cmd-bootstrap.html](https://docs.aws.amazon.com/cdk/v2/guide/ref-cli-cmd-bootstrap.html)
 - [https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-customizing.html](https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-customizing.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudformation_stack_cdktoolkit_bootstrap_version/metadata.json](../../sources/aws/cloudformation_stack_cdktoolkit_bootstrap_version/metadata.json)
 - Source Code：[sources/aws/cloudformation_stack_cdktoolkit_bootstrap_version/check.py](../../sources/aws/cloudformation_stack_cdktoolkit_bootstrap_version/check.py)

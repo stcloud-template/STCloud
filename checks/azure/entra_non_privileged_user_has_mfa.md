@@ -2,45 +2,45 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `entra_non_privileged_user_has_mfa` |
-| 云平台 | Azure |
-| 服务 | entra |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | #microsoft.graph.users |
-| 资源组 | IAM |
+| チェック項目 ID | `entra_non_privileged_user_has_mfa` |
+| クラウドプラットフォーム | Azure |
+| サービス | entra |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | #microsoft.graph.users |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Enable multi-factor authentication for all non-privileged users.
 
-## 风险
+## リスク
 
 Multi-factor authentication requires an individual to present a minimum of two separate forms of authentication before access is granted. Multi-factor authentication provides additional assurance that the individual attempting to gain access is who they claim to be. With multi-factor authentication, an attacker would need to compromise at least two different authentication mechanisms, increasing the difficulty of compromise and thus reducing the risk.
 
-## 推荐措施
+## 推奨事項
 
 Activate one of the available multi-factor authentication methods for users in Microsoft Entra ID.
 
-- 推荐链接：[https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-azure-mfa](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-azure-mfa)
+- 推奨リンク：[https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-azure-mfa](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-azure-mfa)
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/ActiveDirectory/multi-factor-authentication-for-all-non-privileged-users.html#](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/ActiveDirectory/multi-factor-authentication-for-all-non-privileged-users.html#)
 
-## 参考资料
+## 参考資料
 
 - [https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks)
 - [https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-azure-mfa](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-azure-mfa)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/entra_non_privileged_user_has_mfa/metadata.json](../../sources/azure/entra_non_privileged_user_has_mfa/metadata.json)
 - Source Code：[sources/azure/entra_non_privileged_user_has_mfa/check.py](../../sources/azure/entra_non_privileged_user_has_mfa/check.py)

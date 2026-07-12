@@ -172,47 +172,47 @@ def render_page(record: dict[str, Any]) -> str:
         "",
         "ST Cloud check knowledge base entry.",
         "",
-        "## 检查项信息",
+        "## チェック項目情報",
         "",
-        "| 字段 | 内容 |",
+        "| 項目 | 値 |",
         "| --- | --- |",
-        table_row("检查项 ID", code_span(record["check_id"])),
-        table_row("云平台", display_provider(record["provider"])),
-        table_row("服务", record["service"]),
+        table_row("チェック項目 ID", code_span(record["check_id"])),
+        table_row("クラウドプラットフォーム", display_provider(record["provider"])),
+        table_row("サービス", record["service"]),
     ]
     optional_rows = [
-        ("子服务", record["sub_service"]),
-        ("严重等级", record["severity"]),
-        ("类别", ", ".join(record["categories"]) or "Uncategorized"),
-        ("检查类型", ", ".join(record["check_type"])),
-        ("资源类型", record["resource_type"]),
-        ("资源组", record["resource_group"]),
+        ("サブサービス", record["sub_service"]),
+        ("重大度", record["severity"]),
+        ("カテゴリ", ", ".join(record["categories"]) or "Uncategorized"),
+        ("チェックタイプ", ", ".join(record["check_type"])),
+        ("リソースタイプ", record["resource_type"]),
+        ("リソースグループ", record["resource_group"]),
     ]
     lines.extend(table_row(label, value) for label, value in optional_rows if value)
     lines.extend(
         [
             "",
-            "## 描述",
+            "## 説明",
             "",
             paragraph(record["description"]),
             "",
-            "## 风险",
+            "## リスク",
             "",
             paragraph(record["risk"]),
             "",
-            "## 推荐措施",
+            "## 推奨事項",
             "",
             paragraph(record["recommendation"]),
         ]
     )
     if record["recommendation_url"]:
-        lines.extend(["", f"- 推荐链接：{markdown_link(record['recommendation_url'])}"])
+        lines.extend(["", f"- 推奨リンク：{markdown_link(record['recommendation_url'])}"])
 
-    lines.extend(["", "## 修复步骤", ""])
+    lines.extend(["", "## 修正手順", ""])
     remediation_lines = render_remediation(record["remediation"])
     lines.extend(remediation_lines or ["No remediation steps available."])
 
-    lines.extend(["", "## 参考资料", ""])
+    lines.extend(["", "## 参考資料", ""])
     if record["references"]:
         lines.extend(f"- {markdown_link(reference)}" for reference in record["references"])
     else:
@@ -221,7 +221,7 @@ def render_page(record: dict[str, Any]) -> str:
     lines.extend(
         [
             "",
-            "## 技术信息",
+            "## 技術情報",
             "",
             f"- Source Metadata：[{record['source']['local_metadata_path']}](../../{record['source']['local_metadata_path']})",
         ]

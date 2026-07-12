@@ -2,42 +2,42 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `iam_securityaudit_role_created` |
-| 云平台 | AWS |
-| 服务 | iam |
-| 严重等级 | low |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks, Industry and Regulatory Standards, CIS AWS Foundations Benchmark |
-| 资源类型 | AwsIamRole |
-| 资源组 | IAM |
+| チェック項目 ID | `iam_securityaudit_role_created` |
+| クラウドプラットフォーム | AWS |
+| サービス | iam |
+| 重大度 | low |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks, Industry and Regulatory Standards, CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsIamRole |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Ensure a Security Audit role has been created to conduct security audits
 
-## 风险
+## リスク
 
 Creating an IAM role with a security audit policy provides a clear separation of duties between the security team and other teams within the organization. This helps to ensure that security-related activities are performed by authorized individuals with the appropriate expertise and access permissions.
 
-## 推荐措施
+## 推奨事項
 
 Create an IAM role for conduct security audits with AWS.
 
-- 推荐链接：[https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html#jf_security-auditor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html#jf_security-auditor)
+- 推奨リンク：[https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html#jf_security-auditor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html#jf_security-auditor)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html#jf_security-auditor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html#jf_security-auditor)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/iam_securityaudit_role_created/metadata.json](../../sources/aws/iam_securityaudit_role_created/metadata.json)
 - Source Code：[sources/aws/iam_securityaudit_role_created/check.py](../../sources/aws/iam_securityaudit_role_created/check.py)

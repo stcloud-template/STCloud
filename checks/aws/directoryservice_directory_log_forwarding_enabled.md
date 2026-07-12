@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `directoryservice_directory_log_forwarding_enabled` |
-| 云平台 | AWS |
-| 服务 | directoryservice |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | IAM |
+| チェック項目 ID | `directoryservice_directory_log_forwarding_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | directoryservice |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 **AWS Directory Service directories** are configured to forward domain controller security event logs to **CloudWatch Logs** using log subscriptions. Evaluation identifies directories with or without this forwarding in place.
 
-## 风险
+## リスク
 
 Without forwarding, visibility into AD security events is lost, delaying detection of suspicious authentications, policy changes, or privilege grants. Attackers can escalate and persist unnoticed, risking unauthorized access (confidentiality) and identity/policy manipulation (integrity), while hampering forensics and response.
 
-## 推荐措施
+## 推奨事項
 
 Enable and maintain **log forwarding** to CloudWatch Logs. - Centralize logs in a protected group with strict access and retention - Apply least privilege for delivery roles and readers; prevent tampering (immutability) - Alert on high-risk events and aggregate across Regions/accounts for defense in depth
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -89,14 +89,14 @@ resource "aws_directory_service_log_subscription" "enable" {
 4. Choose Create a new CloudWatch log group (or select an existing one)
 5. Click Enable to start forwarding logs
 
-## 参考资料
+## 参考資料
 
 - [https://docs.amazonaws.cn/en_us/directoryservice/latest/admin-guide/ms_ad_enable_log_forwarding.html](https://docs.amazonaws.cn/en_us/directoryservice/latest/admin-guide/ms_ad_enable_log_forwarding.html)
 - [https://docs.aws.amazon.com/directoryservice/latest/admin-guide/incident-response.html](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/incident-response.html)
 - [https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_enable_log_forwarding.html](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_enable_log_forwarding.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233528--ensure-directory-service-monitoring-with-cloudwatch-logs](https://support.icompaas.com/support/solutions/articles/62000233528--ensure-directory-service-monitoring-with-cloudwatch-logs)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/directoryservice_directory_log_forwarding_enabled/metadata.json](../../sources/aws/directoryservice_directory_log_forwarding_enabled/metadata.json)
 - Source Code：[sources/aws/directoryservice_directory_log_forwarding_enabled/check.py](../../sources/aws/directoryservice_directory_log_forwarding_enabled/check.py)

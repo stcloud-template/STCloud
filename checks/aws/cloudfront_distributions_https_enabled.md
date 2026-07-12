@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_https_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_https_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 CloudFront distributions require viewer connections over **HTTPS** when the default cache behavior `viewer_protocol_policy` is `https-only` or `redirect-to-https`. Configurations that use `allow-all` permit HTTP.
 
-## 风险
+## リスク
 
 Allowing HTTP exposes traffic to **man-in-the-middle** interception and **session hijacking**, enabling theft of cookies, tokens, or PII. Attackers can **tamper** with responses, inject malware, or perform **downgrade/strip** attacks, undermining confidentiality and integrity.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **HTTPS-only** access for viewers by setting `viewer_protocol_policy` to `https-only` or `redirect-to-https`; avoid `allow-all`. Extend encryption end-to-end to origins, enable **HSTS**, prefer modern TLS and ciphers, and mark cookies `Secure`. This supports **defense in depth** and prevents downgrade.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -69,13 +69,13 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
 4. Set Viewer protocol policy to Redirect HTTP to HTTPS (or HTTPS Only)
 5. Save changes and deploy
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/security-policy.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/security-policy.html)
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html)
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_https_enabled/metadata.json](../../sources/aws/cloudfront_distributions_https_enabled/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_https_enabled/check.py](../../sources/aws/cloudfront_distributions_https_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elasticbeanstalk_environment_enhanced_health_reporting` |
-| 云平台 | AWS |
-| 服务 | elasticbeanstalk |
-| 严重等级 | low |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis |
-| 资源类型 | AwsElasticBeanstalkEnvironment |
-| 资源组 | compute |
+| チェック項目 ID | `elasticbeanstalk_environment_enhanced_health_reporting` |
+| クラウドプラットフォーム | AWS |
+| サービス | elasticbeanstalk |
+| 重大度 | low |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis |
+| リソースタイプ | AwsElasticBeanstalkEnvironment |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Elastic Beanstalk environments** have health reporting set to `enhanced` instead of basic.
 
-## 风险
+## リスク
 
 Without **enhanced health**, issues are detected late, raising MTTR and enabling **service outages**. Hidden instance failures or bad deployments can create uneven fleets, degrading **availability** and potentially **integrity** (serving stale versions), while error spikes and thrash increase operational cost.
 
-## 推荐措施
+## 推奨事項
 
 Set health reporting to `enhanced` for all environments and make it a security baseline. Connect health signals to alerts for rapid response. Apply **least privilege** to required roles and use **defense in depth** with auto-healing, alarms, and runbooks to prevent prolonged degradation.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -78,12 +78,12 @@ resource "aws_elastic_beanstalk_environment" "<example_resource_name>" {
 4. Under Health reporting, set System to Enhanced
 5. Click Apply to save the change
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-enable.html#health-enhanced-enable-console](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-enable.html#health-enhanced-enable-console)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/elasticbeanstalk-controls.html#elasticbeanstalk-1](https://docs.aws.amazon.com/securityhub/latest/userguide/elasticbeanstalk-controls.html#elasticbeanstalk-1)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elasticbeanstalk_environment_enhanced_health_reporting/metadata.json](../../sources/aws/elasticbeanstalk_environment_enhanced_health_reporting/metadata.json)
 - Source Code：[sources/aws/elasticbeanstalk_environment_enhanced_health_reporting/check.py](../../sources/aws/elasticbeanstalk_environment_enhanced_health_reporting/check.py)

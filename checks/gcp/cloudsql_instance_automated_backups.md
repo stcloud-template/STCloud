@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudsql_instance_automated_backups` |
-| 云平台 | GCP |
-| 服务 | cloudsql |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | DatabaseInstance |
-| 资源组 | database |
+| チェック項目 ID | `cloudsql_instance_automated_backups` |
+| クラウドプラットフォーム | GCP |
+| サービス | cloudsql |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | DatabaseInstance |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Ensure That Cloud SQL Database Instances Are Configured With Automated Backups
 
-## 风险
+## リスク
 
 Backups provide a way to restore a Cloud SQL instance to recover lost data or recover from a problem with that instance. Automated backups need to be set for any instance that contains data that should be protected from loss or damage. This recommendation is applicable for SQL Server, PostgreSql, MySql generation 1 and MySql generation 2 instances.
 
-## 推荐措施
+## 推奨事項
 
 It is recommended to have all SQL database instances set to enable automated backups.
 
-- 推荐链接：[https://cloud.google.com/sql/docs/postgres/configure-ssl-instance/](https://cloud.google.com/sql/docs/postgres/configure-ssl-instance/)
+- 推奨リンク：[https://cloud.google.com/sql/docs/postgres/configure-ssl-instance/](https://cloud.google.com/sql/docs/postgres/configure-ssl-instance/)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -41,11 +41,11 @@ gcloud sql instances patch <INSTANCE_NAME> --backup-start-time <[HH:MM]>
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudSQL/enable-automated-backups.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudSQL/enable-automated-backups.html)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/sql/docs/postgres/configure-ssl-instance/](https://cloud.google.com/sql/docs/postgres/configure-ssl-instance/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/cloudsql_instance_automated_backups/metadata.json](../../sources/gcp/cloudsql_instance_automated_backups/metadata.json)
 - Source Code：[sources/gcp/cloudsql_instance_automated_backups/check.py](../../sources/gcp/cloudsql_instance_automated_backups/check.py)

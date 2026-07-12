@@ -2,35 +2,35 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_instance_public_ip` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 子服务 | instance |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Infrastructure Security |
-| 资源类型 | AwsEc2Instance |
-| 资源组 | compute |
+| チェック項目 ID | `ec2_instance_public_ip` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| サブサービス | instance |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Infrastructure Security |
+| リソースタイプ | AwsEc2Instance |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Check for EC2 Instances with Public IP.
 
-## 风险
+## リスク
 
 Exposing an EC2 directly to internet increases the attack surface and therefore the risk of compromise.
 
-## 推荐措施
+## 推奨事項
 
 Use an ALB and apply WAF ACL.
 
-- 推荐链接：[https://aws.amazon.com/blogs/aws/aws-web-application-firewall-waf-for-application-load-balancers/](https://aws.amazon.com/blogs/aws/aws-web-application-firewall-waf-for-application-load-balancers/)
+- 推奨リンク：[https://aws.amazon.com/blogs/aws/aws-web-application-firewall-waf-for-application-load-balancers/](https://aws.amazon.com/blogs/aws/aws-web-application-firewall-waf-for-application-load-balancers/)
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -45,11 +45,11 @@ Use an ALB and apply WAF ACL.
 
 [https://docs.ST Cloud.com/checks/aws/public-policies/public_12#aws-console](https://docs.ST Cloud.com/checks/aws/public-policies/public_12#aws-console)
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/aws/aws-web-application-firewall-waf-for-application-load-balancers/](https://aws.amazon.com/blogs/aws/aws-web-application-firewall-waf-for-application-load-balancers/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_instance_public_ip/metadata.json](../../sources/aws/ec2_instance_public_ip/metadata.json)
 - Source Code：[sources/aws/ec2_instance_public_ip/check.py](../../sources/aws/ec2_instance_public_ip/check.py)

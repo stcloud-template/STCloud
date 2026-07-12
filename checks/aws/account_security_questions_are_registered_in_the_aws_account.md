@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `account_security_questions_are_registered_in_the_aws_account` |
-| 云平台 | AWS |
-| 服务 | account |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | governance |
+| チェック項目 ID | `account_security_questions_are_registered_in_the_aws_account` |
+| クラウドプラットフォーム | AWS |
+| サービス | account |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 [DEPRECATED] **AWS account root** configuration may include legacy **security challenge questions** for support identity verification. This evaluates whether those questions are set on the account. *New configuration is discontinued by AWS and remaining support for this feature is time-limited.*
 
-## 风险
+## リスク
 
 Absence of these questions can limit support-assisted recovery if root credentials or MFA are lost, reducing **availability** and slowing **incident response**. Reliance on KBA also weakens **confidentiality** due to **social engineering**. Treat this as a recovery gap and adopt stronger, phishing-resistant factors.
 
-## 推荐措施
+## 推奨事項
 
 Favor stronger recovery instead of KBA: - Enforce **MFA for root** and minimize root use - Keep **alternate contacts** and root email current and protected - Establish a tightly controlled **break-glass role**, applying least privilege and separation of duties - Document and test recovery procedures; monitor root activity
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
@@ -39,11 +39,11 @@ Favor stronger recovery instead of KBA: - Enforce **MFA for root** and minimize 
 5. Store the answers in a secure but accessible location
 6. Click the Update button to save the changes
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/IAM/security-challenge-questions.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/IAM/security-challenge-questions.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/account_security_questions_are_registered_in_the_aws_account/metadata.json](../../sources/aws/account_security_questions_are_registered_in_the_aws_account/metadata.json)
 - Source Code：[sources/aws/account_security_questions_are_registered_in_the_aws_account/check.py](../../sources/aws/account_security_questions_are_registered_in_the_aws_account/check.py)

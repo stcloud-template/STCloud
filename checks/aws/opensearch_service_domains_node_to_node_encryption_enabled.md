@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `opensearch_service_domains_node_to_node_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | opensearch |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS |
-| 资源类型 | AwsOpenSearchServiceDomain |
-| 资源组 | database |
+| チェック項目 ID | `opensearch_service_domains_node_to_node_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | opensearch |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS |
+| リソースタイプ | AwsOpenSearchServiceDomain |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon OpenSearch domains** with **node-to-node encryption** use TLS to protect traffic between cluster nodes. The finding evaluates the domain's `node_to_node_encryption` configuration for intra-cluster communications.
 
-## 风险
+## リスク
 
 Unencrypted intra-cluster traffic enables interception and manipulation by anyone with network foothold. - **Confidentiality**: exposure of documents, credentials, metadata - **Integrity**: tampering with queries and shard replication - **Availability**: spoofing/MITM can disrupt coordination and cause outages
 
-## 推荐措施
+## 推奨事項
 
 Enable **node-to-node encryption** (`node_to_node_encryption: true`) to enforce TLS for inter-node traffic. Apply **defense in depth**: require HTTPS for clients, restrict network exposure, and use least privilege. Validate performance in staging and plan carefully, as the setting is effectively irreversible.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -69,13 +69,13 @@ resource "aws_opensearch_domain" "<example_resource_name>" {
 4. Under Encryption, enable Node-to-node encryption
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/ntn.html](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/ntn.html)
 - [https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ntn.html](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ntn.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Elasticsearch/node-to-node-encryption.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Elasticsearch/node-to-node-encryption.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/opensearch_service_domains_node_to_node_encryption_enabled/metadata.json](../../sources/aws/opensearch_service_domains_node_to_node_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/opensearch_service_domains_node_to_node_encryption_enabled/check.py](../../sources/aws/opensearch_service_domains_node_to_node_encryption_enabled/check.py)

@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `compute_instance_shielded_vm_enabled` |
-| 云平台 | GCP |
-| 服务 | compute |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | VMInstance |
-| 资源组 | compute |
+| チェック項目 ID | `compute_instance_shielded_vm_enabled` |
+| クラウドプラットフォーム | GCP |
+| サービス | compute |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | VMInstance |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 To defend against advanced threats and ensure that the boot loader and firmware on your VMs are signed and untampered, it is recommended that Compute instances are launched with Shielded VM enabled.
 
-## 风险
+## リスク
 
 Whithout shielded VM enabled is not possible to defend against advanced threats and ensure that the boot loader and firmware on your Google Compute Engine instances are signed and untampered.
 
-## 推荐措施
+## 推奨事項
 
 Ensure that your Google Compute Engine instances are configured to use Shielded VM security feature for protection against rootkits and bootkits.Google Compute Engine service can enable 3 advanced security components for Shielded VM instances: 1. Virtual Trusted Platform Module (vTPM) - this component validates the guest virtual machine (VM) pre-boot and boot integrity, and provides key generation and protection. 2. Integrity Monitoring - lets you monitor and verify the runtime boot integrity of your shielded VM instances using Google Cloud Operations reports (also known as Stackdriver reports). 3. Secure boot helps - this security component protects your VM instances against boot-level and kernel-level malware and rootkits. To defend against advanced threats and ensure that the boot loader and firmware on your Google Compute Engine instances are signed and untampered, it is strongly recommended that your production instances are launched with Shielded VM enabled.
 
-- 推荐链接：[https://cloud.google.com/compute/docs/instances/modifying-shielded-vm](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm)
+- 推奨リンク：[https://cloud.google.com/compute/docs/instances/modifying-shielded-vm](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -45,11 +45,11 @@ gcloud compute instances update <INSTANCE_NAME> --shielded-vtpm --shielded-vmint
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/enable-shielded-vm.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/enable-shielded-vm.html)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/compute/docs/instances/modifying-shielded-vm](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/compute_instance_shielded_vm_enabled/metadata.json](../../sources/gcp/compute_instance_shielded_vm_enabled/metadata.json)
 - Source Code：[sources/gcp/compute_instance_shielded_vm_enabled/check.py](../../sources/gcp/compute_instance_shielded_vm_enabled/check.py)

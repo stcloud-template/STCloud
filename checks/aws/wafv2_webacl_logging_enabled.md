@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `wafv2_webacl_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | wafv2 |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsWafv2WebAcl |
-| 资源组 | security |
+| チェック項目 ID | `wafv2_webacl_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | wafv2 |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsWafv2WebAcl |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAFv2 Web ACLs** with **logging** capture details of inspected requests and rule evaluations. The assessment determines for each Web ACL whether logging is configured to record traffic analyzed by that ACL.
 
-## 风险
+## リスク
 
 Without **WAF logging**, visibility into allowed/blocked requests is lost, degrading detection and response. **SQLi**, **credential stuffing**, and **bot/DDoS probes** can go unnoticed, risking data exposure (C), undetected rule misuse (I), and service instability from unseen abuse (A).
 
-## 推荐措施
+## 推奨事項
 
 Enable **logging** on all WAFv2 Web ACLs to a centralized destination. Apply **least privilege** for log delivery, **redact sensitive fields**, and filter to retain high-value events. Integrate with monitoring/SIEM for **alerting and correlation**, and review routinely as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -67,14 +67,14 @@ resource "aws_wafv2_web_acl_logging_configuration" "<example_resource_name>" {
 4. Choose a log destination (CloudWatch Logs log group, S3 bucket, or Kinesis Data Firehose)
 5. Click Save to enable logging
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/WAF/enable-web-acls-logging.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/WAF/enable-web-acls-logging.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-11](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-11)
 - [https://docs.aws.amazon.com/cli/latest/reference/wafv2/put-logging-configuration.html](https://docs.aws.amazon.com/cli/latest/reference/wafv2/put-logging-configuration.html)
 - [https://docs.aws.amazon.com/waf/latest/developerguide/logging.html](https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/wafv2_webacl_logging_enabled/metadata.json](../../sources/aws/wafv2_webacl_logging_enabled/metadata.json)
 - Source Code：[sources/aws/wafv2_webacl_logging_enabled/check.py](../../sources/aws/wafv2_webacl_logging_enabled/check.py)

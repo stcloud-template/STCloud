@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `shield_advanced_protection_in_associated_elastic_ips` |
-| 云平台 | AWS |
-| 服务 | shield |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsEc2Eip |
-| 资源组 | network |
+| チェック項目 ID | `shield_advanced_protection_in_associated_elastic_ips` |
+| クラウドプラットフォーム | AWS |
+| サービス | shield |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsEc2Eip |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Elastic IP addresses** are assessed for **AWS Shield Advanced** coverage by verifying they are listed as protected resources.
 
-## 风险
+## リスク
 
 Without **Shield Advanced**, internet-facing EIPs are more susceptible to **DDoS**, threatening **availability** and driving **cost** spikes. Volumetric or protocol floods can saturate bandwidth or exhaust connection state, disrupting services behind the EIP and slowing incident response.
 
-## 推荐措施
+## 推奨事項
 
 Register critical EIPs as **Shield Advanced protected resources**. Apply **defense in depth**: minimize public exposure, use application-layer controls (WAF, rate limiting), monitor telemetry, and review protections regularly, aligning network access with **least privilege**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -67,11 +67,11 @@ resource "aws_shield_protection" "<example_resource_name>" {
 5. Select the target Elastic IP
 6. Click Protect with Shield Advanced
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html](https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/shield_advanced_protection_in_associated_elastic_ips/metadata.json](../../sources/aws/shield_advanced_protection_in_associated_elastic_ips/metadata.json)
 - Source Code：[sources/aws/shield_advanced_protection_in_associated_elastic_ips/check.py](../../sources/aws/shield_advanced_protection_in_associated_elastic_ips/check.py)

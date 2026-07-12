@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `networkfirewall_deletion_protection` |
-| 云平台 | AWS |
-| 服务 | networkfirewall |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsNetworkFirewallFirewall |
-| 资源组 | network |
+| チェック項目 ID | `networkfirewall_deletion_protection` |
+| クラウドプラットフォーム | AWS |
+| サービス | networkfirewall |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsNetworkFirewallFirewall |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **AWS Network Firewall firewalls** have **deletion protection** enabled (`DeleteProtection=true`).
 
-## 风险
+## リスク
 
 Without deletion protection, a firewall can be removed accidentally or by a compromised identity, letting traffic bypass inspection and logging. This threatens **confidentiality** and **integrity** via unfiltered access, and harms **availability** through routing disruption and loss of perimeter controls.
 
-## 推荐措施
+## 推奨事項
 
 Enable **deletion protection** on every firewall (`DeleteProtection=true`). Enforce **least privilege** to prevent delete actions, require **change approval** for firewall modifications, and implement guardrails with policy-as-code. Apply **defense in depth** so alternate controls contain traffic if a firewall is altered.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -77,11 +77,11 @@ resource "aws_networkfirewall_firewall" "<example_resource_name>" {
 4. Enable Deletion protection
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-9](https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-9)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/networkfirewall_deletion_protection/metadata.json](../../sources/aws/networkfirewall_deletion_protection/metadata.json)
 - Source Code：[sources/aws/networkfirewall_deletion_protection/check.py](../../sources/aws/networkfirewall_deletion_protection/check.py)

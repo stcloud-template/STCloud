@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `codebuild_project_source_repo_url_no_sensitive_credentials` |
-| 云平台 | AWS |
-| 服务 | codebuild |
-| 严重等级 | critical |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Passwords, Sensitive Data Identifications/Security, Effects/Data Exposure |
-| 资源类型 | AwsCodeBuildProject |
-| 资源组 | devops |
+| チェック項目 ID | `codebuild_project_source_repo_url_no_sensitive_credentials` |
+| クラウドプラットフォーム | AWS |
+| サービス | codebuild |
+| 重大度 | critical |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Passwords, Sensitive Data Identifications/Security, Effects/Data Exposure |
+| リソースタイプ | AwsCodeBuildProject |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **AWS CodeBuild projects** with **Bitbucket sources** are assessed to confirm repository URLs do not embed credentials (for example, `x-token-auth:<token>@` or `user:password@`). The assessment includes both the primary source and all secondary sources.
 
-## 风险
+## リスク
 
 Credentials in URLs are **plainly exposed** in configs and logs, enabling unauthorized repo access. This can lead to: - **Source code theft** (C) - **Malicious commits/CI changes** (I) - **Supply-chain compromise** and lateral movement via token reuse
 
-## 推荐措施
+## 推奨事項
 
 Use **OAuth/CodeStar Connections** or store tokens in **Secrets Manager/SSM**, never in the URL. Enforce **least privilege**, scope to needed repos, set short lifetimes, and rotate regularly. Audit configs and logs to remove leaked secrets. *Apply to primary and secondary sources.*
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -86,12 +86,12 @@ resource "aws_codebuild_project" "<example_resource_name>" {
 5. Save changes
 6. If you use Secondary sources, edit each one and remove any embedded credentials from their URLs
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/codebuild-controls.html#codebuild-1](https://docs.aws.amazon.com/securityhub/latest/userguide/codebuild-controls.html#codebuild-1)
 - [https://docs.aws.amazon.com/config/latest/developerguide/codebuild-project-source-repo-url-check.html](https://docs.aws.amazon.com/config/latest/developerguide/codebuild-project-source-repo-url-check.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/codebuild_project_source_repo_url_no_sensitive_credentials/metadata.json](../../sources/aws/codebuild_project_source_repo_url_no_sensitive_credentials/metadata.json)
 - Source Code：[sources/aws/codebuild_project_source_repo_url_no_sensitive_credentials/check.py](../../sources/aws/codebuild_project_source_repo_url_no_sensitive_credentials/check.py)

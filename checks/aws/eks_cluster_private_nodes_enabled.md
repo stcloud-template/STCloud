@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eks_cluster_private_nodes_enabled` |
-| 云平台 | AWS |
-| 服务 | eks |
-| 严重等级 | high |
-| 类别 | internet-exposed, trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access |
-| 资源类型 | AwsEksCluster |
-| 资源组 | container |
+| チェック項目 ID | `eks_cluster_private_nodes_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | eks |
+| 重大度 | high |
+| カテゴリ | internet-exposed, trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access |
+| リソースタイプ | AwsEksCluster |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **Amazon EKS cluster** has **private endpoint access** enabled for the **Kubernetes API server**, allowing control plane traffic to use a VPC-resolved private endpoint. The check evaluates the cluster's `endpointPrivateAccess` setting.
 
-## 风险
+## リスク
 
 Without **private endpoint access**, the API server is exposed on the public internet. This expands attack surface and weakens **confidentiality** and **integrity**: stolen creds or mis-scoped CIDRs can enable unauthorized API calls, secret reads, pod deployments, and config changes. **Availability** also depends on internet egress, increasing failure modes.
 
-## 推荐措施
+## 推奨事項
 
 Enable **private endpoint access** and disable or tightly restrict the public endpoint. Require administration from private networks, enforce **least privilege** with IAM/RBAC, and apply **defense in depth** via segmentation and logging. *If external access is needed*, allow only specific CIDRs and monitor API activity.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -74,12 +74,12 @@ resource "aws_eks_cluster" "<example_resource_name>" {
 4. Enable Private access
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/eks/latest/userguide/private-clusters.html](https://docs.aws.amazon.com/eks/latest/userguide/private-clusters.html)
 - [https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html](https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eks_cluster_private_nodes_enabled/metadata.json](../../sources/aws/eks_cluster_private_nodes_enabled/metadata.json)
 - Source Code：[sources/aws/eks_cluster_private_nodes_enabled/check.py](../../sources/aws/eks_cluster_private_nodes_enabled/check.py)

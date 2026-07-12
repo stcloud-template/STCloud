@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `codebuild_project_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | codebuild |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsCodeBuildProject |
-| 资源组 | devops |
+| チェック項目 ID | `codebuild_project_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | codebuild |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsCodeBuildProject |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **CodeBuild projects** are assessed for **logging configuration** to Amazon **CloudWatch Logs** or **S3**, identifying when at least one destination is `enabled` for build logs and events.
 
-## 风险
+## リスク
 
 Absence of **build logging** creates blind spots for **integrity** and **accountability**. Attackers or misconfigurations can alter artifacts, exfiltrate data, or misuse credentials with little trace, hindering **forensics** and **incident response**. Missing telemetry impedes correlation with other alerts, risking source code and secret **confidentiality**.
 
-## 推荐措施
+## 推奨事項
 
 Enable a log destination for every project-**CloudWatch Logs** or **S3** (preferably both). Enforce **defense in depth**: encrypt logs, set retention, and restrict access on a least-privilege basis. Centralize and monitor logs, alert on anomalies, and avoid sensitive data in output. Use immutable retention to preserve **auditability**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -92,7 +92,7 @@ resource "aws_codebuild_project" "<example_resource_name>" {
 3. Check CloudWatch logs and save (or enable S3 logs instead)
 4. Confirm the project now shows logging enabled
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console-logs](https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console-logs)
 - [https://codefresh.io/learn/devops-tools/aws-codebuild-the-basics-and-a-quick-tutorial/](https://codefresh.io/learn/devops-tools/aws-codebuild-the-basics-and-a-quick-tutorial/)
@@ -100,7 +100,7 @@ resource "aws_codebuild_project" "<example_resource_name>" {
 - [https://support.icompaas.com/support/solutions/articles/62000233680-ensure-that-codebuild-projects-have-s3-or-cloudwatch-logging-enabled](https://support.icompaas.com/support/solutions/articles/62000233680-ensure-that-codebuild-projects-have-s3-or-cloudwatch-logging-enabled)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/codebuild-controls.html#codebuild-4](https://docs.aws.amazon.com/securityhub/latest/userguide/codebuild-controls.html#codebuild-4)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/codebuild_project_logging_enabled/metadata.json](../../sources/aws/codebuild_project_logging_enabled/metadata.json)
 - Source Code：[sources/aws/codebuild_project_logging_enabled/check.py](../../sources/aws/codebuild_project_logging_enabled/check.py)

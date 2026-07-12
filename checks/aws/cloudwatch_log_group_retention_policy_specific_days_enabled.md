@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_group_retention_policy_specific_days_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/SOC 2 |
-| 资源类型 | AwsLogsLogGroup |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_group_retention_policy_specific_days_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/SOC 2 |
+| リソースタイプ | AwsLogsLogGroup |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudWatch Log Groups** are assessed for a retention period at or above the configured threshold (e.g., `365` days) or for being set to **never expire**. Log groups with shorter retention are identified.
 
-## 风险
+## リスク
 
 Short log retention erodes audit evidence. Adversaries can wait out the window, creating gaps in detection, forensics, and compliance reporting. This degrades the **availability** of historical logs and the **integrity** of incident timelines.
 
-## 推荐措施
+## 推奨事項
 
 Define a minimum retention baseline (e.g., `>=365` days) aligned to legal and investigative needs. Apply it consistently with documented exceptions. Automate enforcement, monitor changes, and restrict who can modify retention under **least privilege** and **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -66,7 +66,7 @@ resource "aws_cloudwatch_log_group" "<example_resource_name>" {
 4. Choose a retention value >= <DAYS> or select Never expire
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/cloudwatch-logs-retention-period.html](https://trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/cloudwatch-logs-retention-period.html)
 - [https://boto3.amazonaws.com/v1/documentation/api/1.26.93/reference/services/logs/client/put_retention_policy.html](https://boto3.amazonaws.com/v1/documentation/api/1.26.93/reference/services/logs/client/put_retention_policy.html)
@@ -74,7 +74,7 @@ resource "aws_cloudwatch_log_group" "<example_resource_name>" {
 - [https://www.blinkops.com/blog/cloudwatch-retention](https://www.blinkops.com/blog/cloudwatch-retention)
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_Logs.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_Logs.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_group_retention_policy_specific_days_enabled/metadata.json](../../sources/aws/cloudwatch_log_group_retention_policy_specific_days_enabled/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_group_retention_policy_specific_days_enabled/check.py](../../sources/aws/cloudwatch_log_group_retention_policy_specific_days_enabled/check.py)

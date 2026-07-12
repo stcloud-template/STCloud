@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sns_topics_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | sns |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure, TTPs/Initial Access |
-| 资源类型 | AwsSnsTopic |
-| 资源组 | messaging |
+| チェック項目 ID | `sns_topics_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | sns |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure, TTPs/Initial Access |
+| リソースタイプ | AwsSnsTopic |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **SNS topic policies** are analyzed for **public principals** (e.g., `*`). Topics that grant access without restrictive conditions such as `aws:SourceArn`, `aws:SourceAccount`, `aws:PrincipalOrgID`, or `sns:Endpoint` scoping are treated as publicly accessible.
 
-## 风险
+## リスク
 
 **Public SNS topics** allow anyone or unknown accounts to: - **Subscribe** and siphon messages (confidentiality) - **Publish** spoofed payloads that alter workflows (integrity) - **Flood** messages causing outages and costs (availability) They also enable cross-account abuse and bypass expected trust boundaries.
 
-## 推荐措施
+## 推奨事項
 
 Restrict the **topic policy** to specific principals and minimal actions: - Avoid `Principal:*` - Allow only needed actions (e.g., `sns:Publish`) - Add conditions like `aws:SourceArn`, `aws:SourceAccount`, `aws:PrincipalOrgID`, or `sns:Endpoint` Apply **least privilege**, separate duties, and review policies regularly.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -82,12 +82,12 @@ resource "aws_sns_topic_policy" "<example_resource_name>" {
 4. Add a statement allowing only your account root: Principal = arn:aws:iam::<ACCOUNT_ID>:root with Action sns:Publish and Resource set to the topic ARN
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/SNS/topics-everyone-publish.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/SNS/topics-everyone-publish.html)
 - [https://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html](https://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sns_topics_not_publicly_accessible/metadata.json](../../sources/aws/sns_topics_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/sns_topics_not_publicly_accessible/check.py](../../sources/aws/sns_topics_not_publicly_accessible/check.py)

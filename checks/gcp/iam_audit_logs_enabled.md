@@ -2,34 +2,34 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `iam_audit_logs_enabled` |
-| 云平台 | GCP |
-| 服务 | iam |
-| 子服务 | Audit Logs |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | GCPProject |
-| 资源组 | governance |
+| チェック項目 ID | `iam_audit_logs_enabled` |
+| クラウドプラットフォーム | GCP |
+| サービス | iam |
+| サブサービス | Audit Logs |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | GCPProject |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 Ensure that Google Cloud Audit Logs feature is configured to track Data Access logs for all Google Cloud Platform (GCP) services and users, in order to enhance overall access security and meet compliance requirements. Once configured, the feature can record all admin related activities, as well as all the read and write access requests to user data.
 
-## 风险
+## リスク
 
 In order to maintain an effective Google Cloud audit configuration for your project, folder, and organization, all 3 types of Data Access logs (ADMIN_READ, DATA_READ and DATA_WRITE) must be enabled for all supported GCP services. Also, Data Access logs should be captured for all IAM users, without exempting any of them. Exemptions let you control which users generate audit logs. When you add an exempted user to your log configuration, audit logs are not created for that user, for the selected log type(s). Data Access audit logs are disabled by default and must be explicitly enabled based on your business requirements.
 
-## 推荐措施
+## 推奨事項
 
 It is recommended that Cloud Audit Logging is configured to track all admin activities and read, write access to user data.
 
-- 推荐链接：[https://cloud.google.com/logging/docs/audit/](https://cloud.google.com/logging/docs/audit/)
+- 推奨リンク：[https://cloud.google.com/logging/docs/audit/](https://cloud.google.com/logging/docs/audit/)
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -40,11 +40,11 @@ It is recommended that Cloud Audit Logging is configured to track all admin acti
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudIAM/record-all-activities.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudIAM/record-all-activities.html)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/logging/docs/audit/](https://cloud.google.com/logging/docs/audit/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/iam_audit_logs_enabled/metadata.json](../../sources/gcp/iam_audit_logs_enabled/metadata.json)
 - Source Code：[sources/gcp/iam_audit_logs_enabled/check.py](../../sources/gcp/iam_audit_logs_enabled/check.py)

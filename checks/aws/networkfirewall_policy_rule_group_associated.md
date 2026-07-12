@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `networkfirewall_policy_rule_group_associated` |
-| 云平台 | AWS |
-| 服务 | networkfirewall |
-| 严重等级 | high |
-| 类别 | trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
-| 资源类型 | AwsNetworkFirewallFirewall |
-| 资源组 | network |
+| チェック項目 ID | `networkfirewall_policy_rule_group_associated` |
+| クラウドプラットフォーム | AWS |
+| サービス | networkfirewall |
+| 重大度 | high |
+| カテゴリ | trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
+| リソースタイプ | AwsNetworkFirewallFirewall |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Network Firewall policies have one or more **stateful** or **stateless rule groups** associated to define packet inspection and handling. Policies with no rule groups are identified.
 
-## 风险
+## リスク
 
 Without rule groups, traffic isn't meaningfully inspected, allowing unauthorized flows across VPC boundaries. Impacts: - Confidentiality: data exfiltration - Integrity: unauthorized changes via exposed services - Availability: C2, scanning, or DoS traffic passes; enables lateral movement
 
-## 推荐措施
+## 推奨事項
 
 Associate appropriate **stateful** and **stateless rule groups** with every policy. - Enforce a **deny-by-default** posture (least privilege) - Use vetted managed rule groups as a baseline, then tailor to workloads - Review and test regularly; version rules, monitor logs, and require change control
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -76,7 +76,7 @@ resource "aws_networkfirewall_firewall_policy" "<example_resource_name>" {
 4. Select at least one existing rule group and choose Add to policy
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups.html)
 - [https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-policy-updating.html](https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-policy-updating.html)
@@ -84,7 +84,7 @@ resource "aws_networkfirewall_firewall_policy" "<example_resource_name>" {
 - [https://medium.com/slalom-blog/secure-internet-access-egress-filtering-with-aws-network-firewall-ddf52ae121f9](https://medium.com/slalom-blog/secure-internet-access-egress-filtering-with-aws-network-firewall-ddf52ae121f9)
 - [https://docs.aws.amazon.com/de_de/network-firewall/latest/developerguide/nwfw-using-managed-rule-groups-add-to-policy.html](https://docs.aws.amazon.com/de_de/network-firewall/latest/developerguide/nwfw-using-managed-rule-groups-add-to-policy.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/networkfirewall_policy_rule_group_associated/metadata.json](../../sources/aws/networkfirewall_policy_rule_group_associated/metadata.json)
 - Source Code：[sources/aws/networkfirewall_policy_rule_group_associated/check.py](../../sources/aws/networkfirewall_policy_rule_group_associated/check.py)

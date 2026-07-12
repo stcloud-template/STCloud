@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `directoryservice_directory_monitor_notifications` |
-| 云平台 | AWS |
-| 服务 | directoryservice |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | IAM |
+| チェック項目 ID | `directoryservice_directory_monitor_notifications` |
+| クラウドプラットフォーム | AWS |
+| サービス | directoryservice |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 **AWS Directory Service** directories are associated with **Amazon SNS topics** to send status change notifications (e.g., `Active` `Impaired`). The evaluation looks for directories that have SNS event topics configured for monitoring alerts.
 
-## 风险
+## リスク
 
 Missing directory notifications reduces visibility into health changes, causing delayed response to `Impaired` states. This threatens availability of authentication, Kerberos/LDAP lookups, and domain joins; increases MTTR; and can enable silent replication or trust failures that impact integrity across dependent workloads.
 
-## 推荐措施
+## 推奨事項
 
 Configure **AWS Directory Service** to publish directory status changes to an **SNS topic**, and subscribe your operations channels for timely alerts. Apply **least privilege** on topic permissions, integrate alerts with incident response, and use **defense in depth** by pairing notifications with logs and dashboards.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -43,12 +43,12 @@ aws ds register-event-topic --directory-id <DIRECTORY_ID> --topic-name <SNS_TOPI
 3. Click Actions > Create notification (or Set up notifications)
 4. Select an existing SNS topic (or create one) and Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_enable_notifications.html](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_enable_notifications.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233533-ensure-directory-service-has-sns-notifications-enabled](https://support.icompaas.com/support/solutions/articles/62000233533-ensure-directory-service-has-sns-notifications-enabled)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/directoryservice_directory_monitor_notifications/metadata.json](../../sources/aws/directoryservice_directory_monitor_notifications/metadata.json)
 - Source Code：[sources/aws/directoryservice_directory_monitor_notifications/check.py](../../sources/aws/directoryservice_directory_monitor_notifications/check.py)

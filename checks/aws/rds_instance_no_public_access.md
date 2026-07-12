@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `rds_instance_no_public_access` |
-| 云平台 | AWS |
-| 服务 | rds |
-| 严重等级 | critical |
-| 类别 | internet-exposed |
-| 资源类型 | AwsRdsDbInstance |
-| 资源组 | database |
+| チェック項目 ID | `rds_instance_no_public_access` |
+| クラウドプラットフォーム | AWS |
+| サービス | rds |
+| 重大度 | critical |
+| カテゴリ | internet-exposed |
+| リソースタイプ | AwsRdsDbInstance |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Ensure there are no Public Accessible RDS instances.
 
-## 风险
+## リスク
 
 Publicly accessible databases could expose sensitive data to bad actors.
 
-## 推荐措施
+## 推奨事項
 
 Using an AWS Config rule check for RDS public instances periodically and check there is a business reason for it.
 
-- 推荐链接：[https://docs.aws.amazon.com/config/latest/developerguide/rds-instance-public-access-check.html](https://docs.aws.amazon.com/config/latest/developerguide/rds-instance-public-access-check.html)
+- 推奨リンク：[https://docs.aws.amazon.com/config/latest/developerguide/rds-instance-public-access-check.html](https://docs.aws.amazon.com/config/latest/developerguide/rds-instance-public-access-check.html)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -49,11 +49,11 @@ aws rds modify-db-instance --db-instance-identifier <db_instance_id> --no-public
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/RDS/rds-publicly-accessible.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/RDS/rds-publicly-accessible.html)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/config/latest/developerguide/rds-instance-public-access-check.html](https://docs.aws.amazon.com/config/latest/developerguide/rds-instance-public-access-check.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/rds_instance_no_public_access/metadata.json](../../sources/aws/rds_instance_no_public_access/metadata.json)
 - Source Code：[sources/aws/rds_instance_no_public_access/check.py](../../sources/aws/rds_instance_no_public_access/check.py)

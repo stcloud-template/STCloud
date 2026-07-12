@@ -2,46 +2,46 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `app_function_not_publicly_accessible` |
-| 云平台 | Azure |
-| 服务 | app |
-| 子服务 | function |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | Microsoft.Web/sites |
-| 资源组 | serverless |
+| チェック項目 ID | `app_function_not_publicly_accessible` |
+| クラウドプラットフォーム | Azure |
+| サービス | app |
+| サブサービス | function |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Microsoft.Web/sites |
+| リソースグループ | serverless |
 
-## 描述
+## 説明
 
 Azure Functions should not be exposed to the public internet. Restricting access helps protect applications from potential threats and reduces the attack surface.
 
-## 风险
+## リスク
 
 Exposing Azure Functions to the public internet increases the risk of unauthorized access, data breaches, and other security threats.
 
-## 推荐措施
+## 推奨事項
 
 Review the Azure Functions security guidelines and ensure that access restrictions are in place. Use Azure Private Link and Key Vault for enhanced security.
 
-- 推荐链接：[https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions](https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions)
+- 推奨リンク：[https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions](https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions)
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Functions/azure-function-exposed.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Functions/azure-function-exposed.html)
 
-## 参考资料
+## 参考資料
 
 - [https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options](https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options)
 - [https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions](https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/app_function_not_publicly_accessible/metadata.json](../../sources/azure/app_function_not_publicly_accessible/metadata.json)
 - Source Code：[sources/azure/app_function_not_publicly_accessible/check.py](../../sources/azure/app_function_not_publicly_accessible/check.py)

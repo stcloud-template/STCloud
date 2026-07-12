@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elb_ssl_listeners_use_acm_certificate` |
-| 云平台 | AWS |
-| 服务 | elb |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsElbLoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elb_ssl_listeners_use_acm_certificate` |
+| クラウドプラットフォーム | AWS |
+| サービス | elb |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsElbLoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Classic Load Balancer HTTPS/SSL listeners use **AWS Certificate Manager** certificates that are **Amazon-issued** (certificate type `AMAZON_ISSUED`).
 
-## 风险
+## リスク
 
 Using imported or non Amazon-issued certificates reduces control over issuance and rotation, increasing chances of **expired or weak TLS**. This can trigger **service outages** and enable **man-in-the-middle** interception, compromising data **confidentiality** and **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Standardize on **Amazon-issued ACM certificates** for CLB HTTPS/SSL listeners to ensure managed validation and **automatic renewal**. Apply **least privilege** to certificate operations, automate rotation, and monitor certificate health as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,12 +79,12 @@ resource "aws_elb" "<example_resource_name>" {
 5. Select an ACM certificate that is Amazon-issued (not imported)
 6. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/elb-controls.html#elb-2](https://docs.aws.amazon.com/securityhub/latest/userguide/elb-controls.html#elb-2)
 - [https://docs.aws.amazon.com/config/latest/developerguide/elb-acm-certificate-required.html](https://docs.aws.amazon.com/config/latest/developerguide/elb-acm-certificate-required.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elb_ssl_listeners_use_acm_certificate/metadata.json](../../sources/aws/elb_ssl_listeners_use_acm_certificate/metadata.json)
 - Source Code：[sources/aws/elb_ssl_listeners_use_acm_certificate/check.py](../../sources/aws/elb_ssl_listeners_use_acm_certificate/check.py)

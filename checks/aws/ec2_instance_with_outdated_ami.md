@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_instance_with_outdated_ami` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | AwsEc2Instance |
-| 资源组 | compute |
+| チェック項目 ID | `ec2_instance_with_outdated_ami` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AwsEc2Instance |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 This check identifies EC2 instances using outdated Amazon Machine Images (AMIs) by auditing instances to gather AMI IDs, comparing them against the latest available versions, verifying suppo and security update status, and checking for deprecation.
 
-## 风险
+## リスク
 
 Using outdated AMIs can expose EC2 instances to security vulnerabilities, lack of support, and missing critical updates, increasing the risk of exploitation.
 
-## 推荐措施
+## 推奨事項
 
 Regularly update your EC2 instances to use the latest AMIs to ensure they receive the latest security patches and updates.
 
-- 推荐链接：[https://repost.aws/knowledge-center/ec2-find-deprecated-ami](https://repost.aws/knowledge-center/ec2-find-deprecated-ami)
+- 推奨リンク：[https://repost.aws/knowledge-center/ec2-find-deprecated-ami](https://repost.aws/knowledge-center/ec2-find-deprecated-ami)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -41,11 +41,11 @@ aws ec2 describe-images --image-ids <ami-id>
 
 [https://repost.aws/knowledge-center/ec2-find-deprecated-ami](https://repost.aws/knowledge-center/ec2-find-deprecated-ami)
 
-## 参考资料
+## 参考資料
 
 - [https://repost.aws/knowledge-center/ec2-find-deprecated-ami](https://repost.aws/knowledge-center/ec2-find-deprecated-ami)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_instance_with_outdated_ami/metadata.json](../../sources/aws/ec2_instance_with_outdated_ami/metadata.json)
 - Source Code：[sources/aws/ec2_instance_with_outdated_ami/check.py](../../sources/aws/ec2_instance_with_outdated_ami/check.py)

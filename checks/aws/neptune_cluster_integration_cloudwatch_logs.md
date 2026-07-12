@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `neptune_cluster_integration_cloudwatch_logs` |
-| 云平台 | AWS |
-| 服务 | neptune |
-| 严重等级 | medium |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `neptune_cluster_integration_cloudwatch_logs` |
+| クラウドプラットフォーム | AWS |
+| サービス | neptune |
+| 重大度 | medium |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Neptune DB cluster is inspected for CloudWatch export of **audit** events. The finding indicates whether the cluster publishes `audit` logs to CloudWatch; a failed status in the report means the `audit` export is not enabled and audit records are not being forwarded to CloudWatch for centralized logging and review.
 
-## 风险
+## リスク
 
 Missing **audit logs** reduces **detectability** and **accountability**: - Investigators cannot reconstruct queries, client origins, or timeline - Unauthorized queries, data exfiltration, or privilege misuse may go undetected This degrades confidentiality and integrity and slows incident response.
 
-## 推荐措施
+## 推奨事項
 
 Enable and centralize **audit logging** for Neptune by exporting `audit` events to CloudWatch Logs and integrating with monitoring or SIEM. - Enforce **least privilege** on log access - Configure retention, encryption, and alerting for anomalous queries This supports proactive detection and forensic readiness.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -65,14 +65,14 @@ resource "aws_neptune_cluster" "example_resource" {
 4. In Log exports, check "Audit"
 5. Continue > Modify DB Cluster
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/neptune/latest/userguide/auditing.html](https://docs.aws.amazon.com/neptune/latest/userguide/auditing.html)
 - [https://docs.aws.amazon.com/neptune/latest/userguide/cloudwatch-logs.html](https://docs.aws.amazon.com/neptune/latest/userguide/cloudwatch-logs.html)
 - [https://cloudanix.com/docs/aws/audit/rdsmonitoring/rules/neptune_cluster_cloudwatch_log_export_enabled_remediation](https://cloudanix.com/docs/aws/audit/rdsmonitoring/rules/neptune_cluster_cloudwatch_log_export_enabled_remediation)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/neptune-controls.html#neptune-2](https://docs.aws.amazon.com/securityhub/latest/userguide/neptune-controls.html#neptune-2)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/neptune_cluster_integration_cloudwatch_logs/metadata.json](../../sources/aws/neptune_cluster_integration_cloudwatch_logs/metadata.json)
 - Source Code：[sources/aws/neptune_cluster_integration_cloudwatch_logs/check.py](../../sources/aws/neptune_cluster_integration_cloudwatch_logs/check.py)

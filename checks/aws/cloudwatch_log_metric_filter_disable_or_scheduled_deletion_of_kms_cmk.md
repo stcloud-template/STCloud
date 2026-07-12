@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_metric_filter_disable_or_scheduled_deletion_of_kms_cmk` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_metric_filter_disable_or_scheduled_deletion_of_kms_cmk` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 CloudTrail events delivered to CloudWatch are evaluated for a **metric filter and alarm** that monitor **KMS CMK state changes**, specifically `DisableKey` and `ScheduleKeyDeletion` from `kms.amazonaws.com`.
 
-## 风险
+## リスク
 
 Missing alerts on **CMK disablement or scheduled deletion** undermines **availability** and **integrity**: encrypted data may become undecryptable, backups unusable, and recovery impossible. Attackers or insiders can change key states unnoticed, causing outages and irreversible data loss.
 
-## 推荐措施
+## 推奨事項
 
 Establish **CloudWatch metric filters and alarms** for `DisableKey` and `ScheduleKeyDeletion` CloudTrail events to enable rapid response. - Apply **least privilege** to KMS administration - Enforce **change control** and separation of duties - Use deletion waiting periods and monitor all regions
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -101,11 +101,11 @@ resource "aws_cloudwatch_metric_alarm" "cmk" {
 7. Set Statistic: Sum, Period: 5 minutes, Threshold type: Static, Threshold: 1, Comparison: Greater/Equal
 8. Create the alarm (notification actions optional and not required for pass)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys-creating-cloudwatch-alarm.html](https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys-creating-cloudwatch-alarm.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_metric_filter_disable_or_scheduled_deletion_of_kms_cmk/metadata.json](../../sources/aws/cloudwatch_log_metric_filter_disable_or_scheduled_deletion_of_kms_cmk/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_metric_filter_disable_or_scheduled_deletion_of_kms_cmk/check.py](../../sources/aws/cloudwatch_log_metric_filter_disable_or_scheduled_deletion_of_kms_cmk/check.py)

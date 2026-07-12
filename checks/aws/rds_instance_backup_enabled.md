@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `rds_instance_backup_enabled` |
-| 云平台 | AWS |
-| 服务 | rds |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | AwsRdsDbInstance |
-| 资源组 | database |
+| チェック項目 ID | `rds_instance_backup_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | rds |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AwsRdsDbInstance |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Check if RDS instances have backup enabled.
 
-## 风险
+## リスク
 
 If backup is not enabled, data is vulnerable. Human error or bad actors could erase or modify data.
 
-## 推荐措施
+## 推奨事項
 
 Enable automated backup for production data. Define a retention period and periodically test backup restoration. A Disaster Recovery process should be in place to govern Data Protection approach.
 
-- 推荐链接：[https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html)
+- 推奨リンク：[https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -45,11 +45,11 @@ aws rds modify-db-instance --db-instance-identifier <db_instance_id> --backup-re
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/RDS/rds-automated-backups-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/RDS/rds-automated-backups-enabled.html)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/rds_instance_backup_enabled/metadata.json](../../sources/aws/rds_instance_backup_enabled/metadata.json)
 - Source Code：[sources/aws/rds_instance_backup_enabled/check.py](../../sources/aws/rds_instance_backup_enabled/check.py)

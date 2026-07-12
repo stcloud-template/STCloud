@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `accessanalyzer_enabled_without_findings` |
-| 云平台 | AWS |
-| 服务 | accessanalyzer |
-| 严重等级 | low |
-| 类别 | identity-access, trust-boundaries, internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | security |
+| チェック項目 ID | `accessanalyzer_enabled_without_findings` |
+| クラウドプラットフォーム | AWS |
+| サービス | accessanalyzer |
+| 重大度 | low |
+| カテゴリ | identity-access, trust-boundaries, internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **IAM Access Analyzer** analyzers are in `Active` state and currently report zero `Active` findings within their scope of monitored resources.
 
-## 风险
+## リスク
 
 Unresolved `Active` findings indicate unintended external or internal access paths. - **Confidentiality**: public/cross-account reads of data (buckets, snapshots, secrets) - **Integrity**: rogue role assumption or KMS use enabling policy/data changes - **Lateral movement** across accounts
 
-## 推荐措施
+## 推奨事項
 
 Enable **IAM Access Analyzer** in all relevant Regions and org/account scopes. Triage every `Active` finding: - Remove unintended access by tightening resource and trust policies - Enforce **least privilege** and separation of duties - Archive only validated, intended access - Continuously monitor and automate reviews
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -58,7 +58,7 @@ resource "aws_accessanalyzer_analyzer" "example_resource" {
 4. For unintended access findings, open the finding and follow the linked resource to remove the offending permission (edit the resource policy or role trust policy), then return to the finding and choose Rescan
 5. Confirm the dashboard shows 0 Active findings
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings-remediate.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings-remediate.html)
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings-view.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings-view.html)
@@ -71,7 +71,7 @@ resource "aws_accessanalyzer_analyzer" "example_resource" {
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/AccessAnalyzer/findings.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/AccessAnalyzer/findings.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/accessanalyzer_enabled_without_findings/metadata.json](../../sources/aws/accessanalyzer_enabled_without_findings/metadata.json)
 - Source Code：[sources/aws/accessanalyzer_enabled_without_findings/check.py](../../sources/aws/accessanalyzer_enabled_without_findings/check.py)

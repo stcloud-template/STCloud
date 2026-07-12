@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `mq_broker_active_deployment_mode` |
-| 云平台 | AWS |
-| 服务 | mq |
-| 严重等级 | low |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Effects/Denial of Service |
-| 资源类型 | AwsAmazonMQBroker |
-| 资源组 | messaging |
+| チェック項目 ID | `mq_broker_active_deployment_mode` |
+| クラウドプラットフォーム | AWS |
+| サービス | mq |
+| 重大度 | low |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Effects/Denial of Service |
+| リソースタイプ | AwsAmazonMQBroker |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **ActiveMQ broker deployment mode** is configured as **active/standby** (`ACTIVE_STANDBY_MULTI_AZ`), indicating a redundant pair operating across Availability Zones
 
-## 风险
+## リスク
 
 Without **active/standby**, a single-instance broker becomes a **single point of failure**, degrading **availability** and risking **message loss or duplication** during outages or maintenance. This can stall message flows, grow backlogs, and cause inconsistent processing across dependent services.
 
-## 推荐措施
+## 推奨事項
 
 Adopt **active/standby deployment** for ActiveMQ brokers to provide multi-AZ resilience. Design clients for **failover** with retries and idempotent processing, validate recovery through regular **failover testing**, monitor broker health, and apply **least privilege** to limit blast radius.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -85,14 +85,14 @@ resource "aws_mq_broker" "<example_resource_name>" {
 5. Enter a broker name, instance type, and create a user (username/password)
 6. Create the broker, update clients to use the new endpoints, then delete the old single-instance broker
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MQ/deployment-mode.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MQ/deployment-mode.html)
 - [https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-basic-elements.html](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-basic-elements.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/mq-controls.html#mq-5](https://docs.aws.amazon.com/securityhub/latest/userguide/mq-controls.html#mq-5)
 - [https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-broker-architecture.html#active-standby-broker-deployment](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-broker-architecture.html#active-standby-broker-deployment)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/mq_broker_active_deployment_mode/metadata.json](../../sources/aws/mq_broker_active_deployment_mode/metadata.json)
 - Source Code：[sources/aws/mq_broker_active_deployment_mode/check.py](../../sources/aws/mq_broker_active_deployment_mode/check.py)

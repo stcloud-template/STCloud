@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `shield_advanced_protection_in_internet_facing_load_balancers` |
-| 云平台 | AWS |
-| 服务 | shield |
-| 严重等级 | medium |
-| 类别 | internet-exposed, resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
-| 资源类型 | AwsElbv2LoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `shield_advanced_protection_in_internet_facing_load_balancers` |
+| クラウドプラットフォーム | AWS |
+| サービス | shield |
+| 重大度 | medium |
+| カテゴリ | internet-exposed, resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
+| リソースタイプ | AwsElbv2LoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Application Load Balancers** that are **internet-facing** are evaluated for an associated **AWS Shield Advanced** protection. Scope includes ALBs of type application with external exposure.
 
-## 风险
+## リスク
 
 Without enhanced DDoS protection, internet-facing ALBs are exposed to volumetric L3/L4 floods and HTTP L7 floods, compromising **availability** via outages and latency spikes. Sudden scaling can raise **costs**, while reduced visibility and response support extend disruption across dependent services.
 
-## 推荐措施
+## 推奨事項
 
 Register internet-facing ALBs as **Shield Advanced protected resources** to strengthen **availability**. Use defense-in-depth: pair with **AWS WAF** for L7 filtering and rate limits, group related assets, enable health-based detection and proactive engagement, and enforce least-privilege IAM with continuous monitoring.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -65,12 +65,12 @@ resource "aws_shield_protection" "protect" {
 5. Select your internet-facing ALB
 6. Click Protect with Shield Advanced
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/documentation-overview/shield/](https://aws.amazon.com/documentation-overview/shield/)
 - [https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html](https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/shield_advanced_protection_in_internet_facing_load_balancers/metadata.json](../../sources/aws/shield_advanced_protection_in_internet_facing_load_balancers/metadata.json)
 - Source Code：[sources/aws/shield_advanced_protection_in_internet_facing_load_balancers/check.py](../../sources/aws/shield_advanced_protection_in_internet_facing_load_balancers/check.py)

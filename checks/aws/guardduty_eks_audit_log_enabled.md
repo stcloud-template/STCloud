@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `guardduty_eks_audit_log_enabled` |
-| 云平台 | AWS |
-| 服务 | guardduty |
-| 严重等级 | high |
-| 类别 | cluster-security |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsGuardDutyDetector |
-| 资源组 | security |
+| チェック項目 ID | `guardduty_eks_audit_log_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | guardduty |
+| 重大度 | high |
+| カテゴリ | cluster-security |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsGuardDutyDetector |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **Amazon GuardDuty detectors** are evaluated for **EKS Audit Log Monitoring** (`EKS_AUDIT_LOGS`) being enabled to analyze Kubernetes audit activity from your **Amazon EKS** clusters.
 
-## 风险
+## リスク
 
 Without it, **Kubernetes API abuse** may go undetected, impacting CIA: - Secret access and data exfiltration - RBAC changes enabling privilege escalation - Rogue deployments for persistence/cryptomining Attackers can laterally move to AWS using harvested credentials.
 
-## 推荐措施
+## 推奨事項
 
 Enable **EKS Audit Log Monitoring** on all detectors in every required Region, centrally managed by the GuardDuty administrator. - Route findings to alerting/IR workflows - Enforce **least privilege** on access to findings and configs - Combine with **defense-in-depth**: hardened RBAC and runtime monitoring
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -73,13 +73,13 @@ resource "aws_guardduty_detector" "example" {
 4. Click Enable and confirm
 5. If using AWS Organizations, perform these steps in the delegated GuardDuty administrator account
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/guardduty/latest/ug/eks-protection-enable-standalone-account.html](https://docs.aws.amazon.com/guardduty/latest/ug/eks-protection-enable-standalone-account.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html#guardduty-5](https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html#guardduty-5)
 - [https://docs.aws.amazon.com/guardduty/latest/ug/kubernetes-protection.html](https://docs.aws.amazon.com/guardduty/latest/ug/kubernetes-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/guardduty_eks_audit_log_enabled/metadata.json](../../sources/aws/guardduty_eks_audit_log_enabled/metadata.json)
 - Source Code：[sources/aws/guardduty_eks_audit_log_enabled/check.py](../../sources/aws/guardduty_eks_audit_log_enabled/check.py)

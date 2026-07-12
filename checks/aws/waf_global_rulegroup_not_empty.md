@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `waf_global_rulegroup_not_empty` |
-| 云平台 | AWS |
-| 服务 | waf |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafRuleGroup |
-| 资源组 | security |
+| チェック項目 ID | `waf_global_rulegroup_not_empty` |
+| クラウドプラットフォーム | AWS |
+| サービス | waf |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafRuleGroup |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAF Classic global rule groups** are assessed for the presence of **one or more rules**. Empty groups are identified even when referenced by a web ACL, meaning the group adds no match logic.
 
-## 风险
+## リスク
 
 An empty rule group performs no inspection, so web requests pass without WAF scrutiny. This creates blind spots enabling: - **Confidentiality**: data exfiltration via SQLi/XSS - **Integrity**: parameter tampering - **Availability**: bot abuse and layer-7 DoS It also creates a false sense of protection when attached.
 
-## 推荐措施
+## 推奨事項
 
 Populate each rule group with **effective rules** aligned to application threats; choose `block` or `count` actions as appropriate. Prefer **managed rule groups** as a baseline and layer custom rules for **least privilege**. Avoid placeholder groups, test in staging, and monitor metrics to tune.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -80,13 +80,13 @@ resource "aws_waf_rule_group" "<example_resource_name>" {
 5. Select an existing rule, choose its action (e.g., BLOCK), and click Add rule to rule group
 6. Click Update to save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-groups.html](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-groups.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-7](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-7)
 - [https://docs.aws.amazon.com/waf/latest/developerguide/classic-rule-group-editing.html](https://docs.aws.amazon.com/waf/latest/developerguide/classic-rule-group-editing.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/waf_global_rulegroup_not_empty/metadata.json](../../sources/aws/waf_global_rulegroup_not_empty/metadata.json)
 - Source Code：[sources/aws/waf_global_rulegroup_not_empty/check.py](../../sources/aws/waf_global_rulegroup_not_empty/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eventbridge_bus_cross_account_access` |
-| 云平台 | AWS |
-| 服务 | eventbridge |
-| 严重等级 | high |
-| 类别 | identity-access, trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | AwsEventsEventbus |
-| 资源组 | messaging |
+| チェック項目 ID | `eventbridge_bus_cross_account_access` |
+| クラウドプラットフォーム | AWS |
+| サービス | eventbridge |
+| 重大度 | high |
+| カテゴリ | identity-access, trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | AwsEventsEventbus |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **EventBridge event bus** has a **resource policy** that grants **cross-account event delivery** to principals outside the account, including broad or public access. Focus is on buses whose policies permit external accounts to send events.
 
-## 风险
+## リスク
 
 **Cross-account event injection** can erode **integrity** and **availability**. Spoofed events may trigger rules and invoke downstream targets, causing unintended actions, data exposure via targets, lateral movement through over-privileged roles, and cost or service disruption from event floods.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** on the event bus resource policy: allow only specific account IDs or org scope (e.g., `aws:PrincipalOrgID`) and avoid wildcard `Principal` or `*`. Constrain rules to trusted senders using the `account` field and vetted sources, and add monitoring/throttling for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -70,13 +70,13 @@ resource "aws_cloudwatch_event_permission" "<example_resource_name>" {
 4. Remove any statements that grant access to other accounts, an organization, or "*"
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchEvents/event-bus-cross-account-access.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchEvents/event-bus-cross-account-access.html)
 - [https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CWE_GettingStarted.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CWE_GettingStarted.html)
 - [https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEvents-CrossAccountEventDelivery.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEvents-CrossAccountEventDelivery.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eventbridge_bus_cross_account_access/metadata.json](../../sources/aws/eventbridge_bus_cross_account_access/metadata.json)
 - Source Code：[sources/aws/eventbridge_bus_cross_account_access/check.py](../../sources/aws/eventbridge_bus_cross_account_access/check.py)

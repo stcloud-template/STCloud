@@ -2,41 +2,41 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `iam_service_account_unused` |
-| 云平台 | GCP |
-| 服务 | iam |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | ServiceAccount |
-| 资源组 | IAM |
+| チェック項目 ID | `iam_service_account_unused` |
+| クラウドプラットフォーム | GCP |
+| サービス | iam |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | ServiceAccount |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Ensure That There Are No Unused Service Accounts.
 
-## 风险
+## リスク
 
 A malicious actor could make use of privilege escalation or impersonation to access an unused Service Account that is over-privileged.
 
-## 推荐措施
+## 推奨事項
 
 It is recommended to disable or remove unused Service Accounts.
 
-- 推荐链接：[https://cloud.google.com/iam/docs/service-account-overview#identify-unused](https://cloud.google.com/iam/docs/service-account-overview#identify-unused)
+- 推奨リンク：[https://cloud.google.com/iam/docs/service-account-overview#identify-unused](https://cloud.google.com/iam/docs/service-account-overview#identify-unused)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/iam/docs/service-account-overview#identify-unused](https://cloud.google.com/iam/docs/service-account-overview#identify-unused)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/iam_service_account_unused/metadata.json](../../sources/gcp/iam_service_account_unused/metadata.json)
 - Source Code：[sources/gcp/iam_service_account_unused/check.py](../../sources/gcp/iam_service_account_unused/check.py)

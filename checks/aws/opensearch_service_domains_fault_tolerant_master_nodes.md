@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `opensearch_service_domains_fault_tolerant_master_nodes` |
-| 云平台 | AWS |
-| 服务 | opensearch |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsOpenSearchServiceDomain |
-| 资源组 | database |
+| チェック項目 ID | `opensearch_service_domains_fault_tolerant_master_nodes` |
+| クラウドプラットフォーム | AWS |
+| サービス | opensearch |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsOpenSearchServiceDomain |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon OpenSearch domains** have **dedicated master nodes** enabled with a master node count of at least `3` to support stable cluster coordination and elections
 
-## 风险
+## リスク
 
 With fewer than `3` or disabled **dedicated master nodes**, the cluster can lose **quorum**, blocking leader election. Effects include stalled cluster state updates, failed reads/writes, shard allocation issues, and possible split-brain, reducing **availability** and **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **dedicated master nodes** and set the count to at least `3` (use an odd number) to maintain **quorum**. Use *Multi-AZ with standby* to distribute masters across zones. Right-size master instances and monitor cluster health to uphold high availability and resilience.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,12 +75,12 @@ resource "aws_opensearch_domain" "<example_resource_name>" {
    - Select a Dedicated master instance type
 4. Choose Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/opensearch-controls.html#opensearch-11](https://docs.aws.amazon.com/securityhub/latest/userguide/opensearch-controls.html#opensearch-11)
 - [https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-dedicatedmasternodes.html#dedicatedmasternodes-number](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-dedicatedmasternodes.html#dedicatedmasternodes-number)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/opensearch_service_domains_fault_tolerant_master_nodes/metadata.json](../../sources/aws/opensearch_service_domains_fault_tolerant_master_nodes/metadata.json)
 - Source Code：[sources/aws/opensearch_service_domains_fault_tolerant_master_nodes/check.py](../../sources/aws/opensearch_service_domains_fault_tolerant_master_nodes/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_development_endpoints_job_bookmark_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_development_endpoints_job_bookmark_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue development endpoints** are assessed for an attached **security configuration** where **job bookmark encryption** is enabled. Endpoints lacking a security configuration are also identified.
 
-## 风险
+## リスク
 
 Unencrypted job bookmarks stored in S3 can be read or altered, exposing dataset paths, partitions, and processing state. This enables data discovery, state tampering, and replay/skip of workloads, impacting **confidentiality**, **integrity**, and **availability** of ETL pipelines.
 
-## 推荐措施
+## 推奨事項
 
 Attach a **security configuration** to each development endpoint and enable **job bookmark encryption** with a managed KMS key. Apply **least privilege** to S3 and KMS, rotate keys, and align logs and data stores with consistent encryption for **defense in depth**. Regularly audit endpoints for missing or outdated configurations.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -81,12 +81,12 @@ resource "aws_glue_dev_endpoint" "<example_resource_name>" {
 4. Create a new Dev endpoint (or recreate the existing one) and set Security configuration to the configuration created in step 2
 5. Create the endpoint to apply the setting
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html](https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/job-bookmark-encryption-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/job-bookmark-encryption-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_development_endpoints_job_bookmark_encryption_enabled/metadata.json](../../sources/aws/glue_development_endpoints_job_bookmark_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/glue_development_endpoints_job_bookmark_encryption_enabled/check.py](../../sources/aws/glue_development_endpoints_job_bookmark_encryption_enabled/check.py)

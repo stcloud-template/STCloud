@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sqlserver_auditing_enabled` |
-| 云平台 | Azure |
-| 服务 | sqlserver |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | SQLServer |
-| 资源组 | database |
+| チェック項目 ID | `sqlserver_auditing_enabled` |
+| クラウドプラットフォーム | Azure |
+| サービス | sqlserver |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | SQLServer |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Ensure that there is an audit policy configured
 
-## 风险
+## リスク
 
 Audit policies are used to store logs associated to the SQL server (for instance, successful/unsuccesful log in attempts). These logs may be useful to detect anomalies or to perform an investigation in case a security incident is detected
 
-## 推荐措施
+## 推奨事項
 
 Create an audit policy for the SQL server
 
-- 推荐链接：[https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Sql/auditing.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Sql/auditing.html)
+- 推奨リンク：[https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Sql/auditing.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Sql/auditing.html)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -43,12 +43,12 @@ Set-AzureRmSqlServerAuditingPolicy -ResourceGroupName <RESOURCE_GROUP_NAME> -Ser
 
 [https://docs.ST Cloud.com/checks/azure/azure-logging-policies/bc_azr_logging_2](https://docs.ST Cloud.com/checks/azure/azure-logging-policies/bc_azr_logging_2)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.microsoft.com/en-us/azure/sql-database/sql-database-auditing](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-auditing)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Sql/auditing.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Sql/auditing.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/sqlserver_auditing_enabled/metadata.json](../../sources/azure/sqlserver_auditing_enabled/metadata.json)
 - Source Code：[sources/azure/sqlserver_auditing_enabled/check.py](../../sources/azure/sqlserver_auditing_enabled/check.py)

@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `storage_ensure_encryption_with_customer_managed_keys` |
-| 云平台 | Azure |
-| 服务 | storage |
-| 严重等级 | high |
-| 类别 | encryption |
-| 资源类型 | AzureStorageAccount |
-| 资源组 | storage |
+| チェック項目 ID | `storage_ensure_encryption_with_customer_managed_keys` |
+| クラウドプラットフォーム | Azure |
+| サービス | storage |
+| 重大度 | high |
+| カテゴリ | encryption |
+| リソースタイプ | AzureStorageAccount |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 Ensure that your Microsoft Azure Storage accounts are using Customer Managed Keys (CMKs) instead of Microsoft Managed Keys
 
-## 风险
+## リスク
 
 If you want to control and manage storage account contents encryption key yourself you must specify a customer-managed key
 
-## 推荐措施
+## 推奨事項
 
 Enable sensitive data encryption at rest using Customer Managed Keys rather than Microsoft Managed keys.
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -37,11 +37,11 @@ Enable sensitive data encryption at rest using Customer Managed Keys rather than
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/StorageAccounts/cmk-encryption.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/StorageAccounts/cmk-encryption.html)
 
-## 参考资料
+## 参考資料
 
 No external references available.
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/storage_ensure_encryption_with_customer_managed_keys/metadata.json](../../sources/azure/storage_ensure_encryption_with_customer_managed_keys/metadata.json)
 - Source Code：[sources/azure/storage_ensure_encryption_with_customer_managed_keys/check.py](../../sources/azure/storage_ensure_encryption_with_customer_managed_keys/check.py)

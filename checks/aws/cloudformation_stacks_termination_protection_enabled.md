@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudformation_stacks_termination_protection_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudformation |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Destruction |
-| 资源类型 | AwsCloudFormationStack |
-| 资源组 | devops |
+| チェック項目 ID | `cloudformation_stacks_termination_protection_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudformation |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Destruction |
+| リソースタイプ | AwsCloudFormationStack |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **AWS CloudFormation root stacks** are evaluated for **termination protection**. The detection identifies whether `termination protection` is enabled to block stack deletions on non-nested stacks.
 
-## 风险
+## リスク
 
 Without **termination protection**, human error or automation can delete entire stacks, causing immediate **availability** loss and potential **data destruction** of managed resources. Attackers with delete rights can more easily trigger outages and hinder recovery.
 
-## 推荐措施
+## 推奨事項
 
 Enable **termination protection** on root stacks for critical workloads. Enforce **least privilege** on who can alter this setting or delete stacks, require **change review** via change sets, and apply **stack policies** plus `DeletionPolicy: Retain` for data stores for defense in depth.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -53,12 +53,12 @@ resource "aws_cloudformation_stack" "<example_resource_name>" {
 3. Choose Stack actions > Edit termination protection
 4. Select Enable and Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFormation/stack-termination-protection.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFormation/stack-termination-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudformation_stacks_termination_protection_enabled/metadata.json](../../sources/aws/cloudformation_stacks_termination_protection_enabled/metadata.json)
 - Source Code：[sources/aws/cloudformation_stacks_termination_protection_enabled/check.py](../../sources/aws/cloudformation_stacks_termination_protection_enabled/check.py)

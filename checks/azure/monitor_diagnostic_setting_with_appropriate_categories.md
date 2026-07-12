@@ -2,34 +2,34 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `monitor_diagnostic_setting_with_appropriate_categories` |
-| 云平台 | Azure |
-| 服务 | monitor |
-| 子服务 | Configuring Diagnostic Settings |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | Monitor |
-| 资源组 | monitoring |
+| チェック項目 ID | `monitor_diagnostic_setting_with_appropriate_categories` |
+| クラウドプラットフォーム | Azure |
+| サービス | monitor |
+| サブサービス | Configuring Diagnostic Settings |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Monitor |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 Prerequisite: A Diagnostic Setting must exist. If a Diagnostic Setting does not exist, the navigation and options within this recommendation will not be available. Please review the recommendation at the beginning of this subsection titled: 'Ensure that a 'Diagnostic Setting' exists.' The diagnostic setting should be configured to log the appropriate activities from the control/management plane.
 
-## 风险
+## リスク
 
 A diagnostic setting controls how the diagnostic log is exported. Capturing the diagnostic setting categories for appropriate control/management plane activities allows proper alerting.
 
-## 推荐措施
+## 推奨事項
 
 1. Go to Azure Monitor 2. Click Activity log 3. Click on Export Activity Logs 4. Select the Subscription from the drop down menu 5. Click on Add diagnostic setting 6. Enter a name for your new Diagnostic Setting 7. Check the following categories: Administrative, Alert, Policy, and Security 8. Choose the destination details according to your organization's needs.
 
-- 推荐链接：[https://learn.microsoft.com/en-us/azure/storage/common/manage-storage-analytics-logs?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal](https://learn.microsoft.com/en-us/azure/storage/common/manage-storage-analytics-logs?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal)
+- 推奨リンク：[https://learn.microsoft.com/en-us/azure/storage/common/manage-storage-analytics-logs?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal](https://learn.microsoft.com/en-us/azure/storage/common/manage-storage-analytics-logs?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -42,12 +42,12 @@ az monitor diagnostic-settings subscription create --subscription <subscription 
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Monitor/diagnostic-setting-categories.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/Monitor/diagnostic-setting-categories.html)
 
-## 参考资料
+## 参考資料
 
 - [https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings)
 - [https://learn.microsoft.com/en-us/azure/storage/common/manage-storage-analytics-logs?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal](https://learn.microsoft.com/en-us/azure/storage/common/manage-storage-analytics-logs?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/monitor_diagnostic_setting_with_appropriate_categories/metadata.json](../../sources/azure/monitor_diagnostic_setting_with_appropriate_categories/metadata.json)
 - Source Code：[sources/azure/monitor_diagnostic_setting_with_appropriate_categories/check.py](../../sources/azure/monitor_diagnostic_setting_with_appropriate_categories/check.py)

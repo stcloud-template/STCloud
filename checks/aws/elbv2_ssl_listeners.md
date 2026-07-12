@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elbv2_ssl_listeners` |
-| 云平台 | AWS |
-| 服务 | elbv2 |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsElbv2LoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elbv2_ssl_listeners` |
+| クラウドプラットフォーム | AWS |
+| サービス | elbv2 |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsElbv2LoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Application Load Balancer listeners** are assessed for **encrypted ingress**: either only `HTTPS` listeners are present, or any `HTTP` listener redirects to `HTTPS`.
 
-## 风险
+## リスク
 
 Exposed `HTTP` paths allow traffic to travel in plaintext, enabling interception, credential theft, session hijacking, and response tampering. This weakens confidentiality and integrity and makes **MITM** on public or shared networks feasible.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **TLS everywhere**: use `HTTPS` listeners and make all `HTTP` listeners redirect to `HTTPS` only. Do not forward plaintext. Apply **defense in depth** with strong TLS policies and managed certificates, and consider `HSTS` to prevent users from reaching `http`.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -83,12 +83,12 @@ resource "aws_lb_listener" "<example_resource_name>" {
 4. Set the default action to Redirect to, Protocol: HTTPS, Port: 443, Status code: HTTP_301
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/elb-controls.html#elb-1](https://docs.aws.amazon.com/securityhub/latest/userguide/elb-controls.html#elb-1)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elbv2_ssl_listeners/metadata.json](../../sources/aws/elbv2_ssl_listeners/metadata.json)
 - Source Code：[sources/aws/elbv2_ssl_listeners/check.py](../../sources/aws/elbv2_ssl_listeners/check.py)

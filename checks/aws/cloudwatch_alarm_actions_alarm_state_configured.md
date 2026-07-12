@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_alarm_actions_alarm_state_configured` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | high |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_alarm_actions_alarm_state_configured` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | high |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 Amazon CloudWatch metric alarms are evaluated for **actions** configured for the `ALARM` state. The finding flags alarms that have no action to execute when their monitored metric crosses its threshold.
 
-## 风险
+## リスク
 
 Without an **ALARM action**, threshold breaches trigger no **notification** or **automated response**. This delays detection and containment, risking: - Availability: prolonged outages or missed scale-out - Integrity/confidentiality: unchecked anomalies enabling tampering or data loss
 
-## 推荐措施
+## 推奨事項
 
 Assign at least one **ALARM-state action** per alarm (e.g., notify via SNS or run automated remediation with Lambda/SSM). Keep actions enabled, apply **least privilege** to targets, and regularly test. *For critical metrics*, add redundant paths (EventBridge) for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -80,7 +80,7 @@ resource "aws_cloudwatch_metric_alarm" "<example_resource_name>" {
 3. In Actions, under When alarm state is ALARM, add an action (e.g., select an SNS topic or other supported action)
 4. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-actions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-actions)
 - [https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch/client/put_metric_alarm.html](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch/client/put_metric_alarm.html)
@@ -90,7 +90,7 @@ resource "aws_cloudwatch_metric_alarm" "<example_resource_name>" {
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatch/cloudwatch-alarm-action.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatch/cloudwatch-alarm-action.html)
 - [https://awscli.amazonaws.com/v2/documentation/api/2.0.34/reference/cloudwatch/put-metric-alarm.html](https://awscli.amazonaws.com/v2/documentation/api/2.0.34/reference/cloudwatch/put-metric-alarm.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_alarm_actions_alarm_state_configured/metadata.json](../../sources/aws/cloudwatch_alarm_actions_alarm_state_configured/metadata.json)
 - Source Code：[sources/aws/cloudwatch_alarm_actions_alarm_state_configured/check.py](../../sources/aws/cloudwatch_alarm_actions_alarm_state_configured/check.py)

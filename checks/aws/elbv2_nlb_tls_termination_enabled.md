@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elbv2_nlb_tls_termination_enabled` |
-| 云平台 | AWS |
-| 服务 | elbv2 |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
-| 资源类型 | AwsElbv2LoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elbv2_nlb_tls_termination_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elbv2 |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
+| リソースタイプ | AwsElbv2LoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Network Load Balancers** with listeners using the `TLS` protocol indicate **TLS termination** at the load balancer. The evaluation identifies NLBs that have at least one `TLS` listener versus those using plain `TCP`/`UDP` or deferring encryption to targets.
 
-## 风险
+## リスク
 
 Lack of NLB-level TLS termination can leave transit data unencrypted or managed inconsistently on instances, undermining **confidentiality** and **integrity**. It also shifts handshake CPU cost to targets, reducing **availability** and making them more susceptible to connection floods and downgrade or weak-cipher exposures.
 
-## 推荐措施
+## 推奨事項
 
 Enable **TLS listeners** to terminate client encryption at the NLB and enforce centralized, modern cipher policies and certificate rotation. Apply **defense in depth** by re-encrypting to targets when needed, limit backend access to the NLB, and automate certificate lifecycle with secure storage and monitoring for deprecated protocols.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -82,12 +82,12 @@ resource "aws_lb_listener" "<example_resource_name>" {
 5. Set Default action to Forward to your target group
 6. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/network/listener-update-rules.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/listener-update-rules.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELBv2/network-load-balancer-listener-security.html#](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELBv2/network-load-balancer-listener-security.html#)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elbv2_nlb_tls_termination_enabled/metadata.json](../../sources/aws/elbv2_nlb_tls_termination_enabled/metadata.json)
 - Source Code：[sources/aws/elbv2_nlb_tls_termination_enabled/check.py](../../sources/aws/elbv2_nlb_tls_termination_enabled/check.py)

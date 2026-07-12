@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `guardduty_s3_protection_enabled` |
-| 云平台 | AWS |
-| 服务 | guardduty |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exfiltration |
-| 资源类型 | AwsGuardDutyDetector |
-| 资源组 | security |
+| チェック項目 ID | `guardduty_s3_protection_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | guardduty |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exfiltration |
+| リソースタイプ | AwsGuardDutyDetector |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 Amazon GuardDuty detectors are evaluated for **S3 Protection**, which analyzes CloudTrail S3 data events to monitor **object-level API activity** (`GetObject`, `PutObject`, `DeleteObject`) across S3 buckets in the account and Region.
 
-## 风险
+## リスク
 
 Without S3 Protection, **object-level S3 activity** isn't analyzed, enabling: - **Exfiltration** via mass reads/copies - **Destructive deletes** - **Policy/ACL tampering** Undetected actions degrade data confidentiality, integrity, and availability.
 
-## 推荐措施
+## 推奨事項
 
 Enable **S3 Protection** across all accounts and Regions to add **defense in depth** for S3. Apply **least privilege** to IAM and bucket policies, keep **Block Public Access** enforced, integrate findings with alerting, and regularly review anomalies to prevent data loss and tampering.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -72,7 +72,7 @@ resource "aws_guardduty_detector" "<example_resource_name>" {
 3. Find the S3 Protection section and click Enable (or toggle On)
 4. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.amazonaws.cn/en_us/guardduty/latest/ug/guardduty_finding-types-s3.html](https://docs.amazonaws.cn/en_us/guardduty/latest/ug/guardduty_finding-types-s3.html)
 - [https://docs.aws.amazon.com/guardduty/latest/ug/s3_detection.html](https://docs.aws.amazon.com/guardduty/latest/ug/s3_detection.html)
@@ -80,7 +80,7 @@ resource "aws_guardduty_detector" "<example_resource_name>" {
 - [https://docs.aws.amazon.com/guardduty/latest/ug/s3-protection.html](https://docs.aws.amazon.com/guardduty/latest/ug/s3-protection.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html#guardduty-10](https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html#guardduty-10)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/guardduty_s3_protection_enabled/metadata.json](../../sources/aws/guardduty_s3_protection_enabled/metadata.json)
 - Source Code：[sources/aws/guardduty_s3_protection_enabled/check.py](../../sources/aws/guardduty_s3_protection_enabled/check.py)

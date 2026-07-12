@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `memorydb_cluster_auto_minor_version_upgrades` |
-| 云平台 | AWS |
-| 服务 | memorydb |
-| 严重等级 | medium |
-| 类别 | vulnerabilities |
-| 检查类型 | Software and Configuration Checks/Patch Management, Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `memorydb_cluster_auto_minor_version_upgrades` |
+| クラウドプラットフォーム | AWS |
+| サービス | memorydb |
+| 重大度 | medium |
+| カテゴリ | vulnerabilities |
+| チェックタイプ | Software and Configuration Checks/Patch Management, Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **MemoryDB clusters** are evaluated for the `auto_minor_version_upgrade` setting that automatically applies new minor engine versions.
 
-## 风险
+## リスク
 
 Without automatic minor upgrades, clusters may run **known-vulnerable engine versions**. - Exploitable CVEs enable unauthorized reads/writes (confidentiality, integrity) - Unpatched bugs can cause **DoS** or data loss (availability) - Version drift raises operational risk and slows incident response
 
-## 推荐措施
+## 推奨事項
 
 Enable **automatic minor version upgrades** (`auto_minor_version_upgrade=true`) for all clusters. Schedule updates in a maintenance window, validate in staging, and keep rollback plans. Apply **defense in depth** with strict ACLs and monitoring to limit exposure between releases.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -71,12 +71,12 @@ resource "aws_memorydb_cluster" "<example_resource_name>" {
 3. Enable "Auto minor version upgrade"
 4. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/memorydb/latest/devguide/engine-versions.html](https://docs.aws.amazon.com/memorydb/latest/devguide/engine-versions.html)
 - [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Upgrading.html#USER_UpgradeDBInstance.Upgrading.AutoMinorVersionUpgrades](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Upgrading.html#USER_UpgradeDBInstance.Upgrading.AutoMinorVersionUpgrades)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/memorydb_cluster_auto_minor_version_upgrades/metadata.json](../../sources/aws/memorydb_cluster_auto_minor_version_upgrades/metadata.json)
 - Source Code：[sources/aws/memorydb_cluster_auto_minor_version_upgrades/check.py](../../sources/aws/memorydb_cluster_auto_minor_version_upgrades/check.py)

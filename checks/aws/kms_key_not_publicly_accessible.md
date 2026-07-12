@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kms_key_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | kms |
-| 严重等级 | critical |
-| 类别 | internet-exposed, identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | AwsKmsKey |
-| 资源组 | security |
+| チェック項目 ID | `kms_key_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | kms |
+| 重大度 | critical |
+| カテゴリ | internet-exposed, identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | AwsKmsKey |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **KMS keys** are assessed for **excessive access** in key policies or grants, including `*` principals and broadly scoped permissions to multiple identities.
 
-## 风险
+## リスク
 
 Broad access to a **KMS key** enables unauthorized `kms:Decrypt` and data-key generation, breaking **confidentiality**. With admin rights, attackers can change policies or schedule deletion, undermining control **integrity** and threatening **availability** of data dependent on the key.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** to KMS keys: - Restrict principals to specific roles and accounts - Prefer narrow, time-bound grants - Separate key administration from usage - Use conditions to limit context - Review regularly and remove wildcard or cross-account exposure
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -83,13 +83,13 @@ resource "aws_kms_key" "<example_resource_name>" {
 4. Ensure a statement exists that allows only arn:aws:iam::<account_id>:root
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudKMS/publicly-accessible-kms-cryptokeys.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudKMS/publicly-accessible-kms-cryptokeys.html)
 - [https://support.icompaas.com/support/solutions/articles/62000232904-1-9-ensure-cloud-kms-cryptokeys-are-not-accessible-to-anonymous-or-public-users-automated-](https://support.icompaas.com/support/solutions/articles/62000232904-1-9-ensure-cloud-kms-cryptokeys-are-not-accessible-to-anonymous-or-public-users-automated-)
 - [https://docs.aws.amazon.com/kms/latest/developerguide/determining-access.html](https://docs.aws.amazon.com/kms/latest/developerguide/determining-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kms_key_not_publicly_accessible/metadata.json](../../sources/aws/kms_key_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/kms_key_not_publicly_accessible/check.py](../../sources/aws/kms_key_not_publicly_accessible/check.py)

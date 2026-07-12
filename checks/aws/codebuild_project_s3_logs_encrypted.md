@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `codebuild_project_s3_logs_encrypted` |
-| 云平台 | AWS |
-| 服务 | codebuild |
-| 严重等级 | low |
-| 类别 | encryption, logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsCodeBuildProject |
-| 资源组 | devops |
+| チェック項目 ID | `codebuild_project_s3_logs_encrypted` |
+| クラウドプラットフォーム | AWS |
+| サービス | codebuild |
+| 重大度 | low |
+| カテゴリ | encryption, logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsCodeBuildProject |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **CodeBuild projects** with **S3 log delivery** are evaluated for **encryption at rest** on their S3 log objects. Only projects that write logs to S3 are in scope.
 
-## 风险
+## リスク
 
 Unencrypted build logs jeopardize **confidentiality**. Logs can include secrets, environment data, and error traces. If the bucket is misconfigured or storage is accessed, attackers can harvest credentials and map the pipeline, enabling **lateral movement** and build tampering that impacts **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Enable encryption at rest for S3 logs on CodeBuild projects. Prefer `SSE-KMS` with customer-managed keys to control access and rotation. Enforce encryption via bucket policy, apply **least privilege** to log access, and monitor access patterns. *If needed*, segregate logs and keep them private.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -95,14 +95,14 @@ resource "aws_codebuild_project" "<example_resource_name>" {
 4. Ensure Disable S3 log encryption is unchecked (encryption enabled)
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console-logs](https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console-logs)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/codebuild-controls.html#codebuild-3](https://docs.aws.amazon.com/securityhub/latest/userguide/codebuild-controls.html#codebuild-3)
 - [https://support.icompaas.com/support/solutions/articles/62000233685-ensure-s3-logs-for-codebuild-projects-are-encrypted-at-rest](https://support.icompaas.com/support/solutions/articles/62000233685-ensure-s3-logs-for-codebuild-projects-are-encrypted-at-rest)
 - [https://hub.powerpipe.io/mods/turbot/steampipe-mod-aws-compliance/benchmarks/control.codebuild_project_s3_logs_encryption_enabled](https://hub.powerpipe.io/mods/turbot/steampipe-mod-aws-compliance/benchmarks/control.codebuild_project_s3_logs_encryption_enabled)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/codebuild_project_s3_logs_encrypted/metadata.json](../../sources/aws/codebuild_project_s3_logs_encrypted/metadata.json)
 - Source Code：[sources/aws/codebuild_project_s3_logs_encrypted/check.py](../../sources/aws/codebuild_project_s3_logs_encrypted/check.py)

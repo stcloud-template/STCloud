@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `keyvault_access_only_through_private_endpoints` |
-| 云平台 | Azure |
-| 服务 | keyvault |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | KeyVault |
-| 资源组 | security |
+| チェック項目 ID | `keyvault_access_only_through_private_endpoints` |
+| クラウドプラットフォーム | Azure |
+| サービス | keyvault |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | KeyVault |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 Checks if Key Vaults with private endpoints have public network access disabled.
 
-## 风险
+## リスク
 
 Allowing public network access to Key Vault when using private endpoint can expose sensitive data to unauthorized access.
 
-## 推荐措施
+## 推奨事項
 
 Disable public network access for Key Vaults that use private endpoint to ensure network traffic only flows through the private endpoint.
 
-- 推荐链接：[https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview)
+- 推奨リンク：[https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -63,12 +63,12 @@ resource "azurerm_key_vault" "example" {
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/KeyVault/use-private-endpoints.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/KeyVault/use-private-endpoints.html)
 
-## 参考资料
+## 参考資料
 
 - [https://learn.microsoft.com/en-us/azure/key-vault/general/network-security](https://learn.microsoft.com/en-us/azure/key-vault/general/network-security)
 - [https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/keyvault_access_only_through_private_endpoints/metadata.json](../../sources/azure/keyvault_access_only_through_private_endpoints/metadata.json)
 - Source Code：[sources/azure/keyvault_access_only_through_private_endpoints/check.py](../../sources/azure/keyvault_access_only_through_private_endpoints/check.py)

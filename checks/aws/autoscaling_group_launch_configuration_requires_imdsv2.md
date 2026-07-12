@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `autoscaling_group_launch_configuration_requires_imdsv2` |
-| 云平台 | AWS |
-| 服务 | autoscaling |
-| 严重等级 | high |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, TTPs/Credential Access, Effects/Data Exposure |
-| 资源类型 | AwsAutoScalingAutoScalingGroup |
-| 资源组 | compute |
+| チェック項目 ID | `autoscaling_group_launch_configuration_requires_imdsv2` |
+| クラウドプラットフォーム | AWS |
+| サービス | autoscaling |
+| 重大度 | high |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, TTPs/Credential Access, Effects/Data Exposure |
+| リソースタイプ | AwsAutoScalingAutoScalingGroup |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Amazon EC2 Auto Scaling launch configurations are evaluated for **Instance Metadata Service** settings. Instances should have the metadata endpoint `enabled` with `http_tokens=required` (enforcing **IMDSv2**), or have the metadata service `disabled`. Allowing `http_tokens=optional` or omitting the version leaves legacy access enabled.
 
-## 风险
+## リスク
 
 Without enforced **IMDSv2**, **SSRF** and local escape paths can access **IAM role credentials**, enabling unauthorized API calls. Attackers could: - Exfiltrate data with stolen tokens - Move laterally and modify resources, degrading confidentiality and integrity
 
-## 推荐措施
+## 推奨事項
 
 Require **IMDSv2** for Auto Scaling-launched instances by setting `http_tokens=required` when metadata is `enabled`. *If metadata is not needed*, disable it. Apply **least privilege** to instance roles, set IMDSv2 as an account default, and use **defense in depth** (egress filtering, SSRF protections) to limit exposure.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -92,14 +92,14 @@ resource "aws_autoscaling_group" "example" {
 6. Under Launch configuration, select the new launch configuration and Save
 7. (Alternative) To disable IMDS entirely: when creating the launch configuration, set Metadata accessible = Disabled
 
-## 参考资料
+## 参考資料
 
 - [https://trendmicro.com/cloudoneconformity/knowledge-base/aws/EC2/require-imds-v2.html](https://trendmicro.com/cloudoneconformity/knowledge-base/aws/EC2/require-imds-v2.html)
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/autoscaling-controls.html#autoscaling-3](https://docs.aws.amazon.com/securityhub/latest/userguide/autoscaling-controls.html#autoscaling-3)
 - [https://aws.plainenglish.io/dont-let-metadata-leak-why-imdsv2-is-a-must-and-how-to-migrate-a88e1e285394](https://aws.plainenglish.io/dont-let-metadata-leak-why-imdsv2-is-a-must-and-how-to-migrate-a88e1e285394)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/autoscaling_group_launch_configuration_requires_imdsv2/metadata.json](../../sources/aws/autoscaling_group_launch_configuration_requires_imdsv2/metadata.json)
 - Source Code：[sources/aws/autoscaling_group_launch_configuration_requires_imdsv2/check.py](../../sources/aws/autoscaling_group_launch_configuration_requires_imdsv2/check.py)

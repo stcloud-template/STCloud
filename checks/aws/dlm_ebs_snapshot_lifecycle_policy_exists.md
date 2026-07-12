@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dlm_ebs_snapshot_lifecycle_policy_exists` |
-| 云平台 | AWS |
-| 服务 | dlm |
-| 严重等级 | medium |
-| 类别 | forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | storage |
+| チェック項目 ID | `dlm_ebs_snapshot_lifecycle_policy_exists` |
+| クラウドプラットフォーム | AWS |
+| サービス | dlm |
+| 重大度 | medium |
+| カテゴリ | forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 **EBS snapshots** are expected to be governed by **Data Lifecycle Manager (DLM) policies** in each Region where snapshots exist. The evaluation looks for lifecycle policies that automate snapshot creation, retention, and cleanup for those snapshots.
 
-## 风险
+## リスク
 
 Without **automated lifecycle policies**, backups become inconsistent and error-prone, reducing availability and weakening recovery objectives. Missing retention rules cause premature deletion or snapshot sprawl, increasing cost and exposing stale data. Lack of cross-Region/account copies limits resilience to regional outages and malicious deletion.
 
-## 推荐措施
+## 推奨事項
 
 Implement **DLM lifecycle policies** for all volumes that require backup. - Schedule creations to meet RPO/RTO - Define retention to prevent sprawl and enforce least data exposure - Use **least privilege** roles and separation of duties - Copy snapshots to another Region/account for **defense in depth** - Monitor policy health and coverage with tags
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -98,13 +98,13 @@ resource "aws_dlm_lifecycle_policy" "<example_resource_name>" {
 5. Set Schedule: Create every 24 hours; Retain 1 snapshot
 6. Ensure State is Enabled and click Create policy
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/DLM/ebs-snapshot-automation.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/DLM/ebs-snapshot-automation.html)
 - [https://repost.aws/articles/ARmYgZmA8MRQi89pWd9D7eFw/how-to-create-a-automate-backup-aws-data-lifecycle-management-using-snapshots](https://repost.aws/articles/ARmYgZmA8MRQi89pWd9D7eFw/how-to-create-a-automate-backup-aws-data-lifecycle-management-using-snapshots)
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html#dlm-elements](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html#dlm-elements)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dlm_ebs_snapshot_lifecycle_policy_exists/metadata.json](../../sources/aws/dlm_ebs_snapshot_lifecycle_policy_exists/metadata.json)
 - Source Code：[sources/aws/dlm_ebs_snapshot_lifecycle_policy_exists/check.py](../../sources/aws/dlm_ebs_snapshot_lifecycle_policy_exists/check.py)

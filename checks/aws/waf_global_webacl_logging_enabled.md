@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `waf_global_webacl_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | waf |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafWebAcl |
-| 资源组 | security |
+| チェック項目 ID | `waf_global_webacl_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | waf |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafWebAcl |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAF Classic global Web ACLs** have **logging** enabled to capture evaluated web requests and rule actions for each ACL
 
-## 风险
+## リスク
 
 Without **WAF logging**, you lose **visibility** into attacks (SQLi/XSS probes, bots, brute-force) and into allow/block decisions, limiting detection and forensics. This degrades **confidentiality**, **integrity**, and **availability**, and slows incident response and tuning.
 
-## 推荐措施
+## 推奨事項
 
 Enable **logging** on all global Web ACLs and send records to a centralized logging platform. Apply **least privilege** to log destinations and redact sensitive fields. Monitor and alert on anomalies, and integrate logs with incident response for **defense in depth** and faster containment.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -45,13 +45,13 @@ aws waf put-logging-configuration --logging-configuration ResourceArn=<web_acl_a
 5. Click Enable logging and select the Firehose delivery stream created in step 1
 6. Click Enable/Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/classic-logging.html](https://docs.aws.amazon.com/waf/latest/developerguide/classic-logging.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-1](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-1)
 - [https://docs.aws.amazon.com/cli/latest/reference/waf/put-logging-configuration.html](https://docs.aws.amazon.com/cli/latest/reference/waf/put-logging-configuration.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/waf_global_webacl_logging_enabled/metadata.json](../../sources/aws/waf_global_webacl_logging_enabled/metadata.json)
 - Source Code：[sources/aws/waf_global_webacl_logging_enabled/check.py](../../sources/aws/waf_global_webacl_logging_enabled/check.py)

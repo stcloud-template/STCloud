@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_ml_transform_encrypted_at_rest` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
-| 资源类型 | Other |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_ml_transform_encrypted_at_rest` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
+| リソースタイプ | Other |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue ML transforms** are evaluated for **encryption at rest** of transform user data using **KMS keys**. The finding highlights transforms where encryption is not configured.
 
-## 风险
+## リスク
 
 Without encryption, **confidentiality** is weakened: transform artifacts, mappings, and sample datasets may be readable via storage access, backups, or cross-account exposure. This can lead to data disclosure and aid **lateral movement** by revealing schemas and data relationships.
 
-## 推荐措施
+## 推奨事項
 
 Enable **KMS-backed encryption at rest** for all ML transforms and prefer **customer-managed keys**. - Apply **least privilege** key policies and rotate keys - Enforce **defense in depth** with network and IAM controls - Monitor key usage and transform access with audit logs
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -94,12 +94,12 @@ resource "aws_glue_ml_transform" "<example_resource_name>" {
 5. Choose an AWS KMS key
 6. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/encryption-at-rest.html](https://docs.aws.amazon.com/glue/latest/dg/encryption-at-rest.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/glue-controls.html#glue-3](https://docs.aws.amazon.com/securityhub/latest/userguide/glue-controls.html#glue-3)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_ml_transform_encrypted_at_rest/metadata.json](../../sources/aws/glue_ml_transform_encrypted_at_rest/metadata.json)
 - Source Code：[sources/aws/glue_ml_transform_encrypted_at_rest/check.py](../../sources/aws/glue_ml_transform_encrypted_at_rest/check.py)

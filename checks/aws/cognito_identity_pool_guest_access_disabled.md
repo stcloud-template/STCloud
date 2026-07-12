@@ -2,41 +2,41 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cognito_identity_pool_guest_access_disabled` |
-| 云平台 | AWS |
-| 服务 | cognito |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | Other |
-| 资源组 | IAM |
+| チェック項目 ID | `cognito_identity_pool_guest_access_disabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cognito |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Other |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Guest access allows unauthenticated users to access your identity pool. This is useful for public websites that allow users to sign in with a social identity provider, but it can also be a security risk. If you don't need guest access, you should disable it.
 
-## 风险
+## リスク
 
 If guest access is enabled, unauthenticated users can access your identity pool. This can be a security risk if you don't need guest access.
 
-## 推荐措施
+## 推奨事項
 
 Gues access should be disabled for Cognito Identity Pool. To disable guest access, follow the steps in the Amazon Cognito documentation.
 
-- 推荐链接：[https://docs.aws.amazon.com/location/latest/developerguide/authenticating-using-cognito.html](https://docs.aws.amazon.com/location/latest/developerguide/authenticating-using-cognito.html)
+- 推奨リンク：[https://docs.aws.amazon.com/location/latest/developerguide/authenticating-using-cognito.html](https://docs.aws.amazon.com/location/latest/developerguide/authenticating-using-cognito.html)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/location/latest/developerguide/authenticating-using-cognito.html](https://docs.aws.amazon.com/location/latest/developerguide/authenticating-using-cognito.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cognito_identity_pool_guest_access_disabled/metadata.json](../../sources/aws/cognito_identity_pool_guest_access_disabled/metadata.json)
 - Source Code：[sources/aws/cognito_identity_pool_guest_access_disabled/check.py](../../sources/aws/cognito_identity_pool_guest_access_disabled/check.py)

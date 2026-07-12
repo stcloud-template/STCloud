@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `compute_instance_public_ip` |
-| 云平台 | GCP |
-| 服务 | compute |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 资源类型 | VMInstance |
-| 资源组 | compute |
+| チェック項目 ID | `compute_instance_public_ip` |
+| クラウドプラットフォーム | GCP |
+| サービス | compute |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| リソースタイプ | VMInstance |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Check for Virtual Machine Instances with Public IP Addresses
 
-## 风险
+## リスク
 
 To reduce your attack surface, Compute instances should not have public IP addresses. Instead, instances should be configured behind load balancers, to minimize the instance's exposure to the internet.
 
-## 推荐措施
+## 推奨事項
 
 Ensure that your Google Compute Engine instances are not configured to have external IP addresses in order to minimize their exposure to the Internet.
 
-- 推荐链接：[https://cloud.google.com/compute/docs/instances/connecting-to-instance](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
+- 推奨リンク：[https://cloud.google.com/compute/docs/instances/connecting-to-instance](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -39,11 +39,11 @@ Ensure that your Google Compute Engine instances are not configured to have exte
 
 [https://docs.ST Cloud.com/checks/gcp/google-cloud-public-policies/bc_gcp_public_2](https://docs.ST Cloud.com/checks/gcp/google-cloud-public-policies/bc_gcp_public_2)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/compute/docs/instances/connecting-to-instance](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/compute_instance_public_ip/metadata.json](../../sources/gcp/compute_instance_public_ip/metadata.json)
 - Source Code：[sources/gcp/compute_instance_public_ip/check.py](../../sources/gcp/compute_instance_public_ip/check.py)

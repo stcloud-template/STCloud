@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `organizations_opt_out_ai_services_policy` |
-| 云平台 | AWS |
-| 服务 | organizations |
-| 严重等级 | medium |
-| 类别 | gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | governance |
+| チェック項目 ID | `organizations_opt_out_ai_services_policy` |
+| クラウドプラットフォーム | AWS |
+| サービス | organizations |
+| 重大度 | medium |
+| カテゴリ | gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 **AWS Organizations** is assessed for an AI services opt-out policy that sets `services.default.opt_out_policy` to `optOut` and blocks child overrides via `@@operators_allowed_for_child_policies` set to `@@none`.
 
-## 风险
+## リスク
 
 Without an enforced opt-out, AI services may store and use your content for model training, weakening **confidentiality** and **data sovereignty**. If child accounts can override, they can re-enable data use, risking unintended cross-Region retention and exposure of logs, documents, or code processed by these services.
 
-## 推荐措施
+## 推奨事項
 
 Establish an org-wide AI services opt-out: set the default to `optOut` and prohibit child policy overrides (`@@none`). Apply at the highest scope, gate exceptions through change control, and review periodically. Align with **least privilege** and **data minimization** to prevent unintended content sharing with managed AI services.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -79,13 +79,13 @@ resource "aws_organizations_policy_attachment" "<example_resource_name>" {
 3. Click Opt out from all services and confirm
 4. Verify the policy is attached to the Root and shows default -> opt_out_policy -> @@assign: optOut with @@operators_allowed_for_child_policies set to ["@@none"]
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/organizations/latest/userguide/disable-policy-type.html](https://docs.aws.amazon.com/organizations/latest/userguide/disable-policy-type.html)
 - [https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out_all.html](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out_all.html)
 - [https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out_syntax.html](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out_syntax.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/organizations_opt_out_ai_services_policy/metadata.json](../../sources/aws/organizations_opt_out_ai_services_policy/metadata.json)
 - Source Code：[sources/aws/organizations_opt_out_ai_services_policy/check.py](../../sources/aws/organizations_opt_out_ai_services_policy/check.py)

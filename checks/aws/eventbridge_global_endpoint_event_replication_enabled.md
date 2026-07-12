@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eventbridge_global_endpoint_event_replication_enabled` |
-| 云平台 | AWS |
-| 服务 | eventbridge |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsEventsEndpoint |
-| 资源组 | messaging |
+| チェック項目 ID | `eventbridge_global_endpoint_event_replication_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | eventbridge |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsEventsEndpoint |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **EventBridge global endpoints** are configured with **event replication** `ENABLED` (not `DISABLED`) so custom events are replicated to both the primary and secondary Regions.
 
-## 风险
+## リスク
 
 **No event replication** degrades **availability** and increases **RPO** during Regional outages. - Events can be lost or delayed if the primary Region fails - Automatic recovery to the primary may not occur, prolonging failover - Cross-Region inconsistency can affect data integrity
 
-## 推荐措施
+## 推奨事項
 
 Turn on **event replication** for global endpoints to ensure Regional resilience. Keep event buses, rules, and targets aligned across Regions. Use a dedicated IAM role with **least privilege** for replication. Design consumers for **idempotency** with unique IDs. Regularly test failover and monitor health as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -91,7 +91,7 @@ resource "awscc_events_endpoint" "example" {
 4. For Execution role, select an existing role or create a new one
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/eventbridge-controls.html#eventbridge-4](https://docs.aws.amazon.com/securityhub/latest/userguide/eventbridge-controls.html#eventbridge-4)
 - [https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html)
@@ -102,7 +102,7 @@ resource "awscc_events_endpoint" "example" {
 - [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateEndpoint.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateEndpoint.html)
 - [https://aws.amazon.com/blogs/compute/introducing-global-endpoints-for-amazon-eventbridge/](https://aws.amazon.com/blogs/compute/introducing-global-endpoints-for-amazon-eventbridge/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eventbridge_global_endpoint_event_replication_enabled/metadata.json](../../sources/aws/eventbridge_global_endpoint_event_replication_enabled/metadata.json)
 - Source Code：[sources/aws/eventbridge_global_endpoint_event_replication_enabled/check.py](../../sources/aws/eventbridge_global_endpoint_event_replication_enabled/check.py)

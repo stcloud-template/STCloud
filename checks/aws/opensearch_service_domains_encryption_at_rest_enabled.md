@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `opensearch_service_domains_encryption_at_rest_enabled` |
-| 云平台 | AWS |
-| 服务 | opensearch |
-| 严重等级 | critical |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsOpenSearchServiceDomain |
-| 资源组 | database |
+| チェック項目 ID | `opensearch_service_domains_encryption_at_rest_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | opensearch |
+| 重大度 | critical |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsOpenSearchServiceDomain |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon OpenSearch Service domains** are evaluated for `encryption at rest` using AWS KMS (`AES-256`) across stored data, including indexes, swap files, and automated snapshots.
 
-## 风险
+## リスク
 
 **Unencrypted OpenSearch data** can be read or copied if an attacker gains **disk-level access**, steals **automated snapshots**, or compromises the host. This jeopardizes **confidentiality** and enables tampering with stored indices, affecting **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Enable `encryption at rest` with AWS KMS, preferably using **customer-managed keys**. - Enforce **least privilege** key policies and restrict grants - Enable automatic key rotation and monitor KMS usage - Encrypt logs and any exported snapshots - Apply **defense in depth** with network and IAM controls
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -70,12 +70,12 @@ resource "aws_opensearch_domain" "<example_resource_name>" {
 4. Keep the default AWS owned key (or select a KMS key if required)
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/encryption-at-rest.html](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/encryption-at-rest.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Elasticsearch/encryption-at-rest.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Elasticsearch/encryption-at-rest.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/opensearch_service_domains_encryption_at_rest_enabled/metadata.json](../../sources/aws/opensearch_service_domains_encryption_at_rest_enabled/metadata.json)
 - Source Code：[sources/aws/opensearch_service_domains_encryption_at_rest_enabled/check.py](../../sources/aws/opensearch_service_domains_encryption_at_rest_enabled/check.py)

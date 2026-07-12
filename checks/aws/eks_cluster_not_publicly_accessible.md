@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eks_cluster_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | eks |
-| 严重等级 | high |
-| 类别 | internet-exposed, cluster-security |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
-| 资源类型 | AwsEksCluster |
-| 资源组 | container |
+| チェック項目 ID | `eks_cluster_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | eks |
+| 重大度 | high |
+| カテゴリ | internet-exposed, cluster-security |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access, Effects/Data Exposure |
+| リソースタイプ | AwsEksCluster |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **Amazon EKS** cluster API server endpoint is evaluated for **unrestricted Internet access**, specifically when the public endpoint permits connections from `0.0.0.0/0` instead of private access or limited CIDR ranges.
 
-## 风险
+## リスク
 
 An openly reachable API endpoint enables Internet-wide probing, brute force, and enumeration, increasing exposure to RBAC misconfigurations or API flaws. Successful access can drive secret exfiltration (confidentiality), workload tampering (integrity), and control-plane disruption or scaling abuse (availability, cost).
 
-## 推荐措施
+## 推奨事項
 
 Prefer **private endpoint access** and avoid broad exposure. *If public access is required*, restrict to trusted admin CIDRs (not `0.0.0.0/0`), reach the API via **VPN/Direct Connect or bastions**, and enforce **least privilege** with IAM/RBAC. Apply **defense in depth** through network segmentation and continuous monitoring.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -77,13 +77,13 @@ resource "aws_eks_cluster" "<example_resource_name>" {
 4. Enable Private access and Disable Public access
 5. Click Update/Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/eks/latest/eksctl/vpc-cluster-access.html](https://docs.aws.amazon.com/eks/latest/eksctl/vpc-cluster-access.html)
 - [https://docs.aws.amazon.com/eks/latest/userguide/config-cluster-endpoint.html](https://docs.aws.amazon.com/eks/latest/userguide/config-cluster-endpoint.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EKS/endpoint-access.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EKS/endpoint-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eks_cluster_not_publicly_accessible/metadata.json](../../sources/aws/eks_cluster_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/eks_cluster_not_publicly_accessible/check.py](../../sources/aws/eks_cluster_not_publicly_accessible/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `wellarchitected_workload_no_high_or_medium_risks` |
-| 云平台 | AWS |
-| 服务 | wellarchitected |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | governance |
+| チェック項目 ID | `wellarchitected_workload_no_high_or_medium_risks` |
+| クラウドプラットフォーム | AWS |
+| サービス | wellarchitected |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 **AWS Well-Architected workloads** are assessed for the presence and count of risks labeled `HIGH` or `MEDIUM` across the framework pillars. The result indicates whether any such risks remain recorded for the workload.
 
-## 风险
+## リスク
 
 `HIGH`/`MEDIUM` risks indicate gaps that can drive: - **Confidentiality** loss (public data, excessive access) - **Integrity** issues (weak controls, unmonitored changes) - **Availability** failures (fragile resilience, poor recovery) Adversaries can exploit open endpoints and broad privileges to escalate, exfiltrate, and disrupt.
 
-## 推荐措施
+## 推奨事項
 
 Remediate findings, prioritizing `HIGH` then `MEDIUM`. Enforce **least privilege**, strong **encryption**, and continuous **logging/alerting**; minimize public exposure with **defense in depth**; architect for **resilience** with tested recovery. Embed regular reviews in the SDLC and automate guardrails for consistency.
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
@@ -39,12 +39,12 @@ Remediate findings, prioritizing `HIGH` then `MEDIUM`. Enforce **least privilege
 5. Repeat until no High or Medium risks remain
 6. Go back to the workload overview and confirm High = 0 and Medium = 0
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/architecture/well-architected/](https://aws.amazon.com/architecture/well-architected/)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/WellArchitected/findings.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/WellArchitected/findings.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/wellarchitected_workload_no_high_or_medium_risks/metadata.json](../../sources/aws/wellarchitected_workload_no_high_or_medium_risks/metadata.json)
 - Source Code：[sources/aws/wellarchitected_workload_no_high_or_medium_risks/check.py](../../sources/aws/wellarchitected_workload_no_high_or_medium_risks/check.py)

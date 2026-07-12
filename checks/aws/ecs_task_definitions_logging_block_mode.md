@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecs_task_definitions_logging_block_mode` |
-| 云平台 | AWS |
-| 服务 | ecs |
-| 严重等级 | low |
-| 类别 | logging, resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Effects/Denial of Service |
-| 资源类型 | AwsEcsTaskDefinition |
-| 资源组 | container |
+| チェック項目 ID | `ecs_task_definitions_logging_block_mode` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecs |
+| 重大度 | low |
+| カテゴリ | logging, resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Effects/Denial of Service |
+| リソースタイプ | AwsEcsTaskDefinition |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **ECS task definition containers** use **non-blocking logging mode** via the `logConfiguration.mode` option on the latest active revision
 
-## 风险
+## リスク
 
 **Blocking log mode** can stall writes to stdout/stderr, making containers unresponsive, failing health checks, and causing task restarts or startup failures if log groups/streams can't be created. This reduces **availability** and may trigger cascading instability across dependent services.
 
-## 推荐措施
+## 推奨事項
 
 Set `logConfiguration.mode` to `non-blocking` for all containers and size `max-buffer-size` to handle bursts. Keep log destinations in-Region to lower latency. Apply **defense in depth**: decouple application execution from logging, monitor log throughput, and design for backpressure so logging never blocks runtime.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -92,13 +92,13 @@ resource "aws_ecs_task_definition" "<example_resource_name>" {
 5. Ensure awslogs-group, awslogs-region, and (if needed) awslogs-stream-prefix are set
 6. Save and Create; the new revision will have non-blocking logging
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/config/latest/developerguide/ecs-task-definition-log-configuration.html](https://docs.aws.amazon.com/config/latest/developerguide/ecs-task-definition-log-configuration.html)
 - [https://www.amazonaws.cn/en/blog-selection/preventing-log-loss-with-non-blocking-mode-in-the-awslogs-container-log-driver/](https://www.amazonaws.cn/en/blog-selection/preventing-log-loss-with-non-blocking-mode-in-the-awslogs-container-log-driver/)
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html#specify-log-config](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html#specify-log-config)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecs_task_definitions_logging_block_mode/metadata.json](../../sources/aws/ecs_task_definitions_logging_block_mode/metadata.json)
 - Source Code：[sources/aws/ecs_task_definitions_logging_block_mode/check.py](../../sources/aws/ecs_task_definitions_logging_block_mode/check.py)

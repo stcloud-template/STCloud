@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `shield_advanced_protection_in_route53_hosted_zones` |
-| 云平台 | AWS |
-| 服务 | shield |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsRoute53HostedZone |
-| 资源组 | network |
+| チェック項目 ID | `shield_advanced_protection_in_route53_hosted_zones` |
+| クラウドプラットフォーム | AWS |
+| サービス | shield |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsRoute53HostedZone |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Route 53 hosted zones** have an active **AWS Shield Advanced** protection registered to the zone's `ARN`.
 
-## 风险
+## リスク
 
 Without **Shield Advanced**, authoritative DNS is vulnerable to: - **Volumetric/reflection** floods - **Query/application** layer attacks Effects: disrupted resolution and app outages (**availability**), latency spikes, and unexpected cost from attack traffic.
 
-## 推荐措施
+## 推奨事項
 
 Add critical **Route 53 hosted zones** as **Shield Advanced protected resources** to apply managed DDoS safeguards. Follow **defense in depth**: limit DNS exposure, enforce least-privilege for protection changes, monitor traffic baselines, and prepare incident runbooks with clear escalation to speed response.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -65,11 +65,11 @@ resource "aws_shield_protection" "<example_resource_name>" {
 4. Set Scope to Global and select resource type: Amazon Route 53 Hosted Zone
 5. Select the hosted zone and click Protect with Shield Advanced
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html](https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/shield_advanced_protection_in_route53_hosted_zones/metadata.json](../../sources/aws/shield_advanced_protection_in_route53_hosted_zones/metadata.json)
 - Source Code：[sources/aws/shield_advanced_protection_in_route53_hosted_zones/check.py](../../sources/aws/shield_advanced_protection_in_route53_hosted_zones/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `athena_workgroup_encryption` |
-| 云平台 | AWS |
-| 服务 | athena |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Effects/Data Exposure |
-| 资源类型 | AwsAthenaWorkGroup |
-| 资源组 | analytics |
+| チェック項目 ID | `athena_workgroup_encryption` |
+| クラウドプラットフォーム | AWS |
+| サービス | athena |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Effects/Data Exposure |
+| リソースタイプ | AwsAthenaWorkGroup |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **Athena workgroups** are evaluated for **encryption of query results** to confirm result data is stored encrypted at rest, whether saved in Amazon S3 or via managed query results
 
-## 风险
+## リスク
 
 Unencrypted query outputs can be read at rest by unintended principals through S3 misconfigurations or cross-account access. Impact: **Confidentiality loss**, enabling **data exfiltration** and supporting **lateral movement** by exposing sensitive fields outside intended boundaries.
 
-## 推荐措施
+## 推奨事項
 
 Enable and enforce **workgroup result encryption** with **AWS KMS customer managed keys** (`SSE_KMS` or managed results with a KMS key). Set a minimum encryption level and prevent client overrides. Apply **least privilege** to key and result access, rotate keys, and audit usage to maintain defense in depth.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -77,7 +77,7 @@ resource "aws_athena_workgroup" "<example_resource_name>" {
 4. Check Encrypt query results and select SSE-S3
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/big-data/introducing-managed-query-results-for-amazon-athena/](https://aws.amazon.com/blogs/big-data/introducing-managed-query-results-for-amazon-athena/)
 - [https://docs.aws.amazon.com/athena/latest/ug/managed-results.html](https://docs.aws.amazon.com/athena/latest/ug/managed-results.html)
@@ -87,7 +87,7 @@ resource "aws_athena_workgroup" "<example_resource_name>" {
 - [https://docs.aws.amazon.com/athena/latest/ug/workgroups-minimum-encryption.html](https://docs.aws.amazon.com/athena/latest/ug/workgroups-minimum-encryption.html)
 - [https://aws.amazon.com/blogs/aws/launch-amazon-athena-adds-support-for-querying-encrypted-data/](https://aws.amazon.com/blogs/aws/launch-amazon-athena-adds-support-for-querying-encrypted-data/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/athena_workgroup_encryption/metadata.json](../../sources/aws/athena_workgroup_encryption/metadata.json)
 - Source Code：[sources/aws/athena_workgroup_encryption/check.py](../../sources/aws/athena_workgroup_encryption/check.py)

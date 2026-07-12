@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_etl_jobs_amazon_s3_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_etl_jobs_amazon_s3_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue ETL jobs** are validated to use **Amazon S3 at-rest encryption** (`SSE-S3` or `SSE-KMS`) when writing outputs, either through an attached security configuration or via job arguments. Jobs missing a security configuration or with S3 encryption disabled are identified.
 
-## 风险
+## リスク
 
 Storing job outputs in S3 without **at-rest encryption** weakens **confidentiality**. Plaintext objects can be exposed via misconfigured bucket policies, compromised credentials, or media reuse, and lack **KMS key controls**, rotation, and audit trails-hindering incident response and compliance.
 
-## 推荐措施
+## 推奨事項
 
 Require **S3 encryption** for all Glue jobs via security configurations, preferring **SSE-KMS**. Apply **least privilege** to KMS keys, restrict key usage and rotate regularly. Enforce defense-in-depth with bucket policies that require encrypted writes, and monitor with key and S3 access logs.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -87,12 +87,12 @@ resource "aws_glue_job" "job" {
 5. Under Job details, set Security configuration to the encrypted configuration you created
 6. Save the job
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html](https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/s3-encryption-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/s3-encryption-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_etl_jobs_amazon_s3_encryption_enabled/metadata.json](../../sources/aws/glue_etl_jobs_amazon_s3_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/glue_etl_jobs_amazon_s3_encryption_enabled/check.py](../../sources/aws/glue_etl_jobs_amazon_s3_encryption_enabled/check.py)

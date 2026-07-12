@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_subnet_separate_private_public` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | medium |
-| 类别 | trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
-| 资源类型 | AwsEc2Subnet |
-| 资源组 | network |
+| チェック項目 ID | `vpc_subnet_separate_private_public` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | medium |
+| カテゴリ | trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability |
+| リソースタイプ | AwsEc2Subnet |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Amazon VPCs** are assessed for network segmentation: at least one **public subnet** (internet-routable) and one **private subnet** (non-internet-routable). It flags VPCs with no subnets, only public subnets, or only private subnets.
 
-## 风险
+## リスク
 
 Missing subnet separation erodes **segmentation**. - Only public: workloads face Internet exposure, enabling scanning, brute force, and lateral movement, threatening **confidentiality** and **integrity**. - Only private: no controlled egress can break patching and dependencies, impacting **availability**. - No subnets: misconfiguration leaves services unreachable.
 
-## 推荐措施
+## 推奨事項
 
 Segment each VPC: put internet-facing endpoints in **public subnets** and internal workloads in **private subnets**. Restrict ingress/egress with tight route tables, NACLs, and security groups, minimizing `0.0.0.0/0`. Apply **least privilege** and **defense in depth**. Provide controlled outbound for private subnets via managed egress and use hardened admin access patterns.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -143,11 +143,11 @@ resource "aws_route_table_association" "private_assoc_<example_resource_name>" {
    - Associate this route table to Subnet B (private)
 6. Verify the VPC now has at least one subnet with an IGW route (public) and one without (private)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_subnet_separate_private_public/metadata.json](../../sources/aws/vpc_subnet_separate_private_public/metadata.json)
 - Source Code：[sources/aws/vpc_subnet_separate_private_public/check.py](../../sources/aws/vpc_subnet_separate_private_public/check.py)

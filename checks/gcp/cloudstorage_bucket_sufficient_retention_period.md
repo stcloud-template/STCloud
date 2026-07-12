@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudstorage_bucket_sufficient_retention_period` |
-| 云平台 | GCP |
-| 服务 | cloudstorage |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 资源类型 | storage.googleapis.com/Bucket |
-| 资源组 | storage |
+| チェック項目 ID | `cloudstorage_bucket_sufficient_retention_period` |
+| クラウドプラットフォーム | GCP |
+| サービス | cloudstorage |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| リソースタイプ | storage.googleapis.com/Bucket |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 Cloud Storage bucket has a bucket-level Retention Policy with a retentionPeriod that meets or exceeds the organization-defined minimum, preventing deletion or modification of objects before the required time.
 
-## 风险
+## リスク
 
 Insufficient or missing retention allows premature deletion or modification of objects, weakening data recovery and compliance with retention requirements.
 
-## 推荐措施
+## 推奨事項
 
 Define and apply a bucket-level Retention Policy that meets your minimum retention requirement (e.g., 90 or 365 days) to enforce data recoverability and compliance.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -55,11 +55,11 @@ resource "google_storage_bucket" "example" {
 3) Set the required retention period (e.g., 90 or 365 days) and save
 4) (Optional) Lock the policy if required by compliance
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudStorage/sufficient-retention-period.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudStorage/sufficient-retention-period.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/cloudstorage_bucket_sufficient_retention_period/metadata.json](../../sources/gcp/cloudstorage_bucket_sufficient_retention_period/metadata.json)
 - Source Code：[sources/gcp/cloudstorage_bucket_sufficient_retention_period/check.py](../../sources/gcp/cloudstorage_bucket_sufficient_retention_period/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dynamodb_accelerator_cluster_in_transit_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | dynamodb |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `dynamodb_accelerator_cluster_in_transit_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | dynamodb |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **DAX clusters** have endpoint encryption set to `TLS`, enforcing **encryption in transit** for client connections to the cluster
 
-## 风险
+## リスク
 
 Missing **TLS** enables interception and manipulation of DAX traffic, impacting: - Confidentiality: exposure of queries, data, or credentials - Integrity: tampered requests/responses and cache poisoning - Availability: session hijacking or replay causing service disruption
 
-## 推荐措施
+## 推奨事項
 
 Enforce **TLS** for all DAX endpoints and clients (`encryption in transit`). If an existing cluster lacks it, create a new TLS-enabled cluster and migrate. Apply **defense in depth**: restrict network paths, keep access private, and use **least privilege** IAM to reduce blast radius.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -74,12 +74,12 @@ resource "aws_dax_cluster" "<example_resource_name>" {
 6. Update your application to use the new DAX cluster endpoint
 7. Delete the old non-TLS DAX cluster
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/dynamodb-controls.html#dynamodb-7](https://docs.aws.amazon.com/securityhub/latest/userguide/dynamodb-controls.html#dynamodb-7)
 - [https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAXEncryptionInTransit.html](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAXEncryptionInTransit.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dynamodb_accelerator_cluster_in_transit_encryption_enabled/metadata.json](../../sources/aws/dynamodb_accelerator_cluster_in_transit_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/dynamodb_accelerator_cluster_in_transit_encryption_enabled/check.py](../../sources/aws/dynamodb_accelerator_cluster_in_transit_encryption_enabled/check.py)

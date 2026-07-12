@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `acm_certificates_transparency_logs_enabled` |
-| 云平台 | AWS |
-| 服务 | acm |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsCertificateManagerCertificate |
-| 资源组 | security |
+| チェック項目 ID | `acm_certificates_transparency_logs_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | acm |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsCertificateManagerCertificate |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **ACM-issued certificates** are checked for **Certificate Transparency (CT) logging** being enabled. Certificates with type `IMPORTED` are excluded from evaluation.
 
-## 风险
+## リスク
 
 Disabling **CT logging** reduces visibility into **misissued or rogue certificates**, weakening confidentiality and integrity. Attackers can **impersonate sites** or run **TLS man-in-the-middle** without timely detection. Unlogged public certs may be distrusted by browsers, impacting availability and user trust.
 
-## 推荐措施
+## 推奨事項
 
 Enable **CT logging** on all ACM-issued public certificates to maintain transparency and rapid revocation. Monitor CT logs for your domains and alert on unexpected issuances. For sensitive internal names, favor private PKI or non-public hostnames instead of disabling CT, and apply **defense in depth** with short certificate lifetimes.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -68,12 +68,12 @@ resource "aws_acm_certificate" "<example_resource_name>" {
 4. Choose Enable transparency logging
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/security/how-to-get-ready-for-certificate-transparency/](https://aws.amazon.com/blogs/security/how-to-get-ready-for-certificate-transparency/)
 - [https://support.icompaas.com/support/solutions/articles/62000129491-ensure-acm-certificates-have-certificate-transparency-logging-enabled](https://support.icompaas.com/support/solutions/articles/62000129491-ensure-acm-certificates-have-certificate-transparency-logging-enabled)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/acm_certificates_transparency_logs_enabled/metadata.json](../../sources/aws/acm_certificates_transparency_logs_enabled/metadata.json)
 - Source Code：[sources/aws/acm_certificates_transparency_logs_enabled/check.py](../../sources/aws/acm_certificates_transparency_logs_enabled/check.py)

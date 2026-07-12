@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `lightsail_database_public` |
-| 云平台 | AWS |
-| 服务 | lightsail |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure, TTPs/Initial Access |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `lightsail_database_public` |
+| クラウドプラットフォーム | AWS |
+| サービス | lightsail |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure, TTPs/Initial Access |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Lightsail managed database** is evaluated for **public accessibility**. When `public mode` is enabled, the database accepts connections from the Internet using its endpoint and port; otherwise, access is limited to authorized Lightsail resources.
 
-## 风险
+## リスク
 
 **Publicly reachable databases** expose confidential data and credentials to the Internet, enabling: - **Brute-force** and credential stuffing - **Data exfiltration** via unauthorized queries - **Service disruption** from scanning or DoS Compromise enables **lateral movement** and tampering, impacting confidentiality, integrity, and availability.
 
-## 推荐措施
+## 推奨事項
 
 Disable **public mode** and keep the database reachable only from trusted, private networks. - Enforce **least privilege** and network segmentation - Use bastion hosts, tunnels, or private endpoints for admin access - If exposure is unavoidable, restrict by IP, rotate credentials, and monitor connections for **defense in depth**
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -73,13 +73,13 @@ resource "aws_lightsail_database" "<example_resource_name>" {
 4. In Public mode, toggle Off
 5. Wait until status returns to Available
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-databases.html](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-databases.html)
 - [https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-configuring-database-public-mode.html](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-configuring-database-public-mode.html)
 - [https://spinupwp.com/doc/external-database-amazon-lightsail/](https://spinupwp.com/doc/external-database-amazon-lightsail/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/lightsail_database_public/metadata.json](../../sources/aws/lightsail_database_public/metadata.json)
 - Source Code：[sources/aws/lightsail_database_public/check.py](../../sources/aws/lightsail_database_public/check.py)

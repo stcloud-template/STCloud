@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_group_kms_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_group_kms_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudWatch log groups** are assessed for **at-rest encryption** by checking if an **AWS KMS key** is associated with the log group via `kmsKeyId`.
 
-## 风险
+## リスク
 
 Without a **customer-managed KMS key**, logs rely on service-managed encryption, limiting control and auditability. - Confidentiality: weaker key-policy barriers against unauthorized reads - Integrity/availability: no custom rotation or rapid revoke, hindering incident response and compliance
 
-## 推荐措施
+## 推奨事項
 
 Associate each log group with a **customer-managed KMS key** via `kmsKeyId`. - Enforce **least privilege** in key and IAM policies, granting `kms:Decrypt` only to required principals - Enable rotation and monitor key usage - Separate keys by app/tenant to support **defense in depth** and rapid revocation
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -65,7 +65,7 @@ resource "aws_cloudwatch_log_group" "<example_resource_name>" {
 4. Click Create log group
 5. For existing log groups, the console cannot attach a KMS key; use the CLI command provided
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/cli/latest/reference/logs/associate-kms-key.html](https://docs.aws.amazon.com/cli/latest/reference/logs/associate-kms-key.html)
 - [https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group)
@@ -73,7 +73,7 @@ resource "aws_cloudwatch_log_group" "<example_resource_name>" {
 - [https://support.icompaas.com/support/solutions/articles/62000233436-ensure-cloudwatch-log-groups-are-protected-by-aws-kms](https://support.icompaas.com/support/solutions/articles/62000233436-ensure-cloudwatch-log-groups-are-protected-by-aws-kms)
 - [https://varunmanik1.medium.com/proactively-mitigating-a-medium-severity-prowler-issue-enabling-kms-encryption-for-cloudwatch-logs-51d43416c7fc](https://varunmanik1.medium.com/proactively-mitigating-a-medium-severity-prowler-issue-enabling-kms-encryption-for-cloudwatch-logs-51d43416c7fc)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_group_kms_encryption_enabled/metadata.json](../../sources/aws/cloudwatch_log_group_kms_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_group_kms_encryption_enabled/check.py](../../sources/aws/cloudwatch_log_group_kms_encryption_enabled/check.py)

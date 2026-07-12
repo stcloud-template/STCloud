@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `compute_network_default_in_use` |
-| 云平台 | GCP |
-| 服务 | compute |
-| 严重等级 | high |
-| 类别 | Uncategorized |
-| 资源类型 | Network |
-| 资源组 | network |
+| チェック項目 ID | `compute_network_default_in_use` |
+| クラウドプラットフォーム | GCP |
+| サービス | compute |
+| 重大度 | high |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Network |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Ensure that the default network does not exist
 
-## 风险
+## リスク
 
 The default network has a preconfigured network configuration and automatically generates insecure firewall rules.
 
-## 推荐措施
+## 推奨事項
 
 When an organization deletes the default network, it may need to migrate or service onto a new network.
 
-- 推荐链接：[https://cloud.google.com/vpc/docs/using-vpc](https://cloud.google.com/vpc/docs/using-vpc)
+- 推奨リンク：[https://cloud.google.com/vpc/docs/using-vpc](https://cloud.google.com/vpc/docs/using-vpc)
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -39,12 +39,12 @@ When an organization deletes the default network, it may need to migrate or serv
 
 [https://docs.ST Cloud.com/checks/gcp/google-cloud-networking-policies/bc_gcp_networking_7](https://docs.ST Cloud.com/checks/gcp/google-cloud-networking-policies/bc_gcp_networking_7)
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudVPC/default-vpc-in-use.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudVPC/default-vpc-in-use.html)
 - [https://cloud.google.com/vpc/docs/using-vpc](https://cloud.google.com/vpc/docs/using-vpc)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/compute_network_default_in_use/metadata.json](../../sources/gcp/compute_network_default_in_use/metadata.json)
 - Source Code：[sources/gcp/compute_network_default_in_use/check.py](../../sources/gcp/compute_network_default_in_use/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_metric_filter_security_group_changes` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_metric_filter_security_group_changes` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudTrail** events for **security group configuration changes** are monitored using a **CloudWatch Logs metric filter** with an associated **alarm**. The filter targets actions like `AuthorizeSecurityGroupIngress/Egress`, `RevokeSecurityGroupIngress/Egress`, `CreateSecurityGroup`, and `DeleteSecurityGroup` to surface any security group modifications.
 
-## 风险
+## リスク
 
 Without alerting on **security group changes**, unauthorized or mistaken rules can expose services to the Internet, enabling brute force and lateral movement (**confidentiality, integrity**). Deletions or restrictive edits can break connectivity (**availability**). Delayed detection increases attacker dwell time and impact.
 
-## 推荐措施
+## 推奨事項
 
 Establish real-time alerts for **security group modifications** by sending CloudTrail to CloudWatch, creating metric filters and alarms, and notifying responders. - Enforce **least privilege** on SG changes - Use change management and tagging - Centralize logs, test alarms, and maintain runbooks - Layer with NACLs and WAF for **defense in depth**
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -99,14 +99,14 @@ resource "aws_cloudwatch_metric_alarm" "sg" {
 3. Assign metric: name <example_metric_name>, namespace <example_metric_namespace>, value 1, then create the filter
 4. From the metric filter, choose Create alarm and set: Statistic Sum, Period 5 minutes, Threshold type Static, Greater/Equal 1, Evaluation periods 1, then create the alarm
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 - [https://support.icompaas.com/support/solutions/articles/62000084030-ensure-a-log-metric-filter-and-alarm-exist-for-security-group-changes](https://support.icompaas.com/support/solutions/articles/62000084030-ensure-a-log-metric-filter-and-alarm-exist-for-security-group-changes)
 - [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Alarm-On-Logs.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Alarm-On-Logs.html)
 - [https://asecure.cloud/a/cwalarm_securitygroup_changes/](https://asecure.cloud/a/cwalarm_securitygroup_changes/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_metric_filter_security_group_changes/metadata.json](../../sources/aws/cloudwatch_log_metric_filter_security_group_changes/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_metric_filter_security_group_changes/check.py](../../sources/aws/cloudwatch_log_metric_filter_security_group_changes/check.py)

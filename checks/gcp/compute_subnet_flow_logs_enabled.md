@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `compute_subnet_flow_logs_enabled` |
-| 云平台 | GCP |
-| 服务 | compute |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | Subnet |
-| 资源组 | network |
+| チェック項目 ID | `compute_subnet_flow_logs_enabled` |
+| クラウドプラットフォーム | GCP |
+| サービス | compute |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Subnet |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Ensure that VPC Flow Logs is enabled for every subnet created within your production Virtual Private Cloud (VPC) network. Flow Logs is a logging feature that enables users to capture information about the IP traffic (accepted, rejected, or all traffic) going to and from the network interfaces (ENIs) available within your VPC subnets.
 
-## 风险
+## リスク
 
 By default, the VPC Flow Logs feature is disabled when a new VPC network subnet is created. Once enabled, VPC Flow Logs will start collecting network traffic data to and from your Virtual Private Cloud (VPC) subnets, logging data that can be useful for understanding network usage, network traffic expense optimization, network forensics, and real-time security analysis. To enhance Google Cloud VPC network visibility and security it is strongly recommended to enable Flow Logs for every business-critical or production VPC subnet.
 
-## 推荐措施
+## 推奨事項
 
 Ensure that VPC Flow Logs is enabled for every subnet created within your production Virtual Private Cloud (VPC) network. Flow Logs is a logging feature that enables users to capture information about the IP traffic (accepted, rejected, or all traffic) going to and from the network interfaces (ENIs) available within your VPC subnets.
 
-- 推荐链接：[https://cloud.google.com/vpc/docs/using-flow-logs#enabling_vpc_flow_logging](https://cloud.google.com/vpc/docs/using-flow-logs#enabling_vpc_flow_logging)
+- 推奨リンク：[https://cloud.google.com/vpc/docs/using-flow-logs#enabling_vpc_flow_logging](https://cloud.google.com/vpc/docs/using-flow-logs#enabling_vpc_flow_logging)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -45,11 +45,11 @@ gcloud compute networks subnets update [SUBNET_NAME] --region [REGION] --enable-
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudVPC/enable-vpc-flow-logs.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudVPC/enable-vpc-flow-logs.html)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/vpc/docs/using-flow-logs#enabling_vpc_flow_logging](https://cloud.google.com/vpc/docs/using-flow-logs#enabling_vpc_flow_logging)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/compute_subnet_flow_logs_enabled/metadata.json](../../sources/gcp/compute_subnet_flow_logs_enabled/metadata.json)
 - Source Code：[sources/gcp/compute_subnet_flow_logs_enabled/check.py](../../sources/gcp/compute_subnet_flow_logs_enabled/check.py)

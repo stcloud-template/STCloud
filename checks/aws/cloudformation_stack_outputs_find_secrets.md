@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudformation_stack_outputs_find_secrets` |
-| 云平台 | AWS |
-| 服务 | cloudformation |
-| 严重等级 | critical |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Passwords, Sensitive Data Identifications/Security, Effects/Data Exposure |
-| 资源类型 | AwsCloudFormationStack |
-| 资源组 | devops |
+| チェック項目 ID | `cloudformation_stack_outputs_find_secrets` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudformation |
+| 重大度 | critical |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Sensitive Data Identifications/Passwords, Sensitive Data Identifications/Security, Effects/Data Exposure |
+| リソースタイプ | AwsCloudFormationStack |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **CloudFormation stack Outputs** are analyzed for hardcoded secrets-passwords, API keys, tokens-using pattern-based detection across output values. A finding indicates potential secret strings present within `Outputs` of the template or stack.
 
-## 风险
+## リスク
 
 **Secrets in Outputs** are readable to anyone with stack metadata access, enabling credential theft, unauthorized API calls, and lateral movement. Exposure via consoles, exports, or CI logs undermines confidentiality and can lead to privilege escalation and data exfiltration.
 
-## 推荐措施
+## 推奨事項
 
 Remove secrets from `Outputs`. Store credentials in **Secrets Manager** or **Parameter Store** and reference them via dynamic references; set `NoEcho` for sensitive parameters. Apply **least privilege** to view stack metadata, avoid exporting sensitive values, and add automated IaC secret scanning for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -71,13 +71,13 @@ resource "aws_cloudformation_stack" "<example_resource_name>" {
 4. Click Next through the wizard and choose Submit to apply the change set
 5. Verify the stack Outputs tab no longer shows sensitive values
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html)
 - [https://support.icompaas.com/support/solutions/articles/62000127093-ensure-no-secrets-are-found-in-cloudformation-outputs](https://support.icompaas.com/support/solutions/articles/62000127093-ensure-no-secrets-are-found-in-cloudformation-outputs)
 - [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudformation_stack_outputs_find_secrets/metadata.json](../../sources/aws/cloudformation_stack_outputs_find_secrets/metadata.json)
 - Source Code：[sources/aws/cloudformation_stack_outputs_find_secrets/check.py](../../sources/aws/cloudformation_stack_outputs_find_secrets/check.py)

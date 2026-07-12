@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `apigateway_restapi_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | apigateway |
-| 严重等级 | medium |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Defense Evasion |
-| 资源类型 | AwsApiGatewayStage |
-| 资源组 | api_gateway |
+| チェック項目 ID | `apigateway_restapi_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | apigateway |
+| 重大度 | medium |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Defense Evasion |
+| リソースタイプ | AwsApiGatewayStage |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **API Gateway REST API stages** with **stage logging** enabled to emit execution or access logs to CloudWatch
 
-## 风险
+## リスク
 
 Without stage logging, API activity lacks visibility, hindering detection of abuse and incident response. Attackers can probe endpoints, exfiltrate data, or tamper integrations without traces, impacting confidentiality, integrity, and availability and blocking forensic investigation.
 
-## 推荐措施
+## 推奨事項
 
 Enable **CloudWatch Logs** for all API Gateway stages, using `ERROR` or `INFO` as appropriate. Include request IDs (e.g., `$context.requestId`). Enforce **least privilege** on logs, set **retention** and **alerts** for anomalies. Avoid sensitive data in logs and use **defense in depth** with tracing.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -74,7 +74,7 @@ resource "aws_api_gateway_method_settings" "<example_resource_name>" {
 3. Click Logs and tracing > CloudWatch Logs > choose Errors only (or Errors and info)
 4. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/security-monitoring.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/security-monitoring.html)
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-logging.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-logging.html)
@@ -84,7 +84,7 @@ resource "aws_api_gateway_method_settings" "<example_resource_name>" {
 - [https://repost.aws/knowledge-center/api-gateway-missing-cloudwatch-logs](https://repost.aws/knowledge-center/api-gateway-missing-cloudwatch-logs)
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/view-cloudwatch-log-events-in-cloudwatch-console.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/view-cloudwatch-log-events-in-cloudwatch-console.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/apigateway_restapi_logging_enabled/metadata.json](../../sources/aws/apigateway_restapi_logging_enabled/metadata.json)
 - Source Code：[sources/aws/apigateway_restapi_logging_enabled/check.py](../../sources/aws/apigateway_restapi_logging_enabled/check.py)

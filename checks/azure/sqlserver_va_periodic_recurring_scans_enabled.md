@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sqlserver_va_periodic_recurring_scans_enabled` |
-| 云平台 | Azure |
-| 服务 | sqlserver |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | SQLServer |
-| 资源组 | database |
+| チェック項目 ID | `sqlserver_va_periodic_recurring_scans_enabled` |
+| クラウドプラットフォーム | Azure |
+| サービス | sqlserver |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | SQLServer |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Enable Vulnerability Assessment (VA) Periodic recurring scans for critical SQL servers and corresponding SQL databases.
 
-## 风险
+## リスク
 
 VA setting 'Periodic recurring scans' schedules periodic (weekly) vulnerability scanning for the SQL server and corresponding Databases. Periodic and regular vulnerability scanning provides risk visibility based on updated known vulnerability signatures and best practices.
 
-## 推荐措施
+## 推奨事項
 
 1. Go to SQL servers 2. For each server instance 3. Click on Security Center 4. In Section Vulnerability Assessment Settings, set Storage Account if not already 5. Toggle 'Periodic recurring scans' to ON. 6. Click Save
 
-- 推荐链接：[https://learn.microsoft.com/en-us/azure/defender-for-cloud/sql-azure-vulnerability-assessment-enable](https://learn.microsoft.com/en-us/azure/defender-for-cloud/sql-azure-vulnerability-assessment-enable)
+- 推奨リンク：[https://learn.microsoft.com/en-us/azure/defender-for-cloud/sql-azure-vulnerability-assessment-enable](https://learn.microsoft.com/en-us/azure/defender-for-cloud/sql-azure-vulnerability-assessment-enable)
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -39,12 +39,12 @@ VA setting 'Periodic recurring scans' schedules periodic (weekly) vulnerability 
 
 [https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/azure/Sql/periodic-vulnerability-scans.html#](https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/azure/Sql/periodic-vulnerability-scans.html#)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.microsoft.com/en-us/azure/sql-database/sql-vulnerability-assessment](https://docs.microsoft.com/en-us/azure/sql-database/sql-vulnerability-assessment)
 - [https://learn.microsoft.com/en-us/azure/defender-for-cloud/sql-azure-vulnerability-assessment-enable](https://learn.microsoft.com/en-us/azure/defender-for-cloud/sql-azure-vulnerability-assessment-enable)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/sqlserver_va_periodic_recurring_scans_enabled/metadata.json](../../sources/azure/sqlserver_va_periodic_recurring_scans_enabled/metadata.json)
 - Source Code：[sources/azure/sqlserver_va_periodic_recurring_scans_enabled/check.py](../../sources/azure/sqlserver_va_periodic_recurring_scans_enabled/check.py)

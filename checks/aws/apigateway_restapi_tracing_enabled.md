@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `apigateway_restapi_tracing_enabled` |
-| 云平台 | AWS |
-| 服务 | apigateway |
-| 严重等级 | low |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsApiGatewayStage |
-| 资源组 | api_gateway |
+| チェック項目 ID | `apigateway_restapi_tracing_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | apigateway |
+| 重大度 | low |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsApiGatewayStage |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **API Gateway REST API stages** have **AWS X-Ray active tracing** enabled to sample incoming requests and produce distributed traces across connected services.
 
-## 风险
+## リスク
 
 Without X-Ray tracing, you lose end-to-end visibility, hindering detection of timeouts, errors, and anomalous latency. This delays incident response and root-cause analysis, increasing MTTR and risking partial outages (availability) and undetected integration failures (integrity).
 
-## 推荐措施
+## 推奨事項
 
 Enable **X-Ray active tracing** on all API Gateway stages and propagate trace context through downstream services. Use prudent sampling, correlate traces with logs/metrics, and alert on errors/latency. Apply **least privilege** to X-Ray access and use **defense in depth** for observability.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -70,13 +70,13 @@ resource "aws_api_gateway_stage" "example" {
 4. Open the Logs/Tracing tab, check Enable X-Ray Tracing
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/apigateway-controls.html#apigateway-3](https://docs.aws.amazon.com/securityhub/latest/userguide/apigateway-controls.html#apigateway-3)
 - [https://docs.aws.amazon.com/xray/latest/devguide/xray-services-apigateway.html](https://docs.aws.amazon.com/xray/latest/devguide/xray-services-apigateway.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/APIGateway/tracing.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/APIGateway/tracing.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/apigateway_restapi_tracing_enabled/metadata.json](../../sources/aws/apigateway_restapi_tracing_enabled/metadata.json)
 - Source Code：[sources/aws/apigateway_restapi_tracing_enabled/check.py](../../sources/aws/apigateway_restapi_tracing_enabled/check.py)

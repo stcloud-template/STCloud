@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudtrail_s3_dataevents_write_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudtrail |
-| 严重等级 | low |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | AwsCloudTrailTrail |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudtrail_s3_dataevents_write_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudtrail |
+| 重大度 | low |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsCloudTrailTrail |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudTrail trails** include **S3 object-level data events** for **write (or all) operations** across **all current and future buckets**, via classic or advanced selectors. This records actions like `PutObject`, `DeleteObject`, and multipart uploads at the object level.
 
-## 风险
+## リスク
 
 Without object-level write logging, unauthorized or accidental changes and deletions can go unobserved, undermining data **integrity** and **availability**. Forensics lose visibility into who modified or removed objects, hindering detection of ransomware, rogue automation, or insider tampering.
 
-## 推荐措施
+## 推奨事項
 
 Enable **CloudTrail S3 data events** for object-level **write** (and *optionally* read) across all buckets on a multi-Region trail. Apply **least privilege** to log storage, set **lifecycle** retention, and integrate alerts. Use **advanced selectors** to target sensitive buckets/operations for cost control and **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,7 +79,7 @@ resource "aws_cloudtrail" "<example_resource_name>" {
 5. Check Write events (or All events)
 6. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
 - [https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-cloudtrail-logging-for-s3.html](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-cloudtrail-logging-for-s3.html)
@@ -87,7 +87,7 @@ resource "aws_cloudtrail" "<example_resource_name>" {
 - [https://docs.amazonaws.cn/en_us/AmazonS3/latest/userguide/cloudtrail-logging-s3-info.html](https://docs.amazonaws.cn/en_us/AmazonS3/latest/userguide/cloudtrail-logging-s3-info.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-22](https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-22)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudtrail_s3_dataevents_write_enabled/metadata.json](../../sources/aws/cloudtrail_s3_dataevents_write_enabled/metadata.json)
 - Source Code：[sources/aws/cloudtrail_s3_dataevents_write_enabled/check.py](../../sources/aws/cloudtrail_s3_dataevents_write_enabled/check.py)

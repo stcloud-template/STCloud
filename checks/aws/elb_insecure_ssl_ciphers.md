@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elb_insecure_ssl_ciphers` |
-| 云平台 | AWS |
-| 服务 | elb |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
-| 资源类型 | AwsElbLoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elb_insecure_ssl_ciphers` |
+| クラウドプラットフォーム | AWS |
+| サービス | elb |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA) |
+| リソースタイプ | AwsElbLoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Elastic Load Balancer HTTPS listeners are assessed for use of a **strong TLS policy**. Listeners associated with `ELBSecurityPolicy-TLS-1-2-2017-01` are considered to negotiate only modern protocols and ciphers, avoiding legacy SSL/TLS and weak suites.
 
-## 风险
+## リスク
 
 Legacy TLS or weak ciphers allow downgrades and man-in-the-middle decryption or tampering. Attackers can capture credentials, inject responses, and pivot, undermining data-in-transit **confidentiality** and **integrity**, and risking **availability** through failed handshakes.
 
-## 推荐措施
+## 推奨事項
 
 Standardize on ELB policies enforcing **TLS 1.2+** with modern AEAD ciphers; disable legacy protocols and weak suites. Enable server cipher order, retire outdated policies, and review regularly for crypto agility. Validate client compatibility, use strong certificates, and monitor negotiation results.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -93,14 +93,14 @@ resource "aws_load_balancer_listener_policy" "<example_resource_name>" {
 5. Select the HTTPS (port 443) listener and under Security policy choose ELBSecurityPolicy-TLS-1-2-2017-01
 6. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/elb-security-policy.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/elb-security-policy.html)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ssl-config-update.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ssl-config-update.html)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elb_insecure_ssl_ciphers/metadata.json](../../sources/aws/elb_insecure_ssl_ciphers/metadata.json)
 - Source Code：[sources/aws/elb_insecure_ssl_ciphers/check.py](../../sources/aws/elb_insecure_ssl_ciphers/check.py)

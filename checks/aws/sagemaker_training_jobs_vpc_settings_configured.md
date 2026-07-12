@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sagemaker_training_jobs_vpc_settings_configured` |
-| 云平台 | AWS |
-| 服务 | sagemaker |
-| 严重等级 | high |
-| 类别 | trust-boundaries, gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | ai_ml |
+| チェック項目 ID | `sagemaker_training_jobs_vpc_settings_configured` |
+| クラウドプラットフォーム | AWS |
+| サービス | sagemaker |
+| 重大度 | high |
+| カテゴリ | trust-boundaries, gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | ai_ml |
 
-## 描述
+## 説明
 
 **SageMaker training jobs** are evaluated for **VPC configuration** by detecting defined `subnets` in the job settings. With VPC settings, ENIs place the job in your VPC so traffic for training volumes and outputs uses private networking.
 
-## 风险
+## リスク
 
 Without VPC settings, training containers rely on public networking and broad egress. This weakens **confidentiality** and **integrity**, enabling data exfiltration of datasets or model artifacts, malware downloads, and bypass of granular security group controls and VPC-based monitoring.
 
-## 推荐措施
+## 推奨事項
 
 Run training in a VPC using specific `subnets` and tightly scoped `security groups`. - Use `VPC endpoints` for S3, ECR, and SageMaker to keep traffic private - Block outbound Internet by default and allow only required destinations - Apply network segmentation and, when feasible, enable `network isolation`
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -100,11 +100,11 @@ resource "aws_sagemaker_training_job" "<example_resource_name>" {
 4. Complete required fields and Create the job
 5. Verify the new training job shows VPC subnets in its details
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/sagemaker/latest/dg/interface-vpc-endpoint.html](https://docs.aws.amazon.com/sagemaker/latest/dg/interface-vpc-endpoint.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sagemaker_training_jobs_vpc_settings_configured/metadata.json](../../sources/aws/sagemaker_training_jobs_vpc_settings_configured/metadata.json)
 - Source Code：[sources/aws/sagemaker_training_jobs_vpc_settings_configured/check.py](../../sources/aws/sagemaker_training_jobs_vpc_settings_configured/check.py)

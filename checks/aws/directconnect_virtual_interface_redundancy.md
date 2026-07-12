@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `directconnect_virtual_interface_redundancy` |
-| 云平台 | AWS |
-| 服务 | directconnect |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
-| 资源类型 | Other |
-| 资源组 | network |
+| チェック項目 ID | `directconnect_virtual_interface_redundancy` |
+| クラウドプラットフォーム | AWS |
+| サービス | directconnect |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | Other |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Direct Connect gateways** and **virtual private gateways** are assessed for **interface redundancy**: multiple virtual interfaces (`VIFs`) distributed across more than one **Direct Connect connection**. *Gateways with only one VIF or with all VIFs on a single connection are identified.*
 
-## 风险
+## リスク
 
 Missing connection diversity undermines **availability**. A single device, fiber, or location failure can cut on-prem to VPC connectivity, causing **outages**, **packet loss**, or routing blackholes. Fallback to internet VPN can add latency and throttle throughput, delaying recovery and impacting operations.
 
-## 推荐措施
+## 推奨事項
 
 Apply connectivity **defense in depth**: - Attach at least two `VIFs` per gateway on separate **Direct Connect connections** in distinct locations - Prefer active/active dynamic routing and size capacity to survive a link loss - *Optionally* add a **VPN/Transit Gateway** path to sustain operations during provider outages
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -61,13 +61,13 @@ resource "aws_dx_private_virtual_interface" "example" {
 5. Enter VLAN, BGP ASN, and IPv4 peer IPs (Amazon/Customer), then Create
 6. Verify the gateway now has at least two VIFs on different Direct Connect connections
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awssupport/latest/user/fault-tolerance-checks.html#amazon-direct-connect-location-resiliency](https://docs.aws.amazon.com/awssupport/latest/user/fault-tolerance-checks.html#amazon-direct-connect-location-resiliency)
 - [https://repost.aws/knowledge-center/direct-connect-physical-redundancy](https://repost.aws/knowledge-center/direct-connect-physical-redundancy)
 - [https://aws.amazon.com/directconnect/resiliency-recommendation/](https://aws.amazon.com/directconnect/resiliency-recommendation/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/directconnect_virtual_interface_redundancy/metadata.json](../../sources/aws/directconnect_virtual_interface_redundancy/metadata.json)
 - Source Code：[sources/aws/directconnect_virtual_interface_redundancy/check.py](../../sources/aws/directconnect_virtual_interface_redundancy/check.py)

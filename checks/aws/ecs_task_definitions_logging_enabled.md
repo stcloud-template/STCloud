@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecs_task_definitions_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | ecs |
-| 严重等级 | high |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsEcsTaskDefinition |
-| 资源组 | container |
+| チェック項目 ID | `ecs_task_definitions_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecs |
+| 重大度 | high |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsEcsTaskDefinition |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **Amazon ECS task definition** containers specify a **logging configuration** with a non-null `logDriver` for every container in the latest active revision.
 
-## 风险
+## リスク
 
 Absent container logs erode visibility, letting intrusions, data exfiltration, and configuration tampering go undetected. Missing audit trails weaken confidentiality and integrity, hinder forensics, and increase MTTR during outages, impacting availability and compliance evidence.
 
-## 推荐措施
+## 推奨事項
 
 Implement centralized, tamper-resistant **container logging** for all tasks. Define a `logDriver` per container and ship logs to a managed destination with restricted access. Apply **least privilege**, encryption, and retention. Monitor and alert on anomalies. *If using external collectors, ensure equivalent coverage and durability.*
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -84,13 +84,13 @@ resource "aws_ecs_task_definition" "<example_resource_name>" {
 4. Set Log group to the desired CloudWatch Logs group and select the Region
 5. Save and Create to register the new revision (ensure all containers have logging)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-9](https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-9)
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html#specify-log-config](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html#specify-log-config)
 - [https://docs.aws.amazon.com/config/latest/developerguide/ecs-task-definition-log-configuration.html](https://docs.aws.amazon.com/config/latest/developerguide/ecs-task-definition-log-configuration.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecs_task_definitions_logging_enabled/metadata.json](../../sources/aws/ecs_task_definitions_logging_enabled/metadata.json)
 - Source Code：[sources/aws/ecs_task_definitions_logging_enabled/check.py](../../sources/aws/ecs_task_definitions_logging_enabled/check.py)

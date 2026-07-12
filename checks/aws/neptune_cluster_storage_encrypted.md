@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `neptune_cluster_storage_encrypted` |
-| 云平台 | AWS |
-| 服务 | neptune |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Sensitive Data Identifications/Security |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `neptune_cluster_storage_encrypted` |
+| クラウドプラットフォーム | AWS |
+| サービス | neptune |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Sensitive Data Identifications/Security |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Neptune DB cluster is evaluated for **encryption at rest**. Indicating the cluster's underlying storage is not encrypted.
 
-## 风险
+## リスク
 
 **Unencrypted Neptune storage** reduces confidentiality of stored data and metadata and increases attack surface. Possible impacts: - Unauthorized access or data exfiltration from underlying volumes or snapshots - Greater blast radius from leaked or shared snapshots
 
-## 推荐措施
+## 推奨事項
 
 Provision all new Neptune DB clusters with **encryption at rest** and prefer **Customer-Managed Keys (CMK)** for key ownership and auditability. Enforce **least privilege** on KMS keys, implement key lifecycle practices (rotation, revocation) and ensure backups/snapshots remain encrypted to prevent exposure.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -50,12 +50,12 @@ resource "aws_neptune_cluster" "example_resource" {
 }
 ```
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/neptune-controls.html#neptune-1](https://docs.aws.amazon.com/securityhub/latest/userguide/neptune-controls.html#neptune-1)
 - [https://docs.aws.amazon.com/neptune/latest/userguide/encrypt.html](https://docs.aws.amazon.com/neptune/latest/userguide/encrypt.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/neptune_cluster_storage_encrypted/metadata.json](../../sources/aws/neptune_cluster_storage_encrypted/metadata.json)
 - Source Code：[sources/aws/neptune_cluster_storage_encrypted/check.py](../../sources/aws/neptune_cluster_storage_encrypted/check.py)

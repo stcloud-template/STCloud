@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `vpc_flow_logs_enabled` |
-| 云平台 | AWS |
-| 服务 | vpc |
-| 严重等级 | medium |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA) |
-| 资源类型 | AwsEc2Vpc |
-| 资源组 | network |
+| チェック項目 ID | `vpc_flow_logs_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | vpc |
+| 重大度 | medium |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA) |
+| リソースタイプ | AwsEc2Vpc |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **AWS VPCs** have **Flow Logs** configured to capture IP traffic for their network interfaces and deliver records to a logging destination. VPCs lacking an active flow log configuration are highlighted.
 
-## 风险
+## リスク
 
 Without flow logs, network activity is opaque, hindering detection and investigation of malicious traffic. Attackers can probe, exfiltrate, or move laterally unnoticed, impacting **confidentiality** and **integrity**; outages and misconfigurations are harder to diagnose, reducing **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **VPC Flow Logs** for all VPCs to provide baseline telemetry. Prefer capturing at least `REJECT` and, for sensitive networks, `ALL`. Send logs to a centralized, access-controlled destination with retention. Apply **least privilege** to writers/readers and integrate with monitoring for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -72,12 +72,12 @@ resource "aws_flow_log" "vpc" {
 5. Set Destination to S3 and enter Bucket ARN: arn:aws:s3:::<example_resource_name>
 6. Click Create flow log
 
-## 参考资料
+## 参考資料
 
 - [http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/VPC/vpc-flow-logs-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/VPC/vpc-flow-logs-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/vpc_flow_logs_enabled/metadata.json](../../sources/aws/vpc_flow_logs_enabled/metadata.json)
 - Source Code：[sources/aws/vpc_flow_logs_enabled/check.py](../../sources/aws/vpc_flow_logs_enabled/check.py)

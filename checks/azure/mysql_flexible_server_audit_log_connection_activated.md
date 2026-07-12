@@ -2,45 +2,45 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `mysql_flexible_server_audit_log_connection_activated` |
-| 云平台 | Azure |
-| 服务 | mysql |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | Microsoft.DBforMySQL/flexibleServers |
-| 资源组 | database |
+| チェック項目 ID | `mysql_flexible_server_audit_log_connection_activated` |
+| クラウドプラットフォーム | Azure |
+| サービス | mysql |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | Microsoft.DBforMySQL/flexibleServers |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Set audit_log_enabled to include CONNECTION on MySQL Servers.
 
-## 风险
+## リスク
 
 Enabling CONNECTION helps MySQL Database to log items such as successful and failed connection attempts to the server. Log data can be used to identify, troubleshoot, and repair configuration errors and suboptimal performance.
 
-## 推荐措施
+## 推奨事項
 
 1. From Azure Home select the Portal Menu. 2. Select Azure Database for MySQL servers. 3. Select a database. 4. Under Settings, select Server parameters. 5. Update audit_log_enabled parameter to ON. 6. Update audit_log_events parameter to have at least CONNECTION checked. 7. Click Save. 8. Under Monitoring, select Diagnostic settings. 9. Select + Add diagnostic setting. 10. Provide a diagnostic setting name. 11. Under Categories, select MySQL Audit Logs. 12. Specify destination details. 13. Click Save.
 
-- 推荐链接：[https://docs.microsoft.com/en-us/security/benchmark/azure/security-controls-v3-logging-threat-detection#lt-3-enable-logging-for-security-investigation](https://docs.microsoft.com/en-us/security/benchmark/azure/security-controls-v3-logging-threat-detection#lt-3-enable-logging-for-security-investigation)
+- 推奨リンク：[https://docs.microsoft.com/en-us/security/benchmark/azure/security-controls-v3-logging-threat-detection#lt-3-enable-logging-for-security-investigation](https://docs.microsoft.com/en-us/security/benchmark/azure/security-controls-v3-logging-threat-detection#lt-3-enable-logging-for-security-investigation)
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
 
 [https://www.tenable.com/audits/items/CIS_Microsoft_Azure_Foundations_v2.0.0_L2.audit:06ec721d4c0ea9169db2b0c6876c5f38](https://www.tenable.com/audits/items/CIS_Microsoft_Azure_Foundations_v2.0.0_L2.audit:06ec721d4c0ea9169db2b0c6876c5f38)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.microsoft.com/en-us/azure/mysql/single-server/how-to-configure-audit-logs-portal](https://docs.microsoft.com/en-us/azure/mysql/single-server/how-to-configure-audit-logs-portal)
 - [https://docs.microsoft.com/en-us/security/benchmark/azure/security-controls-v3-logging-threat-detection#lt-3-enable-logging-for-security-investigation](https://docs.microsoft.com/en-us/security/benchmark/azure/security-controls-v3-logging-threat-detection#lt-3-enable-logging-for-security-investigation)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/mysql_flexible_server_audit_log_connection_activated/metadata.json](../../sources/azure/mysql_flexible_server_audit_log_connection_activated/metadata.json)
 - Source Code：[sources/azure/mysql_flexible_server_audit_log_connection_activated/check.py](../../sources/azure/mysql_flexible_server_audit_log_connection_activated/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sagemaker_training_jobs_intercontainer_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | sagemaker |
-| 严重等级 | medium |
-| 类别 | encryption, gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Security, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | ai_ml |
+| チェック項目 ID | `sagemaker_training_jobs_intercontainer_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | sagemaker |
+| 重大度 | medium |
+| カテゴリ | encryption, gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Security, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | ai_ml |
 
-## 描述
+## 説明
 
 Amazon SageMaker training jobs have **inter-container traffic encryption** configured for container-to-container communications during training. The evaluation inspects the `EnableInterContainerTrafficEncryption` setting on training jobs.
 
-## 风险
+## リスク
 
 Without inter-container encryption, in-node traffic may be plaintext, enabling capture by a compromised host or co-resident workload. This threatens **confidentiality** (training data, model parameters, credentials) and **integrity** (tampering with gradients/results), and can facilitate **lateral movement** via token or session theft.
 
-## 推荐措施
+## 推奨事項
 
 Enable `EnableInterContainerTrafficEncryption` on all training jobs to enforce **encryption in transit**. Apply **defense in depth**: combine with **network isolation**, limit roles and container privileges per **least privilege**, and standardize secure job templates or guardrails to prevent launching unencrypted jobs.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -93,12 +93,12 @@ resource "aws_sagemaker_training_job" "job" {
 4. Enable the setting: Enable inter-container traffic encryption
 5. Click Create to start the new job (existing jobs cannot be modified)
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/SageMaker/enable-inter-container-traffic-encryption.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/SageMaker/enable-inter-container-traffic-encryption.html)
 - [https://docs.aws.amazon.com/sagemaker/latest/dg/interface-vpc-endpoint.html](https://docs.aws.amazon.com/sagemaker/latest/dg/interface-vpc-endpoint.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sagemaker_training_jobs_intercontainer_encryption_enabled/metadata.json](../../sources/aws/sagemaker_training_jobs_intercontainer_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/sagemaker_training_jobs_intercontainer_encryption_enabled/check.py](../../sources/aws/sagemaker_training_jobs_intercontainer_encryption_enabled/check.py)

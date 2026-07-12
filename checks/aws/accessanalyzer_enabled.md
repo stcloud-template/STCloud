@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `accessanalyzer_enabled` |
-| 云平台 | AWS |
-| 服务 | accessanalyzer |
-| 严重等级 | low |
-| 类别 | identity-access, trust-boundaries |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | security |
+| チェック項目 ID | `accessanalyzer_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | accessanalyzer |
+| 重大度 | low |
+| カテゴリ | identity-access, trust-boundaries |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **IAM Access Analyzer** presence and status are evaluated per account and Region. An analyzer in `ACTIVE` state indicates continuous analysis of supported resources and IAM activity to identify external, internal, and unused access.
 
-## 风险
+## リスク
 
 Without an active analyzer, visibility into unintended public, cross-account, or risky internal access is lost. Adversaries can exploit exposed S3, snapshots, KMS keys, or permissive role trusts for data exfiltration and escalation. Unused permissions persist, enlarging the attack surface. This degrades confidentiality and integrity.
 
-## 推荐措施
+## 推奨事項
 
 Enable **IAM Access Analyzer** across all accounts and active Regions (*or organization-wide*). Operate on least privilege: continuously review findings, remove unintended access, and trim unused permissions. Use archive rules sparingly, integrate reviews into change/CI/CD workflows, and enforce separation of duties on policy changes.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -66,7 +66,7 @@ resource "aws_accessanalyzer_analyzer" "example_resource" {
 6. Set Name to "example_resource" and Zone of trust to "Current account"
 7. Click Create
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-manage-external.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-manage-external.html)
 - [https://aws.amazon.com/iam/access-analyzer/](https://aws.amazon.com/iam/access-analyzer/)
@@ -77,7 +77,7 @@ resource "aws_accessanalyzer_analyzer" "example_resource" {
 - [https://docs.aws.amazon.com/access-analyzer/latest/APIReference/Welcome.html](https://docs.aws.amazon.com/access-analyzer/latest/APIReference/Welcome.html)
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-create-internal.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-create-internal.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/accessanalyzer_enabled/metadata.json](../../sources/aws/accessanalyzer_enabled/metadata.json)
 - Source Code：[sources/aws/accessanalyzer_enabled/check.py](../../sources/aws/accessanalyzer_enabled/check.py)

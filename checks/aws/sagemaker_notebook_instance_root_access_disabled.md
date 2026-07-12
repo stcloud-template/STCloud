@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sagemaker_notebook_instance_root_access_disabled` |
-| 云平台 | AWS |
-| 服务 | sagemaker |
-| 严重等级 | medium |
-| 类别 | identity-access, gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Privilege Escalation |
-| 资源类型 | AwsSageMakerNotebookInstance |
-| 资源组 | ai_ml |
+| チェック項目 ID | `sagemaker_notebook_instance_root_access_disabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | sagemaker |
+| 重大度 | medium |
+| カテゴリ | identity-access, gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Privilege Escalation |
+| リソースタイプ | AwsSageMakerNotebookInstance |
+| リソースグループ | ai_ml |
 
-## 描述
+## 説明
 
 **Amazon SageMaker notebook instances** with user **root access disabled**. The evaluation checks whether interactive users can obtain root privileges on the instance, highlighting notebooks where `RootAccess` is not set to `Disabled`.
 
-## 风险
+## リスク
 
 Allowing user **root access** enables full system control, risking **integrity** (tampering with code, packages, and kernels), **confidentiality** (reading secrets, credentials, data copies), and **availability** (disabling agents or breaking environments). Compromise of a notebook can lead to lateral movement via the instance role.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege**: set `RootAccess` to `Disabled` for notebook users. Provide needed software via **managed images** or **lifecycle automation**, not ad-hoc root installs. Limit the notebook IAM role, enforce **defense in depth** (network isolation and monitoring), and require controlled admin workflows for privileged changes.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -69,11 +69,11 @@ resource "aws_sagemaker_notebook_instance" "notebook" {
 4. Set Root access to Disabled
 5. Save changes, then click Start
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-root-access.html](https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-root-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sagemaker_notebook_instance_root_access_disabled/metadata.json](../../sources/aws/sagemaker_notebook_instance_root_access_disabled/metadata.json)
 - Source Code：[sources/aws/sagemaker_notebook_instance_root_access_disabled/check.py](../../sources/aws/sagemaker_notebook_instance_root_access_disabled/check.py)

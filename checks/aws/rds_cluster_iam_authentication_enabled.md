@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `rds_cluster_iam_authentication_enabled` |
-| 云平台 | AWS |
-| 服务 | rds |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | AwsRdsDbCluster |
-| 资源组 | database |
+| チェック項目 ID | `rds_cluster_iam_authentication_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | rds |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AwsRdsDbCluster |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Check if RDS clusters have IAM authentication enabled.
 
-## 风险
+## リスク
 
 Ensure that the IAM Database Authentication feature is enabled for your RDS database clusters in order to use the Identity and Access Management (IAM) service to manage database access to your MySQL and PostgreSQL database clusters. With this feature enabled, you don't have to use a password when you connect to your MySQL/PostgreSQL database, instead you can use an authentication token. An authentication token is a unique string of characters with a lifetime of 15 minutes that Amazon RDS generates on your request. IAM Database Authentication removes the need of storing user credentials within the database configuration, because authentication is managed externally using Amazon IAM.
 
-## 推荐措施
+## 推奨事項
 
 Enable IAM authentication for supported RDS clusters.
 
-- 推荐链接：[https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html)
+- 推奨リンク：[https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -49,11 +49,11 @@ aws rds modify-db-instance --region <REGION> --db-instance-identifier <DB_CLUSTE
 
 [https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-12](https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-12)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/rds_cluster_iam_authentication_enabled/metadata.json](../../sources/aws/rds_cluster_iam_authentication_enabled/metadata.json)
 - Source Code：[sources/aws/rds_cluster_iam_authentication_enabled/check.py](../../sources/aws/rds_cluster_iam_authentication_enabled/check.py)

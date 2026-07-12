@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eks_cluster_network_policy_enabled` |
-| 云平台 | AWS |
-| 服务 | eks |
-| 严重等级 | high |
-| 类别 | trust-boundaries, cluster-security |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Lateral Movement |
-| 资源类型 | AwsEksCluster |
-| 资源组 | container |
+| チェック項目 ID | `eks_cluster_network_policy_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | eks |
+| 重大度 | high |
+| カテゴリ | trust-boundaries, cluster-security |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Lateral Movement |
+| リソースタイプ | AwsEksCluster |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **Amazon EKS clusters** are evaluated for **pod-level network isolation** via Kubernetes `NetworkPolicy`, indicating whether traffic between pods and namespaces is restricted according to defined rules.
 
-## 风险
+## リスク
 
 Without **NetworkPolicy**, pods can communicate freely, enabling **lateral movement**, **data exfiltration**, and abuse of internal services. Unrestricted east-west traffic undermines confidentiality and integrity and enlarges the blast radius of a single compromised pod.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **least privilege** `NetworkPolicy` with a `default-deny` for ingress and egress, then explicitly allow required flows by labels and namespaces. Apply **defense in depth** with security groups for pods and private access, and continuously test and monitor policy effectiveness.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,13 +75,13 @@ resource "aws_eks_cluster" "<example_resource_name>" {
 4. Under Security groups, add/select <example_security_group_id>
 5. Click Save to apply
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EKS/security-groups.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EKS/security-groups.html)
 - [https://docs.aws.amazon.com/eks/latest/userguide/eks-networking-add-ons.html](https://docs.aws.amazon.com/eks/latest/userguide/eks-networking-add-ons.html)
 - [https://docs.aws.amazon.com/eks/latest/userguide/cni-network-policy.html](https://docs.aws.amazon.com/eks/latest/userguide/cni-network-policy.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eks_cluster_network_policy_enabled/metadata.json](../../sources/aws/eks_cluster_network_policy_enabled/metadata.json)
 - Source Code：[sources/aws/eks_cluster_network_policy_enabled/check.py](../../sources/aws/eks_cluster_network_policy_enabled/check.py)

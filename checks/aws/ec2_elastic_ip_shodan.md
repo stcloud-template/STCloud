@@ -2,42 +2,42 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_elastic_ip_shodan` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Infrastructure Security |
-| 资源类型 | AwsEc2Eip |
-| 资源组 | network |
+| チェック項目 ID | `ec2_elastic_ip_shodan` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Infrastructure Security |
+| リソースタイプ | AwsEc2Eip |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Check if any of the Elastic or Public IP are in Shodan (requires Shodan API KEY).
 
-## 风险
+## リスク
 
 Sites like Shodan index exposed systems and further expose them to wider audiences as a quick way to find exploitable systems.
 
-## 推荐措施
+## 推奨事項
 
 Check Identified IPs, consider changing them to private ones and delete them from Shodan.
 
-- 推荐链接：[https://www.shodan.io/](https://www.shodan.io/)
+- 推奨リンク：[https://www.shodan.io/](https://www.shodan.io/)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://www.shodan.io/](https://www.shodan.io/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_elastic_ip_shodan/metadata.json](../../sources/aws/ec2_elastic_ip_shodan/metadata.json)
 - Source Code：[sources/aws/ec2_elastic_ip_shodan/check.py](../../sources/aws/ec2_elastic_ip_shodan/check.py)

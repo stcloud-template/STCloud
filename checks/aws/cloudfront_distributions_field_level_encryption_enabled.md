@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_field_level_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | low |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_field_level_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | low |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 CloudFront distributions have the default cache behavior associated with **Field-Level Encryption** via `field_level_encryption_id`, targeting specified request fields for edge encryption.
 
-## 风险
+## リスク
 
 Absent **field-level encryption**, sensitive inputs (PII, payment data, credentials) may surface in origin paths, logs, or middleware in plaintext. This undermines **confidentiality**, enables data exfiltration and insider misuse, and can lead to session or account compromise if tokens are captured.
 
-## 推荐措施
+## 推奨事項
 
 Enable **Field-Level Encryption** for sensitive request fields and bind it to relevant cache behaviors. Apply **least privilege** to decryption keys, rotate and monitor keys, and separate duties. As **defense in depth**, minimize data collection, avoid logging secrets, require HTTPS end-to-end, and validate inputs.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -107,12 +107,12 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
    - Set Field-level encryption configuration to your created configuration
    - Click Save changes and wait for deployment
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/field-level-encryption-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/field-level-encryption-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_field_level_encryption_enabled/metadata.json](../../sources/aws/cloudfront_distributions_field_level_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_field_level_encryption_enabled/check.py](../../sources/aws/cloudfront_distributions_field_level_encryption_enabled/check.py)

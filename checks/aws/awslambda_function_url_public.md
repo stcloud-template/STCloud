@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `awslambda_function_url_public` |
-| 云平台 | AWS |
-| 服务 | awslambda |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
-| 资源类型 | AwsLambdaFunction |
-| 资源组 | serverless |
+| チェック項目 ID | `awslambda_function_url_public` |
+| クラウドプラットフォーム | AWS |
+| サービス | awslambda |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Data Exposure |
+| リソースタイプ | AwsLambdaFunction |
+| リソースグループ | serverless |
 
-## 描述
+## 説明
 
 **AWS Lambda function URLs** are assessed to determine whether `AuthType` enforces **AWS IAM authentication** or permits **public invocation**. Applies to functions with a function URL and highlights when requests must be authenticated and authorized via IAM principals.
 
-## 风险
+## リスク
 
 An unauthenticated function URL lets anyone invoke code: - Confidentiality: data exposure - Integrity: unintended changes via over-privileged logic - Availability: DoS/denial-of-wallet through high request rates Attackers can script calls, exfiltrate data, and pivot using the function's permissions.
 
-## 推荐措施
+## 推奨事項
 
 Enforce `AWS_IAM` on function URLs and apply **least privilege**: - Grant `lambda:InvokeFunctionUrl` only to required principals - Avoid `*` principals or broad conditions - Limit CORS to trusted origins and methods - Set reserved concurrency to contain abuse Consider **defense in depth** (WAF/CDN or private access) for Internet use.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -65,7 +65,7 @@ resource "aws_lambda_function_url" "example" {
 3. Set Auth type to AWS_IAM
 4. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Lambda/iam-auth-function-url.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Lambda/iam-auth-function-url.html)
 - [https://www.roastdev.com/post/aws-lambda-url-invocations-with-iam-authentication-and-throttling-limits](https://www.roastdev.com/post/aws-lambda-url-invocations-with-iam-authentication-and-throttling-limits)
@@ -73,7 +73,7 @@ resource "aws_lambda_function_url" "example" {
 - [https://dev.to/aws-builders/hands-on-aws-lambda-function-url-with-aws-iam-authentication-type-180g](https://dev.to/aws-builders/hands-on-aws-lambda-function-url-with-aws-iam-authentication-type-180g)
 - [https://www.rahulpnath.com/blog/how-to-secure-and-authenticate-lambda-function-urls/](https://www.rahulpnath.com/blog/how-to-secure-and-authenticate-lambda-function-urls/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/awslambda_function_url_public/metadata.json](../../sources/aws/awslambda_function_url_public/metadata.json)
 - Source Code：[sources/aws/awslambda_function_url_public/check.py](../../sources/aws/awslambda_function_url_public/check.py)

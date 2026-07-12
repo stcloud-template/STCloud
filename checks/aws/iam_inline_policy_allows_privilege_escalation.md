@@ -2,43 +2,43 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `iam_inline_policy_allows_privilege_escalation` |
-| 云平台 | AWS |
-| 服务 | iam |
-| 子服务 | inline_policy |
-| 严重等级 | high |
-| 类别 | privilege-escalation |
-| 检查类型 | Software and Configuration Checks, Industry and Regulatory Standards |
-| 资源类型 | AwsIamPolicy |
-| 资源组 | IAM |
+| チェック項目 ID | `iam_inline_policy_allows_privilege_escalation` |
+| クラウドプラットフォーム | AWS |
+| サービス | iam |
+| サブサービス | inline_policy |
+| 重大度 | high |
+| カテゴリ | privilege-escalation |
+| チェックタイプ | Software and Configuration Checks, Industry and Regulatory Standards |
+| リソースタイプ | AwsIamPolicy |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 Ensure no Inline IAM policies allow actions that may lead into Privilege Escalation
 
-## 风险
+## リスク
 
 Users with some IAM permissions are allowed to elevate their privileges up to administrator rights.
 
-## 推荐措施
+## 推奨事項
 
 Grant usage permission on a per-resource basis and applying least privilege principle.
 
-- 推荐链接：[https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)
+- 推奨リンク：[https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/iam_inline_policy_allows_privilege_escalation/metadata.json](../../sources/aws/iam_inline_policy_allows_privilege_escalation/metadata.json)
 - Source Code：[sources/aws/iam_inline_policy_allows_privilege_escalation/check.py](../../sources/aws/iam_inline_policy_allows_privilege_escalation/check.py)

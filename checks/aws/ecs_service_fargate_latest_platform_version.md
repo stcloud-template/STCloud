@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecs_service_fargate_latest_platform_version` |
-| 云平台 | AWS |
-| 服务 | ecs |
-| 严重等级 | medium |
-| 类别 | vulnerabilities, container-security |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsEcsService |
-| 资源组 | container |
+| チェック項目 ID | `ecs_service_fargate_latest_platform_version` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecs |
+| 重大度 | medium |
+| カテゴリ | vulnerabilities, container-security |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsEcsService |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 **ECS Fargate services** use the **latest Fargate platform version** via `platformVersion`=`LATEST` or an explicit value matching the current release for their `platformFamily` (Linux/Windows).
 
-## 风险
+## リスク
 
 Running on an outdated platform leaves known CVEs in the kernel/runtime unpatched, risking: - **Confidentiality**: data exposure via container escape - **Integrity**: privilege escalation and tampering - **Availability**: crashes/DoS and instability under load
 
-## 推荐措施
+## 推奨事項
 
 - Prefer `platformVersion` `LATEST` to receive patches. - If pinning, monitor releases and redeploy quickly to the current version. - Automate updates with staged rollouts in CI/CD. - Apply **defense in depth** and **least privilege** to limit runtime exploit impact.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,7 +79,7 @@ resource "aws_ecs_service" "<example_resource_name>" {
 4. Set Platform version to LATEST
 5. Click Update service (or Deploy) to apply
 
-## 参考资料
+## 参考資料
 
 - [https://servian.dev/setting-up-fargate-for-ecs-exec-8f5cc8d7d80e](https://servian.dev/setting-up-fargate-for-ecs-exec-8f5cc8d7d80e)
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform-fargate.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform-fargate.html)
@@ -88,7 +88,7 @@ resource "aws_ecs_service" "<example_resource_name>" {
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-10](https://docs.aws.amazon.com/securityhub/latest/userguide/ecs-controls.html#ecs-10)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecs_service_fargate_latest_platform_version/metadata.json](../../sources/aws/ecs_service_fargate_latest_platform_version/metadata.json)
 - Source Code：[sources/aws/ecs_service_fargate_latest_platform_version/check.py](../../sources/aws/ecs_service_fargate_latest_platform_version/check.py)

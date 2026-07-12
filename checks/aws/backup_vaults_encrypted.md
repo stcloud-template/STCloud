@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `backup_vaults_encrypted` |
-| 云平台 | AWS |
-| 服务 | backup |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Software and Configuration Checks/Industry and Regulatory Standards/HIPAA Controls (USA) |
-| 资源类型 | AwsBackupBackupVault |
-| 资源组 | storage |
+| チェック項目 ID | `backup_vaults_encrypted` |
+| クラウドプラットフォーム | AWS |
+| サービス | backup |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Software and Configuration Checks/Industry and Regulatory Standards/ISO 27001 Controls, Software and Configuration Checks/Industry and Regulatory Standards/HIPAA Controls (USA) |
+| リソースタイプ | AwsBackupBackupVault |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 **AWS Backup vaults** are evaluated for **encryption at rest** with **AWS KMS**. The finding highlights vaults without a configured KMS key protecting stored recovery points.
 
-## 风险
+## リスク
 
 Unencrypted vaults allow recovery points to be read if storage or credentials are compromised, undermining **confidentiality** and enabling data exfiltration. Missing KMS controls also weaken **integrity** guarantees and impede forensic **auditability** during investigations.
 
-## 推荐措施
+## 推奨事項
 
 Encrypt every backup vault with **customer-managed KMS keys** (`CMK`). Enforce **least privilege** in key policies, enable rotation, and separate key admins from backup operators. Add **defense-in-depth** with vault lock and logging. *For copies*, ensure destination vaults use appropriate KMS keys.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -62,12 +62,12 @@ resource "aws_backup_vault" "<example_resource_name>" {
 6. Update any Backup plans to use the new vault (Plans > select plan > Edit > change Target vault name)
 7. Delete the old unencrypted vault after it is empty (select vault > Delete backup vault)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.html](https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Athena/encrypted-with-cmk.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Athena/encrypted-with-cmk.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/backup_vaults_encrypted/metadata.json](../../sources/aws/backup_vaults_encrypted/metadata.json)
 - Source Code：[sources/aws/backup_vaults_encrypted/check.py](../../sources/aws/backup_vaults_encrypted/check.py)

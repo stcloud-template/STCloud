@@ -2,41 +2,41 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `network_public_ip_shodan` |
-| 云平台 | Azure |
-| 服务 | network |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 资源类型 | Network |
-| 资源组 | network |
+| チェック項目 ID | `network_public_ip_shodan` |
+| クラウドプラットフォーム | Azure |
+| サービス | network |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| リソースタイプ | Network |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Check if an Azure Public IP is exposed in Shodan (requires Shodan API KEY).
 
-## 风险
+## リスク
 
 If an Azure Public IP is exposed in Shodan, it can be accessed by anyone on the internet. This can lead to unauthorized access to your resources.
 
-## 推荐措施
+## 推奨事項
 
 Check Identified IPs, Consider changing them to private ones and delete them from Shodan.
 
-- 推荐链接：[https://www.shodan.io/](https://www.shodan.io/)
+- 推奨リンク：[https://www.shodan.io/](https://www.shodan.io/)
 
-## 修复步骤
+## 修正手順
 
 No remediation steps available.
 
-## 参考资料
+## 参考資料
 
 - [https://www.shodan.io/](https://www.shodan.io/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/network_public_ip_shodan/metadata.json](../../sources/azure/network_public_ip_shodan/metadata.json)
 - Source Code：[sources/azure/network_public_ip_shodan/check.py](../../sources/azure/network_public_ip_shodan/check.py)

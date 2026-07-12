@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `apigateway_restapi_cache_encrypted` |
-| 云平台 | AWS |
-| 服务 | apigateway |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsApiGatewayStage |
-| 资源组 | api_gateway |
+| チェック項目 ID | `apigateway_restapi_cache_encrypted` |
+| クラウドプラットフォーム | AWS |
+| サービス | apigateway |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsApiGatewayStage |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 API Gateway REST API stages with caching have **cache data encrypted at rest**. The evaluation targets stages where caching is enabled and verifies that stored responses are protected via the `Encrypt cache data` setting.
 
-## 风险
+## リスク
 
 Unencrypted cache contents can expose response payloads, tokens, or PII if cache storage, backups, or admin tooling are accessed outside normal controls, harming **confidentiality** and enabling replay or session hijacking. Disclosure also reveals API patterns, aiding **lateral movement** and targeted abuse.
 
-## 推荐措施
+## 推奨事項
 
 - Enable **encryption at rest** for any cached stage (`Encrypt cache data`). - Apply **least privilege** to stage administration and cache invalidation. - Avoid caching sensitive endpoints; use short TTLs and scheduled cache flushes for **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -77,7 +77,7 @@ resource "aws_api_gateway_stage" "<example_resource_name>" {
 3. In Method overrides (or Cache settings), enable Encrypt cache data
 4. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://www.clouddefense.ai/compliance-rules/nist-800-53-5/au/apigateway-stage-cache-encryption-at-rest-enabled](https://www.clouddefense.ai/compliance-rules/nist-800-53-5/au/apigateway-stage-cache-encryption-at-rest-enabled)
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#enable-api-gateway-caching](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#enable-api-gateway-caching)
@@ -87,7 +87,7 @@ resource "aws_api_gateway_stage" "<example_resource_name>" {
 - [https://www.clouddefense.ai/compliance-rules/aws-fs-practices/apigateway/foundational-security-apigateway-5](https://www.clouddefense.ai/compliance-rules/aws-fs-practices/apigateway/foundational-security-apigateway-5)
 - [https://www.cloudanix.com/docs/aws/audit/apigatewaymonitoring/rules/apigateway_enable_encryption_api_cache](https://www.cloudanix.com/docs/aws/audit/apigatewaymonitoring/rules/apigateway_enable_encryption_api_cache)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/apigateway_restapi_cache_encrypted/metadata.json](../../sources/aws/apigateway_restapi_cache_encrypted/metadata.json)
 - Source Code：[sources/aws/apigateway_restapi_cache_encrypted/check.py](../../sources/aws/apigateway_restapi_cache_encrypted/check.py)

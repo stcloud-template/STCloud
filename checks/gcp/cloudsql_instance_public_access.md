@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudsql_instance_public_access` |
-| 云平台 | GCP |
-| 服务 | cloudsql |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 资源类型 | DatabaseInstance |
-| 资源组 | database |
+| チェック項目 ID | `cloudsql_instance_public_access` |
+| クラウドプラットフォーム | GCP |
+| サービス | cloudsql |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| リソースタイプ | DatabaseInstance |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 Ensure That Cloud SQL Database Instances Do Not Implicitly Whitelist All Public IP Addresses
 
-## 风险
+## リスク
 
 To minimize attack surface on a Database server instance, only trusted/known and required IP(s) should be white-listed to connect to it. An authorized network should not have IPs/networks configured to 0.0.0.0/0 which will allow access to the instance from anywhere in the world. Note that authorized networks apply only to instances with public IPs.
 
-## 推荐措施
+## 推奨事項
 
 Database Server should accept connections only from trusted Network(s)/IP(s) and restrict access from public IP addresses.
 
-- 推荐链接：[https://cloud.google.com/sql/docs/mysql/connection-org-policy](https://cloud.google.com/sql/docs/mysql/connection-org-policy)
+- 推奨リンク：[https://cloud.google.com/sql/docs/mysql/connection-org-policy](https://cloud.google.com/sql/docs/mysql/connection-org-policy)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -41,11 +41,11 @@ gcloud sql instances patch <INSTANCE_NAME> --authorized-networks=IP_ADDR1,IP_ADD
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudSQL/publicly-accessible-cloud-sql-instances.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudSQL/publicly-accessible-cloud-sql-instances.html)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/sql/docs/mysql/connection-org-policy](https://cloud.google.com/sql/docs/mysql/connection-org-policy)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/cloudsql_instance_public_access/metadata.json](../../sources/gcp/cloudsql_instance_public_access/metadata.json)
 - Source Code：[sources/gcp/cloudsql_instance_public_access/check.py](../../sources/gcp/cloudsql_instance_public_access/check.py)

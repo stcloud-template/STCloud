@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `redshift_cluster_multi_az_enabled` |
-| 云平台 | AWS |
-| 服务 | redshift |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | AwsRedshiftCluster |
-| 资源组 | analytics |
+| チェック項目 ID | `redshift_cluster_multi_az_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | redshift |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | AwsRedshiftCluster |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **Amazon Redshift clusters** are evaluated for **Multi-AZ deployment** on provisioned `RA3` clusters, confirming compute spans two Availability Zones and is served via a single endpoint.
 
-## 风险
+## リスク
 
 Absent **Multi-AZ**, a single-AZ cluster is exposed to AZ or node failures, leading to dropped connections, aborted queries, and stalled ETL/BI jobs. This reduces **availability**, increases RTO, delays analytics, and risks SLA breaches with cascading pipeline backlogs.
 
-## 推荐措施
+## 推奨事項
 
 Enable **Multi-AZ deployments** for provisioned `RA3` clusters to avoid single-AZ dependency. Align designs to **fault tolerance** and **high availability**: provision sufficient capacity, implement client/ETL retries and reconnects, validate failover periodically, and monitor performance and error rates.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -65,12 +65,12 @@ resource "aws_redshift_cluster" "<example_resource_name>" {
 3. Choose Actions > Activate Multi-AZ
 4. Confirm and wait until the cluster shows Multi-AZ: Yes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-multi-az.html](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-multi-az.html)
 - [https://docs.aws.amazon.com/redshift/latest/mgmt/overview-multi-az.html](https://docs.aws.amazon.com/redshift/latest/mgmt/overview-multi-az.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/redshift_cluster_multi_az_enabled/metadata.json](../../sources/aws/redshift_cluster_multi_az_enabled/metadata.json)
 - Source Code：[sources/aws/redshift_cluster_multi_az_enabled/check.py](../../sources/aws/redshift_cluster_multi_az_enabled/check.py)

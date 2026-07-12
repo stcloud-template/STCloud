@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elb_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | elb |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | AwsElbLoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elb_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elb |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsElbLoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Elastic Load Balancers** have **access logs** configured to deliver request metadata (client IPs, paths, status, TLS details) to **Amazon S3**
 
-## 风险
+## リスク
 
 Without **ELB access logs**, you lose **visibility** into edge traffic, reducing detection of reconnaissance, brute-force, and exploitation attempts. This hampers forensics and incident timelines, risking undetected data exfiltration (confidentiality), untraceable changes (integrity), and delayed response to outages or DDoS (availability).
 
-## 推荐措施
+## 推奨事項
 
 Enable **access logs** to Amazon S3 (`access_logs.s3.enabled=true`). Apply **least privilege** bucket policies, encrypt objects, and restrict read access. Define lifecycle retention and centralize analysis. Monitor for delivery failures and alert on anomalies. Standardize across all load balancers via IaC as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -78,14 +78,14 @@ resource "aws_lb" "<example_resource_name>" {
 4. Enter the S3 URI (e.g., s3://<bucket_name>)
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/network/enable-access-logs.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/enable-access-logs.html)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ElasticBeanstalk/enable-access-logs.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ElasticBeanstalk/enable-access-logs.html)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/application/enable-access-logging.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/enable-access-logging.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elb_logging_enabled/metadata.json](../../sources/aws/elb_logging_enabled/metadata.json)
 - Source Code：[sources/aws/elb_logging_enabled/check.py](../../sources/aws/elb_logging_enabled/check.py)

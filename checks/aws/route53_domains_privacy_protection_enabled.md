@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `route53_domains_privacy_protection_enabled` |
-| 云平台 | AWS |
-| 服务 | route53 |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure, Sensitive Data Identifications/PII |
-| 资源类型 | Other |
-| 资源组 | network |
+| チェック項目 ID | `route53_domains_privacy_protection_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | route53 |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure, Sensitive Data Identifications/PII |
+| リソースタイプ | Other |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Route 53 domain** administrative contact has **privacy protection** enabled, so WHOIS queries return redacted or proxy details. Evaluates whether contact data is hidden instead of publicly listed.
 
-## 风险
+## リスク
 
 **Public WHOIS contact data** exposes names, emails, phones, and addresses, enabling: - **Phishing/social engineering** of the registrar - **SIM-swap** or account takeover - **Domain hijacking**, affecting DNS integrity/availability It also increases spam and targeted harassment.
 
-## 推荐措施
+## 推奨事項
 
 Enable **WHOIS privacy** for all contacts (admin, registrant, tech) to minimize exposure. Apply **defense in depth**: use dedicated, monitored contact emails, enforce **transfer lock** and **MFA** on registrar access, and regularly review settings. *If a TLD lacks privacy*, provide minimal, role-based contact details.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -53,13 +53,13 @@ resource "aws_route53domains_registered_domain" "<example_resource_name>" {
 4. Enable Privacy protection (ensures Admin contact privacy is on)
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-privacy-protection.html](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-privacy-protection.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Route53/privacy-protection.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Route53/privacy-protection.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233459-enable-privacy-protection-for-for-a-route53-domain-](https://support.icompaas.com/support/solutions/articles/62000233459-enable-privacy-protection-for-for-a-route53-domain-)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/route53_domains_privacy_protection_enabled/metadata.json](../../sources/aws/route53_domains_privacy_protection_enabled/metadata.json)
 - Source Code：[sources/aws/route53_domains_privacy_protection_enabled/check.py](../../sources/aws/route53_domains_privacy_protection_enabled/check.py)

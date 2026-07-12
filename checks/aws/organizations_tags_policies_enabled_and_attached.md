@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `organizations_tags_policies_enabled_and_attached` |
-| 云平台 | AWS |
-| 服务 | organizations |
-| 严重等级 | low |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | governance |
+| チェック項目 ID | `organizations_tags_policies_enabled_and_attached` |
+| クラウドプラットフォーム | AWS |
+| サービス | organizations |
+| 重大度 | low |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 **AWS Organizations** tag policies are evaluated for their presence and attachment to organization targets (accounts or OUs), distinguishing between no policies, policies defined but not attached, and policies attached to at least one target.
 
-## 风险
+## リスク
 
 Absent or unattached tag policies cause inconsistent or missing tags, undermining: - **Confidentiality** via bypassed tag-based access conditions - **Integrity** through misclassified resources and drift - **Availability** when automation, cost routing, or incident scoping that rely on tags break
 
-## 推荐措施
+## 推奨事項
 
 Enable **tag policies** and attach them to relevant roots/OUs/accounts. Define mandatory keys (e.g., `Environment`, `CostCenter`) with allowed values. Apply **defense in depth** by using tags in IAM conditions and SCPs. Start with validation-only, then enforce, and continuously monitor compliance across accounts.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -82,11 +82,11 @@ resource "aws_organizations_policy_attachment" "<example_resource_name>" {
 6. Choose the Root, an OU, or at least one account and confirm
 7. The check passes when a tag policy exists and is attached to a target
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/organizations_tags_policies_enabled_and_attached/metadata.json](../../sources/aws/organizations_tags_policies_enabled_and_attached/metadata.json)
 - Source Code：[sources/aws/organizations_tags_policies_enabled_and_attached/check.py](../../sources/aws/organizations_tags_policies_enabled_and_attached/check.py)

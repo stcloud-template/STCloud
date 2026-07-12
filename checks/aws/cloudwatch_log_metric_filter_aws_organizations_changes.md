@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_metric_filter_aws_organizations_changes` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, TTPs/Privilege Escalation |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_metric_filter_aws_organizations_changes` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, TTPs/Privilege Escalation |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudWatch Logs** metric filters and alarms monitor **AWS Organizations** change events recorded by CloudTrail, including actions like `CreateAccount`, `AttachPolicy`, `MoveAccount`, and `UpdateOrganizationalUnit`. The evaluation looks for a filter on the trail log group matching `organizations.amazonaws.com` events and an alarm linked to that metric.
 
-## 风险
+## リスク
 
 Without alerting on **AWS Organizations changes**, attackers or misconfigurations can silently alter governance, enabling unauthorized access and policy bypass. They could create/remove accounts, change or detach SCPs, or delete the organization, risking data exposure (C), privilege escalation (I), and service disruption (A).
 
-## 推荐措施
+## 推奨事項
 
 Send CloudTrail events to **CloudWatch Logs**, add a metric filter for `organizations.amazonaws.com` change events, and attach an alarm that notifies responders. Enforce **least privilege** and **separation of duties** for org admins, require MFA and approvals, and regularly test alerts to ensure timely detection and response.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -94,14 +94,14 @@ resource "aws_cloudwatch_metric_alarm" "organizations_changes" {
 3. Assign a metric: Namespace = CISBenchmark, Metric name = OrganizationsChanges, Metric value = 1, then Create metric filter
 4. On the metric filter, select Create alarm; set Statistic = Sum, Period = 5 minutes, Threshold type = Static, Threshold = 1, Evaluation periods = 1; Create alarm
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 - [https://support.icompaas.com/support/solutions/articles/62000228348-ensure-a-log-metric-filter-and-alarm-exist-for-aws-organizations-changes](https://support.icompaas.com/support/solutions/articles/62000228348-ensure-a-log-metric-filter-and-alarm-exist-for-aws-organizations-changes)
 - [https://www.plerion.com/cloud-knowledge-base/ensure-aws-organizations-changes-are-monitored](https://www.plerion.com/cloud-knowledge-base/ensure-aws-organizations-changes-are-monitored)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/organizations-changes-alarm.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/organizations-changes-alarm.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_metric_filter_aws_organizations_changes/metadata.json](../../sources/aws/cloudwatch_log_metric_filter_aws_organizations_changes/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_metric_filter_aws_organizations_changes/check.py](../../sources/aws/cloudwatch_log_metric_filter_aws_organizations_changes/check.py)

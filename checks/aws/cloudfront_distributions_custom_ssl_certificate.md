@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_custom_ssl_certificate` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_custom_ssl_certificate` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 CloudFront distributions are configured with a **custom SSL/TLS certificate** rather than the default `*.cloudfront.net` certificate for viewer connections.
 
-## 风险
+## リスク
 
 Using the default certificate prevents HTTPS on your own hostnames, breaking hostname validation. Clients may face errors or avoid TLS, impacting **authentication** and **availability**. Control over TLS posture and domain-bound security headers is reduced, weakening **confidentiality** and user trust.
 
-## 推荐措施
+## 推奨事項
 
 - Use a **custom SSL/TLS certificate** covering your domains and configure aliases. - Enforce modern TLS policy, **SNI**, and **HSTS**; disable legacy protocols. - Apply **least privilege** to certificate lifecycle and rotate/monitor keys.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -96,14 +96,14 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
 4. In SSL certificate, choose Custom SSL certificate and select your ACM certificate (issued in us-east-1 and covering <example_domain>)
 5. Click Save/Yes, Edit and wait for the distribution to deploy
 
-## 参考资料
+## 参考資料
 
 - [https://trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/cloudfront-distro-custom-tls.html](https://trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/cloudfront-distro-custom-tls.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/cloudfront-controls.html#cloudfront-7](https://docs.aws.amazon.com/securityhub/latest/userguide/cloudfront-controls.html#cloudfront-7)
 - [https://support.icompaas.com/support/solutions/articles/62000233491-ensure-cloudfront-distributions-use-custom-ssl-tls-certificates](https://support.icompaas.com/support/solutions/articles/62000233491-ensure-cloudfront-distributions-use-custom-ssl-tls-certificates)
 - [https://reintech.io/blog/configure-https-ssl-certificates-cloudfront-distributions](https://reintech.io/blog/configure-https-ssl-certificates-cloudfront-distributions)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_custom_ssl_certificate/metadata.json](../../sources/aws/cloudfront_distributions_custom_ssl_certificate/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_custom_ssl_certificate/check.py](../../sources/aws/cloudfront_distributions_custom_ssl_certificate/check.py)

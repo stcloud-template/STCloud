@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ecr_repositories_scan_images_on_push_enabled` |
-| 云平台 | AWS |
-| 服务 | ecr |
-| 严重等级 | medium |
-| 类别 | container-security |
-| 检查类型 | Software and Configuration Checks/Vulnerabilities/CVE, Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsEcrRepository |
-| 资源组 | container |
+| チェック項目 ID | `ecr_repositories_scan_images_on_push_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | ecr |
+| 重大度 | medium |
+| カテゴリ | container-security |
+| チェックタイプ | Software and Configuration Checks/Vulnerabilities/CVE, Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsEcrRepository |
+| リソースグループ | container |
 
-## 描述
+## 説明
 
 [DEPRECATED] **Amazon ECR repositories** are evaluated for **image scanning on push**; when configured, new image uploads automatically trigger a vulnerability scan (`scan_on_push`).
 
-## 风险
+## リスク
 
 Without **scan on push**, images with known CVEs can enter registries and reach runtime unnoticed, undermining **integrity** and **confidentiality** through exploitable packages. Attackers may achieve code execution and lateral movement. Delayed detection increases operational risk and extends remediation timelines.
 
-## 推荐措施
+## 推奨事項
 
 Enable **image scanning on push** (`scan_on_push`) for all repositories and use findings as promotion gates. Prefer **continuous/enhanced scanning** for defense in depth, set severity thresholds, and block or quarantine noncompliant images. Integrate results with CI/CD and adopt **shift-left** vulnerability management.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -67,13 +67,13 @@ resource "aws_ecr_repository" "<example_resource_name>" {
 4. Enable the Scan on push toggle
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ECR/scan-on-push.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ECR/scan-on-push.html)
 - [https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning-basic-enabling.html](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning-basic-enabling.html)
 - [https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ecr_repositories_scan_images_on_push_enabled/metadata.json](../../sources/aws/ecr_repositories_scan_images_on_push_enabled/metadata.json)
 - Source Code：[sources/aws/ecr_repositories_scan_images_on_push_enabled/check.py](../../sources/aws/ecr_repositories_scan_images_on_push_enabled/check.py)

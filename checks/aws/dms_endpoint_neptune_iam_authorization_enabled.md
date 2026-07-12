@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `dms_endpoint_neptune_iam_authorization_enabled` |
-| 云平台 | AWS |
-| 服务 | dms |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsDmsEndpoint |
-| 资源组 | database |
+| チェック項目 ID | `dms_endpoint_neptune_iam_authorization_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | dms |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsDmsEndpoint |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **DMS Neptune endpoints** have **IAM authorization** enabled via the endpoint setting `IamAuthEnabled`.
 
-## 风险
+## リスク
 
 Without **IAM authorization**, migration components can interact with Neptune using broad trust, enabling unauthorized data loads, reads, or alterations. This degrades **confidentiality** and **integrity** and increases the chance of privilege abuse and data exfiltration.
 
-## 推荐措施
+## 推奨事項
 
 Enable **IAM authorization** on Neptune endpoints (`IamAuthEnabled=true`) and use a **least privilege** service role limited to minimal Neptune and S3 permissions. Apply **defense in depth**: restrict network paths, separate duties for migration roles, and monitor access with logs and alerts.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -60,12 +60,12 @@ Resources:
 3. Expand Endpoint settings (Neptune settings) and set IAM authorization to Enabled
 4. Ensure Service access role ARN is set, then click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/dms-controls.html#dms-10](https://docs.aws.amazon.com/securityhub/latest/userguide/dms-controls.html#dms-10)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/dms_endpoint_neptune_iam_authorization_enabled/metadata.json](../../sources/aws/dms_endpoint_neptune_iam_authorization_enabled/metadata.json)
 - Source Code：[sources/aws/dms_endpoint_neptune_iam_authorization_enabled/check.py](../../sources/aws/dms_endpoint_neptune_iam_authorization_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `mq_broker_not_publicly_accessible` |
-| 云平台 | AWS |
-| 服务 | mq |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, TTPs/Initial Access, Effects/Data Exposure |
-| 资源类型 | AwsAmazonMQBroker |
-| 资源组 | messaging |
+| チェック項目 ID | `mq_broker_not_publicly_accessible` |
+| クラウドプラットフォーム | AWS |
+| サービス | mq |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, TTPs/Initial Access, Effects/Data Exposure |
+| リソースタイプ | AwsAmazonMQBroker |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon MQ brokers** are evaluated for **public accessibility**, determining whether a broker exposes a public endpoint or is restricted to VPC-only connectivity via its `publicly accessible` setting.
 
-## 风险
+## リスク
 
 **Publicly reachable brokers** expand exposure: internet hosts can probe protocols and consoles, attempt credential spraying, publish/consume messages, and flood connections. This threatens **confidentiality** (data leakage), **integrity** (message tampering), and **availability** (DoS/resource exhaustion).
 
-## 推荐措施
+## 推奨事項
 
 Prefer private deployment: set `publicly_accessible=false`, place brokers in private subnets, and restrict security groups to trusted producers/consumers. Use private connectivity (VPC endpoints, peering, VPN/Direct Connect). Enforce strong authn and authorization maps, and allow only required protocol ports. Apply **least privilege**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -80,12 +80,12 @@ resource "aws_mq_broker" "<example_resource_name>" {
 3. Point your clients to the new broker's private endpoints
 4. Delete the old publicly accessible broker
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/using-amazon-mq-securely.html#prefer-brokers-without-public-accessibility](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/using-amazon-mq-securely.html#prefer-brokers-without-public-accessibility)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MQ/publicly-accessible.html#](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MQ/publicly-accessible.html#)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/mq_broker_not_publicly_accessible/metadata.json](../../sources/aws/mq_broker_not_publicly_accessible/metadata.json)
 - Source Code：[sources/aws/mq_broker_not_publicly_accessible/check.py](../../sources/aws/mq_broker_not_publicly_accessible/check.py)

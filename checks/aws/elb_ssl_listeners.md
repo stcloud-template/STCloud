@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elb_ssl_listeners` |
-| 云平台 | AWS |
-| 服务 | elb |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Effects/Data Exposure |
-| 资源类型 | AwsElbLoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elb_ssl_listeners` |
+| クラウドプラットフォーム | AWS |
+| サービス | elb |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS, Effects/Data Exposure |
+| リソースタイプ | AwsElbLoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Elastic Load Balancers** are assessed for client-facing listener protocols. Only `HTTPS` or `SSL` are considered encrypted; any `HTTP` or `TCP` listener indicates plaintext between clients and the load balancer.
 
-## 风险
+## リスク
 
 Plaintext listeners enable network eavesdropping and content injection, compromising **confidentiality** and **integrity**. Attackers on public or untrusted paths can harvest credentials and session tokens or alter traffic via MITM, leading to data exposure and unauthorized access.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **encryption in transit** by using only `HTTPS`/`TLS` listeners. Redirect `HTTP` to `HTTPS` and retire plaintext listeners. Use trusted certificates (e.g., ACM) and modern TLS policies; align with **zero trust** and **defense in depth**. *If needed*, use end-to-end TLS to targets and monitor certificate health.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,13 +79,13 @@ resource "aws_elb" "<example_resource_name>" {
 4. Add a listener with Protocol HTTPS (port 443) and select an SSL certificate
 5. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/elb-listener-security.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/elb-listener-security.html)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elb_ssl_listeners/metadata.json](../../sources/aws/elb_ssl_listeners/metadata.json)
 - Source Code：[sources/aws/elb_ssl_listeners/check.py](../../sources/aws/elb_ssl_listeners/check.py)

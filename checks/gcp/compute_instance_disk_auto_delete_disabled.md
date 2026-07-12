@@ -2,30 +2,30 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `compute_instance_disk_auto_delete_disabled` |
-| 云平台 | GCP |
-| 服务 | compute |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 资源类型 | compute.googleapis.com/Instance |
+| チェック項目 ID | `compute_instance_disk_auto_delete_disabled` |
+| クラウドプラットフォーム | GCP |
+| サービス | compute |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| リソースタイプ | compute.googleapis.com/Instance |
 
-## 描述
+## 説明
 
 This check verifies whether GCP Compute Engine VM instances have **auto-delete** disabled for their attached persistent disks. When auto-delete is enabled, persistent disks are automatically removed when the associated VM instance is deleted, which can lead to unintended data loss.
 
-## 风险
+## リスク
 
 With auto-delete enabled, persistent disks are automatically deleted when the associated VM instance is terminated. This could result in: - **Permanent data loss** if the instance is accidentally or intentionally deleted - **Recovery challenges** for mission-critical workloads - **Compliance violations** where data retention is required
 
-## 推荐措施
+## 推奨事項
 
 Disable `auto-delete` for all persistent disks attached to **production** and **business-critical** VM instances to prevent **accidental data loss**. Regularly review disk configurations to ensure data retention requirements are met.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -73,12 +73,12 @@ resource "google_compute_instance" "example_resource" {
 6. For Additional disks, click each disk and select 'Keep disk' under 'Deletion rule'
 7. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/compute/docs/disks/add-persistent-disk](https://cloud.google.com/compute/docs/disks/add-persistent-disk)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/disable-auto-delete.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/disable-auto-delete.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/compute_instance_disk_auto_delete_disabled/metadata.json](../../sources/gcp/compute_instance_disk_auto_delete_disabled/metadata.json)
 - Source Code：[sources/gcp/compute_instance_disk_auto_delete_disabled/check.py](../../sources/gcp/compute_instance_disk_auto_delete_disabled/check.py)

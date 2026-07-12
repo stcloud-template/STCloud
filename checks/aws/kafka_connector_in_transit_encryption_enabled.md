@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kafka_connector_in_transit_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | kafka |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | messaging |
+| チェック項目 ID | `kafka_connector_in_transit_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | kafka |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **MSK Connect connectors** are evaluated for **in-transit encryption** using `TLS` on client connections to Kafka brokers and connected systems.
 
-## 风险
+## リスク
 
 Without **TLS**, data streams can be **intercepted** or **modified** in transit. Attackers on the path can perform **man-in-the-middle**, replay, or message **tampering**, exposing records and secrets. This degrades **confidentiality** and **integrity** and can enable unauthorized access to downstream systems.
 
-## 推荐措施
+## 推奨事項
 
 Require **TLS** for all connector communications and disallow plaintext. Prefer private connectivity, validate certificates, and use modern cipher suites. Pair with **mutual authentication** and **least privilege** roles for defense-in-depth. Regularly review connector configs to avoid non-TLS endpoints.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -121,12 +121,12 @@ resource "aws_mskconnect_connector" "<example_resource_name>" {
 4. In the Security section, set Encryption in transit to TLS (required)
 5. Complete other required fields and Create the connector
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/msk/latest/developerguide/msk-connect.html](https://docs.aws.amazon.com/msk/latest/developerguide/msk-connect.html)
 - [https://docs.aws.amazon.com/msk/latest/developerguide/mkc-create-connector-intro.html](https://docs.aws.amazon.com/msk/latest/developerguide/mkc-create-connector-intro.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kafka_connector_in_transit_encryption_enabled/metadata.json](../../sources/aws/kafka_connector_in_transit_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/kafka_connector_in_transit_encryption_enabled/check.py](../../sources/aws/kafka_connector_in_transit_encryption_enabled/check.py)

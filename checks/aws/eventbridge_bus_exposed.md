@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `eventbridge_bus_exposed` |
-| 云平台 | AWS |
-| 服务 | eventbridge |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access |
-| 资源类型 | AwsEventsEventbus |
-| 资源组 | messaging |
+| チェック項目 ID | `eventbridge_bus_exposed` |
+| クラウドプラットフォーム | AWS |
+| サービス | eventbridge |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access/Unauthorized Access |
+| リソースタイプ | AwsEventsEventbus |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 EventBridge event bus resource policy is evaluated for **public access**, such as a `Principal: "*"` or overly broad conditions that allow any AWS account to publish events or manage rules on the bus.
 
-## 风险
+## リスク
 
 Publicly accessible event buses enable **event injection** and unauthorized rule changes, undermining **integrity** and enabling **lateral movement**. Attackers can trigger downstream targets, causing **data exposure**, service disruption, and unexpected **costs** through high-volume events.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** resource policies: limit principals to specific accounts or your organization, and constrain actions and event attributes (e.g., `source`, `detail-type`). Avoid `Principal: "*"`. Use **defense in depth** with rule patterns that include the expected `account`. Monitor policy changes and bus activity.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,14 +79,14 @@ POLICY
 5. If needed, add a statement allowing only your trusted account ID as Principal (arn:aws:iam::<ACCOUNT_ID>:root)
 6. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEvents-CrossAccountEventDelivery.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEvents-CrossAccountEventDelivery.html)
 - [https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CWE_GettingStarted.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CWE_GettingStarted.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchEvents/event-bus-exposed.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchEvents/event-bus-exposed.html)
 - [https://aws.amazon.com/blogs/compute/simplifying-cross-account-access-with-amazon-eventbridge-resource-policies/](https://aws.amazon.com/blogs/compute/simplifying-cross-account-access-with-amazon-eventbridge-resource-policies/)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/eventbridge_bus_exposed/metadata.json](../../sources/aws/eventbridge_bus_exposed/metadata.json)
 - Source Code：[sources/aws/eventbridge_bus_exposed/check.py](../../sources/aws/eventbridge_bus_exposed/check.py)

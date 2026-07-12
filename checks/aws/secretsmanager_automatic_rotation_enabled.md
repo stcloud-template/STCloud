@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `secretsmanager_automatic_rotation_enabled` |
-| 云平台 | AWS |
-| 服务 | secretsmanager |
-| 严重等级 | high |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA) |
-| 资源类型 | AwsSecretsManagerSecret |
-| 资源组 | security |
+| チェック項目 ID | `secretsmanager_automatic_rotation_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | secretsmanager |
+| 重大度 | high |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls (USA), Software and Configuration Checks/Industry and Regulatory Standards/NIST CSF Controls (USA) |
+| リソースタイプ | AwsSecretsManagerSecret |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS Secrets Manager secrets** are evaluated for **automatic rotation**; the check determines if a rotation schedule is enabled for each secret
 
-## 风险
+## リスク
 
 Absent rotation, **long-lived secrets** widen the attack window: - Valid after leakage in code, images, or logs - Enable **unauthorized access** and **lateral movement** - Complicate incident response and recovery This impacts **confidentiality** and **integrity**, and can threaten **availability** if revocation lags.
 
-## 推荐措施
+## 推奨事項
 
 Enable **automatic rotation** for secrets and set schedules based on sensitivity (e.g., `30-90 days`). Enforce **least privilege** for accessing and rotating secrets and apply **separation of duties**. Monitor rotation health. Avoid hardcoded credentials; retrieve secrets at runtime and support versioned updates.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -70,11 +70,11 @@ resource "aws_secretsmanager_secret_rotation" "<example_resource_name>" {
 5. Set rotation interval to 30 days
 6. Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/secretsmanager_automatic_rotation_enabled/metadata.json](../../sources/aws/secretsmanager_automatic_rotation_enabled/metadata.json)
 - Source Code：[sources/aws/secretsmanager_automatic_rotation_enabled/check.py](../../sources/aws/secretsmanager_automatic_rotation_enabled/check.py)

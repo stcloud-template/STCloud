@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elbv2_listeners_underneath` |
-| 云平台 | AWS |
-| 服务 | elbv2 |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
-| 资源类型 | AwsElbv2LoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elbv2_listeners_underneath` |
+| クラウドプラットフォーム | AWS |
+| サービス | elbv2 |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
+| リソースタイプ | AwsElbv2LoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **ELBv2 load balancer** requires at least one **listener** (protocol and port) to accept client connections and route requests to target groups. The finding indicates whether listeners are defined on the load balancer.
 
-## 风险
+## リスク
 
 Without a listener, the load balancer cannot accept connections, making back-end services unreachable. This harms **availability**, leads to client timeouts and errors, and disrupts integrations that rely on the load balancer's DNS endpoint.
 
-## 推荐措施
+## 推奨事項
 
 Define at least one listener per load balancer. Prefer **HTTPS** on `443` to protect data in transit, and expose only required ports. Apply **least privilege** by limiting protocols and rules to intended traffic, and set an explicit default action to avoid unintended routing.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -80,11 +80,11 @@ resource "aws_lb_listener" "<example_resource_name>" {
 5. For Default action, choose Return fixed response and set Status code to 200
 6. Click Create/Save to add the listener
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elbv2_listeners_underneath/metadata.json](../../sources/aws/elbv2_listeners_underneath/metadata.json)
 - Source Code：[sources/aws/elbv2_listeners_underneath/check.py](../../sources/aws/elbv2_listeners_underneath/check.py)

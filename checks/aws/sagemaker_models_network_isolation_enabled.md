@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sagemaker_models_network_isolation_enabled` |
-| 云平台 | AWS |
-| 服务 | sagemaker |
-| 严重等级 | high |
-| 类别 | trust-boundaries, container-security, gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exfiltration |
-| 资源类型 | Other |
-| 资源组 | ai_ml |
+| チェック項目 ID | `sagemaker_models_network_isolation_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | sagemaker |
+| 重大度 | high |
+| カテゴリ | trust-boundaries, container-security, gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exfiltration |
+| リソースタイプ | Other |
+| リソースグループ | ai_ml |
 
-## 描述
+## 説明
 
 **SageMaker models** are evaluated for **network isolation** status, indicating whether model containers are blocked from initiating network connections during hosting/inference, aside from required service control traffic.
 
-## 风险
+## リスク
 
 **Disabled network isolation** allows model containers to reach external networks, enabling exfiltration of inputs, outputs, or credentials, retrieval of untrusted code, and covert callbacks. This compromises confidentiality and integrity and can facilitate lateral movement from the hosting environment.
 
-## 推荐措施
+## 推奨事項
 
 Enable **network isolation** for all hosted models. Run endpoints in a **private VPC**, restrict egress with tight **security groups** and **VPC endpoints**, and enforce **least privilege IAM**. Adopt **defense in depth**: avoid public routes, allow-list destinations, and monitor outbound traffic.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -69,11 +69,11 @@ resource "aws_sagemaker_model" "<example_resource_name>" {
 5. Click Create model
 6. If used by an endpoint, create a new endpoint configuration with this model and update the endpoint, then remove the old non-isolated model
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sagemaker_models_network_isolation_enabled/metadata.json](../../sources/aws/sagemaker_models_network_isolation_enabled/metadata.json)
 - Source Code：[sources/aws/sagemaker_models_network_isolation_enabled/check.py](../../sources/aws/sagemaker_models_network_isolation_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elasticache_cluster_uses_public_subnet` |
-| 云平台 | AWS |
-| 服务 | elasticache |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | database |
+| チェック項目 ID | `elasticache_cluster_uses_public_subnet` |
+| クラウドプラットフォーム | AWS |
+| サービス | elasticache |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **ElastiCache resources** (Redis nodes and Memcached clusters) are assessed for placement in **public subnets**. The finding identifies cache subnet groups that include subnets configured with Internet routing instead of private-only subnets.
 
-## 风险
+## リスク
 
 Hosting caches in **public subnets** can permit direct or misconfigured Internet access, impacting CIA: - Confidentiality: unauthorized reads and key dumps - Integrity: cache poisoning or key tampering - Availability: scanning and DDoS Attackers may pivot from the cache to **lateral movement** within the VPC.
 
-## 推荐措施
+## 推奨事項
 
 Place caches in **private subnets** only and ensure route tables lack Internet egress. Apply **least privilege** with tight **security groups** limited to required ports and trusted sources. For external access, use **VPC peering**, **VPN**, or **PrivateLink**. Enable encryption in transit and Redis `AUTH` for layered controls.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -85,12 +85,12 @@ resource "aws_elasticache_cluster" "cache" {
 4. Click Modify, set Subnet group to the private subnet group
 5. Check Apply immediately and click Modify to save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SubnetGroups.html](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SubnetGroups.html)
 - [https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/VPCs.html](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/VPCs.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elasticache_cluster_uses_public_subnet/metadata.json](../../sources/aws/elasticache_cluster_uses_public_subnet/metadata.json)
 - Source Code：[sources/aws/elasticache_cluster_uses_public_subnet/check.py](../../sources/aws/elasticache_cluster_uses_public_subnet/check.py)

@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `storage_blob_public_access_level_is_disabled` |
-| 云平台 | Azure |
-| 服务 | storage |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 资源类型 | AzureStorageAccount |
-| 资源组 | storage |
+| チェック項目 ID | `storage_blob_public_access_level_is_disabled` |
+| クラウドプラットフォーム | Azure |
+| サービス | storage |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| リソースタイプ | AzureStorageAccount |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 Ensure that the 'Public access level' configuration setting is set to 'Private (no anonymous access)' for all blob containers in your storage account in order to block anonymous access to these Microsoft Azure resources.
 
-## 风险
+## リスク
 
 A user that accesses blob containers anonymously can use constructors that do not require credentials such as shared access signatures.
 
-## 推荐措施
+## 推奨事項
 
 Set 'Public access level' configuration setting to 'Private (no anonymous access)'
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -37,11 +37,11 @@ Set 'Public access level' configuration setting to 'Private (no anonymous access
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/StorageAccounts/disable-blob-anonymous-access-for-storage-accounts.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/azure/StorageAccounts/disable-blob-anonymous-access-for-storage-accounts.html)
 
-## 参考资料
+## 参考資料
 
 No external references available.
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/azure/storage_blob_public_access_level_is_disabled/metadata.json](../../sources/azure/storage_blob_public_access_level_is_disabled/metadata.json)
 - Source Code：[sources/azure/storage_blob_public_access_level_is_disabled/check.py](../../sources/azure/storage_blob_public_access_level_is_disabled/check.py)

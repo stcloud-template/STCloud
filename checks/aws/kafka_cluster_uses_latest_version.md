@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kafka_cluster_uses_latest_version` |
-| 云平台 | AWS |
-| 服务 | kafka |
-| 严重等级 | medium |
-| 类别 | vulnerabilities |
-| 检查类型 | Software and Configuration Checks/Patch Management, Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsMskCluster |
-| 资源组 | messaging |
+| チェック項目 ID | `kafka_cluster_uses_latest_version` |
+| クラウドプラットフォーム | AWS |
+| サービス | kafka |
+| 重大度 | medium |
+| カテゴリ | vulnerabilities |
+| チェックタイプ | Software and Configuration Checks/Patch Management, Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsMskCluster |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon MSK clusters** are evaluated for use of the latest supported **Apache Kafka version**. Provisioned clusters are compared to the most recent release, while **serverless clusters** are treated as automatically managed for versioning.
 
-## 风险
+## リスク
 
 Outdated Kafka enables exploitation of known flaws and weak cryptography, risking data exposure or tampering (**confidentiality/integrity**). Missing fixes increase broker crashes and partition instability (**availability**). After end of support, silent auto-upgrades can trigger unexpected behavior and compatibility issues.
 
-## 推荐措施
+## 推奨事項
 
 Adopt a controlled upgrade strategy: - Track MSK version support and upgrade before end of support - Test in staging and schedule maintenance windows - Use blue/green or rolling upgrades to reduce downtime - Validate client compatibility and security settings - Consider serverless MSK if automatic versioning fits your risk model
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -82,13 +82,13 @@ resource "aws_msk_cluster" "<example_resource_name>" {
 4. Review and start the upgrade (Update/Start upgrade)
 5. Wait until the operation completes and the cluster status returns to Active
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/msk/latest/developerguide/version-support.html#version-upgrades](https://docs.aws.amazon.com/msk/latest/developerguide/version-support.html#version-upgrades)
 - [https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-databases.html](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-databases.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/enable-apache-kafka-latest-security-features.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/enable-apache-kafka-latest-security-features.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kafka_cluster_uses_latest_version/metadata.json](../../sources/aws/kafka_cluster_uses_latest_version/metadata.json)
 - Source Code：[sources/aws/kafka_cluster_uses_latest_version/check.py](../../sources/aws/kafka_cluster_uses_latest_version/check.py)

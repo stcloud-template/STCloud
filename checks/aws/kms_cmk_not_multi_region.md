@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kms_cmk_not_multi_region` |
-| 云平台 | AWS |
-| 服务 | kms |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsKmsKey |
-| 资源组 | security |
+| チェック項目 ID | `kms_cmk_not_multi_region` |
+| クラウドプラットフォーム | AWS |
+| サービス | kms |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsKmsKey |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS KMS customer-managed keys** in an `Enabled` state are assessed for the `multi-Region` setting. The finding highlights keys with the `multi-Region` property enabled.
 
-## 风险
+## リスク
 
 Shared key material across Regions lets access in one Region decrypt data from another, eroding **confidentiality** and **data residency**. A misconfigured policy or weaker controls in a replica expand the blast radius. For signing/HMAC keys, compromise enables cross-Region signature forgery, impacting **integrity** and **auditability**.
 
-## 推荐措施
+## 推奨事項
 
 Prefer **single-Region keys** by default; use **multi-Region** only with a documented need. Apply **least privilege** and **separation of duties**; limit who can create or replicate such keys. Isolate per Region/tenant/workload, standardize policy and logging across Regions, and retire multi-Region keys where unnecessary.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -67,12 +67,12 @@ resource "aws_kms_key" "example" {
 5. Re-encrypt or rotate data to the new key where required
 6. After migration, disable the old multi-Region key and schedule its deletion
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#multi-region-concepts](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#multi-region-concepts)
 - [https://docs.aws.amazon.com/kms/latest/developerguide/mrk-when-to-use.html](https://docs.aws.amazon.com/kms/latest/developerguide/mrk-when-to-use.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kms_cmk_not_multi_region/metadata.json](../../sources/aws/kms_cmk_not_multi_region/metadata.json)
 - Source Code：[sources/aws/kms_cmk_not_multi_region/check.py](../../sources/aws/kms_cmk_not_multi_region/check.py)

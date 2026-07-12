@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `codebuild_project_no_secrets_in_variables` |
-| 云平台 | AWS |
-| 服务 | codebuild |
-| 严重等级 | critical |
-| 类别 | secrets, ci-cd |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, TTPs/Credential Access, Effects/Data Exposure, Sensitive Data Identifications/Security |
-| 资源类型 | AwsCodeBuildProject |
-| 资源组 | devops |
+| チェック項目 ID | `codebuild_project_no_secrets_in_variables` |
+| クラウドプラットフォーム | AWS |
+| サービス | codebuild |
+| 重大度 | critical |
+| カテゴリ | secrets, ci-cd |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, TTPs/Credential Access, Effects/Data Exposure, Sensitive Data Identifications/Security |
+| リソースタイプ | AwsCodeBuildProject |
+| リソースグループ | devops |
 
-## 描述
+## 説明
 
 **AWS CodeBuild projects** are inspected for **plaintext environment variables** (`PLAINTEXT`) that resemble **secrets** (keys, tokens, passwords). Such values indicate sensitive data is stored directly in environment variables instead of being sourced securely.
 
-## 风险
+## リスク
 
 Plaintext secrets in environment variables reduce confidentiality: values can be viewed in consoles/CLI and may leak into build logs or public outputs. Compromised credentials enable unauthorized AWS actions, artifact tampering, and lateral movement, causing data exfiltration and CI/CD supply-chain compromise.
 
-## 推荐措施
+## 推奨事項
 
 Store secrets outside the build and reference them via **AWS Secrets Manager** or **AWS Systems Manager Parameter Store** instead of `PLAINTEXT` variables. - Enforce **least privilege** on the build role - Rotate secrets; prefer short-lived credentials - Avoid logging or exporting secret values and never embed them in artifacts
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -90,7 +90,7 @@ resource "aws_codebuild_project" "<example_resource_name>" {
 4. Select the secret (or parameter) that holds the value, then Save
 5. If the secret/parameter does not exist, create it in Secrets Manager or Systems Manager Parameter Store first, then repeat steps 3-4
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html)
 - [https://www.learnaws.org/2022/11/18/aws-codebuild-secrets-manager/](https://www.learnaws.org/2022/11/18/aws-codebuild-secrets-manager/)
@@ -101,7 +101,7 @@ resource "aws_codebuild_project" "<example_resource_name>" {
 - [https://pasmichal.medium.com/how-to-handle-secrets-in-aws-codebuild-6e1b96013712](https://pasmichal.medium.com/how-to-handle-secrets-in-aws-codebuild-6e1b96013712)
 - [https://medium.com/@odofing/aws-codepipeline-how-to-securely-store-environment-variables-in-ssm-paramater-store-and-aws-9a96d7083b3c](https://medium.com/@odofing/aws-codepipeline-how-to-securely-store-environment-variables-in-ssm-paramater-store-and-aws-9a96d7083b3c)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/codebuild_project_no_secrets_in_variables/metadata.json](../../sources/aws/codebuild_project_no_secrets_in_variables/metadata.json)
 - Source Code：[sources/aws/codebuild_project_no_secrets_in_variables/check.py](../../sources/aws/codebuild_project_no_secrets_in_variables/check.py)

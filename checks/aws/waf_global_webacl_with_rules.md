@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `waf_global_webacl_with_rules` |
-| 云平台 | AWS |
-| 服务 | waf |
-| 严重等级 | medium |
-| 类别 | Uncategorized |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafWebAcl |
-| 资源组 | security |
+| チェック項目 ID | `waf_global_webacl_with_rules` |
+| クラウドプラットフォーム | AWS |
+| サービス | waf |
+| 重大度 | medium |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafWebAcl |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAF Classic global web ACLs** are evaluated for the presence of at least one **rule** or **rule group** that inspects HTTP(S) requests
 
-## 风险
+## リスク
 
 With no rules, the web ACL relies solely on its default action. If `allow`, hostile traffic reaches origins uninspected; if `block`, legitimate traffic can be denied. - SQLi/XSS can expose data (confidentiality) - Malicious requests can alter state (integrity) - Bots and scraping can drain resources (availability)
 
-## 推荐措施
+## 推奨事項
 
 Populate each global web ACL with effective protections: - Use rule groups and targeted rules (managed, rate-based, IP sets) - Apply least privilege: default `block` where feasible; explicitly `allow` required traffic - Layer defenses and enable logging to tune policies - *Consider migrating to WAFv2*
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -87,13 +87,13 @@ resource "aws_waf_web_acl" "<example_resource_name>" {
 6. In Rules, select an existing rule or rule group and click Add rule to web ACL
 7. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-8](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-8)
 - [https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-editing.html](https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-editing.html)
 - [https://docs.aws.amazon.com/waf/latest/developerguide/waf-rules.html](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rules.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/waf_global_webacl_with_rules/metadata.json](../../sources/aws/waf_global_webacl_with_rules/metadata.json)
 - Source Code：[sources/aws/waf_global_webacl_with_rules/check.py](../../sources/aws/waf_global_webacl_with_rules/check.py)

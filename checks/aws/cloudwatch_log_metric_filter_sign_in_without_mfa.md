@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_metric_filter_sign_in_without_mfa` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, TTPs/Initial Access, Unusual Behaviors/User |
-| 资源类型 | AwsCloudWatchAlarm |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_metric_filter_sign_in_without_mfa` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark, TTPs/Initial Access, Unusual Behaviors/User |
+| リソースタイプ | AwsCloudWatchAlarm |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudTrail logs** in CloudWatch are assessed for a metric filter and alarm that detect console logins where `$.eventName = ConsoleLogin` and `$.additionalEventData.MFAUsed != \"Yes\"`. This reflects whether alerting exists for sign-ins that occur without **MFA**.
 
-## 风险
+## リスク
 
 Without alerting on non-MFA console logins, successful use of stolen passwords can go **undetected**, enabling: - Unauthorized console access and IAM changes - Data exfiltration or deletion Impacts: loss of **confidentiality** and **integrity**, and potential **availability** disruption.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **MFA** for all console-capable identities and maintain alerts for `ConsoleLogin` with `MFAUsed != \"Yes\"`. Apply **least privilege**, route alarms to monitored channels, and tune for SSO to reduce noise. Test alarms regularly and review coverage as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -96,7 +96,7 @@ resource "aws_cloudwatch_metric_alarm" "nomfa" {
 6. Set Statistic = Sum, Period = 5 minutes, Threshold type = Static, Threshold = 1, Whenever >= 1; Next
 7. Skip actions if not needed, Name the alarm, Create alarm
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/console-sign-in-without-mfa.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/console-sign-in-without-mfa.html)
@@ -105,7 +105,7 @@ resource "aws_cloudwatch_metric_alarm" "nomfa" {
 - [https://www.intelligentdiscovery.io/controls/cloudwatch/cloudwatch-alarm-no-mfa](https://www.intelligentdiscovery.io/controls/cloudwatch/cloudwatch-alarm-no-mfa)
 - [https://support.icompaas.com/support/solutions/articles/62000083605-ensure-a-log-metric-filter-and-alarm-exist-for-management-console-sign-in-without-mfa](https://support.icompaas.com/support/solutions/articles/62000083605-ensure-a-log-metric-filter-and-alarm-exist-for-management-console-sign-in-without-mfa)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_metric_filter_sign_in_without_mfa/metadata.json](../../sources/aws/cloudwatch_log_metric_filter_sign_in_without_mfa/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_metric_filter_sign_in_without_mfa/check.py](../../sources/aws/cloudwatch_log_metric_filter_sign_in_without_mfa/check.py)

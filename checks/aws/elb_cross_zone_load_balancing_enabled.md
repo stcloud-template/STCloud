@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elb_cross_zone_load_balancing_enabled` |
-| 云平台 | AWS |
-| 服务 | elb |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service, Effects/Resource Consumption |
-| 资源类型 | AwsElbLoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elb_cross_zone_load_balancing_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elb |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service, Effects/Resource Consumption |
+| リソースタイプ | AwsElbLoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 Classic Load Balancer with **cross-zone load balancing** distributes requests across registered targets in all enabled Availability Zones. This evaluates whether that setting is `enabled`, instead of restricting distribution to targets within only the same zone.
 
-## 风险
+## リスク
 
 Without **cross-zone load balancing**, traffic can concentrate in one AZ due to DNS skew or uneven capacity, creating **hot spots**, timeouts, and latency. This degrades service **availability** and increases the chance of cascading failures during AZ impairment or instance loss.
 
-## 推荐措施
+## 推奨事項
 
 Set `cross-zone load balancing` to `enabled` on Classic Load Balancers and use at least two AZs. Balance capacity per AZ, enforce robust health checks with autoscaling, and design for **high availability** so load remains evenly distributed during demand spikes or partial AZ outages.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -81,13 +81,13 @@ resource "aws_elb" "<example_resource_name>" {
 4. Enable Cross-zone load balancing
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/elb-controls.html#elb-9](https://docs.aws.amazon.com/securityhub/latest/userguide/elb-controls.html#elb-9)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/elb-cross-zone-load-balancing-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/elb-cross-zone-load-balancing-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elb_cross_zone_load_balancing_enabled/metadata.json](../../sources/aws/elb_cross_zone_load_balancing_enabled/metadata.json)
 - Source Code：[sources/aws/elb_cross_zone_load_balancing_enabled/check.py](../../sources/aws/elb_cross_zone_load_balancing_enabled/check.py)

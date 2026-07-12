@@ -2,33 +2,33 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `compute_instance_encryption_with_csek_enabled` |
-| 云平台 | GCP |
-| 服务 | compute |
-| 严重等级 | high |
-| 类别 | encryption |
-| 资源类型 | Disks |
-| 资源组 | storage |
+| チェック項目 ID | `compute_instance_encryption_with_csek_enabled` |
+| クラウドプラットフォーム | GCP |
+| サービス | compute |
+| 重大度 | high |
+| カテゴリ | encryption |
+| リソースタイプ | Disks |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 Customer-Supplied Encryption Keys (CSEK) are a feature in Google Cloud Storage and Google Compute Engine. If you supply your own encryption keys, Google uses your key to protect the Google-generated keys used to encrypt and decrypt your data. By default, Google Compute Engine encrypts all data at rest. Compute Engine handles and manages this encryption for you without any additional actions on your part. However, if you wanted to control and manage this encryption yourself, you can provide your own encryption keys.
 
-## 风险
+## リスク
 
 By default, Compute Engine service encrypts all data at rest. The cloud service manages this type of encryption without any additional actions from you and your application. However, if you want to fully control and manage instance disk encryption, you can provide your own encryption keys.
 
-## 推荐措施
+## 推奨事項
 
 Ensure that the disks attached to your production Google Compute Engine instances are encrypted with Customer-Supplied Encryption Keys (CSEKs) in order to have complete control over the data-at-rest encryption and decryption process, and meet strict compliance requirements. These custom keys, also known as Customer-Supplied Encryption Keys (CSEKs), are used by Google Compute Engine to protect the Google-generated keys used to encrypt and decrypt your instance data. Compute Engine service does not store your CSEKs on its servers and cannot access your protected data unless you provide the required key.
 
-- 推荐链接：[https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys](https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys)
+- 推奨リンク：[https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys](https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -45,11 +45,11 @@ gcloud compute disks create <DISK_NAME> --size=<SIZE> --type=<TYPE> --zone=<ZONE
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/enable-encryption-with-csek.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/ComputeEngine/enable-encryption-with-csek.html)
 
-## 参考资料
+## 参考資料
 
 - [https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys](https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/compute_instance_encryption_with_csek_enabled/metadata.json](../../sources/gcp/compute_instance_encryption_with_csek_enabled/metadata.json)
 - Source Code：[sources/gcp/compute_instance_encryption_with_csek_enabled/check.py](../../sources/gcp/compute_instance_encryption_with_csek_enabled/check.py)

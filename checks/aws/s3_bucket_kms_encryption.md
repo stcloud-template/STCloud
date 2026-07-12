@@ -2,34 +2,34 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `s3_bucket_kms_encryption` |
-| 云平台 | AWS |
-| 服务 | s3 |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Data Protection |
-| 资源类型 | AwsS3Bucket |
-| 资源组 | storage |
+| チェック項目 ID | `s3_bucket_kms_encryption` |
+| クラウドプラットフォーム | AWS |
+| サービス | s3 |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Data Protection |
+| リソースタイプ | AwsS3Bucket |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 Check if S3 buckets have KMS encryption enabled.
 
-## 风险
+## リスク
 
 Amazon S3 KMS encryption provides a way to set the encryption behavior for an S3 bucket using a managed key. This will ensure data-at-rest is encrypted.
 
-## 推荐措施
+## 推奨事項
 
 Ensure that S3 buckets have encryption at rest enabled using KMS.
 
-- 推荐链接：[https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)
+- 推奨リンク：[https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -50,11 +50,11 @@ aws put-bucket-encryption --bucket <BUCKET_NAME> --server-side-encryption-config
 
 [https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/aws/S3/encrypted-with-kms-customer-master-keys.html](https://www.trendmicro.com/cloudoneconformity-staging/knowledge-base/aws/S3/encrypted-with-kms-customer-master-keys.html)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/s3_bucket_kms_encryption/metadata.json](../../sources/aws/s3_bucket_kms_encryption/metadata.json)
 - Source Code：[sources/aws/s3_bucket_kms_encryption/check.py](../../sources/aws/s3_bucket_kms_encryption/check.py)

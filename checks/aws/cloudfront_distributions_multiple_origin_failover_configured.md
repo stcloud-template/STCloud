@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_multiple_origin_failover_configured` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | low |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Effects/Denial of Service |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_multiple_origin_failover_configured` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | low |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls, Effects/Denial of Service |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **CloudFront distributions** are evaluated for an **origin group** configured with at least `2` origins to support automatic origin failover.
 
-## 风险
+## リスク
 
 Without **origin failover**, the origin becomes a **single point of failure**. Origin outages, regional incidents, or targeted **DoS** can cause **downtime**, elevated error rates, and latency, degrading **availability** and impacting user experience and SLAs.
 
-## 推荐措施
+## 推奨事項
 
 Enable **origin failover** by defining an origin group with primary and secondary origins. Distribute origins across independent zones or providers, set clear failover criteria (e.g., HTTP codes/timeouts), monitor health, and routinely test failover. Align with **resilience** and **defense-in-depth** to protect availability.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -133,13 +133,13 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
 7. Set Origin to the new origin group and save changes
 8. Deploy/confirm the distribution update
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#concept_origin_groups.creating](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#concept_origin_groups.creating)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/cloudfront-controls.html#cloudfront-4](https://docs.aws.amazon.com/securityhub/latest/userguide/cloudfront-controls.html#cloudfront-4)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/origin-failover-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/origin-failover-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_multiple_origin_failover_configured/metadata.json](../../sources/aws/cloudfront_distributions_multiple_origin_failover_configured/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_multiple_origin_failover_configured/check.py](../../sources/aws/cloudfront_distributions_multiple_origin_failover_configured/check.py)

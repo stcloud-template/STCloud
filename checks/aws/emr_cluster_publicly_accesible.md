@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `emr_cluster_publicly_accesible` |
-| 云平台 | AWS |
-| 服务 | emr |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `emr_cluster_publicly_accesible` |
+| クラウドプラットフォーム | AWS |
+| サービス | emr |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Amazon EMR clusters** are assessed for **public network exposure** by examining master and core/task node security groups for inbound rules that allow any source (`0.0.0.0/0` or `::/0`). Only active clusters are considered, and findings identify exposure via the specific security groups attached to the cluster nodes.
 
-## 风险
+## リスク
 
 **Open Internet ingress** to EMR nodes enables direct access to services and UIs, facilitating brute force, RCE, and data theft. Adversaries can pivot inside the VPC, alter jobs and outputs (**integrity**), exfiltrate datasets (**confidentiality**), or abuse compute for mining, degrading **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Apply **least privilege** and **defense in depth**: - Place clusters in private subnets; avoid public IPs - Deny `0.0.0.0/0` and `::/0` in node security groups; allow trusted CIDRs only - Keep EMR **Block Public Access** enabled with minimal exceptions - Use **bastion/SSM**, private connectivity, and logging for hardened access
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -69,11 +69,11 @@ resource "aws_security_group_rule" "<example_resource_name>" {
 4. Edit Inbound rules and remove any rule with Source 0.0.0.0/0 or ::/0
 5. If access is required, re-add only from specific CIDR(s) you control, then Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-block-public-access.html](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-block-public-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/emr_cluster_publicly_accesible/metadata.json](../../sources/aws/emr_cluster_publicly_accesible/metadata.json)
 - Source Code：[sources/aws/emr_cluster_publicly_accesible/check.py](../../sources/aws/emr_cluster_publicly_accesible/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `backup_reportplans_exist` |
-| 云平台 | AWS |
-| 服务 | backup |
-| 严重等级 | low |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsBackupBackupPlan |
-| 资源组 | storage |
+| チェック項目 ID | `backup_reportplans_exist` |
+| クラウドプラットフォーム | AWS |
+| サービス | backup |
+| 重大度 | low |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsBackupBackupPlan |
+| リソースグループ | storage |
 
-## 描述
+## 説明
 
 **AWS Backup** environments with existing backup plans are assessed for the presence of at least one **report plan** that generates `jobs` or `compliance` reports.
 
-## 风险
+## リスク
 
 Without a report plan, backup failures and missed restores may go unnoticed, harming **availability** and recovery objectives. Gaps in retention, scheduling, or encryption controls can persist unreported, weakening **integrity** and auditability across accounts and Regions, increasing the chance of SLA breaches.
 
-## 推荐措施
+## 推奨事項
 
 Establish and maintain **report plans** to continuously monitor backup activity and policy adherence. - Apply least privilege to report storage - Include relevant accounts and Regions for coverage - Review reports routinely and alert on anomalies - Enforce separation of duties between backup admins and auditors
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -78,11 +78,11 @@ resource "aws_backup_report_plan" "<example_resource_name>" {
 5. Select CSV as the file format
 6. Click Create report plan
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/aws-backup/latest/devguide/create-report-plan-console.html](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-report-plan-console.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/backup_reportplans_exist/metadata.json](../../sources/aws/backup_reportplans_exist/metadata.json)
 - Source Code：[sources/aws/backup_reportplans_exist/check.py](../../sources/aws/backup_reportplans_exist/check.py)

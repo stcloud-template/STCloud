@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `route53_domains_transferlock_enabled` |
-| 云平台 | AWS |
-| 服务 | route53 |
-| 严重等级 | high |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, TTPs/Initial Access/Unauthorized Access |
-| 资源类型 | Other |
-| 资源组 | network |
+| チェック項目 ID | `route53_domains_transferlock_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | route53 |
+| 重大度 | high |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, TTPs/Initial Access/Unauthorized Access |
+| リソースタイプ | Other |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Route 53 registered domains** are assessed for a transfer-lock state, indicated by the `clientTransferProhibited` status on the domain.
 
-## 风险
+## リスク
 
 Without **transfer lock**, a domain can be illicitly moved to another registrar, enabling **domain hijacking**. Attackers could alter DNS, redirect traffic, harvest credentials, and disrupt email and apps-compromising **confidentiality**, **integrity**, and **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **transfer lock** on domains to prevent unauthorized registrar moves. Enforce **least privilege** on domain management, require **MFA**, and monitor status changes. *For planned transfers*, remove the lock only under approved change control and re-enable immediately afterward.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -53,11 +53,11 @@ resource "aws_route53domains_registered_domain" "<example_resource_name>" {
 4. In Actions, choose Turn on transfer lock
 5. Confirm to enable the lock
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-lock.html](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-lock.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/route53_domains_transferlock_enabled/metadata.json](../../sources/aws/route53_domains_transferlock_enabled/metadata.json)
 - Source Code：[sources/aws/route53_domains_transferlock_enabled/check.py](../../sources/aws/route53_domains_transferlock_enabled/check.py)

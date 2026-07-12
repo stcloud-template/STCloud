@@ -2,31 +2,31 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudstorage_audit_logs_enabled` |
-| 云平台 | GCP |
-| 服务 | cloudstorage |
-| 严重等级 | medium |
-| 类别 | logging |
-| 资源类型 | cloudresourcemanager.googleapis.com/Project |
-| 资源组 | governance |
+| チェック項目 ID | `cloudstorage_audit_logs_enabled` |
+| クラウドプラットフォーム | GCP |
+| サービス | cloudstorage |
+| 重大度 | medium |
+| カテゴリ | logging |
+| リソースタイプ | cloudresourcemanager.googleapis.com/Project |
+| リソースグループ | governance |
 
-## 描述
+## 説明
 
 Data Access audit logs (DATA_READ and DATA_WRITE) are enabled for Cloud Storage at the project level. Unlike Admin Activity logs (enabled by default), Data Access logs must be explicitly configured to track read and write operations on Cloud Storage objects.
 
-## 风险
+## リスク
 
 Without Data Access audit logs, you cannot track who accessed or modified objects in your Cloud Storage buckets, making it difficult to detect unauthorized access, data exfiltration, or compliance violations.
 
-## 推荐措施
+## 推奨事項
 
 Enable Data Access audit logs (DATA_READ and DATA_WRITE) for Cloud Storage at the project level to track all read and write operations on storage objects for security monitoring and compliance.
 
-## 修复步骤
+## 修正手順
 
 
 ### Terraform
@@ -55,12 +55,12 @@ resource "google_project_iam_audit_config" "storage_audit" {
 
 Note: This is a project-level setting that applies to all Cloud Storage buckets in the project.
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudStorage/enable-data-access-audit-logs.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/gcp/CloudStorage/enable-data-access-audit-logs.html)
 - [https://cloud.google.com/storage/docs/audit-logging](https://cloud.google.com/storage/docs/audit-logging)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/gcp/cloudstorage_audit_logs_enabled/metadata.json](../../sources/gcp/cloudstorage_audit_logs_enabled/metadata.json)
 - Source Code：[sources/gcp/cloudstorage_audit_logs_enabled/check.py](../../sources/gcp/cloudstorage_audit_logs_enabled/check.py)

@@ -2,34 +2,34 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_instance_detailed_monitoring_enabled` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 严重等级 | low |
-| 类别 | Uncategorized |
-| 检查类型 | Infrastructure Security |
-| 资源类型 | AwsEc2Instance |
-| 资源组 | compute |
+| チェック項目 ID | `ec2_instance_detailed_monitoring_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| 重大度 | low |
+| カテゴリ | Uncategorized |
+| チェックタイプ | Infrastructure Security |
+| リソースタイプ | AwsEc2Instance |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Check if EC2 instances have detailed monitoring enabled.
 
-## 风险
+## リスク
 
 Enabling detailed monitoring provides enhanced monitoring and granular insights into EC2 instance metrics. Not having detailed monitoring enabled may limit the ability to troubleshoot performance issues effectively.
 
-## 推荐措施
+## 推奨事項
 
 Enable detailed monitoring for EC2 instances to gain better insights into performance metrics.
 
-- 推荐链接：[https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html#enable-detailed-monitoring-instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html#enable-detailed-monitoring-instance)
+- 推奨リンク：[https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html#enable-detailed-monitoring-instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html#enable-detailed-monitoring-instance)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -46,12 +46,12 @@ aws ec2 monitor-instances --instance-ids <EC2_INSTANCE_ID>
 
 [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EC2/instance-detailed-monitoring.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/EC2/instance-detailed-monitoring.html)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html)
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html#enable-detailed-monitoring-instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html#enable-detailed-monitoring-instance)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_instance_detailed_monitoring_enabled/metadata.json](../../sources/aws/ec2_instance_detailed_monitoring_enabled/metadata.json)
 - Source Code：[sources/aws/ec2_instance_detailed_monitoring_enabled/check.py](../../sources/aws/ec2_instance_detailed_monitoring_enabled/check.py)

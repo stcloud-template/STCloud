@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `kafka_cluster_is_public` |
-| 云平台 | AWS |
-| 服务 | kafka |
-| 严重等级 | critical |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Initial Access, Effects/Data Exposure |
-| 资源类型 | AwsMskCluster |
-| 资源组 | messaging |
+| チェック項目 ID | `kafka_cluster_is_public` |
+| クラウドプラットフォーム | AWS |
+| サービス | kafka |
+| 重大度 | critical |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Initial Access, Effects/Data Exposure |
+| リソースタイプ | AwsMskCluster |
+| リソースグループ | messaging |
 
-## 描述
+## 説明
 
 **Amazon MSK clusters** with broker endpoints **exposed to the public Internet**. Serverless clusters are private by default; provisioned clusters are evaluated for their `public access` configuration.
 
-## 风险
+## リスク
 
 Public brokers erode **CIA**: - **Confidentiality**: unauthorized consumers can read topics - **Integrity**: rogue producers inject or alter events - **Availability**: floods or scans strain brokers This enables metadata enumeration, data exfiltration, stream poisoning, and costly egress.
 
-## 推荐措施
+## 推奨事項
 
 Keep brokers private within the VPC by disabling public access and limiting exposure to trusted networks. Enforce strong auth (SASL/IAM, SASL/SCRAM, or mTLS), require TLS, and apply Kafka ACLs. Provide access via VPN, bastion, or private networking (peering/Transit Gateway). Apply **least privilege** and monitor broker connections.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -90,13 +90,13 @@ resource "aws_msk_cluster" "<example_resource_name>" {
 4. Set Public access to Disabled (Off)
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/msk/latest/developerguide/public-access.html](https://docs.aws.amazon.com/msk/latest/developerguide/public-access.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/public-access-msk-cluster.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/MSK/public-access-msk-cluster.html)
 - [https://docs.aws.amazon.com/msk/latest/developerguide/client-access.html](https://docs.aws.amazon.com/msk/latest/developerguide/client-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/kafka_cluster_is_public/metadata.json](../../sources/aws/kafka_cluster_is_public/metadata.json)
 - Source Code：[sources/aws/kafka_cluster_is_public/check.py](../../sources/aws/kafka_cluster_is_public/check.py)

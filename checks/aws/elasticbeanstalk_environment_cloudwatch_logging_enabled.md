@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elasticbeanstalk_environment_cloudwatch_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | elasticbeanstalk |
-| 严重等级 | high |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, TTPs/Defense Evasion |
-| 资源类型 | AwsElasticBeanstalkEnvironment |
-| 资源组 | compute |
+| チェック項目 ID | `elasticbeanstalk_environment_cloudwatch_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elasticbeanstalk |
+| 重大度 | high |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, TTPs/Defense Evasion |
+| リソースタイプ | AwsElasticBeanstalkEnvironment |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **Elastic Beanstalk environments** are configured to stream instance and proxy logs to **Amazon CloudWatch Logs** via the `StreamLogs` setting
 
-## 风险
+## リスク
 
 Without **centralized logging** to CloudWatch, logs may be lost during rotation or instance termination, delaying detection and response. Attackers can delete local logs to evade audits, hiding evidence of web attacks or config tampering and undermining **confidentiality**, **integrity**, and **availability**.
 
-## 推荐措施
+## 推奨事項
 
 Enable streaming to **CloudWatch Logs**. Set sensible retention, avoid deletion on termination, and restrict access with least-privilege IAM. Add metric filters and alerts for early detection, and retain archives to support **forensics**, **accountability**, and **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,13 +75,13 @@ resource "aws_elastic_beanstalk_environment" "<example_resource_name>" {
 3. Under "Instance log streaming to CloudWatch Logs", set Log streaming to Activated
 4. Click Apply to save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.cloudwatchlogs.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.cloudwatchlogs.html)
 - [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environments-cfg-logging.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environments-cfg-logging.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/elasticbeanstalk-controls.html#elasticbeanstalk-3](https://docs.aws.amazon.com/securityhub/latest/userguide/elasticbeanstalk-controls.html#elasticbeanstalk-3)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elasticbeanstalk_environment_cloudwatch_logging_enabled/metadata.json](../../sources/aws/elasticbeanstalk_environment_cloudwatch_logging_enabled/metadata.json)
 - Source Code：[sources/aws/elasticbeanstalk_environment_cloudwatch_logging_enabled/check.py](../../sources/aws/elasticbeanstalk_environment_cloudwatch_logging_enabled/check.py)

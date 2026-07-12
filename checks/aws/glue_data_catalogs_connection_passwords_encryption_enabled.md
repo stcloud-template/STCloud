@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_data_catalogs_connection_passwords_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | Other |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_data_catalogs_connection_passwords_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | Other |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue Data Catalog** settings for **connection password encryption** are evaluated to confirm an AWS KMS key is configured to encrypt passwords stored in connection properties.
 
-## 风险
+## リスク
 
 Unencrypted connection passwords can be read from the catalog or responses, letting attackers or over-privileged users obtain database credentials. This jeopardizes confidentiality of linked data stores, enables unauthorized modifications, and can facilitate lateral movement across environments.
 
-## 推荐措施
+## 推奨事項
 
 Enable **connection password encryption** in the Data Catalog with a customer-managed KMS key. - Apply **least privilege** to the KMS key and Glue roles - Prefer keeping responses encrypted (`ReturnConnectionPasswordEncrypted`) - Rotate keys and monitor access for **defense in depth**
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -78,12 +78,12 @@ resource "aws_glue_data_catalog_encryption_settings" "<example_resource_name>" {
 4. Select your KMS key (symmetric CMK)
 5. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-security.html](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-security.html)
 - [https://docs.aws.amazon.com/glue/latest/dg/encrypt-connection-passwords.html](https://docs.aws.amazon.com/glue/latest/dg/encrypt-connection-passwords.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_data_catalogs_connection_passwords_encryption_enabled/metadata.json](../../sources/aws/glue_data_catalogs_connection_passwords_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/glue_data_catalogs_connection_passwords_encryption_enabled/check.py](../../sources/aws/glue_data_catalogs_connection_passwords_encryption_enabled/check.py)

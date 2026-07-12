@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudtrail_logs_s3_bucket_access_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudtrail |
-| 严重等级 | medium |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | AwsCloudTrailTrail |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudtrail_logs_s3_bucket_access_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudtrail |
+| 重大度 | medium |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsCloudTrailTrail |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 CloudTrail trails deliver logs to an S3 bucket; this evaluates whether that bucket has **S3 server access logging** enabled to record requests against it. *If the destination bucket is outside the account or audit scope, a manual review is indicated.*
 
-## 风险
+## リスク
 
 Without access logging on the CloudTrail logs bucket, access and changes to log files lack an independent audit trail. Attackers could read, delete, or replace logs without attribution, undermining **log confidentiality** and **integrity**, and slowing **incident response**.
 
-## 推荐措施
+## 推奨事項
 
 Enable **S3 server access logging** on the CloudTrail logs bucket and write logs to a separate, tightly controlled bucket. Apply **least privilege**, enable **versioning**, and consider **Object Lock** to deter tampering. Centralize monitoring to support defense-in-depth and rapid investigation.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -78,12 +78,12 @@ resource "aws_s3_bucket_logging" "<example_resource_name>" {
 4. Enable logging and choose a different destination S3 bucket for the logs
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html](https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html)
 - [https://docs.aws.amazon.com/AmazonS3/latest/dev/security-best-practices.html](https://docs.aws.amazon.com/AmazonS3/latest/dev/security-best-practices.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudtrail_logs_s3_bucket_access_logging_enabled/metadata.json](../../sources/aws/cloudtrail_logs_s3_bucket_access_logging_enabled/metadata.json)
 - Source Code：[sources/aws/cloudtrail_logs_s3_bucket_access_logging_enabled/check.py](../../sources/aws/cloudtrail_logs_s3_bucket_access_logging_enabled/check.py)

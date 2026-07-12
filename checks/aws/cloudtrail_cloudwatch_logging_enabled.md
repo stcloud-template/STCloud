@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudtrail_cloudwatch_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | cloudtrail |
-| 严重等级 | low |
-| 类别 | logging, forensics-ready |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | AwsCloudTrailTrail |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudtrail_cloudwatch_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudtrail |
+| 重大度 | low |
+| カテゴリ | logging, forensics-ready |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsCloudTrailTrail |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudTrail trails** are configured to send events to **CloudWatch Logs**, and show recent delivery within the last `24h`. Trails without integration or without recent CloudWatch delivery are identified, across single-Region and multi-Region trails.
 
-## 风险
+## リスク
 
 Missing or stale CloudWatch delivery weakens visibility and delays detection, impacting confidentiality and integrity. Adversaries can: - Hide **privilege escalation** - Perform unauthorized **resource changes** - Exfiltrate data via API misuse
 
-## 推荐措施
+## 推奨事項
 
 Integrate every trail with **CloudWatch Logs** and maintain continuous, near-real-time delivery. Enforce **least privilege** on the delivery role, prefer **multi-Region** coverage, and implement **metric filters and alerts** for sensitive actions. Centralize retention to support **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -70,11 +70,11 @@ resource "aws_cloudtrail" "<example_resource_name>" {
 5. Click Save changes
 6. After a few minutes, verify events appear in the chosen CloudWatch Logs log group
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudtrail_cloudwatch_logging_enabled/metadata.json](../../sources/aws/cloudtrail_cloudwatch_logging_enabled/metadata.json)
 - Source Code：[sources/aws/cloudtrail_cloudwatch_logging_enabled/check.py](../../sources/aws/cloudtrail_cloudwatch_logging_enabled/check.py)

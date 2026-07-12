@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `directoryservice_ldap_certificate_expiration` |
-| 云平台 | AWS |
-| 服务 | directoryservice |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | IAM |
+| チェック項目 ID | `directoryservice_ldap_certificate_expiration` |
+| クラウドプラットフォーム | AWS |
+| サービス | directoryservice |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 **AWS Directory Service** Secure LDAP (LDAPS) certificates are assessed for upcoming expiration by comparing each directory's certificate expiration to the current time and identifying those with `<= 90` days remaining.
 
-## 风险
+## リスク
 
 Expired LDAPS certificates cause TLS handshakes to fail, blocking directory binds and queries and disrupting authentication and app integrations (availability). If clients fall back to plain LDAP, credentials and directory data can be intercepted or altered (confidentiality and integrity).
 
-## 推荐措施
+## 推奨事項
 
 Adopt certificate lifecycle management: inventory LDAPS certificates, alert well before expiry, and automate renewal with staged rollout and overlap. Enforce TLS-only LDAP and disable plaintext fallback. Apply **least privilege** and **separation of duties** to certificate issuance and deployment.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -45,12 +45,12 @@ aws ds register-certificate --directory-id <DIRECTORY_ID> --certificate-data fil
 5. Upload a new LDAPS server certificate with private key from a trusted CA (valid for >90 days); enter the password if using a .pfx
 6. Save and wait until the certificate status is Active
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_ldap.html](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_ldap.html)
 - [https://support.icompaas.com/support/solutions/articles/62000229587-ensure-to-monitor-directory-service-ldap-certificates-expiration](https://support.icompaas.com/support/solutions/articles/62000229587-ensure-to-monitor-directory-service-ldap-certificates-expiration)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/directoryservice_ldap_certificate_expiration/metadata.json](../../sources/aws/directoryservice_ldap_certificate_expiration/metadata.json)
 - Source Code：[sources/aws/directoryservice_ldap_certificate_expiration/check.py](../../sources/aws/directoryservice_ldap_certificate_expiration/check.py)

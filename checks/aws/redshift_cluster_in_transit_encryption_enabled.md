@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `redshift_cluster_in_transit_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | redshift |
-| 严重等级 | high |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
-| 资源类型 | AwsRedshiftCluster |
-| 资源组 | analytics |
+| チェック項目 ID | `redshift_cluster_in_transit_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | redshift |
+| 重大度 | high |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Effects/Data Exposure |
+| リソースタイプ | AwsRedshiftCluster |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **Amazon Redshift clusters** enforce **encryption in transit** by requiring **TLS** for client connections when `require_ssl` is enabled. This evaluation identifies clusters where connections are not forced to use TLS.
 
-## 风险
+## リスク
 
 Allowing plaintext or optional TLS exposes SQL sessions to: - **Confidentiality** loss: credentials, queries, and results can be intercepted. - **Integrity** compromise: statements or data may be modified in transit. - **Availability** impact: session hijacking can disrupt workloads.
 
-## 推荐措施
+## 推奨事項
 
 Require **TLS** for all Redshift connections by setting `require_ssl=true` and disallow plaintext. Configure clients to validate certificates and prefer private network paths. Keep drivers/TLS policies current. Apply **least privilege** and **defense in depth** to limit exposure if transport security fails.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -73,13 +73,13 @@ resource "aws_redshift_parameter_group" "<example_resource_name>" {
 3. Click Edit parameters, set require_ssl to true, and Save
 4. Reboot the cluster to apply the static parameter change
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/redshift/latest/mgmt/security-encryption-in-transit.html](https://docs.aws.amazon.com/redshift/latest/mgmt/security-encryption-in-transit.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/redshift-controls.html#redshift-2](https://docs.aws.amazon.com/securityhub/latest/userguide/redshift-controls.html#redshift-2)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Redshift/redshift-parameter-groups-require-ssl.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Redshift/redshift-parameter-groups-require-ssl.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/redshift_cluster_in_transit_encryption_enabled/metadata.json](../../sources/aws/redshift_cluster_in_transit_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/redshift_cluster_in_transit_encryption_enabled/check.py](../../sources/aws/redshift_cluster_in_transit_encryption_enabled/check.py)

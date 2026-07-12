@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_etl_jobs_job_bookmark_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | Other |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_etl_jobs_job_bookmark_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | Other |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue ETL jobs** should link a **security configuration** with **job bookmark encryption** enabled. Bookmark encryption must not be `DISABLED` (e.g., use `CSE-KMS`). Jobs lacking a security configuration are treated as not protecting bookmark metadata.
 
-## 风险
+## リスク
 
 Unencrypted **job bookmarks** in S3 expose execution state and data pointers, reducing **confidentiality**. Altered bookmarks can trigger reruns, skips, or reprocessing, harming **integrity**. Missing security configs may also leave logs and temporary objects unencrypted.
 
-## 推荐措施
+## 推奨事項
 
 Attach a **Glue security configuration** to every job and enable **job bookmark encryption** (e.g., `CSE-KMS`). Use **customer-managed KMS keys**, enforce **least privilege** on key usage, and rotate keys. For **defense in depth**, also encrypt **S3 temp data** and **CloudWatch logs** in the same configuration.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -70,12 +70,12 @@ resource "aws_glue_security_configuration" "<example_resource_name>" {
 5. Under Advanced properties, set Security configuration to the one created above
 6. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html](https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/job-bookmark-encryption-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/job-bookmark-encryption-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_etl_jobs_job_bookmark_encryption_enabled/metadata.json](../../sources/aws/glue_etl_jobs_job_bookmark_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/glue_etl_jobs_job_bookmark_encryption_enabled/check.py](../../sources/aws/glue_etl_jobs_job_bookmark_encryption_enabled/check.py)

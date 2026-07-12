@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `sagemaker_notebook_instance_vpc_settings_configured` |
-| 云平台 | AWS |
-| 服务 | sagemaker |
-| 严重等级 | high |
-| 类别 | internet-exposed, gen-ai |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsSageMakerNotebookInstance |
-| 资源组 | ai_ml |
+| チェック項目 ID | `sagemaker_notebook_instance_vpc_settings_configured` |
+| クラウドプラットフォーム | AWS |
+| サービス | sagemaker |
+| 重大度 | high |
+| カテゴリ | internet-exposed, gen-ai |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsSageMakerNotebookInstance |
+| リソースグループ | ai_ml |
 
-## 描述
+## 説明
 
 **SageMaker notebook instances** are evaluated for **VPC attachment**. Instances configured with a VPC (via a `subnet_id` and security groups) use private networking; those without VPC settings rely on public networking.
 
-## 风险
+## リスク
 
 Without a VPC, notebooks lose **network isolation**. Traffic to AWS services may traverse the public internet, limiting **egress control** and **private endpoints**, enabling data exfiltration and interception, and easing lateral movement-impacting **confidentiality** and **integrity**.
 
-## 推荐措施
+## 推奨事項
 
 Run notebooks in a **private VPC**, applying **least-privilege** security groups and **network segmentation**. Prefer **VPC endpoints** for AWS services and restrict outbound traffic to approved destinations to enforce **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -63,12 +63,12 @@ resource "aws_sagemaker_notebook_instance" "<example_resource_name>" {
 5. Create the notebook instance
 6. After it is InService, rerun the check
 
-## 参考资料
+## 参考資料
 
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/SageMaker/notebook-instance-in-vpc.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/SageMaker/notebook-instance-in-vpc.html)
 - [https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/sagemaker_notebook_instance_vpc_settings_configured/metadata.json](../../sources/aws/sagemaker_notebook_instance_vpc_settings_configured/metadata.json)
 - Source Code：[sources/aws/sagemaker_notebook_instance_vpc_settings_configured/check.py](../../sources/aws/sagemaker_notebook_instance_vpc_settings_configured/check.py)

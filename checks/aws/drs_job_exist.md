@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `drs_job_exist` |
-| 云平台 | AWS |
-| 服务 | drs |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `drs_job_exist` |
+| クラウドプラットフォーム | AWS |
+| サービス | drs |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **AWS Elastic Disaster Recovery** is assessed per Region to verify the service is **initialized** and that at least one **recovery or drill job** exists, demonstrating that failover has been exercised.
 
-## 风险
+## リスク
 
 Without DRS enabled or any prior jobs, workloads are **unprotected and untested**, undermining **availability**. During outages or ransomware, recovery may be delayed or fail, increasing RTO/RPO, causing **data loss** and prolonged downtime.
 
-## 推荐措施
+## 推奨事項
 
 Enable DRS in required Regions and protect critical workloads. Define RTO/RPO and run **regular recovery drills** to validate launch settings and dependencies. Apply **least privilege**, monitor replication health, and document failover procedures to ensure consistent, repeatable recovery.
 
-## 修复步骤
+## 修正手順
 
 
 ### Other
@@ -39,14 +39,14 @@ Enable DRS in required Regions and protect critical workloads. Define RTO/RPO an
 5. Select that server, choose "Initiate recovery drill" (or "Initiate recovery") and confirm to create a job
 6. Verify under "Recovery job history" that the job completes
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/storage/cross-region-disaster-recovery-using-aws-elastic-disaster-recovery/](https://aws.amazon.com/blogs/storage/cross-region-disaster-recovery-using-aws-elastic-disaster-recovery/)
 - [https://docs.aws.amazon.com/drs/latest/userguide/quick-start-guide-gs.html](https://docs.aws.amazon.com/drs/latest/userguide/quick-start-guide-gs.html)
 - [https://aws.amazon.com/disaster-recovery/](https://aws.amazon.com/disaster-recovery/)
 - [https://docs.aws.amazon.com/drs/latest/userguide/recovery-job.html](https://docs.aws.amazon.com/drs/latest/userguide/recovery-job.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/drs_job_exist/metadata.json](../../sources/aws/drs_job_exist/metadata.json)
 - Source Code：[sources/aws/drs_job_exist/check.py](../../sources/aws/drs_job_exist/check.py)

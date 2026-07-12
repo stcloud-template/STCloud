@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elb_connection_draining_enabled` |
-| 云平台 | AWS |
-| 服务 | elb |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
-| 资源类型 | AwsElbLoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elb_connection_draining_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elb |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Effects/Denial of Service |
+| リソースタイプ | AwsElbLoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Classic Load Balancer** has **connection draining** enabled, so deregistering or unhealthy instances stop receiving new requests while existing connections are allowed to complete within the configured drain window.
 
-## 风险
+## リスク
 
 Without **connection draining**, instance removals or health failures can terminate in-flight requests, leading to partial transactions, broken sessions, and inconsistent application state. This reduces **availability** and can impact **data integrity** during deployments, scaling, or failover events.
 
-## 推荐措施
+## 推奨事項
 
 Enable **connection draining** on all Classic Load Balancers and set a drain interval aligned to typical request latency. Coordinate autoscaling and deployments to allow graceful instance shutdowns. Monitor errors and retries to validate behavior and adjust the `timeout` conservatively to protect **availability** and **integrity**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -83,14 +83,14 @@ resource "aws_elb" "<example_resource_name>" {
 4. Check Enable connection draining (leave default timeout or set as needed)
 5. Click Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/aws/elb-connection-draining-remove-instances-from-service-with-care/](https://aws.amazon.com/blogs/aws/elb-connection-draining-remove-instances-from-service-with-care/)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/elb-connection-draining-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELB/elb-connection-draining-enabled.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/elb-controls.html#elb-7](https://docs.aws.amazon.com/securityhub/latest/userguide/elb-controls.html#elb-7)
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elb_connection_draining_enabled/metadata.json](../../sources/aws/elb_connection_draining_enabled/metadata.json)
 - Source Code：[sources/aws/elb_connection_draining_enabled/check.py](../../sources/aws/elb_connection_draining_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudfront_distributions_using_deprecated_ssl_protocols` |
-| 云平台 | AWS |
-| 服务 | cloudfront |
-| 严重等级 | low |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
-| 资源类型 | AwsCloudFrontDistribution |
-| 资源组 | network |
+| チェック項目 ID | `cloudfront_distributions_using_deprecated_ssl_protocols` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudfront |
+| 重大度 | low |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices |
+| リソースタイプ | AwsCloudFrontDistribution |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 CloudFront distributions have origins whose `OriginSslProtocols` allow **deprecated SSL/TLS versions** (`SSLv3`, `TLSv1`, `TLSv1.1`) for CloudFront-to-origin HTTPS connections.
 
-## 风险
+## リスク
 
 Weak protocols between CloudFront and the origin allow downgrades and known exploits (e.g., POODLE/BEAST), enabling eavesdropping or content tampering. This compromises the **confidentiality** and **integrity** of data in transit, exposing cookies, credentials, and responses served to viewers.
 
-## 推荐措施
+## 推奨事項
 
 Enforce **TLS 1.2+** for CloudFront-to-origin traffic. Remove `SSLv3`, `TLSv1`, `TLSv1.1` from allowed protocols and prefer modern cipher suites. Verify origin compatibility, update certificates and libraries, and periodically review policies as part of **defense in depth** and **least privilege**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -96,13 +96,13 @@ resource "aws_cloudfront_distribution" "<example_resource_name>" {
 5. Save changes
 6. Repeat for any other custom origins in the distribution
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-viewer-protocols-ciphers.html](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-viewer-protocols-ciphers.html)
 - [https://trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/cloudfront-insecure-origin-ssl-protocols.html](https://trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudFront/cloudfront-insecure-origin-ssl-protocols.html)
 - [https://support.icompaas.com/support/solutions/articles/62000223404-ensure-cloudfront-distributions-are-not-using-deprecated-ssl-protocols](https://support.icompaas.com/support/solutions/articles/62000223404-ensure-cloudfront-distributions-are-not-using-deprecated-ssl-protocols)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudfront_distributions_using_deprecated_ssl_protocols/metadata.json](../../sources/aws/cloudfront_distributions_using_deprecated_ssl_protocols/metadata.json)
 - Source Code：[sources/aws/cloudfront_distributions_using_deprecated_ssl_protocols/check.py](../../sources/aws/cloudfront_distributions_using_deprecated_ssl_protocols/check.py)

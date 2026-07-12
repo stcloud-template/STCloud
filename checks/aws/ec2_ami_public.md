@@ -2,35 +2,35 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `ec2_ami_public` |
-| 云平台 | AWS |
-| 服务 | ec2 |
-| 子服务 | ami |
-| 严重等级 | critical |
-| 类别 | internet-exposed |
-| 检查类型 | Infrastructure Security |
-| 资源类型 | Other |
-| 资源组 | compute |
+| チェック項目 ID | `ec2_ami_public` |
+| クラウドプラットフォーム | AWS |
+| サービス | ec2 |
+| サブサービス | ami |
+| 重大度 | critical |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Infrastructure Security |
+| リソースタイプ | Other |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 Ensure there are no EC2 AMIs set as Public.
 
-## 风险
+## リスク
 
 When your AMIs are publicly accessible, they are available in the Community AMIs where everyone with an AWS account can use them to launch EC2 instances. Your AMIs could contain snapshots of your applications (including their data), therefore exposing your snapshots in this manner is not advised.
 
-## 推荐措施
+## 推奨事項
 
 We recommend your EC2 AMIs are not publicly accessible, or generally available in the Community AMIs.
 
-- 推荐链接：[https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cancel-sharing-an-AMI.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cancel-sharing-an-AMI.html)
+- 推奨リンク：[https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cancel-sharing-an-AMI.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cancel-sharing-an-AMI.html)
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -43,11 +43,11 @@ aws ec2 modify-image-attribute --region <REGION> --image-id <EC2_AMI_ID> --launc
 
 [https://docs.ST Cloud.com/checks/aws/public-policies/public_8](https://docs.ST Cloud.com/checks/aws/public-policies/public_8)
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cancel-sharing-an-AMI.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cancel-sharing-an-AMI.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/ec2_ami_public/metadata.json](../../sources/aws/ec2_ami_public/metadata.json)
 - Source Code：[sources/aws/ec2_ami_public/check.py](../../sources/aws/ec2_ami_public/check.py)

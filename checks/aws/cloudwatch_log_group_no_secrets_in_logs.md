@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `cloudwatch_log_group_no_secrets_in_logs` |
-| 云平台 | AWS |
-| 服务 | cloudwatch |
-| 严重等级 | medium |
-| 类别 | secrets |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Sensitive Data Identifications/Passwords, Sensitive Data Identifications/Security, Effects/Data Exposure |
-| 资源类型 | Other |
-| 资源组 | monitoring |
+| チェック項目 ID | `cloudwatch_log_group_no_secrets_in_logs` |
+| クラウドプラットフォーム | AWS |
+| サービス | cloudwatch |
+| 重大度 | medium |
+| カテゴリ | secrets |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Runtime Behavior Analysis, Sensitive Data Identifications/Passwords, Sensitive Data Identifications/Security, Effects/Data Exposure |
+| リソースタイプ | Other |
+| リソースグループ | monitoring |
 
-## 描述
+## 説明
 
 **CloudWatch Logs** log groups are analyzed for potential **secrets** embedded in log events across their streams. Detection flags patterns resembling credentials (API keys, passwords, tokens, keys) and reports the secret types and where they appear within the log group.
 
-## 风险
+## リスク
 
 Leaked **credentials in logs** erode confidentiality and enable unauthorized API calls. Attackers reusing tokens/keys can escalate privileges, alter resources, and exfiltrate data. Subscriptions and exports widen exposure, and users with `logs:Unmask` can reveal values, increasing the blast radius.
 
-## 推荐措施
+## 推奨事項
 
 Avoid logging **secrets** via application sanitization and data minimization. Apply CloudWatch data protection policies to audit and mask sensitive patterns. Enforce *least privilege* for log readers and restrict `logs:Unmask`. Rotate exposed keys, reduce retention, and monitor findings to validate controls.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -85,7 +85,7 @@ resource "aws_cloudwatch_log_group" "log_group" {
 4. Click Activate data protection to save
 5. Re-ingest or generate new logs to ensure sensitive data is masked
 
-## 参考资料
+## 参考資料
 
 - [https://support.icompaas.com/support/solutions/articles/62000233413-ensure-secrets-are-not-logged-in-cloudwatch-logs](https://support.icompaas.com/support/solutions/articles/62000233413-ensure-secrets-are-not-logged-in-cloudwatch-logs)
 - [https://awsfundamentals.com/blog/masking-sensitive-data-with-amazon-cloudwatch-logs-data-protection-policies](https://awsfundamentals.com/blog/masking-sensitive-data-with-amazon-cloudwatch-logs-data-protection-policies)
@@ -93,7 +93,7 @@ resource "aws_cloudwatch_log_group" "log_group" {
 - [https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html)
 - [https://levelup.gitconnected.com/masking-sensitive-data-in-aws-cloudwatch-logs-1b3c66d0ddcb](https://levelup.gitconnected.com/masking-sensitive-data-in-aws-cloudwatch-logs-1b3c66d0ddcb)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/cloudwatch_log_group_no_secrets_in_logs/metadata.json](../../sources/aws/cloudwatch_log_group_no_secrets_in_logs/metadata.json)
 - Source Code：[sources/aws/cloudwatch_log_group_no_secrets_in_logs/check.py](../../sources/aws/cloudwatch_log_group_no_secrets_in_logs/check.py)

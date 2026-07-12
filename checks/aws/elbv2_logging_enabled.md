@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `elbv2_logging_enabled` |
-| 云平台 | AWS |
-| 服务 | elbv2 |
-| 严重等级 | medium |
-| 类别 | logging |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | AwsElbv2LoadBalancer |
-| 资源组 | network |
+| チェック項目 ID | `elbv2_logging_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | elbv2 |
+| 重大度 | medium |
+| カテゴリ | logging |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | AwsElbv2LoadBalancer |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **ELBv2 Application Load Balancers** are evaluated for **access logging** enabled to Amazon S3, capturing request details such as timestamps, client IPs, paths, and response codes.
 
-## 风险
+## リスク
 
 Absent **ALB access logs** reduces **visibility** and hampers **incident detection** and **forensics**. Malicious requests, credential stuffing, or data exfiltration via the load balancer can go unnoticed, undermining **confidentiality** and **integrity**, and delaying recovery from **availability** incidents.
 
-## 推荐措施
+## 推奨事項
 
 Enable **ALB access logging** to a dedicated, encrypted S3 bucket. Apply **least privilege** to the bucket for delivery and readers, set lifecycle policies for retention, and consider `Object Lock` to deter tampering. Centralize logs in a **SIEM** and alert on anomalies as part of **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -79,12 +79,12 @@ resource "aws_lb" "<example_resource_name>" {
 3. Check Enable access logs and choose the S3 bucket for delivery
 4. Save changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELBv2/access-log.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/ELBv2/access-log.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/elbv2_logging_enabled/metadata.json](../../sources/aws/elbv2_logging_enabled/metadata.json)
 - Source Code：[sources/aws/elbv2_logging_enabled/check.py](../../sources/aws/elbv2_logging_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `opensearch_service_domains_fault_tolerant_data_nodes` |
-| 云平台 | AWS |
-| 服务 | opensearch |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsOpenSearchServiceDomain |
-| 资源组 | database |
+| チェック項目 ID | `opensearch_service_domains_fault_tolerant_data_nodes` |
+| クラウドプラットフォーム | AWS |
+| サービス | opensearch |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsOpenSearchServiceDomain |
+| リソースグループ | database |
 
-## 描述
+## 説明
 
 **Amazon OpenSearch domains** are assessed for fault tolerance: **>= 3 data nodes** (`instance_count >= 3`) and **Zone Awareness** (`zone_awareness_enabled = true`) to distribute data across Availability Zones.
 
-## 风险
+## リスク
 
 **Insufficient data nodes** or disabled **Zone Awareness** reduces availability and durability. A node or AZ failure can trigger shard unavailability, write failures, or cluster outage, increasing risk of data inconsistency during rebalancing and blocking reads/writes until recovery.
 
-## 推荐措施
+## 推奨事項
 
 Configure OpenSearch with **>= 3 data nodes** and enable **Zone Awareness** to spread nodes across AZs. - Prefer Multi-AZ with Standby for resilient failover - Use node counts in multiples of three and set index replicas (`>= 1`) - Practice capacity planning and failure testing as **defense in depth**
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -75,12 +75,12 @@ resource "aws_opensearch_domain" "<example_resource_name>" {
    - Enable Zone awareness
 4. Click Submit to apply the changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/es-controls.html#es-6](https://docs.aws.amazon.com/securityhub/latest/userguide/es-controls.html#es-6)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/opensearch_service_domains_fault_tolerant_data_nodes/metadata.json](../../sources/aws/opensearch_service_domains_fault_tolerant_data_nodes/metadata.json)
 - Source Code：[sources/aws/opensearch_service_domains_fault_tolerant_data_nodes/check.py](../../sources/aws/opensearch_service_domains_fault_tolerant_data_nodes/check.py)

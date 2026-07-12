@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `waf_global_rule_with_conditions` |
-| 云平台 | AWS |
-| 服务 | waf |
-| 严重等级 | medium |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
-| 资源类型 | AwsWafRule |
-| 资源组 | security |
+| チェック項目 ID | `waf_global_rule_with_conditions` |
+| クラウドプラットフォーム | AWS |
+| サービス | waf |
+| 重大度 | medium |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/NIST 800-53 Controls |
+| リソースタイプ | AwsWafRule |
+| リソースグループ | security |
 
-## 描述
+## 説明
 
 **AWS WAF Classic global rules** contain at least one **condition** that matches HTTP(S) requests the rule evaluates for action (e.g., `allow`, `block`, `count`).
 
-## 风险
+## リスク
 
 **No-condition rules** never match traffic, providing no filtering. Malicious requests (SQLi/XSS, bots) can reach origins, impacting **confidentiality** (data exfiltration), **integrity** (tampering), and **availability** (service disruption). They may also create a false sense of coverage.
 
-## 推荐措施
+## 推奨事項
 
 Attach at least one precise **condition** to every rule, aligned to known threats and application context. Apply **least privilege** for traffic, use managed rule groups for **defense in depth**, and routinely review rules to remove placeholders. *If on Classic*, plan migration to WAFv2.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -78,13 +78,13 @@ resource "aws_waf_rule" "<example_resource_name>" {
 4. Choose a condition type (e.g., IP match), select an existing condition, set it to does (not negated)
 5. Click Update/Save to apply
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-rules-editing.html](https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-rules-editing.html)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-6](https://docs.aws.amazon.com/securityhub/latest/userguide/waf-controls.html#waf-6)
 - [https://docs.aws.amazon.com/config/latest/developerguide/waf-global-rule-not-empty.html](https://docs.aws.amazon.com/config/latest/developerguide/waf-global-rule-not-empty.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/waf_global_rule_with_conditions/metadata.json](../../sources/aws/waf_global_rule_with_conditions/metadata.json)
 - Source Code：[sources/aws/waf_global_rule_with_conditions/check.py](../../sources/aws/waf_global_rule_with_conditions/check.py)

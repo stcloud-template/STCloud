@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `directoryservice_supported_mfa_radius_enabled` |
-| 云平台 | AWS |
-| 服务 | directoryservice |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access, TTPs/Credential Access |
-| 资源类型 | Other |
-| 资源组 | IAM |
+| チェック項目 ID | `directoryservice_supported_mfa_radius_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | directoryservice |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access, TTPs/Credential Access |
+| リソースタイプ | Other |
+| リソースグループ | IAM |
 
-## 描述
+## 説明
 
 **AWS Directory Service directories** are evaluated for **RADIUS-backed multi-factor authentication**, confirming that MFA is configured and the RADIUS integration is active.
 
-## 风险
+## リスク
 
 Without **RADIUS MFA**, directory-based sign-ins to AWS-integrated services rely on a single factor, enabling credential stuffing and phishing to succeed. Compromised passwords can grant unauthorized access, drive data exfiltration, and enable privilege escalation, undermining confidentiality and integrity.
 
-## 推荐措施
+## 推奨事項
 
 Enable and enforce **RADIUS-based MFA** for all Directory Service authentications. Apply **least privilege**, harden and monitor the RADIUS infrastructure, rotate shared secrets, and restrict network access (e.g., `UDP/1812`). Use **defense in depth** with segmentation and session controls to limit lateral movement and reduce blast radius.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -55,12 +55,12 @@ resource "aws_directory_service_radius_settings" "<example_resource_name>" {
 5. Enter RADIUS server IP(s) and the Shared secret, then click Enable
 6. Wait until the RADIUS status shows Completed
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_mfa.html](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_mfa.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233537-ensure-multi-factor-authentication-mfa-using-a-radius-server-is-enabled-in-directory-service](https://support.icompaas.com/support/solutions/articles/62000233537-ensure-multi-factor-authentication-mfa-using-a-radius-server-is-enabled-in-directory-service)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/directoryservice_supported_mfa_radius_enabled/metadata.json](../../sources/aws/directoryservice_supported_mfa_radius_enabled/metadata.json)
 - Source Code：[sources/aws/directoryservice_supported_mfa_radius_enabled/check.py](../../sources/aws/directoryservice_supported_mfa_radius_enabled/check.py)

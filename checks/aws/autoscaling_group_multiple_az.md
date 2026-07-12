@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `autoscaling_group_multiple_az` |
-| 云平台 | AWS |
-| 服务 | autoscaling |
-| 严重等级 | medium |
-| 类别 | resilience |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
-| 资源类型 | AwsAutoScalingAutoScalingGroup |
-| 资源组 | compute |
+| チェック項目 ID | `autoscaling_group_multiple_az` |
+| クラウドプラットフォーム | AWS |
+| サービス | autoscaling |
+| 重大度 | medium |
+| カテゴリ | resilience |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Effects/Denial of Service |
+| リソースタイプ | AwsAutoScalingAutoScalingGroup |
+| リソースグループ | compute |
 
-## 描述
+## 説明
 
 **EC2 Auto Scaling groups** use **multiple Availability Zones** within a Region, with instances distributed across more than one zone rather than confined to a single zone.
 
-## 风险
+## リスク
 
 Relying on a single zone concentrates failure risk and harms **availability**. An AZ outage or capacity shortfall can block replacements and scaling, causing downtime, dropped traffic, and a wider blast radius. Recovery can lag because workloads can't shift to healthy zones.
 
-## 推荐措施
+## 推奨事項
 
 Distribute each group across at least two **Availability Zones** to design for failure. Use a load balancer to spread traffic and health-based replacement to sustain capacity. Apply **resilience** and **fault isolation** principles so service continues during zonal degradation.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -82,14 +82,14 @@ resource "aws_autoscaling_group" "<example_resource_name>" {
 4. In Subnets, add one more subnet from a different Availability Zone
 5. Click Update to save
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-add-az-console.html](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-add-az-console.html)
 - [https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-availability-zone-balanced.html](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-availability-zone-balanced.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/AutoScaling/multiple-availability-zones.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/AutoScaling/multiple-availability-zones.html)
 - [https://docs.aws.amazon.com/autoscaling/ec2/userguide/disaster-recovery-resiliency.html](https://docs.aws.amazon.com/autoscaling/ec2/userguide/disaster-recovery-resiliency.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/autoscaling_group_multiple_az/metadata.json](../../sources/aws/autoscaling_group_multiple_az/metadata.json)
 - Source Code：[sources/aws/autoscaling_group_multiple_az/check.py](../../sources/aws/autoscaling_group_multiple_az/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `route53_dangling_ip_subdomain_takeover` |
-| 云平台 | AWS |
-| 服务 | route53 |
-| 严重等级 | high |
-| 类别 | internet-exposed |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Initial Access, Effects/Data Exposure |
-| 资源类型 | AwsRoute53HostedZone |
-| 资源组 | network |
+| チェック項目 ID | `route53_dangling_ip_subdomain_takeover` |
+| クラウドプラットフォーム | AWS |
+| サービス | route53 |
+| 重大度 | high |
+| カテゴリ | internet-exposed |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices/Network Reachability, TTPs/Initial Access, Effects/Data Exposure |
+| リソースタイプ | AwsRoute53HostedZone |
+| リソースグループ | network |
 
-## 描述
+## 説明
 
 **Route 53 `A` records** (non-alias) that use literal IPs are evaluated for **public AWS addresses** not currently assigned to resources in the account. Entries that match AWS ranges yet lack ownership are identified as potential **dangling IP targets**.
 
-## 风险
+## リスク
 
 **Dangling DNS `A` records** pointing to released AWS IPs enable **subdomain takeover**. An attacker who later obtains that IP can: - Redirect or alter content (integrity) - Capture credentials/cookies (confidentiality) - Disrupt or impersonate services (availability)
 
-## 推荐措施
+## 推奨事項
 
 Remove or update any record that points to an unassigned IP. Avoid hard-coding AWS public IPs in `A` records; use **aliases/CNAMEs** to managed endpoints. Enforce **asset lifecycle** decommissioning, routine DNS-asset reconciliation, and **change control** with monitoring to prevent and detect drift.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -78,13 +78,13 @@ resource "aws_route53_record" "<example_resource_name>" {
 4. If needed: select the record, click Edit, enable Alias, choose the correct AWS resource (e.g., ALB/CloudFront), then Save changes
 5. Wait for propagation (~60s) and re-run the check
 
-## 参考资料
+## 参考資料
 
 - [https://support.icompaas.com/support/solutions/articles/62000233461-ensure-route53-records-contains-dangling-ips-](https://support.icompaas.com/support/solutions/articles/62000233461-ensure-route53-records-contains-dangling-ips-)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Route53/dangling-dns-records.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Route53/dangling-dns-records.html)
 - [https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-deleting.html](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-deleting.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/route53_dangling_ip_subdomain_takeover/metadata.json](../../sources/aws/route53_dangling_ip_subdomain_takeover/metadata.json)
 - Source Code：[sources/aws/route53_dangling_ip_subdomain_takeover/check.py](../../sources/aws/route53_dangling_ip_subdomain_takeover/check.py)

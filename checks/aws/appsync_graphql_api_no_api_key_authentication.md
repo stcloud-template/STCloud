@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `appsync_graphql_api_no_api_key_authentication` |
-| 云平台 | AWS |
-| 服务 | appsync |
-| 严重等级 | high |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, TTPs/Initial Access/Unauthorized Access |
-| 资源类型 | AwsAppSyncGraphQLApi |
-| 资源组 | api_gateway |
+| チェック項目 ID | `appsync_graphql_api_no_api_key_authentication` |
+| クラウドプラットフォーム | AWS |
+| サービス | appsync |
+| 重大度 | high |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, TTPs/Initial Access/Unauthorized Access |
+| リソースタイプ | AwsAppSyncGraphQLApi |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **AWS AppSync GraphQL APIs** are examined for the default authorization type. The finding indicates an API configured with `API_KEY` instead of IAM, Cognito, OIDC, or Lambda authorizers.
 
-## 风险
+## リスク
 
 Static **API keys** can be leaked or reused, enabling unauthorized queries and mutations. - **Confidentiality**: unrestricted data reads - **Integrity**: unauthorized writes and schema misuse - **Accountability**: no user identity for auditing, difficult revocation and scoping
 
-## 推荐措施
+## 推奨事項
 
 Replace `API_KEY` with stronger modes and apply least privilege: - **AWS_IAM** for service-to-service - **Cognito User Pools** or **OIDC** for end users - **Lambda authorizer** for custom logic *If guest access is unavoidable*, limit to read-only fields, enforce throttling, use short key lifetimes, and apply schema-level authorization.
 
-## 修复步骤
+## 修正手順
 
 
 ### CLI
@@ -65,14 +65,14 @@ resource "aws_appsync_graphql_api" "<example_resource_name>" {
 3. Change Default authorization mode to AWS IAM (or Cognito/OIDC/Lambda)
 4. Click Save
 
-## 参考资料
+## 参考資料
 
 - [https://aws.amazon.com/blogs/mobile/graphql-security-appsync-amplify/](https://aws.amazon.com/blogs/mobile/graphql-security-appsync-amplify/)
 - [https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html](https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html)
 - [https://support.icompaas.com/support/solutions/articles/62000233666-ensure-aws-appsync-graphql-apis-should-not-be-authenticated-with-api-keys](https://support.icompaas.com/support/solutions/articles/62000233666-ensure-aws-appsync-graphql-apis-should-not-be-authenticated-with-api-keys)
 - [https://docs.aws.amazon.com/securityhub/latest/userguide/appsync-controls.html#appsync-5](https://docs.aws.amazon.com/securityhub/latest/userguide/appsync-controls.html#appsync-5)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/appsync_graphql_api_no_api_key_authentication/metadata.json](../../sources/aws/appsync_graphql_api_no_api_key_authentication/metadata.json)
 - Source Code：[sources/aws/appsync_graphql_api_no_api_key_authentication/check.py](../../sources/aws/appsync_graphql_api_no_api_key_authentication/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `apigateway_restapi_authorizers_enabled` |
-| 云平台 | AWS |
-| 服务 | apigateway |
-| 严重等级 | medium |
-| 类别 | identity-access |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
-| 资源类型 | AwsApiGatewayRestApi |
-| 资源组 | api_gateway |
+| チェック項目 ID | `apigateway_restapi_authorizers_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | apigateway |
+| 重大度 | medium |
+| カテゴリ | identity-access |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, TTPs/Initial Access |
+| リソースタイプ | AwsApiGatewayRestApi |
+| リソースグループ | api_gateway |
 
-## 描述
+## 説明
 
 **API Gateway REST APIs** are evaluated for **access control**: an **API-level authorizer** is present, or all resource methods use an authorization mechanism. Methods marked `NONE` indicate unauthenticated access.
 
-## 风险
+## リスク
 
 **Unauthenticated API methods** enable: - Arbitrary reads exposing data (**confidentiality**) - Unauthorized actions against backends (**integrity**) - Abuse and high traffic causing cost spikes or outages (**availability**) Attackers can enumerate endpoints and invoke integrations without tokens.
 
-## 推荐措施
+## 推奨事項
 
 Require **authentication** on every method: use **Cognito user pools**, **Lambda authorizers**, or **IAM**; avoid `NONE`. - Enforce **least privilege** with scoped policies - Use **private endpoints** or resource policies for internal APIs - Add **rate limiting** and **WAF** for defense in depth
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -65,11 +65,11 @@ resource "aws_api_gateway_method" "<example_resource_name>" {
 5. Repeat for every method so none show Authorization = NONE
 6. Deploy the API to apply changes
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/apigateway_restapi_authorizers_enabled/metadata.json](../../sources/aws/apigateway_restapi_authorizers_enabled/metadata.json)
 - Source Code：[sources/aws/apigateway_restapi_authorizers_enabled/check.py](../../sources/aws/apigateway_restapi_authorizers_enabled/check.py)

@@ -2,32 +2,32 @@
 
 ST Cloud check knowledge base entry.
 
-## 检查项信息
+## チェック項目情報
 
-| 字段 | 内容 |
+| 項目 | 値 |
 | --- | --- |
-| 检查项 ID | `glue_development_endpoints_cloudwatch_logs_encryption_enabled` |
-| 云平台 | AWS |
-| 服务 | glue |
-| 严重等级 | medium |
-| 类别 | encryption |
-| 检查类型 | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
-| 资源类型 | Other |
-| 资源组 | analytics |
+| チェック項目 ID | `glue_development_endpoints_cloudwatch_logs_encryption_enabled` |
+| クラウドプラットフォーム | AWS |
+| サービス | glue |
+| 重大度 | medium |
+| カテゴリ | encryption |
+| チェックタイプ | Software and Configuration Checks/AWS Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/AWS Foundational Security Best Practices, Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark |
+| リソースタイプ | Other |
+| リソースグループ | analytics |
 
-## 描述
+## 説明
 
 **AWS Glue development endpoints** are assessed for an associated **security configuration** that enables **CloudWatch Logs encryption**. It confirms the endpoint references a configuration and that log encryption is not `DISABLED`.
 
-## 风险
+## リスク
 
 Unencrypted Glue logs erode **confidentiality**: credentials, connection strings, and data samples may be readable to unintended principals, enabling **lateral movement**. Lack of KMS-backed encryption weakens **auditability** and **separation of duties**.
 
-## 推荐措施
+## 推奨事項
 
 Attach a **security configuration** to all development endpoints with **CloudWatch Logs encryption** enabled using a tightly scoped **KMS key**. Apply **least privilege** to key and log access, rotate keys, and standardize configs via IaC to enforce **defense in depth**.
 
-## 修复步骤
+## 修正手順
 
 
 ### Native IaC
@@ -74,12 +74,12 @@ resource "aws_glue_security_configuration" "<example_resource_name>" {
 5. Create a new Dev endpoint (or delete and recreate the existing one) and select the new Security configuration
 6. Create the endpoint to apply the encryption
 
-## 参考资料
+## 参考資料
 
 - [https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html](https://docs.aws.amazon.com/glue/latest/dg/console-security-configurations.html)
 - [https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/cloud-watch-logs-encryption-enabled.html](https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/Glue/cloud-watch-logs-encryption-enabled.html)
 
-## 技术信息
+## 技術情報
 
 - Source Metadata：[sources/aws/glue_development_endpoints_cloudwatch_logs_encryption_enabled/metadata.json](../../sources/aws/glue_development_endpoints_cloudwatch_logs_encryption_enabled/metadata.json)
 - Source Code：[sources/aws/glue_development_endpoints_cloudwatch_logs_encryption_enabled/check.py](../../sources/aws/glue_development_endpoints_cloudwatch_logs_encryption_enabled/check.py)
