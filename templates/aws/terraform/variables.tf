@@ -2,7 +2,7 @@
 ###################################
 variable "external_id" {
   type        = string
-  description = "This is the External ID that ST Cloud will use to assume the STCloudScan IAM role."
+  description = "This is the External ID that ST Cloud will use to assume the role STCloudScan IAM Role."
 
   validation {
     condition     = length(var.external_id) > 0
@@ -12,8 +12,7 @@ variable "external_id" {
 
 variable "account_id" {
   type        = string
-  description = "AWS Account ID that will assume the role created. If you are deploying this template for ST Cloud, do not edit this."
-  default     = "232136659152"
+  description = "AWS account ID of the IAM principal used by the ST Cloud scanner to assume this role."
 
   validation {
     condition     = length(var.account_id) == 12
@@ -23,8 +22,13 @@ variable "account_id" {
 
 variable "iam_principal" {
   type        = string
-  description = "The IAM principal type and name that will be allowed to assume the role created. If you are deploying this template for ST Cloud, do not edit this."
-  default     = "role/*"
+  description = "IAM principal path used by the ST Cloud scanner, for example role/STCloudScanner or user/stcloud-scanner."
+}
+
+variable "enable_organizations" {
+  type        = bool
+  description = "Enable AWS Organizations discovery permissions. Set to true only when deploying this role in the management account."
+  default     = false
 }
 
 variable "enable_s3_integration" {

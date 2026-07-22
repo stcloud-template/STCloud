@@ -20,7 +20,7 @@ variable "s3_integration_bucket_account_id" {
 
 variable "stcloud_scan_role_name" {
   type        = string
-  description = "Name of the STCloudScan IAM role to attach the S3 policy to."
+  description = "Name of the ST Cloud scan IAM role to attach the S3 policy to."
 
   validation {
     condition     = length(var.stcloud_scan_role_name) > 0

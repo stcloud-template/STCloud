@@ -1,12 +1,12 @@
 # Outputs
 ###################################
 output "stcloud_scan_role_arn" {
-  description = "ARN of the STCloudScan IAM role"
+  description = "ARN of the ST Cloud scan role"
   value       = aws_iam_role.stcloud_scan.arn
 }
 
 output "stcloud_scan_role_name" {
-  description = "Name of the STCloudScan IAM role"
+  description = "Name of the ST Cloud scan role"
   value       = aws_iam_role.stcloud_scan.name
 }
 

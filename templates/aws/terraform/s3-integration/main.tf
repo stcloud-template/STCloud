@@ -13,7 +13,7 @@ resource "aws_iam_role_policy" "stcloud_s3_integration" {
           "s3:DeleteObject"
         ]
         Resource = [
-          "arn:${data.aws_partition.current.partition}:s3:::${var.s3_integration_bucket_name}/*test-*-connection.txt"
+          "arn:${data.aws_partition.current.partition}:s3:::${var.s3_integration_bucket_name}/*test-stcloud-connection.txt"
         ]
         Condition = {
           StringEquals = {

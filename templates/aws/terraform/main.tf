@@ -17,7 +17,7 @@ check "s3_integration_requirements" {
 
 # IAM Role
 ###################################
-data "aws_iam_policy_document" "stcloud_scan_assume_role_policy" {
+data "aws_iam_policy_document" "stcloud_assume_role_policy" {
   statement {
     actions = ["sts:AssumeRole"]
     principals {
@@ -43,12 +43,12 @@ data "aws_iam_policy_document" "stcloud_scan_assume_role_policy" {
 
 resource "aws_iam_role" "stcloud_scan" {
   name               = "STCloudScan"
-  assume_role_policy = data.aws_iam_policy_document.stcloud_scan_assume_role_policy.json
+  assume_role_policy = data.aws_iam_policy_document.stcloud_assume_role_policy.json
 }
 
 resource "aws_iam_policy" "stcloud_scan_policy" {
   name        = "STCloudScan"
-  description = "ST Cloud scan policy"
+  description = "ST Cloud Scan Policy"
   policy      = file("${path.module}/stcloud-additions-policy.json")
 }
 
@@ -65,6 +65,45 @@ resource "aws_iam_role_policy_attachment" "stcloud_scan_securityaudit_policy_att
 resource "aws_iam_role_policy_attachment" "stcloud_scan_viewonly_policy_attachment" {
   role       = aws_iam_role.stcloud_scan.name
   policy_arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/job-function/ViewOnlyAccess"
+}
+
+# Organizations Policy (management account only)
+###################################
+data "aws_iam_policy_document" "stcloud_organizations_policy" {
+  count = var.enable_organizations ? 1 : 0
+
+  statement {
+    sid    = "AllowOrganizationsReadOnly"
+    effect = "Allow"
+    actions = [
+      "organizations:DescribeAccount",
+      "organizations:DescribeOrganization",
+      "organizations:ListAccounts",
+      "organizations:ListAccountsForParent",
+      "organizations:ListOrganizationalUnitsForParent",
+      "organizations:ListRoots",
+      "organizations:ListTagsForResource",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    sid    = "AllowStackSetManagement"
+    effect = "Allow"
+    actions = [
+      "organizations:RegisterDelegatedAdministrator",
+      "iam:CreateServiceLinkedRole",
+    ]
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_role_policy" "stcloud_organizations_policy" {
+  count = var.enable_organizations ? 1 : 0
+
+  name   = "STCloudOrganizations"
+  role   = aws_iam_role.stcloud_scan.name
+  policy = data.aws_iam_policy_document.stcloud_organizations_policy[0].json
 }
 
 # S3 Integration Module
